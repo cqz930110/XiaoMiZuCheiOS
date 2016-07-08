@@ -1,0 +1,32 @@
+//
+//  ZUChe_Prefix.pch
+//  XiaoMiZuChe
+//
+//  Created by apple on 16/7/8.
+//  Copyright © 2016年 QZ. All rights reserved.
+//
+
+#ifndef ZUChe_Prefix_pch
+#define ZUChe_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ZUChe_Prefix_pch */
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "DefineHeader.h"
+#import "UIImageView+WebCache.h"
+
+#import "SVProgressHUD.h"
+#import "ZhouDao_NetWorkManger.h"
+#import "MJRefresh.h"
+#import "QZPathDefine.h"
+#import "QZViewDefine.h"
+#import "QZPersistentDefine.h"
+#import "NetWorkMangerTools.h"
+#import "ThemeColor.h"
+
+#endif

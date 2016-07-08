@@ -1,0 +1,13 @@
+platform:ios, '7.0'
+pod 'SDWebImage', '~> 3.7.5'
+pod 'AFNetworking', '~> 2.5.4'
+#键盘控制
+pod 'IQKeyboardManager', '~> 3.3.4'
+#底部弹出
+pod 'LCActionSheet', '~> 1.2.0'
+#tabbar
+pod 'CYLTabBarController', '~> 1.4.4'     #TabBar1.2.1
+pod 'MJRefresh', '~> 3.1.0'
+pod 'SVProgressHUD', '~> 2.0.3'
+#滑动返回
+pod 'FDFullscreenPopGesture', '1.1'
