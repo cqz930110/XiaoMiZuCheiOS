@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CYLTabBarController (1.4.5)
+  - CYLTabBarController (1.5.6)
   - FDFullscreenPopGesture (1.1)
   - IQKeyboardManager (3.3.7)
   - LCActionSheet (1.2.3)
@@ -32,7 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
-  - CYLTabBarController (~> 1.4.4)
+  - CYLTabBarController (~> 1.5.6)
   - FDFullscreenPopGesture (= 1.1)
   - IQKeyboardManager (~> 3.3.4)
   - LCActionSheet (~> 1.2.0)
@@ -42,7 +42,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  CYLTabBarController: 791db3eb4be89f6f01fea76b87d9fa05128a9fd8
+  CYLTabBarController: 5b7328765e6103e1776ae296b8e009a3da0e4c4b
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034

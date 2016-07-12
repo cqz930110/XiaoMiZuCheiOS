@@ -12,7 +12,7 @@
 
 #endif /* ThemeColor_h */
 //导航条背景颜色
-#define KNavigationBarColor          [UIColor colorWithHexString:@"#00c8aa"]
+#define KNavigationBarColor          [UIColor whiteColor]
 
 //分线的颜色
 #define lineColor                    [UIColor colorWithHexString:@"#D4D4D4"]

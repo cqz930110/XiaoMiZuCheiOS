@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ZCTabBarControllerConfig.h"
 @interface AppDelegate ()
 
 @end
@@ -17,12 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    UIWindow *window = [[UIWindow alloc] initWithFrame:kMainScreenFrameRect];
-    window.backgroundColor = [UIColor whiteColor];
-    
-    
-    [self.window makeKeyWindow];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
+    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

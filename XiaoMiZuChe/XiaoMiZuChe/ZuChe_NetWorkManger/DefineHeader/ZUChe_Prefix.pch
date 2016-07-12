@@ -28,5 +28,9 @@
 #import "QZPersistentDefine.h"
 #import "NetWorkMangerTools.h"
 #import "ThemeColor.h"
+#import "UIColor+Helper.h"
+#import "QZManager.h"
+#import "JKPromptView.h"
+#import "UIView+WhenTappedBlocks.h"
 
 #endif
