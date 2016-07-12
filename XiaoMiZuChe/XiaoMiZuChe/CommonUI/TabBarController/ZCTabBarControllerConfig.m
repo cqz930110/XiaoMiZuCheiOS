@@ -127,12 +127,12 @@
     // set the text color for unselected state
     // 普通状态下的文字属性
     NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
-    normalAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+    normalAttrs[NSForegroundColorAttributeName] = [UIColor colorWithHexString:@"#999999"];
     
     // set the text color for selected state
     // 选中状态下的文字属性
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
-    selectedAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
+    selectedAttrs[NSForegroundColorAttributeName] = [UIColor colorWithHexString:@"#F08200"];
     
     // set the text Attributes
     // 设置文字属性

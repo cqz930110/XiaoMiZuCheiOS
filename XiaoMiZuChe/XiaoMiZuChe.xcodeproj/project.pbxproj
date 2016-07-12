@@ -54,6 +54,8 @@
 		185931041D3490EB00F948D4 /* NSString+SPStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930CF1D3490EB00F948D4 /* NSString+SPStr.m */; };
 		185931061D3490EB00F948D4 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930D51D3490EB00F948D4 /* SoundManager.m */; };
 		1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859311E1D34996400F948D4 /* ZCTabBarControllerConfig.m */; };
+		1859312C1D34D80A00F948D4 /* JSAnimatedImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185931291D34D80A00F948D4 /* JSAnimatedImagesView.m */; };
+		1859312D1D34D80A00F948D4 /* MSWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859312B1D34D80A00F948D4 /* MSWeakTimer.m */; };
 		187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */; };
 		187349E81D2F89DD001A3E91 /* NetWorkMangerTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E71D2F89DD001A3E91 /* NetWorkMangerTools.m */; };
 		18E797F01D347FEE0093A596 /* bg_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B21D347FEE0093A596 /* bg_alipay@2x.png */; };
@@ -234,6 +236,10 @@
 		185930D51D3490EB00F948D4 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		1859311D1D34996400F948D4 /* ZCTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTabBarControllerConfig.h; sourceTree = "<group>"; };
 		1859311E1D34996400F948D4 /* ZCTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTabBarControllerConfig.m; sourceTree = "<group>"; };
+		185931281D34D80A00F948D4 /* JSAnimatedImagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAnimatedImagesView.h; sourceTree = "<group>"; };
+		185931291D34D80A00F948D4 /* JSAnimatedImagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAnimatedImagesView.m; sourceTree = "<group>"; };
+		1859312A1D34D80A00F948D4 /* MSWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSWeakTimer.h; sourceTree = "<group>"; };
+		1859312B1D34D80A00F948D4 /* MSWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSWeakTimer.m; sourceTree = "<group>"; };
 		187349E21D2F82CB001A3E91 /* ZUChe_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUChe_Prefix.pch; sourceTree = "<group>"; };
 		187349E31D2F89BC001A3E91 /* ZhouDao_NetWorkManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhouDao_NetWorkManger.h; sourceTree = "<group>"; };
 		187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhouDao_NetWorkManger.m; sourceTree = "<group>"; };
@@ -793,6 +799,17 @@
 			path = "音乐音效";
 			sourceTree = "<group>";
 		};
+		185931271D34D80A00F948D4 /* JSAnimatedImagesView */ = {
+			isa = PBXGroup;
+			children = (
+				185931281D34D80A00F948D4 /* JSAnimatedImagesView.h */,
+				185931291D34D80A00F948D4 /* JSAnimatedImagesView.m */,
+				1859312A1D34D80A00F948D4 /* MSWeakTimer.h */,
+				1859312B1D34D80A00F948D4 /* MSWeakTimer.m */,
+			);
+			path = JSAnimatedImagesView;
+			sourceTree = "<group>";
+		};
 		187349E01D2F818A001A3E91 /* ZuChe_NetWorkManger */ = {
 			isa = PBXGroup;
 			children = (
@@ -910,6 +927,7 @@
 		187349F11D2F951F001A3E91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				185931271D34D80A00F948D4 /* JSAnimatedImagesView */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1192,6 +1210,7 @@
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
 				185930DB1D3490EB00F948D4 /* FMUString.m in Sources */,
+				1859312C1D34D80A00F948D4 /* JSAnimatedImagesView.m in Sources */,
 				185930F11D3490EB00F948D4 /* StoreKitManager.m in Sources */,
 				185930EE1D3490EB00F948D4 /* NSString+YXFAddtions.m in Sources */,
 				185930D81D3490EB00F948D4 /* UIButton+Curled.m in Sources */,
@@ -1208,6 +1227,7 @@
 				185931021D3490EB00F948D4 /* FDCalendar.m in Sources */,
 				185930511D34896000F948D4 /* MallViewController.m in Sources */,
 				185930D61D3490EB00F948D4 /* AnimationTools.m in Sources */,
+				1859312D1D34D80A00F948D4 /* MSWeakTimer.m in Sources */,
 				185930DE1D3490EB00F948D4 /* JKPromptView.m in Sources */,
 				185930ED1D3490EB00F948D4 /* NSString+Size.m in Sources */,
 				185930DC1D3490EB00F948D4 /* FMUSystem.m in Sources */,
