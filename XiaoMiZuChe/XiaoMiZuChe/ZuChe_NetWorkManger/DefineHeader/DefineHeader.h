@@ -15,13 +15,15 @@
  *
  **/
 
-#define RGBACOLOR(r,g,b,a)   [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define LRRGBAColor(r,g,b,a)   [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
-#define rgb(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define rgba(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define LRRGBColor(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
+
 #define hexColor(colorV) [UIColor colorWithHexColorString:@#colorV]
+
 #define hexColorAlpha(colorV,a) [UIColor colorWithHexColorString:@#colorV alpha:a];
-#define ramdomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0f green:arc4random_uniform(255)/255.0f blue:arc4random_uniform(255)/255.0f alpha:1.0f]
+
+#define LRRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0f green:arc4random_uniform(255)/255.0f blue:arc4random_uniform(255)/255.0f alpha:1.0f]
 
 
 /**
@@ -65,15 +67,35 @@
 #define Font_21        [UIFont systemFontOfSize:21]
 #define Font_24        [UIFont systemFontOfSize:24]
 
-//旋转
+/**
+ *  由角度转换弧度 由弧度转换角度
+ */
 #define REES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
-#define ImgName(name) [UIImage imageNamed:@#name]
 
+#define ImgName(name) [UIImage imageNamed:@#name]
+//获取图片资源
+#define kGetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 #define Orgin_y(container)   (container.frame.origin.y+container.frame.size.height)
 #define Orgin_x(container)   (container.frame.origin.x+container.frame.size.width)
+/**
+ *  设置 view 圆角和边框
+ */
+#define LRViewBorderRadius(View, Radius, Width, Color)\
+\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
 
-
-
+/**
+ *  GCD 的宏定义
+ */
+//GCD - 一次性执行
+#define kDISPATCH_ONCE_BLOCK(onceBlock) static dispatch_once_t onceToken; dispatch_once(&onceToken, onceBlock);
+//GCD - 在Main线程上运行
+#define kDISPATCH_MAIN_THREAD(mainQueueBlock) dispatch_async(dispatch_get_main_queue(), mainQueueBlock);
+//GCD - 开启异步线程
+#define kDISPATCH_GLOBAL_QUEUE_DEFAULT(globalQueueBlock) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), globalQueueBlocl);
 
 #define line_w 0.5
 #define isTest 0
@@ -81,7 +103,28 @@
 #define DATE_FORMAT_YMDHMS             @"yyyy-MM-dd HH:mm:ss"
 #define DATE_FORMAT_YMDHM               @"yyyy-MM-dd HH:mm"
 
-/** 
+/**
+ *  3.判断当前环境(ARC/MRC)
+ */
+#if __has_feature(objc_arc)
+// ARC
+#else
+// MRC
+#endif
+
+
+/**
+ *  判断是真机还是模拟器
+ */
+#if TARGET_OS_IPHONE
+//iPhone Device
+#endif
+#if TARGET_IPHONE_SIMULATOR
+//iPhone Simulator
+#endif
+
+
+/**
  *  把是NSNull 类型的值替换成nil
  *  使用方法：contact.contactPhone = VerifyValue(contactDic[@"send_ContactPhone"]);
  */
@@ -98,7 +141,7 @@ tmp;\
  * NSLog宏，限定仅在Debug时才打印,release不打印，防止拖慢程序运行
  */
 #ifdef DEBUG
-#define DLog(...) NSLog(__VA_ARGS__)
+#define DLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
 #else
 #define DLog(...)
 #endif
@@ -130,23 +173,21 @@ tmp;\
 
 #define iOSVersion [[[UIDevice currentDevice] systemVersion] floatValue] //iOS版本
 
+#define ProvinceArrays  [NSMutableArray arrayWithObjects:@"北京",@"天津",@"上海",@"江苏省",@"河北省",@"河南省",@"湖南省",@"湖北省",@"浙江省",@"云南",@"陕西省",@"台湾",@"贵州省",@"广西壮族自治区",@"黑龙江省",@"甘肃省",@"吉林省",@"四川省",@"广东省",@"江西省",@"青海省",@"辽宁省",@"香港特别行政区",@"山东省",@"西藏自治区",@"重庆",@"福建省",@"新疆维吾尔自治区",@"内蒙古自治区",@"山西省",@"海南省",@"宁夏回族自治区",@"澳门特别行政区",@"安徽省", nil]
 
-typedef void(^ZCBlock)(void);
-typedef void(^ZCBlockBlock)(ZCBlock block);
-typedef void(^ZCObjectBlock)(id obj);
-typedef void(^ZCArrayBlock)(NSArray *array);
-typedef void(^ZCMutableArrayBlock)(NSMutableArray *array);
-typedef void(^ZCDictionaryBlock)(NSDictionary *dic);
-typedef void(^ZCErrorBlock)(NSError *error);
-typedef void(^ZCIndexBlock)(NSInteger index);
-typedef void(^ZCFloatBlock)(CGFloat afloat);
-typedef void(^ZCStringBlock)(NSString *string);
-
-
-typedef void(^ZCCancelBlock)(id viewController);
-typedef void(^ZCFinishedBlock)(id viewController, id object);
-
-typedef void(^ZCSendRequestAndResendRequestBlock)(id sendBlock, id resendBlock);
+typedef void(^ZDBlock)(void);
+typedef void(^ZDBlockBlock)(ZDBlock block);
+typedef void(^ZDObjectBlock)(id obj);
+typedef void(^ZDArrayBlock)(NSArray *array);
+typedef void(^ZDMutableArrayBlock)(NSMutableArray *array);
+typedef void(^ZDDictionaryBlock)(NSDictionary *dic);
+typedef void(^ZDErrorBlock)(NSError *error);
+typedef void(^ZDIndexBlock)(NSInteger index);
+typedef void(^ZDFloatBlock)(CGFloat afloat);
+typedef void(^ZDStringBlock)(NSString *string);
+typedef void(^ZDCancelBlock)(id viewController);
+typedef void(^ZDFinishedBlock)(id viewController, id object);
+typedef void(^ZDSendRequestAndResendRequestBlock)(id sendBlock, id resendBlock);
 
 
 #endif /* DefineHeader_h */
