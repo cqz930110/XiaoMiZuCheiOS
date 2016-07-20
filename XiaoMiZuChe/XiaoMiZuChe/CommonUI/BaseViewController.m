@@ -10,6 +10,7 @@
 #define TitleFont 18.0f
 #define LeftFont 13.0f
 #define kDefaultWidth   44.0
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface BaseViewController ()
 {
@@ -29,58 +30,70 @@
     }
     return self;
 }
-
-- (void)initWithStatusBar
+#pragma mark - getters and setters
+- (UIView *)statusBarView
 {
-    CGRect frame = CGRectZero;
-    // The status bar default color by red color.
-    frame = CGRectMake(0.0, 0.0, kMainScreenWidth, barSpacing);
-    self.statusBarView = [[UIView alloc] initWithFrame:frame];
-    [self.statusBarView setBackgroundColor:KNavigationBarColor];
-    [self.view addSubview:_statusBarView];
+    if (!_statusBarView) {
+        CGRect frame = CGRectZero;
+        // The status bar default color by red color.
+        frame = CGRectMake(0.0, 0.0, kMainScreenWidth, barSpacing);
+        _statusBarView = [[UIView alloc] initWithFrame:frame];
+        [_statusBarView setBackgroundColor:KNavigationBarColor];
+    }
+    return _statusBarView;
 }
-- (void)initWithNaviBar
+- (UIView *)naviBarView
 {
-    CGRect frame = CGRectZero;
-    // The status bar default color by red color.
-    frame = CGRectMake(0.0, barSpacing, kMainScreenWidth, kDefaultWidth);
-    self.naviBarView = [[UIView alloc] initWithFrame:frame];
-    [self.naviBarView setBackgroundColor:KNavigationBarColor];
-    [self.view addSubview:_naviBarView];
-    
-    // Left button
-    frame = CGRectMake(0.0, 0.0, kDefaultWidth, kDefaultWidth);
-    self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = frame;
-    [self.leftBtn addTarget:self
-                     action:@selector(handleBtnAction:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [self.leftBtn setTag:NaviLeftBtn];
-    [self.leftBtn setHidden:YES];
-    [self.naviBarView addSubview:_leftBtn];
-    
-    // Right button
-    frame = CGRectMake(CGRectGetWidth(_naviBarView.bounds) - kDefaultWidth, 0.0, kDefaultWidth, kDefaultWidth);
-    self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.rightBtn.frame = frame;
-    [self.rightBtn addTarget:self
-                      action:@selector(handleBtnAction:)
-            forControlEvents:UIControlEventTouchUpInside];
-    [self.rightBtn setTag:NaviRightBtn];
-    [self.rightBtn setHidden:YES];
-    [self.naviBarView addSubview:_rightBtn];
-    
-    // Title label
-    frame = CGRectMake(0.0, 0.0, 0.0, kDefaultWidth);
-    self.titleLabel = [[UILabel alloc] initWithFrame:frame];
-    [self.titleLabel setBackgroundColor:[UIColor clearColor]];
-    // [self.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [self.titleLabel setFont:[UIFont systemFontOfSize:17.0]];
-    [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.titleLabel setTextColor:thirdColor];
-    [self.naviBarView addSubview:_titleLabel];
+    if (!_naviBarView) {
+        CGRect frame = CGRectZero;
+        // The status bar default color by red color.
+        frame = CGRectMake(0.0, barSpacing, kMainScreenWidth, kDefaultWidth);
+        _naviBarView = [[UIView alloc] initWithFrame:frame];
+        [_naviBarView setBackgroundColor:KNavigationBarColor];
+    }
+    return _naviBarView;
+}
+-(UIButton *)leftBtn
+{
+    if (!_leftBtn) {
+        CGRect frame = CGRectMake(0.0, 0.0, kDefaultWidth, kDefaultWidth);
+        _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftBtn.frame = frame;
+        [_leftBtn addTarget:self
+                         action:@selector(handleBtnAction:)
+               forControlEvents:UIControlEventTouchUpInside];
+        [_leftBtn setTag:NaviLeftBtn];
+        [_leftBtn setHidden:YES];
+    }
+    return _leftBtn;
+}
+- (UIButton *)rightBtn
+{
+    if (!_rightBtn) {
+        CGRect frame = CGRectMake(CGRectGetWidth(_naviBarView.bounds) - kDefaultWidth, 0.0, kDefaultWidth, kDefaultWidth);
+        self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.rightBtn.frame = frame;
+        [self.rightBtn addTarget:self
+                          action:@selector(handleBtnAction:)
+                forControlEvents:UIControlEventTouchUpInside];
+        [self.rightBtn setTag:NaviRightBtn];
+        [self.rightBtn setHidden:YES];
+    }
+    return _rightBtn;
+}
+- (UILabel *)titleLabel
+{
+    if (!_titleLabel) {
+        CGRect frame = CGRectMake(0.0, 0.0, 0.0, kDefaultWidth);
+        _titleLabel = [[UILabel alloc] initWithFrame:frame];
+        [_titleLabel setBackgroundColor:[UIColor clearColor]];
+        [_titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_titleLabel setTextColor:thirdColor];
+    }
+    return _titleLabel;
 }
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self performSelector:@selector(delayInitialLoading) withObject:nil afterDelay:0.05];
@@ -99,14 +112,26 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
         
         barSpacing = 20.0;
-        [self initWithStatusBar];
+        [self.view addSubview:self.statusBarView];
     }
     
     // init navi bar
-    [self initWithNaviBar];
+    [self.view addSubview:self.naviBarView];
+    
+    // Left button
+    [self.naviBarView addSubview:self.leftBtn];
+    
+    // Right button
+    [self.naviBarView addSubview:self.rightBtn];
+    
+    // Title label
+    [self.naviBarView addSubview:self.titleLabel];
+
     self.view.backgroundColor = ViewBackColor;
     
-
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 63.4, kMainScreenWidth, .6f)];
+    lineView.backgroundColor = hexColor(E6E8EA);
+    [self.view addSubview:lineView];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -116,10 +141,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-}
-- (void)customRefreshTitle{
-    
-    
 }
 -(void)delayInitialLoading
 {
@@ -156,7 +177,6 @@
         
         CGRect frame = _titleLabel.frame;
         frame.size.width = [QZManager getLabelWidth:_titleLabel];
-//        [self.titleLabel setFrame:frame];
         self.titleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         self.titleLabel.frame = CGRectMake(60, 0.0, kMainScreenWidth-120.f, 44.f);
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -255,12 +275,6 @@
 - (UILabel *)getTitleLabel {
     return self.titleLabel;
 }
-
-//#pragma mark -通知栏字体颜色
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
 #pragma mark - Public method
 
 - (void)handleBtnAction:(UIButton *)btn

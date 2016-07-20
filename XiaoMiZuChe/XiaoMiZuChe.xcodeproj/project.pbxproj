@@ -58,6 +58,8 @@
 		1859312D1D34D80A00F948D4 /* MSWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859312B1D34D80A00F948D4 /* MSWeakTimer.m */; };
 		187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */; };
 		187349E81D2F89DD001A3E91 /* NetWorkMangerTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E71D2F89DD001A3E91 /* NetWorkMangerTools.m */; };
+		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
+		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18E797F01D347FEE0093A596 /* bg_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B21D347FEE0093A596 /* bg_alipay@2x.png */; };
 		18E797F11D347FEE0093A596 /* bg_back_car_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B31D347FEE0093A596 /* bg_back_car_btn@2x.png */; };
 		18E797F21D347FEE0093A596 /* bg_back_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B41D347FEE0093A596 /* bg_back_car@2x.png */; };
@@ -67,8 +69,6 @@
 		18E797F61D347FEE0093A596 /* bg_manage_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B81D347FEE0093A596 /* bg_manage_card@2x.png */; };
 		18E797F71D347FEE0093A596 /* bg_map_type@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B91D347FEE0093A596 /* bg_map_type@2x.png */; };
 		18E797F81D347FEE0093A596 /* bg_send_code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BA1D347FEE0093A596 /* bg_send_code@2x.png */; };
-		18E797F91D347FEE0093A596 /* bg_submit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BB1D347FEE0093A596 /* bg_submit_btn@2x.png */; };
-		18E797FA1D347FEE0093A596 /* bg_submit_disabled_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BC1D347FEE0093A596 /* bg_submit_disabled_btn@2x.png */; };
 		18E797FB1D347FEE0093A596 /* bg_unionpay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BD1D347FEE0093A596 /* bg_unionpay@2x.png */; };
 		18E797FC1D347FEE0093A596 /* bg_unlock_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BE1D347FEE0093A596 /* bg_unlock_btn@2x.png */; };
 		18E797FD1D347FEE0093A596 /* bg_wxpay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797BF1D347FEE0093A596 /* bg_wxpay@2x.png */; };
@@ -250,6 +250,9 @@
 		187349EB1D2F8E0C001A3E91 /* QZPersistentDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZPersistentDefine.h; sourceTree = "<group>"; };
 		187349EC1D2F8E0C001A3E91 /* QZViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZViewDefine.h; sourceTree = "<group>"; };
 		187349ED1D2F8E0C001A3E91 /* ThemeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeColor.h; sourceTree = "<group>"; };
+		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		18E797B21D347FEE0093A596 /* bg_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_alipay@2x.png"; sourceTree = "<group>"; };
 		18E797B31D347FEE0093A596 /* bg_back_car_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car_btn@2x.png"; sourceTree = "<group>"; };
 		18E797B41D347FEE0093A596 /* bg_back_car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car@2x.png"; sourceTree = "<group>"; };
@@ -259,8 +262,6 @@
 		18E797B81D347FEE0093A596 /* bg_manage_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_manage_card@2x.png"; sourceTree = "<group>"; };
 		18E797B91D347FEE0093A596 /* bg_map_type@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_map_type@2x.png"; sourceTree = "<group>"; };
 		18E797BA1D347FEE0093A596 /* bg_send_code@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_send_code@2x.png"; sourceTree = "<group>"; };
-		18E797BB1D347FEE0093A596 /* bg_submit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_submit_btn@2x.png"; sourceTree = "<group>"; };
-		18E797BC1D347FEE0093A596 /* bg_submit_disabled_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_submit_disabled_btn@2x.png"; sourceTree = "<group>"; };
 		18E797BD1D347FEE0093A596 /* bg_unionpay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_unionpay@2x.png"; sourceTree = "<group>"; };
 		18E797BE1D347FEE0093A596 /* bg_unlock_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_unlock_btn@2x.png"; sourceTree = "<group>"; };
 		18E797BF1D347FEE0093A596 /* bg_wxpay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_wxpay@2x.png"; sourceTree = "<group>"; };
@@ -421,6 +422,7 @@
 			children = (
 				185930521D34897100F948D4 /* MineViewController.h */,
 				185930531D34897100F948D4 /* MineViewController.m */,
+				18E12EF51D3F273700E02877 /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -868,8 +870,6 @@
 				18E797B81D347FEE0093A596 /* bg_manage_card@2x.png */,
 				18E797B91D347FEE0093A596 /* bg_map_type@2x.png */,
 				18E797BA1D347FEE0093A596 /* bg_send_code@2x.png */,
-				18E797BB1D347FEE0093A596 /* bg_submit_btn@2x.png */,
-				18E797BC1D347FEE0093A596 /* bg_submit_disabled_btn@2x.png */,
 				18E797BD1D347FEE0093A596 /* bg_unionpay@2x.png */,
 				18E797BE1D347FEE0093A596 /* bg_unlock_btn@2x.png */,
 				18E797BF1D347FEE0093A596 /* bg_wxpay@2x.png */,
@@ -941,6 +941,16 @@
 				185930391D3488DC00F948D4 /* 我的 */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		18E12EF51D3F273700E02877 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				18E12EF61D3F274400E02877 /* LoginViewController.h */,
+				18E12EF71D3F274400E02877 /* LoginViewController.m */,
+				18E12EF81D3F274400E02877 /* LoginViewController.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		3DCEB6EA3FD1E163E8A5DAA0 /* Frameworks */ = {
@@ -1030,6 +1040,7 @@
 				TargetAttributes = {
 					184C29751D2BB22E00771220 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 6W5UTJ2U6X;
 					};
 					184C298E1D2BB22E00771220 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1082,7 +1093,6 @@
 				18E798221D347FEE0093A596 /* icon_pass@2x.png in Resources */,
 				18E798181D347FEE0093A596 /* icon_menu_hireCar_active@2x.png in Resources */,
 				18E797F61D347FEE0093A596 /* bg_manage_card@2x.png in Resources */,
-				18E797FA1D347FEE0093A596 /* bg_submit_disabled_btn@2x.png in Resources */,
 				18E798061D347FEE0093A596 /* icon_battery_percent_80@2x.png in Resources */,
 				18E797F41D347FEE0093A596 /* bg_close_carStatus_tip@2x.png in Resources */,
 				18E798101D347FEE0093A596 /* icon_ebike@2x.png in Resources */,
@@ -1093,6 +1103,7 @@
 				18E7981D1D347FEE0093A596 /* icon_menu_my@2x.png in Resources */,
 				18E798201D347FEE0093A596 /* icon_nav@2x.png in Resources */,
 				18E797FE1D347FEE0093A596 /* btn_around_car@2x.png in Resources */,
+				18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */,
 				184C29861D2BB22E00771220 /* Assets.xcassets in Resources */,
 				18E798001D347FEE0093A596 /* icon_battery_percent_20@2x.png in Resources */,
 				18E797FB1D347FEE0093A596 /* bg_unionpay@2x.png in Resources */,
@@ -1104,7 +1115,6 @@
 				18E798191D347FEE0093A596 /* icon_menu_hireCar@2x.png in Resources */,
 				18E7980A1D347FEE0093A596 /* icon_code_active@2x.png in Resources */,
 				18E798141D347FEE0093A596 /* icon_logo@2x.png in Resources */,
-				18E797F91D347FEE0093A596 /* bg_submit_btn@2x.png in Resources */,
 				18E7981F1D347FEE0093A596 /* icon_menu_shop@2x.png in Resources */,
 				18E797F31D347FEE0093A596 /* bg_car_status@2x.png in Resources */,
 				18E797F21D347FEE0093A596 /* bg_back_car@2x.png in Resources */,
@@ -1247,6 +1257,7 @@
 				185930541D34897100F948D4 /* MineViewController.m in Sources */,
 				185931031D3490EB00F948D4 /* FDCalendarItem.m in Sources */,
 				185930E81D3490EB00F948D4 /* UIImage+Extend.m in Sources */,
+				18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */,
 				185930EA1D3490EB00F948D4 /* NSDateFormatter+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1373,12 +1384,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XiaoMiZuChe/ZuChe_NetWorkManger/DefineHeader/ZUChe_Prefix.pch";
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaCheng.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
@@ -1390,12 +1404,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XiaoMiZuChe/ZuChe_NetWorkManger/DefineHeader/ZUChe_Prefix.pch";
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaCheng.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};

@@ -19,5 +19,5 @@ typedef void (^HLPickViewSubmit)(NSString*name,NSString *typeS);
 - (void)showWindowPickView:(UIWindow *)window;
 
 @property(nonatomic,copy)HLPickViewSubmit block;
-@property(nonatomic,copy) ZCStringBlock alertBlock;
+@property(nonatomic,copy) ZDStringBlock alertBlock;
 @end

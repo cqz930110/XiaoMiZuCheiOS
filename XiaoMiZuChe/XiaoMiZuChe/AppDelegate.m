@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "ZCTabBarControllerConfig.h"
-@interface AppDelegate ()
+#import "LoginViewController.h"
+
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -22,10 +24,22 @@
    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
+    tabBarControllerConfig.tabBarController.delegate = self;
     [self.window setRootViewController:tabBarControllerConfig.tabBarController];
     [self.window makeKeyAndVisible];
     return YES;
 }
+#pragma mark -UITabBarControllerDelegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+        LoginViewController *loginVC = [LoginViewController new];
+        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+        return NO;
+    }
+    return YES;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -7,56 +7,38 @@
 //
 
 #import "HomeViewController.h"
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <arpa/inet.h>
+#import "LoginViewController.h"
 
 @interface HomeViewController ()
 
-@property (nonatomic, assign) int clientSocket;
 
 @end
 
 @implementation HomeViewController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initUI];
+}
+#pragma mark - private methods
+#pragma mark - getters and setters
+- (void)initUI{
     [self setupNaviBarWithTitle:@"首页"];
+    [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
+    [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
+    self.rightBtn.titleLabel.font = Font_15;
     
-    self.clientSocket = socket(AF_INET, SOCK_STREAM, 0);
-    
+}
 
-    if (![self connectToHost]) {
-        NSLog(@"失败");
-        return;
-    }
-    NSLog(@"成功");
-    
-    
-    
-    NSString *msg = @"ooo";
-    ssize_t sendLen = send(self.clientSocket, msg.UTF8String, strlen(msg.UTF8String), 0);
-    
-    
-    uint8_t buffer[1024];
-    ssize_t recelen = recv(self.clientSocket, buffer, sizeof(buffer), 0);
-    NSString *result = [[NSString alloc] initWithBytes:buffer length:recelen encoding:NSUTF8StringEncoding];
-}
-- (int)connectToHost
+#pragma mark - event respose
+- (void)rightBtnAction
 {
-    struct sockaddr_in serverAddr;
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    serverAddr.sin_port = htons(123456);
-    
-    return connect(self.clientSocket, (const struct sockaddr *)&serverAddr, sizeof(serverAddr)) == 0;
+    LoginViewController *loginVC = [LoginViewController new];
+    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
 }
-#pragma mark -断开连接
-- (void)disconnect {
-    
-    close(self.clientSocket)
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
