@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 
 @interface HomeViewController ()
-
+@property (nonatomic, assign) UIImageView *bgview;
 
 @end
 
@@ -23,7 +23,6 @@
     [self initUI];
 }
 #pragma mark - private methods
-#pragma mark - getters and setters
 - (void)initUI{
     [self setupNaviBarWithTitle:@"首页"];
     [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
@@ -31,7 +30,7 @@
     self.rightBtn.titleLabel.font = Font_15;
     
 }
-
+#pragma mark - getters and setters
 #pragma mark - event respose
 - (void)rightBtnAction
 {

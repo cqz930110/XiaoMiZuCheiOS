@@ -1,55 +1,43 @@
 //
-//  LoginViewController.m
+//  RegisterController.m
 //  XiaoMiZuChe
 //
-//  Created by apple on 16/7/20.
+//  Created by cqz on 16/7/23.
 //  Copyright © 2016年 QZ. All rights reserved.
 //
 
-#import "LoginViewController.h"
 #import "RegisterController.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>
-
-
-@property (weak, nonatomic) IBOutlet UITextField *phoneText;
-@property (weak, nonatomic) IBOutlet UITextField *codeText;
-@property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@interface RegisterController ()
+@property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
 @end
 
-@implementation LoginViewController
-
+@implementation RegisterController
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     [self initUI];
 }
-#pragma mark - private methods
+#pragma mark -private methods
 - (void)initUI{
+    [self setupNaviBarWithTitle:@"注册会员"];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
     self.view.backgroundColor = [UIColor whiteColor];
-}
-#pragma mark - getters and setters
+    LRViewBorderRadius(_nextBtn, 5.f, 0, [UIColor whiteColor]);
+    LRViewBorderRadius(_sendCodeBtn, 3.f, 1, hexColor(999999));
 
-#pragma mark - event respose
-- (void)leftBtnAction
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
-- (IBAction)registerBtnEvent:(id)sender {
+
+#pragma mark -getters and setters
+
+#pragma mark - event response
+- (IBAction)sendCodeBtnEvent:(id)sender {
+}
+- (IBAction)nextBtnEvent:(id)sender {
     
-    RegisterController *vc = [RegisterController new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-- (IBAction)loginBtnEvent:(id)sender {
-}
-- (IBAction)forgetBtnEvent:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning {

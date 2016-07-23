@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B6D0401D4367CE00800E32 /* RegisterController.m */; };
+		10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B6D0411D4367CE00800E32 /* RegisterController.xib */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
 		184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297D1D2BB22E00771220 /* AppDelegate.m */; };
 		184C29861D2BB22E00771220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184C29851D2BB22E00771220 /* Assets.xcassets */; };
@@ -140,6 +142,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10B6D03F1D4367CE00800E32 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		10B6D0401D4367CE00800E32 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		10B6D0411D4367CE00800E32 /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		17367642F2ACDA21697919A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C29761D2BB22E00771220 /* XiaoMiZuChe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoMiZuChe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C297A1D2BB22E00771220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -342,6 +347,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10B6D03E1D4367C300800E32 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				10B6D03F1D4367CE00800E32 /* RegisterController.h */,
+				10B6D0401D4367CE00800E32 /* RegisterController.m */,
+				10B6D0411D4367CE00800E32 /* RegisterController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		184C296D1D2BB22E00771220 = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +437,7 @@
 			children = (
 				185930521D34897100F948D4 /* MineViewController.h */,
 				185930531D34897100F948D4 /* MineViewController.m */,
+				10B6D03E1D4367C300800E32 /* Register */,
 				18E12EF51D3F273700E02877 /* Login */,
 			);
 			path = Controllers;
@@ -1125,6 +1141,7 @@
 				18E797FC1D347FEE0093A596 /* bg_unlock_btn@2x.png in Resources */,
 				18E797F11D347FEE0093A596 /* bg_back_car_btn@2x.png in Resources */,
 				18E797F51D347FEE0093A596 /* bg_hire_car@2x.png in Resources */,
+				10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */,
 				18E798081D347FEE0093A596 /* icon_battery_percent_100@2x.png in Resources */,
 				18E798261D347FEE0093A596 /* icon_plane@2x.png in Resources */,
 				18E798091D347FEE0093A596 /* icon_battery@2x.png in Resources */,
@@ -1220,6 +1237,7 @@
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
 				185930DB1D3490EB00F948D4 /* FMUString.m in Sources */,
+				10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */,
 				1859312C1D34D80A00F948D4 /* JSAnimatedImagesView.m in Sources */,
 				185930F11D3490EB00F948D4 /* StoreKitManager.m in Sources */,
 				185930EE1D3490EB00F948D4 /* NSString+YXFAddtions.m in Sources */,
