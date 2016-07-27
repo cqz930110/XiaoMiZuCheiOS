@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B6D0401D4367CE00800E32 /* RegisterController.m */; };
 		10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B6D0411D4367CE00800E32 /* RegisterController.xib */; };
+		10E8A5E81D48F5C600137C07 /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E8A5E41D48F5C600137C07 /* JKCountDownButton.m */; };
+		10E8A5E91D48F5C600137C07 /* JX_GCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E8A5E71D48F5C600137C07 /* JX_GCDTimerManager.m */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
 		184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297D1D2BB22E00771220 /* AppDelegate.m */; };
 		184C29861D2BB22E00771220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184C29851D2BB22E00771220 /* Assets.xcassets */; };
@@ -145,6 +147,10 @@
 		10B6D03F1D4367CE00800E32 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		10B6D0401D4367CE00800E32 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		10B6D0411D4367CE00800E32 /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
+		10E8A5E31D48F5C600137C07 /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
+		10E8A5E41D48F5C600137C07 /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		10E8A5E61D48F5C600137C07 /* JX_GCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JX_GCDTimerManager.h; sourceTree = "<group>"; };
+		10E8A5E71D48F5C600137C07 /* JX_GCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JX_GCDTimerManager.m; sourceTree = "<group>"; };
 		17367642F2ACDA21697919A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C29761D2BB22E00771220 /* XiaoMiZuChe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoMiZuChe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C297A1D2BB22E00771220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -355,6 +361,24 @@
 				10B6D0411D4367CE00800E32 /* RegisterController.xib */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		10E8A5E21D48F5C600137C07 /* JKCountDownButton */ = {
+			isa = PBXGroup;
+			children = (
+				10E8A5E31D48F5C600137C07 /* JKCountDownButton.h */,
+				10E8A5E41D48F5C600137C07 /* JKCountDownButton.m */,
+			);
+			path = JKCountDownButton;
+			sourceTree = "<group>";
+		};
+		10E8A5E51D48F5C600137C07 /* JX_GCDTimer */ = {
+			isa = PBXGroup;
+			children = (
+				10E8A5E61D48F5C600137C07 /* JX_GCDTimerManager.h */,
+				10E8A5E71D48F5C600137C07 /* JX_GCDTimerManager.m */,
+			);
+			path = JX_GCDTimer;
 			sourceTree = "<group>";
 		};
 		184C296D1D2BB22E00771220 = {
@@ -943,6 +967,8 @@
 		187349F11D2F951F001A3E91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				10E8A5E21D48F5C600137C07 /* JKCountDownButton */,
+				10E8A5E51D48F5C600137C07 /* JX_GCDTimer */,
 				185931271D34D80A00F948D4 /* JSAnimatedImagesView */,
 			);
 			path = Utility;
@@ -1230,12 +1256,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				185930D71D3490EB00F948D4 /* CurledViewBase.m in Sources */,
+				10E8A5E81D48F5C600137C07 /* JKCountDownButton.m in Sources */,
 				187349E81D2F89DD001A3E91 /* NetWorkMangerTools.m in Sources */,
 				185930E91D3490EB00F948D4 /* NSDate+Category.m in Sources */,
 				1859305E1D348BED00F948D4 /* BaseViewController.m in Sources */,
 				185930D91D3490EB00F948D4 /* UIImageView+Curled.m in Sources */,
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
+				10E8A5E91D48F5C600137C07 /* JX_GCDTimerManager.m in Sources */,
 				185930DB1D3490EB00F948D4 /* FMUString.m in Sources */,
 				10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */,
 				1859312C1D34D80A00F948D4 /* JSAnimatedImagesView.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "RegisterController.h"
+#import "JKCountDownButton.h"
 
 @interface RegisterController ()
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
@@ -35,6 +36,19 @@
 
 #pragma mark - event response
 - (IBAction)sendCodeBtnEvent:(id)sender {
+    
+    JKCountDownButton *btn = (JKCountDownButton *)sender;
+    btn.enabled = NO;
+    [sender startCountDownWithSecond:60];
+    [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+        NSString *title = [NSString stringWithFormat:@"%zd秒",second];
+        return title;
+    }];
+    [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+        countDownButton.enabled = YES;
+        return @"重新获取";
+    }];
+
 }
 - (IBAction)nextBtnEvent:(id)sender {
     
