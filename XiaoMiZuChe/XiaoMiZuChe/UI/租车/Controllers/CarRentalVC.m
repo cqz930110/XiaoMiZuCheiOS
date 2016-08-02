@@ -43,7 +43,7 @@
 - (MAMapView *)mapView
 {
     if (!_mapView) {
-        _mapView =  [[MAMapView alloc] initWithFrame:CGRectMake(0,64 , kMainScreenWidth, kMainScreenHeight - 109)] ;
+        _mapView =  [[MAMapView alloc] initWithFrame:CGRectMake(0,64 , kMainScreenWidth, kMainScreenHeight - 64)] ;
         _mapView.delegate = self;
         _mapView.showsCompass = NO;
         _mapView.showsScale = NO;
