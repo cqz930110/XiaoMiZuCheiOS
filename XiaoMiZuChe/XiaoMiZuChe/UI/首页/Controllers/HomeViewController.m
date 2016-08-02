@@ -24,7 +24,7 @@
 }
 #pragma mark - private methods
 - (void)initUI{
-    [self setupNaviBarWithTitle:@"首页"];
+    [self setupNaviBarWithTitle:@"小米租车"];
     [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
     [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
     self.rightBtn.titleLabel.font = Font_15;

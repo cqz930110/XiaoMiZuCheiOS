@@ -10,6 +10,15 @@
 #import "ZCTabBarControllerConfig.h"
 #import "LoginViewController.h"
 
+/**
+ 高德地图
+ */
+#import "APIKey.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
+
+#import "AFNetworkActivityIndicatorManager.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
@@ -23,6 +32,12 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //地图
+    [self configureAPIKey];
+    
+
+    //tabbar
     ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
     tabBarControllerConfig.tabBarController.delegate = self;
     [self.window setRootViewController:tabBarControllerConfig.tabBarController];
@@ -32,12 +47,22 @@
 #pragma mark -UITabBarControllerDelegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
-        LoginViewController *loginVC = [LoginViewController new];
-        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
-        return NO;
-    }
+//    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+//        LoginViewController *loginVC = [LoginViewController new];
+//        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+//        return NO;
+//    }
     return YES;
+}
+#pragma mark - 配置地图
+- (void)configureAPIKey
+{
+    if ([APIKey length] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"apiKey为空，请检查key是否正确设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    [AMapServices sharedServices].apiKey = (NSString *)APIKey;
 }
 
 

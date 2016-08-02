@@ -62,6 +62,23 @@
 		1859312D1D34D80A00F948D4 /* MSWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859312B1D34D80A00F948D4 /* MSWeakTimer.m */; };
 		187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */; };
 		187349E81D2F89DD001A3E91 /* NetWorkMangerTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E71D2F89DD001A3E91 /* NetWorkMangerTools.m */; };
+		189EC4901D50387700D536B9 /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC48F1D50387700D536B9 /* SpeechSynthesizer.m */; };
+		189EC4941D5044C700D536B9 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4921D5044C700D536B9 /* MineTableViewCell.m */; };
+		189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4931D5044C700D536B9 /* MineTableViewCell.xib */; };
+		189EC4971D5046CD00D536B9 /* default_head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4961D5046CD00D536B9 /* default_head@2x.png */; };
+		189EC49A1D506A3F00D536B9 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4991D506A3F00D536B9 /* MineSettingVC.m */; };
+		189EC4B21D506B2200D536B9 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC49D1D506B2200D536B9 /* SDBrowserImageView.m */; };
+		189EC4B31D506B2200D536B9 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC49F1D506B2200D536B9 /* SDPhotoBrowser.m */; };
+		189EC4B41D506B2200D536B9 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4A21D506B2200D536B9 /* SDWaitingView.m */; };
+		189EC4B51D506B2200D536B9 /* WHC_Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4A61D506B2200D536B9 /* WHC_Asset.m */; };
+		189EC4B61D506B2200D536B9 /* WHC_PhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4A81D506B2200D536B9 /* WHC_PhotoListCell.m */; };
+		189EC4B71D506B2200D536B9 /* WHC_CameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4AA1D506B2200D536B9 /* WHC_CameraVC.m */; };
+		189EC4B81D506B2200D536B9 /* WHC_CameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4AB1D506B2200D536B9 /* WHC_CameraVC.xib */; };
+		189EC4B91D506B2200D536B9 /* WHC_ChoicePictureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4AD1D506B2200D536B9 /* WHC_ChoicePictureVC.m */; };
+		189EC4BA1D506B2200D536B9 /* WHC_ChoicePictureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4AE1D506B2200D536B9 /* WHC_ChoicePictureVC.xib */; };
+		189EC4BB1D506B2200D536B9 /* WHC_PictureListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4B01D506B2200D536B9 /* WHC_PictureListVC.m */; };
+		189EC4BC1D506B2200D536B9 /* WHC_PictureListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4B11D506B2200D536B9 /* WHC_PictureListVC.xib */; };
+		189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4BE1D50702B00D536B9 /* SettingTabCell.m */; };
 		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
 		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18E797F01D347FEE0093A596 /* bg_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E797B21D347FEE0093A596 /* bg_alipay@2x.png */; };
@@ -261,6 +278,37 @@
 		187349EB1D2F8E0C001A3E91 /* QZPersistentDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZPersistentDefine.h; sourceTree = "<group>"; };
 		187349EC1D2F8E0C001A3E91 /* QZViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZViewDefine.h; sourceTree = "<group>"; };
 		187349ED1D2F8E0C001A3E91 /* ThemeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeColor.h; sourceTree = "<group>"; };
+		189EC48A1D50365000D536B9 /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKey.h; sourceTree = "<group>"; };
+		189EC48E1D50387700D536B9 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
+		189EC48F1D50387700D536B9 /* SpeechSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
+		189EC4911D5044C700D536B9 /* MineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
+		189EC4921D5044C700D536B9 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
+		189EC4931D5044C700D536B9 /* MineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineTableViewCell.xib; sourceTree = "<group>"; };
+		189EC4961D5046CD00D536B9 /* default_head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_head@2x.png"; sourceTree = "<group>"; };
+		189EC4981D506A3F00D536B9 /* MineSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSettingVC.h; sourceTree = "<group>"; };
+		189EC4991D506A3F00D536B9 /* MineSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSettingVC.m; sourceTree = "<group>"; };
+		189EC49C1D506B2200D536B9 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		189EC49D1D506B2200D536B9 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		189EC49E1D506B2200D536B9 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		189EC49F1D506B2200D536B9 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		189EC4A01D506B2200D536B9 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		189EC4A11D506B2200D536B9 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		189EC4A21D506B2200D536B9 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		189EC4A51D506B2200D536B9 /* WHC_Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_Asset.h; sourceTree = "<group>"; };
+		189EC4A61D506B2200D536B9 /* WHC_Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_Asset.m; sourceTree = "<group>"; };
+		189EC4A71D506B2200D536B9 /* WHC_PhotoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_PhotoListCell.h; sourceTree = "<group>"; };
+		189EC4A81D506B2200D536B9 /* WHC_PhotoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_PhotoListCell.m; sourceTree = "<group>"; };
+		189EC4A91D506B2200D536B9 /* WHC_CameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_CameraVC.h; sourceTree = "<group>"; };
+		189EC4AA1D506B2200D536B9 /* WHC_CameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_CameraVC.m; sourceTree = "<group>"; };
+		189EC4AB1D506B2200D536B9 /* WHC_CameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_CameraVC.xib; sourceTree = "<group>"; };
+		189EC4AC1D506B2200D536B9 /* WHC_ChoicePictureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_ChoicePictureVC.h; sourceTree = "<group>"; };
+		189EC4AD1D506B2200D536B9 /* WHC_ChoicePictureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_ChoicePictureVC.m; sourceTree = "<group>"; };
+		189EC4AE1D506B2200D536B9 /* WHC_ChoicePictureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_ChoicePictureVC.xib; sourceTree = "<group>"; };
+		189EC4AF1D506B2200D536B9 /* WHC_PictureListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_PictureListVC.h; sourceTree = "<group>"; };
+		189EC4B01D506B2200D536B9 /* WHC_PictureListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_PictureListVC.m; sourceTree = "<group>"; };
+		189EC4B11D506B2200D536B9 /* WHC_PictureListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_PictureListVC.xib; sourceTree = "<group>"; };
+		189EC4BD1D50702B00D536B9 /* SettingTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTabCell.h; sourceTree = "<group>"; };
+		189EC4BE1D50702B00D536B9 /* SettingTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTabCell.m; sourceTree = "<group>"; };
 		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -461,6 +509,8 @@
 			children = (
 				185930521D34897100F948D4 /* MineViewController.h */,
 				185930531D34897100F948D4 /* MineViewController.m */,
+				189EC4981D506A3F00D536B9 /* MineSettingVC.h */,
+				189EC4991D506A3F00D536B9 /* MineSettingVC.m */,
 				10B6D03E1D4367C300800E32 /* Register */,
 				18E12EF51D3F273700E02877 /* Login */,
 			);
@@ -477,6 +527,11 @@
 		1859303C1D3488DC00F948D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				189EC4911D5044C700D536B9 /* MineTableViewCell.h */,
+				189EC4921D5044C700D536B9 /* MineTableViewCell.m */,
+				189EC4931D5044C700D536B9 /* MineTableViewCell.xib */,
+				189EC4BD1D50702B00D536B9 /* SettingTabCell.h */,
+				189EC4BE1D50702B00D536B9 /* SettingTabCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -941,6 +996,7 @@
 				18E797D91D347FEE0093A596 /* icon_marker_start@2x.png */,
 				18E797DA1D347FEE0093A596 /* icon_menu_hireCar_active@2x.png */,
 				18E797DB1D347FEE0093A596 /* icon_menu_hireCar@2x.png */,
+				189EC4961D5046CD00D536B9 /* default_head@2x.png */,
 				18E797DC1D347FEE0093A596 /* icon_menu_home_active@2x.png */,
 				18E797DD1D347FEE0093A596 /* icon_menu_home@2x.png */,
 				18E797DE1D347FEE0093A596 /* icon_menu_my_active@2x.png */,
@@ -967,6 +1023,10 @@
 		187349F11D2F951F001A3E91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				189EC48A1D50365000D536B9 /* APIKey.h */,
+				189EC49B1D506B2200D536B9 /* SDPhotoBrowser */,
+				189EC4A31D506B2200D536B9 /* WHCLib */,
+				189EC48D1D50387700D536B9 /* SpeechSynthesizer */,
 				10E8A5E21D48F5C600137C07 /* JKCountDownButton */,
 				10E8A5E51D48F5C600137C07 /* JX_GCDTimer */,
 				185931271D34D80A00F948D4 /* JSAnimatedImagesView */,
@@ -983,6 +1043,57 @@
 				185930391D3488DC00F948D4 /* 我的 */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		189EC48D1D50387700D536B9 /* SpeechSynthesizer */ = {
+			isa = PBXGroup;
+			children = (
+				189EC48E1D50387700D536B9 /* SpeechSynthesizer.h */,
+				189EC48F1D50387700D536B9 /* SpeechSynthesizer.m */,
+			);
+			path = SpeechSynthesizer;
+			sourceTree = "<group>";
+		};
+		189EC49B1D506B2200D536B9 /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				189EC49C1D506B2200D536B9 /* SDBrowserImageView.h */,
+				189EC49D1D506B2200D536B9 /* SDBrowserImageView.m */,
+				189EC49E1D506B2200D536B9 /* SDPhotoBrowser.h */,
+				189EC49F1D506B2200D536B9 /* SDPhotoBrowser.m */,
+				189EC4A01D506B2200D536B9 /* SDPhotoBrowserConfig.h */,
+				189EC4A11D506B2200D536B9 /* SDWaitingView.h */,
+				189EC4A21D506B2200D536B9 /* SDWaitingView.m */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		189EC4A31D506B2200D536B9 /* WHCLib */ = {
+			isa = PBXGroup;
+			children = (
+				189EC4A41D506B2200D536B9 /* cell */,
+				189EC4A91D506B2200D536B9 /* WHC_CameraVC.h */,
+				189EC4AA1D506B2200D536B9 /* WHC_CameraVC.m */,
+				189EC4AB1D506B2200D536B9 /* WHC_CameraVC.xib */,
+				189EC4AC1D506B2200D536B9 /* WHC_ChoicePictureVC.h */,
+				189EC4AD1D506B2200D536B9 /* WHC_ChoicePictureVC.m */,
+				189EC4AE1D506B2200D536B9 /* WHC_ChoicePictureVC.xib */,
+				189EC4AF1D506B2200D536B9 /* WHC_PictureListVC.h */,
+				189EC4B01D506B2200D536B9 /* WHC_PictureListVC.m */,
+				189EC4B11D506B2200D536B9 /* WHC_PictureListVC.xib */,
+			);
+			path = WHCLib;
+			sourceTree = "<group>";
+		};
+		189EC4A41D506B2200D536B9 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				189EC4A51D506B2200D536B9 /* WHC_Asset.h */,
+				189EC4A61D506B2200D536B9 /* WHC_Asset.m */,
+				189EC4A71D506B2200D536B9 /* WHC_PhotoListCell.h */,
+				189EC4A81D506B2200D536B9 /* WHC_PhotoListCell.m */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		18E12EF51D3F273700E02877 /* Login */ = {
@@ -1130,6 +1241,7 @@
 				18E798241D347FEE0093A596 /* icon_phone@2x.png in Resources */,
 				18E798011D347FEE0093A596 /* icon_battery_percent_30@2x.png in Resources */,
 				18E7981A1D347FEE0093A596 /* icon_menu_home_active@2x.png in Resources */,
+				189EC4B81D506B2200D536B9 /* WHC_CameraVC.xib in Resources */,
 				18E7981B1D347FEE0093A596 /* icon_menu_home@2x.png in Resources */,
 				18E797FF1D347FEE0093A596 /* icon_battery_percent_10@2x.png in Resources */,
 				18E798221D347FEE0093A596 /* icon_pass@2x.png in Resources */,
@@ -1143,6 +1255,7 @@
 				18E798171D347FEE0093A596 /* icon_marker_start@2x.png in Resources */,
 				18E798021D347FEE0093A596 /* icon_battery_percent_40@2x.png in Resources */,
 				18E7981D1D347FEE0093A596 /* icon_menu_my@2x.png in Resources */,
+				189EC4BC1D506B2200D536B9 /* WHC_PictureListVC.xib in Resources */,
 				18E798201D347FEE0093A596 /* icon_nav@2x.png in Resources */,
 				18E797FE1D347FEE0093A596 /* btn_around_car@2x.png in Resources */,
 				18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */,
@@ -1151,6 +1264,7 @@
 				18E797FB1D347FEE0093A596 /* bg_unionpay@2x.png in Resources */,
 				18E797F71D347FEE0093A596 /* bg_map_type@2x.png in Resources */,
 				18E7980D1D347FEE0093A596 /* icon_ebike_offline@2x.png in Resources */,
+				189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */,
 				18E798211D347FEE0093A596 /* icon_pass_active@2x.png in Resources */,
 				18E798291D347FEE0093A596 /* icon_traffic_close@2x.png in Resources */,
 				18E798111D347FEE0093A596 /* icon_id_active@2x.png in Resources */,
@@ -1174,9 +1288,11 @@
 				185930DF1D3490EB00F948D4 /* picker_alert_sigh@2x.png in Resources */,
 				18E7980E1D347FEE0093A596 /* icon_ebike_online@2x.png in Resources */,
 				18E7980F1D347FEE0093A596 /* icon_ebike_status@2x.png in Resources */,
+				189EC4971D5046CD00D536B9 /* default_head@2x.png in Resources */,
 				18E798151D347FEE0093A596 /* icon_map_switch@2x.png in Resources */,
 				18E798051D347FEE0093A596 /* icon_battery_percent_70@2x.png in Resources */,
 				18E798271D347FEE0093A596 /* icon_satellite_active@2x.png in Resources */,
+				189EC4BA1D506B2200D536B9 /* WHC_ChoicePictureVC.xib in Resources */,
 				18E798251D347FEE0093A596 /* icon_plane_active@2x.png in Resources */,
 				18E7981E1D347FEE0093A596 /* icon_menu_shop_active@2x.png in Resources */,
 				18E798161D347FEE0093A596 /* icon_marker_end@2x.png in Resources */,
@@ -1264,11 +1380,15 @@
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
 				10E8A5E91D48F5C600137C07 /* JX_GCDTimerManager.m in Sources */,
+				189EC4B91D506B2200D536B9 /* WHC_ChoicePictureVC.m in Sources */,
 				185930DB1D3490EB00F948D4 /* FMUString.m in Sources */,
+				189EC4941D5044C700D536B9 /* MineTableViewCell.m in Sources */,
 				10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */,
 				1859312C1D34D80A00F948D4 /* JSAnimatedImagesView.m in Sources */,
 				185930F11D3490EB00F948D4 /* StoreKitManager.m in Sources */,
 				185930EE1D3490EB00F948D4 /* NSString+YXFAddtions.m in Sources */,
+				189EC4B51D506B2200D536B9 /* WHC_Asset.m in Sources */,
+				189EC4B31D506B2200D536B9 /* SDPhotoBrowser.m in Sources */,
 				185930D81D3490EB00F948D4 /* UIButton+Curled.m in Sources */,
 				185930F31D3490EB00F948D4 /* UIColor+Helper.m in Sources */,
 				185930EB1D3490EB00F948D4 /* NSString+Emoji.m in Sources */,
@@ -1276,10 +1396,12 @@
 				185930EC1D3490EB00F948D4 /* NSString+MHCommon.m in Sources */,
 				185930F21D3490EB00F948D4 /* ParallaxHeaderView.m in Sources */,
 				1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */,
+				189EC4B71D506B2200D536B9 /* WHC_CameraVC.m in Sources */,
 				185930E11D3490EB00F948D4 /* JRNLocalNotificationCenter.m in Sources */,
 				185931041D3490EB00F948D4 /* NSString+SPStr.m in Sources */,
 				187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */,
 				185930F41D3490EB00F948D4 /* UIView+WhenTappedBlocks.m in Sources */,
+				189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */,
 				185931021D3490EB00F948D4 /* FDCalendar.m in Sources */,
 				185930511D34896000F948D4 /* MallViewController.m in Sources */,
 				185930D61D3490EB00F948D4 /* AnimationTools.m in Sources */,
@@ -1287,17 +1409,22 @@
 				185930DE1D3490EB00F948D4 /* JKPromptView.m in Sources */,
 				185930ED1D3490EB00F948D4 /* NSString+Size.m in Sources */,
 				185930DC1D3490EB00F948D4 /* FMUSystem.m in Sources */,
+				189EC4B61D506B2200D536B9 /* WHC_PhotoListCell.m in Sources */,
 				185930F91D3490EB00F948D4 /* UIWebView_SearchWebView.m in Sources */,
 				185930F81D3490EB00F948D4 /* UIWebView+Load.m in Sources */,
 				185931061D3490EB00F948D4 /* SoundManager.m in Sources */,
 				1859304E1D34894100F948D4 /* CarRentalVC.m in Sources */,
+				189EC49A1D506A3F00D536B9 /* MineSettingVC.m in Sources */,
+				189EC4B41D506B2200D536B9 /* SDWaitingView.m in Sources */,
 				1859305B1D348BE600F948D4 /* DTApiBaseBean.m in Sources */,
 				185930E01D3490EB00F948D4 /* UIView+JKPicker.m in Sources */,
 				1859304B1D34890B00F948D4 /* HomeViewController.m in Sources */,
 				185930FB1D3490EB00F948D4 /* QZManager.m in Sources */,
+				189EC4B21D506B2200D536B9 /* SDBrowserImageView.m in Sources */,
 				185930F61D3490EB00F948D4 /* UIColor+Change.m in Sources */,
 				185930DA1D3490EB00F948D4 /* DateTimeView.m in Sources */,
 				185930E71D3490EB00F948D4 /* QHCommonUtil.m in Sources */,
+				189EC4901D50387700D536B9 /* SpeechSynthesizer.m in Sources */,
 				184C297B1D2BB22E00771220 /* main.m in Sources */,
 				185930FA1D3490EB00F948D4 /* ZHPickView.m in Sources */,
 				185930541D34897100F948D4 /* MineViewController.m in Sources */,
@@ -1305,6 +1432,7 @@
 				185930E81D3490EB00F948D4 /* UIImage+Extend.m in Sources */,
 				18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */,
 				185930EA1D3490EB00F948D4 /* NSDateFormatter+Category.m in Sources */,
+				189EC4BB1D506B2200D536B9 /* WHC_PictureListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,6 +1560,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XiaoMiZuChe/ZuChe_NetWorkManger/DefineHeader/ZUChe_Prefix.pch";
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1452,6 +1584,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XiaoMiZuChe/ZuChe_NetWorkManger/DefineHeader/ZUChe_Prefix.pch";
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

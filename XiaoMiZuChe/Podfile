@@ -11,3 +11,12 @@ pod 'MJRefresh', '~> 3.1.0'
 pod 'SVProgressHUD', '~> 2.0.3'
 #滑动返回
 pod 'FDFullscreenPopGesture', '1.1'
+
+#动画
+pod 'pop', '~> 1.0.9'
+
+#地图
+#pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)
+pod 'AMapNavi', '~> 2.0.0'                #导航SDK
+pod 'AMapLocation', '~> 2.0.0'            #定位SDK
+pod 'AMapSearch', '~> 4.0.0'              #搜索服务SDK
