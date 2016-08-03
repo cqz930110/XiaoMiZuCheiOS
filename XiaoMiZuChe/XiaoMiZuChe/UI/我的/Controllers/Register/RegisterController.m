@@ -8,7 +8,7 @@
 
 #import "RegisterController.h"
 #import "JKCountDownButton.h"
-
+#import "PerfectInformationVC.h"
 @interface RegisterController ()
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
@@ -52,6 +52,10 @@
 }
 - (IBAction)nextBtnEvent:(id)sender {
     
+    DLog(@"下一步");
+    
+    PerfectInformationVC *vc = [PerfectInformationVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
