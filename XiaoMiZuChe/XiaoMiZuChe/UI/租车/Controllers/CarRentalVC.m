@@ -34,9 +34,7 @@
 #pragma mark - private methods
 - (void)initUI{
     
-    
     [self.view addSubview:self.mapView];
-    
 }
 
 #pragma mark - getters and setters

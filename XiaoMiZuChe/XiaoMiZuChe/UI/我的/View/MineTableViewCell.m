@@ -52,14 +52,14 @@
         switch (indexRow) {
             case 1:
             {
-                _iconImgView.image = kGetImage(@"bg_manage_card");
+                _iconImgView.image = kGetImage(@"icon_card");
                 _titleLab.text = @"租车卡";
                 _lineView.hidden = NO;
             }
                 break;
             case 2:
             {
-                _iconImgView.image = kGetImage(@"bg_manage_card");
+                _iconImgView.image = kGetImage(@"icon_service_terms");
                 _titleLab.text = @"服务条款";
                 _lineView.hidden = NO;
 
@@ -67,7 +67,7 @@
                 break;
             case 3:
             {
-                _iconImgView.image = kGetImage(@"bg_manage_card");
+                _iconImgView.image = kGetImage(@"icon_phone");
                 _titleLab.text = @"联系客服";
                 _lineView.hidden = NO;
 
@@ -75,7 +75,7 @@
                 break;
             case 4:
             {
-                _iconImgView.image = kGetImage(@"bg_manage_card");
+                _iconImgView.image = kGetImage(@"icon_about");
                 _titleLab.text = @"关于";
                 _lineView.hidden = YES;
             }
@@ -91,7 +91,7 @@
 - (UILabel *)titleLab
 {
     if (!_titleLab) {
-        _titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(50, 12, 120, 20)];
+        _titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 120, 20)];
         _titleLab.font = Font_15;
         _titleLab.textColor = thirdColor;
     }
@@ -100,8 +100,9 @@
 - (UIImageView *)iconImgView
 {
     if (!_iconImgView) {
-        _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 7, 30, 30)];
+        _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 24, 24)];
         _iconImgView.userInteractionEnabled = YES;
+        _iconImgView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _iconImgView;
 }
