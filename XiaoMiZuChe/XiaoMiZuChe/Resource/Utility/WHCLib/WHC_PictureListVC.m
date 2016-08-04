@@ -46,11 +46,19 @@
 
 - (void)layoutUI{
     UIBarButtonItem  * cancelBarItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(clickCancelBarItem:)];
-    [cancelBarItem setTintColor:[UIColor whiteColor]];
+    [cancelBarItem setTintColor:hexColor(333333)];
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = cancelBarItem;
     [self.navigationController.navigationBar setBarTintColor:KNavigationBarColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:hexColor(333333),NSForegroundColorAttributeName,nil]];
+    
+    
+//    UIBarButtonItem  * backBarItem = [[UIBarButtonItem alloc]initWithTitle:@"返回"
+//                                                                     style:UIBarButtonItemStylePlain
+//                                                                    target:nil
+//                                                                    action:nil];
+//    self.navigationItem.backBarButtonItem.tintColor = hexColor(333333);
+//    self.navigationItem.backBarButtonItem = backBarItem;
 }
 
 - (void)initData{

@@ -57,10 +57,9 @@
 
 - (void)layoutUI{
     UIBarButtonItem  * doneBarItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(clickDone:)];
-    doneBarItem.tintColor = [UIColor whiteColor];
+    doneBarItem.tintColor = hexColor(333333);
     self.navigationItem.rightBarButtonItem = doneBarItem;
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-
+    
 }
 
 - (void)initData{
