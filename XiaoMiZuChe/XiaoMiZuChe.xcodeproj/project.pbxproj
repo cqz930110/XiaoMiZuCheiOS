@@ -132,10 +132,12 @@
 		1859312D1D34D80A00F948D4 /* MSWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859312B1D34D80A00F948D4 /* MSWeakTimer.m */; };
 		187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */; };
 		187349E81D2F89DD001A3E91 /* NetWorkMangerTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E71D2F89DD001A3E91 /* NetWorkMangerTools.m */; };
+		1894C2A71D5486B90097F638 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894C2A61D5486B90097F638 /* MineSettingVC.m */; };
+		1894C2B41D548BF80097F638 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894C2B21D548BF80097F638 /* ModifyViewController.m */; };
+		1894C2B51D548BF80097F638 /* ModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1894C2B31D548BF80097F638 /* ModifyViewController.xib */; };
 		189EC4901D50387700D536B9 /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC48F1D50387700D536B9 /* SpeechSynthesizer.m */; };
 		189EC4941D5044C700D536B9 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4921D5044C700D536B9 /* MineTableViewCell.m */; };
 		189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4931D5044C700D536B9 /* MineTableViewCell.xib */; };
-		189EC49A1D506A3F00D536B9 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4991D506A3F00D536B9 /* MineSettingVC.m */; };
 		189EC4B21D506B2200D536B9 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC49D1D506B2200D536B9 /* SDBrowserImageView.m */; };
 		189EC4B31D506B2200D536B9 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC49F1D506B2200D536B9 /* SDPhotoBrowser.m */; };
 		189EC4B41D506B2200D536B9 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4A21D506B2200D536B9 /* SDWaitingView.m */; };
@@ -360,14 +362,17 @@
 		187349EB1D2F8E0C001A3E91 /* QZPersistentDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZPersistentDefine.h; sourceTree = "<group>"; };
 		187349EC1D2F8E0C001A3E91 /* QZViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZViewDefine.h; sourceTree = "<group>"; };
 		187349ED1D2F8E0C001A3E91 /* ThemeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeColor.h; sourceTree = "<group>"; };
+		1894C2A51D5486B90097F638 /* MineSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSettingVC.h; sourceTree = "<group>"; };
+		1894C2A61D5486B90097F638 /* MineSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSettingVC.m; sourceTree = "<group>"; };
+		1894C2B11D548BF80097F638 /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
+		1894C2B21D548BF80097F638 /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
+		1894C2B31D548BF80097F638 /* ModifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyViewController.xib; sourceTree = "<group>"; };
 		189EC48A1D50365000D536B9 /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKey.h; sourceTree = "<group>"; };
 		189EC48E1D50387700D536B9 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
 		189EC48F1D50387700D536B9 /* SpeechSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
 		189EC4911D5044C700D536B9 /* MineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
 		189EC4921D5044C700D536B9 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		189EC4931D5044C700D536B9 /* MineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineTableViewCell.xib; sourceTree = "<group>"; };
-		189EC4981D506A3F00D536B9 /* MineSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSettingVC.h; sourceTree = "<group>"; };
-		189EC4991D506A3F00D536B9 /* MineSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSettingVC.m; sourceTree = "<group>"; };
 		189EC49C1D506B2200D536B9 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
 		189EC49D1D506B2200D536B9 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
 		189EC49E1D506B2200D536B9 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
@@ -628,11 +633,10 @@
 			children = (
 				185930521D34897100F948D4 /* MineViewController.h */,
 				185930531D34897100F948D4 /* MineViewController.m */,
-				189EC4981D506A3F00D536B9 /* MineSettingVC.h */,
-				189EC4991D506A3F00D536B9 /* MineSettingVC.m */,
 				107821BD1D52272B009DE1D2 /* AboutViewController.h */,
 				107821BE1D52272B009DE1D2 /* AboutViewController.m */,
 				107821BF1D52272B009DE1D2 /* AboutViewController.xib */,
+				1894C2A41D5486B90097F638 /* mineSetting */,
 				10B6D03E1D4367C300800E32 /* Register */,
 				18E12EF51D3F273700E02877 /* Login */,
 			);
@@ -1111,6 +1115,18 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		1894C2A41D5486B90097F638 /* mineSetting */ = {
+			isa = PBXGroup;
+			children = (
+				1894C2A51D5486B90097F638 /* MineSettingVC.h */,
+				1894C2A61D5486B90097F638 /* MineSettingVC.m */,
+				1894C2B11D548BF80097F638 /* ModifyViewController.h */,
+				1894C2B21D548BF80097F638 /* ModifyViewController.m */,
+				1894C2B31D548BF80097F638 /* ModifyViewController.xib */,
+			);
+			path = mineSetting;
+			sourceTree = "<group>";
+		};
 		189EC48D1D50387700D536B9 /* SpeechSynthesizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1314,6 +1330,7 @@
 				1078219D1D521FA6009DE1D2 /* icon_card@2x.png in Resources */,
 				1078218A1D521FA6009DE1D2 /* icon_battery_percent_80@2x.png in Resources */,
 				107821851D521FA6009DE1D2 /* icon_battery_percent_30@2x.png in Resources */,
+				1894C2B51D548BF80097F638 /* ModifyViewController.xib in Resources */,
 				1078219A1D521FA6009DE1D2 /* icon_traffic_open@2x.png in Resources */,
 				1078217A1D521FA6009DE1D2 /* bg_back_car@2x.png in Resources */,
 				107821861D521FA6009DE1D2 /* icon_battery_percent_40@2x.png in Resources */,
@@ -1471,6 +1488,7 @@
 				185930F21D3490EB00F948D4 /* ParallaxHeaderView.m in Sources */,
 				1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */,
 				107821C71D5234E2009DE1D2 /* PerfectInformationVC.m in Sources */,
+				1894C2B41D548BF80097F638 /* ModifyViewController.m in Sources */,
 				189EC4B71D506B2200D536B9 /* WHC_CameraVC.m in Sources */,
 				185930E11D3490EB00F948D4 /* JRNLocalNotificationCenter.m in Sources */,
 				185931041D3490EB00F948D4 /* NSString+SPStr.m in Sources */,
@@ -1487,9 +1505,9 @@
 				189EC4B61D506B2200D536B9 /* WHC_PhotoListCell.m in Sources */,
 				185930F91D3490EB00F948D4 /* UIWebView_SearchWebView.m in Sources */,
 				185930F81D3490EB00F948D4 /* UIWebView+Load.m in Sources */,
+				1894C2A71D5486B90097F638 /* MineSettingVC.m in Sources */,
 				185931061D3490EB00F948D4 /* SoundManager.m in Sources */,
 				1859304E1D34894100F948D4 /* CarRentalVC.m in Sources */,
-				189EC49A1D506A3F00D536B9 /* MineSettingVC.m in Sources */,
 				189EC4B41D506B2200D536B9 /* SDWaitingView.m in Sources */,
 				107821C01D52272B009DE1D2 /* AboutViewController.m in Sources */,
 				1859305B1D348BE600F948D4 /* DTApiBaseBean.m in Sources */,
