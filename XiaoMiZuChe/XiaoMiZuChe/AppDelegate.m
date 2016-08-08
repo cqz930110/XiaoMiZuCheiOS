@@ -16,7 +16,10 @@
 #import "APIKey.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
-
+/**
+ *  短信
+ */
+#import <SMS_SDK/SMSSDK.h>
 #import "AFNetworkActivityIndicatorManager.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -29,30 +32,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
     //地图
     [self configureAPIKey];
-    
+    [self configurationWindowRootVC];
 
+    return YES;
+}
+#pragma mark - rootVc
+- (void)configurationWindowRootVC
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    //设置缓存
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
+    //短信
+    [SMSSDK registerApp:SMSAPPKEY
+             withSecret:SMSSECRET];
     //tabbar
     ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
     tabBarControllerConfig.tabBarController.delegate = self;
     [self.window setRootViewController:tabBarControllerConfig.tabBarController];
     [self.window makeKeyAndVisible];
-    return YES;
-}
-#pragma mark -UITabBarControllerDelegate
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
-{
-//    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
-//        LoginViewController *loginVC = [LoginViewController new];
-//        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
-//        return NO;
-//    }
-    return YES;
 }
 #pragma mark - 配置地图
 - (void)configureAPIKey
@@ -65,6 +70,16 @@
     [AMapServices sharedServices].apiKey = (NSString *)APIKey;
 }
 
+#pragma mark -UITabBarControllerDelegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+//    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+//        LoginViewController *loginVC = [LoginViewController new];
+//        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+//        return NO;
+//    }
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

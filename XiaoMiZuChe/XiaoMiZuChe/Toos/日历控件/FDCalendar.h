@@ -11,5 +11,5 @@
 
 - (instancetype)initWithCurrentDate:(NSDate *)date;
 
-@property (nonatomic,copy) ZDStringBlock calendarBlock;
+@property (nonatomic,copy) ZCStringBlock calendarBlock;
 @end

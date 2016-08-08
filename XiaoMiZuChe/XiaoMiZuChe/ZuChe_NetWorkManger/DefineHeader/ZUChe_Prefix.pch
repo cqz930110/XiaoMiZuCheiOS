@@ -26,11 +26,19 @@
 #import "QZPathDefine.h"
 #import "QZViewDefine.h"
 #import "QZPersistentDefine.h"
-#import "NetWorkMangerTools.h"
+#import "APIRequest.h"
 #import "ThemeColor.h"
 #import "UIColor+Helper.h"
 #import "QZManager.h"
 #import "JKPromptView.h"
 #import "UIView+WhenTappedBlocks.h"
+#import "XMZCRequestAPI.h"
+
+
+/**
+ *  短信
+ */
+#define SMSAPPKEY                         @"15ddc9e0d4c72"
+#define SMSSECRET                         @"b149d425b90b1523caada1b166e73db0"
 
 #endif

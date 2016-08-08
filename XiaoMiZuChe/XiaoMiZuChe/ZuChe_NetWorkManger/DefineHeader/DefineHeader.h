@@ -169,25 +169,48 @@ tmp;\
 #define IOS_VERSION_ABOVE_8                     (([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) ? (YES) : (NO))
 #define IOS_VERSION_ABOVE_7                     (([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) ? (YES) : (NO))
 #define IOS_VERSION_ABOVE_7_1                     (([[UIDevice currentDevice].systemVersion floatValue] >= 7.1) ? (YES) : (NO))
-#define IOS_VERSION_6                           (([[UIDevice currentDevice].systemVersion floatValue] < 7.0 && [[UIDevice currentDevice].systemVersion floatValue] >= 6.0) ? (YES) : (NO))
 
 #define iOSVersion [[[UIDevice currentDevice] systemVersion] floatValue] //iOS版本
 
-#define ProvinceArrays  [NSMutableArray arrayWithObjects:@"北京",@"天津",@"上海",@"江苏省",@"河北省",@"河南省",@"湖南省",@"湖北省",@"浙江省",@"云南",@"陕西省",@"台湾",@"贵州省",@"广西壮族自治区",@"黑龙江省",@"甘肃省",@"吉林省",@"四川省",@"广东省",@"江西省",@"青海省",@"辽宁省",@"香港特别行政区",@"山东省",@"西藏自治区",@"重庆",@"福建省",@"新疆维吾尔自治区",@"内蒙古自治区",@"山西省",@"海南省",@"宁夏回族自治区",@"澳门特别行政区",@"安徽省", nil]
+#define TT_RELEASE_SAFELY(__REF) \
+{\
+if (nil != (__REF)) \
+{\
+__REF = nil;\
+}\
+}
 
-typedef void(^ZDBlock)(void);
-typedef void(^ZDBlockBlock)(ZDBlock block);
-typedef void(^ZDObjectBlock)(id obj);
-typedef void(^ZDArrayBlock)(NSArray *array);
-typedef void(^ZDMutableArrayBlock)(NSMutableArray *array);
-typedef void(^ZDDictionaryBlock)(NSDictionary *dic);
-typedef void(^ZDErrorBlock)(NSError *error);
-typedef void(^ZDIndexBlock)(NSInteger index);
-typedef void(^ZDFloatBlock)(CGFloat afloat);
-typedef void(^ZDStringBlock)(NSString *string);
-typedef void(^ZDCancelBlock)(id viewController);
-typedef void(^ZDFinishedBlock)(id viewController, id object);
-typedef void(^ZDSendRequestAndResendRequestBlock)(id sendBlock, id resendBlock);
+//view安全释放
+#define TTVIEW_RELEASE_SAFELY(__REF) \
+{\
+if (nil != (__REF))\
+{\
+[__REF removeFromSuperview];\
+__REF = nil;\
+}\
+}
+
+//释放定时器
+#define TT_INVALIDATE_TIMER(__TIMER) \
+{\
+[__TIMER invalidate];\
+__TIMER = nil;\
+}
+
+
+typedef void(^ZCBlock)(void);
+typedef void(^ZCBlockBlock)(ZCBlock block);
+typedef void(^ZCObjectBlock)(id obj);
+typedef void(^ZCArrayBlock)(NSArray *array);
+typedef void(^ZCMutableArrayBlock)(NSMutableArray *array);
+typedef void(^ZCDictionaryBlock)(NSDictionary *dic);
+typedef void(^ZCErrorBlock)(NSError *error);
+typedef void(^ZCIndexBlock)(NSInteger index);
+typedef void(^ZCFloatBlock)(CGFloat afloat);
+typedef void(^ZCStringBlock)(NSString *string);
+typedef void(^ZCCancelBlock)(id viewController);
+typedef void(^ZCFinishedBlock)(id viewController, id object);
+typedef void(^ZCSendRequestAndResendRequestBlock)(id sendBlock, id resendBlock);
 
 
 #endif /* DefineHeader_h */
