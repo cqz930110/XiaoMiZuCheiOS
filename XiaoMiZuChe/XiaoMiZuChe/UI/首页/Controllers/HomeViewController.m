@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
-#import <SMS_SDK/Extend/SMSSDK+DeprecatedMethods.h>
 
 @interface HomeViewController ()
 @property (nonatomic, assign) UIImageView *bgview;
@@ -30,16 +29,6 @@
     [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
     self.rightBtn.titleLabel.font = Font_15;
     
-    
-    [SMSSDK getVerificationCodeBySMSWithPhone:@"13162079587" zone:@"86" result:^(NSError *error) {
-                DLog(@"error---%@",error);
-        
-        [APIRequest VerifyTheMobileWithphone:@"13162079587" withcode:@"9878" RequestSuccess:^{
-            
-        } fail:^{
-            
-        }];
-    }];
 }
 #pragma mark - getters and setters
 #pragma mark - event respose

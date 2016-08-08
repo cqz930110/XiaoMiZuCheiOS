@@ -26,6 +26,8 @@
         NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"status"]];
         if ([status isEqualToString:@"200"]) {
             success();
+        }else {
+            fail();
         }
     } fail:^{
         fail();

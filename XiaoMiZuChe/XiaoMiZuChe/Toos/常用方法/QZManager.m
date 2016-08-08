@@ -180,10 +180,10 @@ singleton_for_class(QZManager)
         }
     }
 }
-#pragma mark -- 密码规则(6到14位包含数字或字母)
+#pragma mark -- 密码规则(6到16位包含数字或字母)
 + (BOOL)isValidatePassword:(NSString *)password
 {
-    NSString *regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,14}$";
+    NSString *regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
     NSPredicate *   pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     if ([pred evaluateWithObject:password]) {
         DLog(@"通过");

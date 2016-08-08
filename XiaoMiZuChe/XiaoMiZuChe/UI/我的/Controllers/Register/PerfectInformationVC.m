@@ -7,6 +7,7 @@
 //
 
 #import "PerfectInformationVC.h"
+#import "MyPickView.h"
 
 @interface PerfectInformationVC ()
 

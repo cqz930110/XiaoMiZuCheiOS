@@ -33,6 +33,7 @@
 #import "JKPromptView.h"
 #import "UIView+WhenTappedBlocks.h"
 #import "XMZCRequestAPI.h"
+#import "NSString+Emoji.h"
 
 
 /**
