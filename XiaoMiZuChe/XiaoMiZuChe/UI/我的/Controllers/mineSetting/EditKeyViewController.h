@@ -1,15 +1,14 @@
 //
-//  PerfectInformationVC.h
+//  EditKeyViewController.h
 //  XiaoMiZuChe
 //
-//  Created by cqz on 16/8/3.
+//  Created by apple on 16/8/9.
 //  Copyright © 2016年 QZ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface PerfectInformationVC : BaseViewController
-
+@interface EditKeyViewController : BaseViewController
 
 @end

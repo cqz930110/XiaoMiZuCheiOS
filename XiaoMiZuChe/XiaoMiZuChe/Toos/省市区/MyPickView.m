@@ -115,7 +115,7 @@
 //    //DLog(@"输出文件数据－－－－－%@",dataS);
 //    NSData *data = [dataS dataUsingEncoding:NSUTF8StringEncoding];
 //    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSString *pathSource = [[NSBundle mainBundle] pathForResource:@"Areas" ofType:@"plist"];
+    NSString *pathSource = [[NSBundle mainBundle] pathForResource:@"areas" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:pathSource];
 
     //DLog(@"解析是否成功－－－－－%@",dict);
@@ -260,7 +260,6 @@
     
 }
 - (void)hideMyPicker{
-    self.blurBlock();
     [UIView animateWithDuration:.35f animations:^{
         float width = self.frame.size.width;
         float height = self.frame.size.height;

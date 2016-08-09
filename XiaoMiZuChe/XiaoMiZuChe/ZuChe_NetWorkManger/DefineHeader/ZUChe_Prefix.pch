@@ -34,12 +34,14 @@
 #import "UIView+WhenTappedBlocks.h"
 #import "XMZCRequestAPI.h"
 #import "NSString+Emoji.h"
-
+#import "PublicFunction.h"
 
 /**
  *  短信
  */
 #define SMSAPPKEY                         @"15ddc9e0d4c72"
 #define SMSSECRET                         @"b149d425b90b1523caada1b166e73db0"
+#define USERNAME                          @"userLoginName"
+#define USERKEY                           @"userLoginKey"
 
 #endif

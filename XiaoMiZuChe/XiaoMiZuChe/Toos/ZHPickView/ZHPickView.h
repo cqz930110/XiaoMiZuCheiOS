@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class ZHPickView;
-typedef void (^HLPickViewSubmit)(NSString*name,NSString *typeS);
+//typedef void (^HLPickViewSubmit)(NSString*name,NSString *typeS);
 
 @interface ZHPickView : UIView<UIPickerViewDelegate>
 
@@ -18,6 +18,6 @@ typedef void (^HLPickViewSubmit)(NSString*name,NSString *typeS);
 - (void)showPickView:(UIViewController *)vc;
 - (void)showWindowPickView:(UIWindow *)window;
 
-@property(nonatomic,copy)HLPickViewSubmit block;
+@property(nonatomic,copy) ZCStringBlock block;
 @property(nonatomic,copy) ZCStringBlock alertBlock;
 @end

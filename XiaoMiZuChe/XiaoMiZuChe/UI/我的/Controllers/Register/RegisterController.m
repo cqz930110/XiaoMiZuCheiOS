@@ -9,14 +9,16 @@
 #import "RegisterController.h"
 #import "JKCountDownButton.h"
 #import "PerfectInformationVC.h"
-#import <SMS_SDK/Extend/SMSSDK+DeprecatedMethods.h>
-
+#import "NSString+MHCommon.h"
 @interface RegisterController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 @property (weak, nonatomic) IBOutlet UITextField *codeText;
 @property (weak, nonatomic) IBOutlet UITextField *keyText;
+@property (weak, nonatomic) IBOutlet UIImageView *phoneImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *codeImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *keyImgView;
 
 @end
 
@@ -77,6 +79,24 @@
         if (textField.text.length >11) {
             textField.text = [textField.text substringToIndex:11 ];
         }
+        if (textField.text.length >0) {
+            self.phoneImgView.image = kGetImage(@"icon_phone_active");
+        }else {
+            self.phoneImgView.image = kGetImage(@"icon_phone_no");
+        }
+
+    }else if (textField.tag == 2016){
+        if (textField.text.length >0) {
+            self.codeImgView.image = kGetImage(@"icon_code_active");
+        }else {
+            self.codeImgView.image = kGetImage(@"icon_code");
+        }
+    }else if (textField.tag == 2017){
+        if (textField.text.length >0) {
+            self.keyImgView.image = kGetImage(@"icon_pass_active");
+        }else {
+            self.keyImgView.image = kGetImage(@"icon_pass");
+        }
     }
 }
 
@@ -88,10 +108,6 @@
     
     if (_phoneText.text.length == 11  && [QZManager isPureInt:_phoneText.text] == YES)
     {
-        [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:@"13162079587" zone:@"86" customIdentifier:@"" result:^(NSError *error) {
-            
-        }];
-        
         JKCountDownButton *btn = (JKCountDownButton *)sender;
         btn.enabled = NO;
         [sender startCountDownWithSecond:60];
@@ -131,15 +147,36 @@
         [JKPromptView showWithImageName:nil message:@"密码中包含非法字符，请您检查"];
         return;
     }
+//
+//    [APIRequest VerifyTheMobileWithphone:@"13162079587" withcode:_codeText.text RequestSuccess:^{
+//        
+//        PerfectInformationVC *vc = [PerfectInformationVC new];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//    } fail:^{
+//        [JKPromptView showWithImageName:nil message:@"验证码错误"];
+//    }];
+
     
-    [APIRequest VerifyTheMobileWithphone:@"13162079587" withcode:_codeText.text RequestSuccess:^{
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *deviceUDID = [NSString stringWithFormat:@"%@",device.identifierForVendor];
+    DLog(@"输出设备的id---%@",deviceUDID);
+    NSArray *array = [deviceUDID componentsSeparatedByString:@">"];
+    NSString *udidStr = array[1];
+    DLog(@"设备标识符:%@",udidStr);
+    NSString *tempStr = [udidStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
+    [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {
         
         PerfectInformationVC *vc = [PerfectInformationVC new];
         [self.navigationController pushViewController:vc animated:YES];
-        
+
     } fail:^{
-        [JKPromptView showWithImageName:nil message:@"验证码错误"];
+        
     }];
+    
+    PerfectInformationVC *vc = [PerfectInformationVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 #pragma mark -手势

@@ -231,24 +231,8 @@
     }
     
     if (isDate == NO) {
-        NSString *type = @"";
-
-        if ([selectedStr isEqualToString:@"执业律师"])
-        {
-            type = @"1";
-        }else if ([selectedStr isEqualToString:@"实习律师"]){
-            type = @"2";
-        }else if ([selectedStr isEqualToString:@"公司法务"]){
-            type = @"3";
-        }else if ([selectedStr isEqualToString:@"法律专业学生"]){
-            type = @"4";
-        }else if ([selectedStr isEqualToString:@"公务员"]){
-            type = @"5";
-        }else if ([selectedStr isEqualToString:@"其他"]){
-            type = @"9";
-        }
         DLog(@"选中----%@",selectedStr);
-        block(selectedStr,type);
+        block(selectedStr);
     }else{
         self.alertBlock(selectedStr);
     }

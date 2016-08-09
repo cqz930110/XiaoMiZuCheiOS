@@ -67,7 +67,7 @@
                 break;
             case 3:
             {
-                _iconImgView.image = kGetImage(@"icon_phone");
+                _iconImgView.image = kGetImage(@"icon_minePhone");
                 _titleLab.text = @"联系客服";
                 _lineView.hidden = NO;
 

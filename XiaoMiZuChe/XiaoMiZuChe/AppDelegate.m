@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ZCTabBarControllerConfig.h"
 #import "LoginViewController.h"
+#import "IQKeyboardManager.h"
 
 /**
  高德地图
@@ -19,7 +20,6 @@
 /**
  *  短信
  */
-#import <SMS_SDK/SMSSDK.h>
 #import "AFNetworkActivityIndicatorManager.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -49,10 +49,16 @@
     [NSURLCache setSharedURLCache:URLCache];
 
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //键盘配置
+        [[IQKeyboardManager sharedManager] setEnable:YES];
+        [IQKeyboardManager sharedManager].shouldShowTextFieldPlaceholder = YES;
+        [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+        
+        [APIRequest automaticLoginEventResponse];
+    });
 
-    //短信
-    [SMSSDK registerApp:SMSAPPKEY
-             withSecret:SMSSECRET];
     //tabbar
     ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
     tabBarControllerConfig.tabBarController.delegate = self;
@@ -73,11 +79,13 @@
 #pragma mark -UITabBarControllerDelegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-//    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
-//        LoginViewController *loginVC = [LoginViewController new];
-//        [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
-//        return NO;
-//    }
+    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+        if ([PublicFunction shareInstance].m_bLogin == NO) {
+            LoginViewController *loginVC = [LoginViewController new];
+            [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+            return NO;
+        }
+    }
     return YES;
 }
 

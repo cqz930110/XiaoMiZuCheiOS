@@ -1,0 +1,131 @@
+//
+//  EditKeyViewController.m
+//  XiaoMiZuChe
+//
+//  Created by apple on 16/8/9.
+//  Copyright © 2016年 QZ. All rights reserved.
+//
+
+#import "EditKeyViewController.h"
+
+@interface EditKeyViewController ()<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *keyImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *sureKeyImgView;
+@property (weak, nonatomic) IBOutlet UITextField *keyText;
+@property (weak, nonatomic) IBOutlet UITextField *sureKeyText;
+@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+
+@end
+
+@implementation EditKeyViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self initUI];
+}
+#pragma mark - private methods
+- (void)initUI{
+    [self setupNaviBarWithTitle:@"找回密码"];
+    [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
+    self.view.backgroundColor = [UIColor whiteColor];
+    LRViewBorderRadius(_sureBtn, 5.f, 0, [UIColor whiteColor]);
+
+    self.keyText.delegate = self;
+    self.sureKeyText.delegate = self;
+    self.keyText.tag = 2891;
+    self.sureKeyText.tag = 2892;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.keyText];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.sureKeyText];
+
+}
+#pragma mark -UITextFieldDelegate
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self dismissKeyBoard];
+    return true;
+}
+- (void)textFieldChanged:(NSNotification*)noti{
+    
+    UITextField *textField = (UITextField *)noti.object;
+    BOOL flag=[NSString isContainsTwoEmoji:textField.text];
+    if (flag){
+        textField.text = [NSString disable_emoji:textField.text];
+    }
+    if (textField.tag == 2891) {
+        if (textField.text.length >11) {
+            textField.text = [textField.text substringToIndex:11 ];
+        }
+        if (textField.text.length >0) {
+            self.keyImgView.image = kGetImage(@"icon_pass_active");
+        }else {
+            self.keyImgView.image = kGetImage(@"icon_pass");
+        }
+    }else {
+        if (textField.text.length >0) {
+            self.sureKeyImgView.image = kGetImage(@"icon_pass_active");
+        }else {
+            self.sureKeyImgView.image = kGetImage(@"icon_pass");
+        }
+    }
+}
+
+#pragma mark - event response
+- (IBAction)sureKeyButtonEvent:(id)sender {
+    [self dismissKeyBoard];
+    DLog(@"确定");
+
+    if (_keyText.text.length<=0) {
+        [JKPromptView showWithImageName:nil message:@"请您填写密码"];
+        return;
+    }else if (_sureKeyText.text.length <=0){
+        [JKPromptView showWithImageName:nil message:@"请您再次确认密码"];
+        return;
+    }
+    
+    if (![_keyText.text isEqualToString:_sureKeyText.text]) {
+        [JKPromptView showWithImageName:nil message:@"两次密码不一致"];
+        return;
+
+    }
+
+    
+}
+
+#pragma mark -手势
+- (void)dismissKeyBoard{
+    [self.view endEditing:YES];
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self dismissKeyBoard];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
