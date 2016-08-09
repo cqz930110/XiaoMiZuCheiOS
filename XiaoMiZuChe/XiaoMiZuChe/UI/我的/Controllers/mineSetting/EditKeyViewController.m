@@ -7,6 +7,7 @@
 //
 
 #import "EditKeyViewController.h"
+#import "NSString+MHCommon.h"
 
 @interface EditKeyViewController ()<UITextFieldDelegate>
 
@@ -45,7 +46,6 @@
                                              selector:@selector(textFieldChanged:)
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.sureKeyText];
-
 }
 #pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -64,9 +64,7 @@
         textField.text = [NSString disable_emoji:textField.text];
     }
     if (textField.tag == 2891) {
-        if (textField.text.length >11) {
-            textField.text = [textField.text substringToIndex:11 ];
-        }
+        
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
         }else {
@@ -82,25 +80,34 @@
 }
 
 #pragma mark - event response
-- (IBAction)sureKeyButtonEvent:(id)sender {
+- (IBAction)sureKeyButtonEvent:(id)sender {WEAKSELF;
     [self dismissKeyBoard];
     DLog(@"确定");
-
     if (_keyText.text.length<=0) {
         [JKPromptView showWithImageName:nil message:@"请您填写密码"];
         return;
     }else if (_sureKeyText.text.length <=0){
         [JKPromptView showWithImageName:nil message:@"请您再次确认密码"];
         return;
+    }else if ([QZManager isValidatePassword:_keyText.text] == NO)
+    {
+        [JKPromptView showWithImageName:nil message:@"密码为6-16位数字和字母组合，请您仔细检查"];
+        return;
+    }else if ([QZManager isIncludeSpecialCharact:_keyText.text]){
+        [JKPromptView showWithImageName:nil message:@"密码中包含非法字符，请您检查"];
+        return;
     }
     
     if (![_keyText.text isEqualToString:_sureKeyText.text]) {
         [JKPromptView showWithImageName:nil message:@"两次密码不一致"];
         return;
-
     }
-
-    
+    NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+    [APIRequest resetPasswordWithuserId:userId withpassword:[_keyText.text  md5] RequestSuccess:^{
+        
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+    } fail:^{
+    }];
 }
 
 #pragma mark -手势
@@ -111,8 +118,6 @@
 {
     [self dismissKeyBoard];
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UserData *m_user;
 @property (nonatomic) BOOL m_bLogin;
-
+@property (nonatomic, copy) NSString *userId;//用户编号
 
 +(PublicFunction *)shareInstance;
 //是否登录

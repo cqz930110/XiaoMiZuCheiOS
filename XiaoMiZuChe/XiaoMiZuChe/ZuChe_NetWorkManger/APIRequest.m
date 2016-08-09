@@ -158,8 +158,47 @@
         fail();
     }];
 }
+#pragma mark - 重置密码接口
++ (void)resetPasswordWithuserId:(NSString *)userId
+                   withpassword:(NSString *)password
+                 RequestSuccess:(void (^)())success
+                           fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:userId,@"userId",password,@"password", nil];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,RESETPASSWORD];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        [USER_D setObject:password forKey:USERKEY];
+        [USER_D synchronize];
+        success();
+    } fail:^{
+        [SVProgressHUD dismiss];
+        fail();
+    }];
+}
+#pragma mark - 验证用户是否存在
++ (void)rcheckUserByPhoneWithPhone:(NSString *)phone
+                    RequestSuccess:(void (^)())success
+                              fail:(void (^)())fail
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@&phone=%@",kProjectBaseUrl,CHECKUSERBYPHONE,phone];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString success:^(NSDictionary *jsonDic) {
+        
+        
+    } fail:^{
+    }];
+}
 
-#pragma mark - 
+#pragma mark - 自动登录
 + (void)automaticLoginEventResponse
 {
     NSString *loginName = [USER_D objectForKey:USERNAME];

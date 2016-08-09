@@ -90,8 +90,28 @@
                RequestSuccess:(void (^)())success
                          fail:(void (^)())fail;
 
-
-
+/**
+ *  重置密码接口
+ *
+ *  @param userId   用户编号
+ *  @param password MD5加密字符串
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)resetPasswordWithuserId:(NSString *)userId
+                       withpassword:(NSString *)password
+                     RequestSuccess:(void (^)())success
+                               fail:(void (^)())fail;
+/**
+ *  根据手机号验证用户是否存在接口
+ *
+ *  @param phone   电话号码
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)rcheckUserByPhoneWithPhone:(NSString *)phone
+                 RequestSuccess:(void (^)())success
+                           fail:(void (^)())fail;
 
 /**
  *  自动登录

@@ -37,4 +37,12 @@
  5  用户登录接口
  */
 #define  LOGINURLSTRING               @"app/checkLogin.do"
+/*
+ 6  重置密码接口
+ */
+#define  RESETPASSWORD                @"app/user/resetPassword.do"
+/*
+ 7  根据手机号验证用户是否存在接口
+ */
+#define  CHECKUSERBYPHONE             @"user/checkUserByPhone.do"
 
