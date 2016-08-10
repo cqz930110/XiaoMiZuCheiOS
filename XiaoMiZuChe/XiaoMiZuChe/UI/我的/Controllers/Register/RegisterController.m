@@ -10,6 +10,8 @@
 #import "JKCountDownButton.h"
 #import "PerfectInformationVC.h"
 #import "NSString+MHCommon.h"
+#import "GcNoticeUtil.h"
+
 @interface RegisterController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
@@ -44,6 +46,7 @@
     self.keyText.tag        = 2017;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.codeText.keyboardType  = UIKeyboardTypeNumberPad;
+    self.keyText.secureTextEntry = YES;
 
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -166,13 +169,13 @@
     DLog(@"设备标识符:%@",udidStr);
     NSString *tempStr = [udidStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
+    
     [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {
         
         PerfectInformationVC *vc = [PerfectInformationVC new];
         [self.navigationController pushViewController:vc animated:YES];
 
     } fail:^{
-        
     }];
     
     PerfectInformationVC *vc = [PerfectInformationVC new];

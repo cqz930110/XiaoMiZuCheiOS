@@ -37,7 +37,9 @@
     self.sureKeyText.delegate = self;
     self.keyText.tag = 2891;
     self.sureKeyText.tag = 2892;
-    
+    self.keyText.secureTextEntry = YES;
+    self.sureKeyText.secureTextEntry = YES;
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldChanged:)
                                                  name:UITextFieldTextDidChangeNotification
@@ -102,7 +104,7 @@
         [JKPromptView showWithImageName:nil message:@"两次密码不一致"];
         return;
     }
-    NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+    NSString *userId = [NSString stringWithFormat:@"%@",GET([PublicFunction shareInstance].userId)];
     [APIRequest resetPasswordWithuserId:userId withpassword:[_keyText.text  md5] RequestSuccess:^{
         
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];

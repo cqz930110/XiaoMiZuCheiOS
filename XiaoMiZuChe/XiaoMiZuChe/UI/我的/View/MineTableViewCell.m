@@ -30,9 +30,7 @@
         _iconImgView.hidden  = YES;
         _titleLab.hidden = YES;
         
-        
         _headImgView.hidden = NO;
-        _nameLab.hidden = NO;
         _phoneLab.hidden = NO;
         _registerTimeLab.hidden = NO;
         _lineView.hidden = NO;
@@ -40,12 +38,15 @@
         _headImgView.layer.masksToBounds = YES;
         _headImgView.layer.cornerRadius = _headImgView.frame.size.width/2.f;
         
+        _phoneLab.text = [QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone];
+        _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
+        [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
+        
     } else {
         _iconImgView.hidden  = NO;
         _titleLab.hidden = NO;
         
         _headImgView.hidden = YES;
-        _nameLab.hidden = YES;
         _phoneLab.hidden = YES;
         _registerTimeLab.hidden = YES;
         

@@ -95,6 +95,8 @@
 		107821C81D5234E2009DE1D2 /* PerfectInformationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107821C61D5234E2009DE1D2 /* PerfectInformationVC.xib */; };
 		10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B6D0401D4367CE00800E32 /* RegisterController.m */; };
 		10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B6D0411D4367CE00800E32 /* RegisterController.xib */; };
+		182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2A1D5B060F00F68B9C /* XMAlertView.m */; };
+		182E2A2E1D5B065500F68B9C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2D1D5B065500F68B9C /* EditViewController.m */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
 		184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297D1D2BB22E00771220 /* AppDelegate.m */; };
 		184C29861D2BB22E00771220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184C29851D2BB22E00771220 /* Assets.xcassets */; };
@@ -294,6 +296,10 @@
 		10B6D0401D4367CE00800E32 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		10B6D0411D4367CE00800E32 /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		17367642F2ACDA21697919A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		182E2A291D5B060F00F68B9C /* XMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMAlertView.h; sourceTree = "<group>"; };
+		182E2A2A1D5B060F00F68B9C /* XMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMAlertView.m; sourceTree = "<group>"; };
+		182E2A2C1D5B065500F68B9C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		182E2A2D1D5B065500F68B9C /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		184C29761D2BB22E00771220 /* XiaoMiZuChe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoMiZuChe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C297A1D2BB22E00771220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		184C297C1D2BB22E00771220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -660,6 +666,15 @@
 				107821C61D5234E2009DE1D2 /* PerfectInformationVC.xib */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		182E2A281D5B05F800F68B9C /* XMAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				182E2A291D5B060F00F68B9C /* XMAlertView.h */,
+				182E2A2A1D5B060F00F68B9C /* XMAlertView.m */,
+			);
+			path = XMAlertView;
 			sourceTree = "<group>";
 		};
 		184C296D1D2BB22E00771220 = {
@@ -1171,6 +1186,7 @@
 			children = (
 				1859305C1D348BED00F948D4 /* BaseViewController.h */,
 				1859305D1D348BED00F948D4 /* BaseViewController.m */,
+				182E2A281D5B05F800F68B9C /* XMAlertView */,
 				185930551D348BE600F948D4 /* 单例 */,
 				185930571D348BE600F948D4 /* Beans */,
 				1859305A1D348BE600F948D4 /* TabBarController */,
@@ -1235,6 +1251,8 @@
 				18EE9F2F1D59D72B00F217BD /* EditKeyViewController.h */,
 				18EE9F301D59D72B00F217BD /* EditKeyViewController.m */,
 				18EE9F311D59D72B00F217BD /* EditKeyViewController.xib */,
+				182E2A2C1D5B065500F68B9C /* EditViewController.h */,
+				182E2A2D1D5B065500F68B9C /* EditViewController.m */,
 			);
 			path = mineSetting;
 			sourceTree = "<group>";
@@ -1538,6 +1556,7 @@
 				1859305E1D348BED00F948D4 /* BaseViewController.m in Sources */,
 				185930D91D3490EB00F948D4 /* UIImageView+Curled.m in Sources */,
 				18EE9F321D59D72B00F217BD /* EditKeyViewController.m in Sources */,
+				182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */,
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
 				18EE9F031D5854F400F217BD /* APIRequest.m in Sources */,
@@ -1595,6 +1614,7 @@
 				185930E71D3490EB00F948D4 /* QHCommonUtil.m in Sources */,
 				184C297B1D2BB22E00771220 /* main.m in Sources */,
 				185930FA1D3490EB00F948D4 /* ZHPickView.m in Sources */,
+				182E2A2E1D5B065500F68B9C /* EditViewController.m in Sources */,
 				185930541D34897100F948D4 /* MineViewController.m in Sources */,
 				185931031D3490EB00F948D4 /* FDCalendarItem.m in Sources */,
 				185930E81D3490EB00F948D4 /* UIImage+Extend.m in Sources */,
@@ -1726,7 +1746,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1751,7 +1771,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

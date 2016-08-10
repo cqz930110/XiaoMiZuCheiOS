@@ -93,16 +93,22 @@
     
     if (_phoneText.text.length == 11  && [QZManager isPureInt:_phoneText.text] == YES)
     {
-        JKCountDownButton *btn = (JKCountDownButton *)sender;
-        btn.enabled = NO;
-        [sender startCountDownWithSecond:60];
-        [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-            NSString *title = [NSString stringWithFormat:@"%zd秒",second];
-            return title;
-        }];
-        [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-            countDownButton.enabled = YES;
-            return @"重新获取";
+        
+        [APIRequest rcheckUserByPhoneWithPhone:_phoneText.text RequestSuccess:^{
+            
+            /*********************发送短信***********************************/
+            JKCountDownButton *btn = (JKCountDownButton *)sender;
+            btn.enabled = NO;
+            [sender startCountDownWithSecond:60];
+            [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+                NSString *title = [NSString stringWithFormat:@"%zd秒",second];
+                return title;
+            }];
+            [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                countDownButton.enabled = YES;
+                return @"重新获取";
+            }];
+
         }];
     }
 }

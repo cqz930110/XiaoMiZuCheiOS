@@ -23,7 +23,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         [self initUI];
     }
     
@@ -73,14 +72,36 @@
         _headImg.hidden = NO;
         [_nameLab setFrame: CGRectMake(15, 30, 120, 20)];
         _lineView.frame = CGRectMake(15, 79.4, kMainScreenWidth-15, .6f);
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }else {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
         _addresslab.hidden = NO;
         _headImg.hidden = YES;
         [_nameLab setFrame: CGRectMake(15, 12, 120, 20)];
         _lineView.frame = CGRectMake(15, 43.4, kMainScreenWidth-15, .6f);
         
-        _addresslab.text = @"13162079587";
+        if (row == 1) {
+            _addresslab.text = @"";
+
+        }else if (row == 2){
+            _addresslab.text = @"";
+
+        }else if (row == 3){
+            self.accessoryType = UITableViewCellAccessoryNone;
+
+        }else if (row == 4){
+            
+        }else if (row == 5){
+            self.accessoryType = UITableViewCellAccessoryNone;
+
+        }else if (row == 6){
+            
+        }else if (row == 7){
+            
+        }
+        
 
     }
     _nameLab.text = self.titleArr[row];

@@ -11,6 +11,7 @@
 #import "MineSettingVC.h"
 #import "LCActionSheet.h"
 #import "AboutViewController.h"
+#import "GcNoticeUtil.h"
 
 static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -18,6 +19,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) UIButton *logOutBtn;
 @property (strong,nonatomic) UIView *footView;
+@property (nonatomic, strong) UIWebView *callPhoneWebView;
 
 @end
 
@@ -34,7 +36,6 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (void)initUI
 {
     [self setupNaviBarWithTitle:@"我的"];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.footView addSubview:self.logOutBtn];
@@ -68,6 +69,9 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     }else if (row == 4) {
         AboutViewController *vc = [AboutViewController new];
         [self.navigationController  pushViewController:vc animated:YES];
+    }else if (row == 3) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"0531-67805000"]]];
+        [self.callPhoneWebView loadRequest:request];
     }
 }
 #pragma mark - event response
@@ -80,6 +84,8 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
             [USER_D removeObjectForKey:USERKEY];
             [USER_D synchronize];
             [PublicFunction shareInstance].m_bLogin = NO;
+            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+
             [UIView animateWithDuration:0.35f animations:^{
                 
                 weakSelf.tabBarController.selectedIndex = 0;
@@ -126,6 +132,14 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     }
     return _footView;
 }
+#pragma mark -打电话
+- (UIWebView *)callPhoneWebView {
+    if (!_callPhoneWebView) {
+        _callPhoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    }
+    return _callPhoneWebView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

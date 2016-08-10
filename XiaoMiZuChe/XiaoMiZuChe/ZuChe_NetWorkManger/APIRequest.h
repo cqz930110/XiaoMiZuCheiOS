@@ -107,11 +107,35 @@
  *
  *  @param phone   电话号码
  *  @param success 成功回调
- *  @param fail    失败回调
  */
 + (void)rcheckUserByPhoneWithPhone:(NSString *)phone
-                 RequestSuccess:(void (^)())success
-                           fail:(void (^)())fail;
+                    RequestSuccess:(void (^)())success;
+
+/**
+ *  获取用户资料接口
+ *
+ *  @param authorization Header 校验信息
+ *  @param userId        用户编号
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)getUserInfoWithAuthorization:(NSString *)authorization
+                        withUserId:(NSString *)userId
+                    RequestSuccess:(void (^)())success
+                                fail:(void (^)())fail;
+
+/**
+ *  修改用户资料接口
+ *
+ *  @param dictionary postDict
+ *  @param urlString  请求地址
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)updateUserDataWithPostDict:(NSDictionary *)dictionary
+                        withURLString:(NSString *)urlString
+                     RequestSuccess:(void (^)())success
+                              fail:(void (^)())fail;
 
 /**
  *  自动登录

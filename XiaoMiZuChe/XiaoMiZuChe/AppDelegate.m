@@ -56,9 +56,10 @@
         [IQKeyboardManager sharedManager].shouldShowTextFieldPlaceholder = YES;
         [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
         
-        [APIRequest automaticLoginEventResponse];
     });
+    [APIRequest automaticLoginEventResponse];
 
+//    [NSThread sleepForTimeInterval:2.f];
     //tabbar
     ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
     tabBarControllerConfig.tabBarController.delegate = self;

@@ -12,6 +12,8 @@
 #import "WHC_CameraVC.h"
 #import "LCActionSheet.h"
 #import "SettingTabCell.h"
+#import "EditViewController.h"
+#import "MyPickView.h"
 
 static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
@@ -71,8 +73,51 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     
     if (row == 0) {
         [self addActionSheet];
+    }else if (row == 2){
+        [self modifyTheGender];
+    }else if (row == 6){
+        [self selectProvinceCityArea];
+        
+    }else if (row == 7 || row == 1 || row == 4){
+        
+        EditViewController *vc = [EditViewController new];
+        if (row == 1) {
+            vc.titleStr = @"姓名";
+        }else if (row == 4){
+            vc.titleStr = @"身份证号";
+        }else if (row == 7){
+            vc.titleStr = @"详细地址";
+        }
+        vc.contentStr = @"";
+        vc.editBlock = ^(NSString *modifyString){
+            
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
+- (void)modifyTheGender{
+    NSInteger index = 0;
+    
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择性别" buttonTitles:@[@"男",@"女",@"保密"] redButtonIndex:index clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            
+        }else if(buttonIndex == 1) {
+            
+        }else if(buttonIndex == 2) {
+            
+        }
+    }];
+    [sheet show];
+}
+- (void)selectProvinceCityArea{WEAKSELF;
+    UIWindow *windows = [QZManager getWindow];
+    MyPickView *pickView = [[MyPickView  alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
+    pickView.pickBlock = ^(NSString *provice,NSString *city,NSString *area){
+        
+    };
+    [windows addSubview:pickView];
+}
+
 - (void)addActionSheet
 {
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"拍照", @"从相册选择"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {

@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "GcNoticeUtil.h"
 
 @interface HomeViewController ()
 @property (nonatomic, assign) UIImageView *bgview;
@@ -17,6 +18,17 @@
 @implementation HomeViewController
 
 #pragma mark - life cycle
+-(void)dealloc
+{
+    [GcNoticeUtil removeNotification:@"autoLoginSuccess"
+                            Observer:self
+                              Object:nil];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -25,15 +37,31 @@
 #pragma mark - private methods
 - (void)initUI{
     [self setupNaviBarWithTitle:@"小米租车"];
-    [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
-    [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
-    self.rightBtn.titleLabel.font = Font_15;
     
+    [GcNoticeUtil handleNotification:@"autoLoginSuccess"
+                                Selector:@selector(autoLoginSuccessMethods)
+                                Observer:self];
+}
+#pragma mark - 通知
+- (void)autoLoginSuccessMethods
+{
+    if ([PublicFunction shareInstance].m_bLogin == NO) {
+        [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
+        [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
+        self.rightBtn.titleLabel.font = Font_15;
+    }else {
+        [self.rightBtn setTitle:@"" forState:0];
+    }
 }
 #pragma mark - getters and setters
 #pragma mark - event respose
 - (void)rightBtnAction
 {
+    if ([PublicFunction shareInstance].m_bLogin == YES) {
+        [self.rightBtn setTitle:@"" forState:0];
+        self.rightBtn = nil;
+        return;
+    }
     LoginViewController *loginVC = [LoginViewController new];
     [self presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
 }

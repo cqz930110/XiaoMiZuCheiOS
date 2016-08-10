@@ -10,6 +10,7 @@
 #import "RegisterController.h"
 #import "NSString+MHCommon.h"
 #import "ModifyViewController.h"
+#import "GcNoticeUtil.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -26,6 +27,10 @@
 @implementation LoginViewController
 
 #pragma mark - life cycle
+- (void)dealloc
+{
+    [GcNoticeUtil removeAllNotification:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -43,7 +48,7 @@
     self.codeText.delegate  = self;
     self.phoneText.tag = 2889;
     self.codeText.tag  = 2890;
-
+    self.codeText.secureTextEntry = YES;
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldChanged:)

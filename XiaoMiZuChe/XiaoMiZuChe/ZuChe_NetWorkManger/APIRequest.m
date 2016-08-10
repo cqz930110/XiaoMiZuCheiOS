@@ -10,10 +10,12 @@
 #import "ZhouDao_NetWorkManger.h"
 #import "SchoolData.h"//学校
 #import "UserData.h"
+#import "GcNoticeUtil.h"
+
 @implementation APIRequest
 
 
-#pragma mark -验证验证吗
+#pragma mark -验证验证码
 + (void)VerifyTheMobileWithphone:(NSString *)phone
                         withcode:(NSString *)code
                   RequestSuccess:(void (^)())success
@@ -93,6 +95,7 @@
         [USER_D setObject:phone forKey:USERNAME];
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];
+        [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
 
         success();
     } fail:^{
@@ -138,9 +141,10 @@
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+
         if (errorcode !=1) {
-            NSString *msg = jsonDic[@"errmsg"];
-            [JKPromptView showWithImageName:nil message:msg];
             fail();
             return ;
         }
@@ -148,7 +152,7 @@
         UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
         [PublicFunction shareInstance].m_bLogin = YES;
         [PublicFunction shareInstance].m_user = m_user;
-
+        [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
         [USER_D setObject:loginName forKey:USERNAME];
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];
@@ -171,9 +175,9 @@
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
         if (errorcode !=1) {
-            NSString *msg = jsonDic[@"errmsg"];
-            [JKPromptView showWithImageName:nil message:msg];
             fail();
             return ;
         }
@@ -188,16 +192,66 @@
 #pragma mark - 验证用户是否存在
 + (void)rcheckUserByPhoneWithPhone:(NSString *)phone
                     RequestSuccess:(void (^)())success
-                              fail:(void (^)())fail
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@&phone=%@",kProjectBaseUrl,CHECKUSERBYPHONE,phone];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?phone=%@",kProjectBaseUrl,CHECKUSERBYPHONE,phone];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString success:^(NSDictionary *jsonDic) {
-        
-        
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            return ;
+        }
+        NSString *userId = jsonDic[@"data"];
+        [PublicFunction shareInstance].userId = userId;
+        success();
+    } fail:^{
+    }];
+}
+ #pragma mark -   获取用户资料接口
++ (void)getUserInfoWithAuthorization:(NSString *)authorization
+                          withUserId:(NSString *)userId
+                      RequestSuccess:(void (^)())success
+                                fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?Authorization=%@&userId=%@",kProjectBaseUrl,GETUSERINFOURL,authorization,userId];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString success:^(NSDictionary *jsonDic) {
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            return ;
+        }
+        NSString *userId = jsonDic[@"data"];
+        [PublicFunction shareInstance].userId = userId;
+        success();
     } fail:^{
     }];
 }
 
+ #pragma mark -   修改用户资料接口
++ (void)updateUserDataWithPostDict:(NSDictionary *)dictionary
+                     withURLString:(NSString *)urlString
+                    RequestSuccess:(void (^)())success
+                              fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dictionary success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        success();
+    } fail:^{
+        [SVProgressHUD dismiss];
+        fail();
+    }];
+}
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse
 {
@@ -219,14 +273,23 @@
             [SVProgressHUD dismiss];
             NSUInteger errorcode = [jsonDic[@"code"] integerValue];
             if (errorcode !=1) {
+                [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
                 return ;
             }
             NSDictionary *dataDic = jsonDic[@"data"];
             UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
             [PublicFunction shareInstance].m_bLogin = YES;
             [PublicFunction shareInstance].m_user = m_user;
+            
+            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+            
         } fail:^{
+            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
         }];
+    }else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+        });
     }
 }
 #pragma mark - 替换字串

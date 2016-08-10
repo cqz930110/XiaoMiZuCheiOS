@@ -37,7 +37,7 @@
                         <action selector="nextBtnEvent:" destination="-1" eventType="touchUpInside" id="ZIz-2u-YOZ"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_phone_no.png" translatesAutoresizingMaskIntoConstraints="NO" id="MWt-H4-4n1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_phone_no.png" translatesAutoresizingMaskIntoConstraints="NO" id="MWt-H4-4n1">
                     <rect key="frame" x="40" y="95" width="20" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="z70-3G-GXX"/>
@@ -47,12 +47,12 @@
                     <rect key="frame" x="40" y="130" width="240" height="1"/>
                     <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcp-qa-w8g">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcp-qa-w8g">
                     <rect key="frame" x="70" y="95" width="135" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入收到的验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cW6-hF-1Jr">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入收到的验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cW6-hF-1Jr">
                     <rect key="frame" x="70" y="137" width="210" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -77,7 +77,7 @@
                         <action selector="sendCodeBtnEvent:" destination="-1" eventType="touchUpInside" id="xWb-Vm-4Vo"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置密码(6-16位字母数字组合)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qoo-m5-ukr">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置密码(6-16位字母数字组合)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qoo-m5-ukr">
                     <rect key="frame" x="70" y="183" width="210" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>

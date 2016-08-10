@@ -44,5 +44,13 @@
 /*
  7  根据手机号验证用户是否存在接口
  */
-#define  CHECKUSERBYPHONE             @"user/checkUserByPhone.do"
+#define  CHECKUSERBYPHONE             @"app/user/checkUserByPhone.do"
+/*
+ 8  获取用户资料接口
+ */
+#define  GETUSERINFOURL               @"app/user/getUserInfo.do"
+/*
+ 9  修改用户资料接口
+ */
+#define  UPDATEUSERDATAURL            @"app/user/updateUserData.do"
 
