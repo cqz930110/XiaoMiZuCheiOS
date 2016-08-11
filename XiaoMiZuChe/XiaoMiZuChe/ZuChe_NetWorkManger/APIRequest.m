@@ -11,6 +11,7 @@
 #import "SchoolData.h"//学校
 #import "UserData.h"
 #import "GcNoticeUtil.h"
+#import "BasicData.h"
 
 @implementation APIRequest
 
@@ -24,8 +25,7 @@
     
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:phone,@"phone",SMSAPPKEY,@"appkey",@"86",@"zone",code,@"code", nil];
     
-    [ZhouDao_NetWorkManger PostJSONWithUrl:VerifyTheMobile parameters:dict success:^(NSDictionary *jsonDic) {
-        
+    [ZhouDao_NetWorkManger PostJSONWithUrl:VerifyTheMobile parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"status"]];
         if ([status isEqualToString:@"200"]) {
             success();
@@ -34,6 +34,7 @@
         }
     } fail:^{
         fail();
+
     }];
 }
 
@@ -46,7 +47,7 @@
 {
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:province,@"province",city,@"city",area,@"area", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,GETSCHOOLURL];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
@@ -78,7 +79,7 @@
     [SVProgressHUD show];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",clientId,@"clientId",platform,@"platform", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,REGISTERUSERURL];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -95,7 +96,7 @@
         [USER_D setObject:phone forKey:USERNAME];
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];
-        [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+        [GcNoticeUtil sendNotification:DECIDEISLOGIN];
 
         success();
     } fail:^{
@@ -110,7 +111,7 @@
 {
     [SVProgressHUD show];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,PERFECTUSERURL];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dictionary success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dictionary isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -137,7 +138,7 @@
     [SVProgressHUD show];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",clientId,@"clientId",platform,@"platform", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGINURLSTRING];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -152,7 +153,7 @@
         UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
         [PublicFunction shareInstance].m_bLogin = YES;
         [PublicFunction shareInstance].m_user = m_user;
-        [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+        [GcNoticeUtil sendNotification:DECIDEISLOGIN];
         [USER_D setObject:loginName forKey:USERNAME];
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];
@@ -171,7 +172,8 @@
     [SVProgressHUD show];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:userId,@"userId",password,@"password", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,RESETPASSWORD];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+    
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -194,7 +196,7 @@
                     RequestSuccess:(void (^)())success
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@?phone=%@",kProjectBaseUrl,CHECKUSERBYPHONE,phone];
-    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -208,24 +210,25 @@
     }];
 }
  #pragma mark -   获取用户资料接口
-+ (void)getUserInfoWithAuthorization:(NSString *)authorization
-                          withUserId:(NSString *)userId
-                      RequestSuccess:(void (^)())success
-                                fail:(void (^)())fail
++ (void)getUserInfoWithUserId:(NSString *)userId
+               RequestSuccess:(void (^)(id obj))success
+                         fail:(void (^)())fail
 {
     [SVProgressHUD show];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?Authorization=%@&userId=%@",kProjectBaseUrl,GETUSERINFOURL,authorization,userId];
-    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString success:^(NSDictionary *jsonDic) {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?userId=%@",kProjectBaseUrl,GETUSERINFOURL,userId];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
             [JKPromptView showWithImageName:nil message:msg];
+            fail();
             return ;
         }
-        NSString *userId = jsonDic[@"data"];
-        [PublicFunction shareInstance].userId = userId;
-        success();
+        NSDictionary *dict = jsonDic[@"data"];
+        BasicData *model = [[BasicData alloc] initWithDictionary:dict];
+        success(model);
     } fail:^{
+        fail();
     }];
 }
 
@@ -236,7 +239,7 @@
                               fail:(void (^)())fail
 {
     [SVProgressHUD show];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dictionary success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dictionary isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -268,12 +271,12 @@
         
         NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",aliasString,@"clientId",[NSString stringWithFormat:@"iOS%@",device.systemVersion],@"platform", nil];
         NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGINURLSTRING];
-        [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict success:^(NSDictionary *jsonDic) {
+        [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
             
             [SVProgressHUD dismiss];
             NSUInteger errorcode = [jsonDic[@"code"] integerValue];
             if (errorcode !=1) {
-                [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+                [GcNoticeUtil sendNotification:DECIDEISLOGIN];
                 return ;
             }
             NSDictionary *dataDic = jsonDic[@"data"];
@@ -281,14 +284,14 @@
             [PublicFunction shareInstance].m_bLogin = YES;
             [PublicFunction shareInstance].m_user = m_user;
             
-            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
             
         } fail:^{
-            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
         }];
     }else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
         });
     }
 }

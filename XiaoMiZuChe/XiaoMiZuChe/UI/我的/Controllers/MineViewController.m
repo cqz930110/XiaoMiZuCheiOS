@@ -84,7 +84,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
             [USER_D removeObjectForKey:USERKEY];
             [USER_D synchronize];
             [PublicFunction shareInstance].m_bLogin = NO;
-            [GcNoticeUtil sendNotification:@"autoLoginSuccess"];
+            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
 
             [UIView animateWithDuration:0.35f animations:^{
                 

@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasicData.h"
 
 @interface SettingTabCell : UITableViewCell
 
 @property (strong, nonatomic)  UILabel *nameLab;
 @property (strong, nonatomic) UILabel *addresslab;
 @property (nonatomic, strong) UIImageView *headImg;
+@property (strong, nonatomic) BasicData *model;
 
 - (void)settingUIwithRow:(NSInteger)row;
 

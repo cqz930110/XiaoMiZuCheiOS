@@ -14,6 +14,7 @@
 #import "SettingTabCell.h"
 #import "EditViewController.h"
 #import "MyPickView.h"
+#import "BasicData.h"
 
 static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
@@ -21,6 +22,7 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImage *headImage;
+@property (strong, nonatomic) BasicData *dataModel;
 
 @end
 
@@ -31,10 +33,25 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     [super viewDidLoad];
 
     [self initUI];
+    [self loadBasicData];
 }
 
 #pragma mark - private methods
 
+- (void)loadBasicData
+{WEAKSELF;
+    NSString *userIdString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+    [APIRequest getUserInfoWithUserId:userIdString RequestSuccess:^(id obj) {
+        
+        weakSelf.dataModel = (BasicData *)obj;
+    } fail:^{
+        FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"加载个人信息失败"];
+        alert.navBlock = ^(){
+            
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
+    }];
+}
 - (void)initUI{
     
     [self setupNaviBarWithTitle:@"基本资料"];
@@ -52,12 +69,15 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 {
     SettingTabCell *cell = (SettingTabCell *)[tableView dequeueReusableCellWithIdentifier:SettingIdentifer];
     
+    if (_dataModel) {
+        cell.model = _dataModel;
+    }
     [cell settingUIwithRow:indexPath.row];
     if (_headImage)
     {
         cell.headImg.image = _headImage;
     }else{
-        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:@"http://image.anruan.com/img/1/13680_2.jpg"] placeholderImage:[UIImage imageNamed:@"mine_head"]];
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:_dataModel.headPic] placeholderImage:kGetImage(@"icon_default_head")];
     }
 
     return cell;

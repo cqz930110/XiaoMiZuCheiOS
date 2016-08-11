@@ -119,9 +119,8 @@
  *  @param success 成功回调
  *  @param fail    失败回调
  */
-+ (void)getUserInfoWithAuthorization:(NSString *)authorization
-                        withUserId:(NSString *)userId
-                    RequestSuccess:(void (^)())success
++ (void)getUserInfoWithUserId:(NSString *)userId
+                    RequestSuccess:(void (^)(id obj))success
                                 fail:(void (^)())fail;
 
 /**

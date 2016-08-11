@@ -184,7 +184,7 @@
     NSString *schoolId = _schoolDict[_schoolLab.text];
     NSString *address = _detailAddressText.text;
     UserData *m_user = [PublicFunction shareInstance].m_user;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:m_user.userToken,@"Authorization",m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",address,@"address",schoolId,@"schoolId", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",address,@"address",schoolId,@"schoolId", nil];
     [APIRequest perfectUserDataWithPostDict:dict RequestSuccess:^{
         
     } fail:^{

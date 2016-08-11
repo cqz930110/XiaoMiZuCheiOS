@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "ZCTabBarControllerConfig.h"
 #import "LoginViewController.h"
 #import "IQKeyboardManager.h"
 
@@ -61,9 +60,10 @@
 
 //    [NSThread sleepForTimeInterval:2.f];
     //tabbar
-    ZCTabBarControllerConfig *tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
-    tabBarControllerConfig.tabBarController.delegate = self;
-    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+   
+    self.tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];
+    self.tabBarControllerConfig.tabBarController.delegate = self;
+    [self.window setRootViewController:self.tabBarControllerConfig.tabBarController];
     [self.window makeKeyAndVisible];
 }
 #pragma mark - 配置地图

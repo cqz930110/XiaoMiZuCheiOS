@@ -35,7 +35,7 @@
 #import "XMZCRequestAPI.h"
 #import "NSString+Emoji.h"
 #import "PublicFunction.h"
-
+#import "FDAlertView.h"
 /**
  *  短信
  */
@@ -43,5 +43,7 @@
 #define SMSSECRET                         @"b149d425b90b1523caada1b166e73db0"
 #define USERNAME                          @"userLoginName"
 #define USERKEY                           @"userLoginKey"
+#define DECIDEISLOGIN                     @"autoLoginSuccess"
+
 
 #endif

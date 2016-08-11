@@ -95,6 +95,8 @@
 		107821C81D5234E2009DE1D2 /* PerfectInformationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107821C61D5234E2009DE1D2 /* PerfectInformationVC.xib */; };
 		10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B6D0401D4367CE00800E32 /* RegisterController.m */; };
 		10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B6D0411D4367CE00800E32 /* RegisterController.xib */; };
+		1813EF8F1D5C6A0F0019CA33 /* FDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */; };
+		1813EF951D5C71B80019CA33 /* BasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813EF941D5C71B80019CA33 /* BasicData.m */; };
 		182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2A1D5B060F00F68B9C /* XMAlertView.m */; };
 		182E2A2E1D5B065500F68B9C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2D1D5B065500F68B9C /* EditViewController.m */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
@@ -296,6 +298,10 @@
 		10B6D0401D4367CE00800E32 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		10B6D0411D4367CE00800E32 /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
 		17367642F2ACDA21697919A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1813EF8D1D5C6A0F0019CA33 /* FDAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAlertView.h; sourceTree = "<group>"; };
+		1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAlertView.m; sourceTree = "<group>"; };
+		1813EF931D5C71B80019CA33 /* BasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicData.h; sourceTree = "<group>"; };
+		1813EF941D5C71B80019CA33 /* BasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicData.m; sourceTree = "<group>"; };
 		182E2A291D5B060F00F68B9C /* XMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMAlertView.h; sourceTree = "<group>"; };
 		182E2A2A1D5B060F00F68B9C /* XMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMAlertView.m; sourceTree = "<group>"; };
 		182E2A2C1D5B065500F68B9C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -673,6 +679,8 @@
 			children = (
 				182E2A291D5B060F00F68B9C /* XMAlertView.h */,
 				182E2A2A1D5B060F00F68B9C /* XMAlertView.m */,
+				1813EF8D1D5C6A0F0019CA33 /* FDAlertView.h */,
+				1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */,
 			);
 			path = XMAlertView;
 			sourceTree = "<group>";
@@ -772,6 +780,8 @@
 			children = (
 				18EE9F201D59A21000F217BD /* SchoolData.h */,
 				18EE9F211D59A21000F217BD /* SchoolData.m */,
+				1813EF931D5C71B80019CA33 /* BasicData.h */,
+				1813EF941D5C71B80019CA33 /* BasicData.m */,
 				18EE9F231D59B35B00F217BD /* UserData.h */,
 				18EE9F241D59B35B00F217BD /* UserData.m */,
 			);
@@ -1565,6 +1575,7 @@
 				10B6D0421D4367CE00800E32 /* RegisterController.m in Sources */,
 				185930F11D3490EB00F948D4 /* StoreKitManager.m in Sources */,
 				185930EE1D3490EB00F948D4 /* NSString+YXFAddtions.m in Sources */,
+				1813EF951D5C71B80019CA33 /* BasicData.m in Sources */,
 				1000D8761D58AB640040FE32 /* SDBrowserImageView.m in Sources */,
 				185930D81D3490EB00F948D4 /* UIButton+Curled.m in Sources */,
 				1000D8741D58AB640040FE32 /* MSWeakTimer.m in Sources */,
@@ -1593,6 +1604,7 @@
 				1000D87E1D58AB640040FE32 /* WHC_CameraVC.m in Sources */,
 				185930511D34896000F948D4 /* MallViewController.m in Sources */,
 				185930D61D3490EB00F948D4 /* AnimationTools.m in Sources */,
+				1813EF8F1D5C6A0F0019CA33 /* FDAlertView.m in Sources */,
 				185930DE1D3490EB00F948D4 /* JKPromptView.m in Sources */,
 				185930ED1D3490EB00F948D4 /* NSString+Size.m in Sources */,
 				185930DC1D3490EB00F948D4 /* FMUSystem.m in Sources */,

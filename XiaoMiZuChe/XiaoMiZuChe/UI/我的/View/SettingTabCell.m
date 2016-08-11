@@ -60,7 +60,7 @@
 // 返回高质量图片的url
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    NSString *imgUrl = GET(@"http://image.anruan.com/img/1/13680_2.jpg");
+    NSString *imgUrl = GET(_model.headPic);
     NSString *urlStr = [imgUrl stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
     return [NSURL URLWithString:urlStr];
 }
@@ -86,10 +86,13 @@
             _addresslab.text = @"";
 
         }else if (row == 2){
-            _addresslab.text = @"";
+            if (_model.phone.length >=11) {
+                _addresslab.text = [QZManager getTheHiddenMobile:_model.phone];
+            }
 
         }else if (row == 3){
             self.accessoryType = UITableViewCellAccessoryNone;
+            _addresslab.text = @"男";
 
         }else if (row == 4){
             
@@ -108,6 +111,11 @@
 }
 
 #pragma mark - setters and getters
+- (void)setModel:(BasicData *)model
+{
+    _model = nil;
+    _model = model;
+}
 - (NSArray *)titleArr{
     if (!_titleArr) {
         _titleArr = [NSArray arrayWithObjects:@"头像",@"姓名",@"性别",@"手机号码",@"身份证号",@"用户类别",@"所在地区",@"所在学校", nil];

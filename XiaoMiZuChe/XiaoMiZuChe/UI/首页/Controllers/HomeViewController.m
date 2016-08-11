@@ -20,7 +20,7 @@
 #pragma mark - life cycle
 -(void)dealloc
 {
-    [GcNoticeUtil removeNotification:@"autoLoginSuccess"
+    [GcNoticeUtil removeNotification:DECIDEISLOGIN
                             Observer:self
                               Object:nil];
 }
@@ -38,9 +38,19 @@
 - (void)initUI{
     [self setupNaviBarWithTitle:@"小米租车"];
     
-    [GcNoticeUtil handleNotification:@"autoLoginSuccess"
+    [GcNoticeUtil handleNotification:DECIDEISLOGIN
                                 Selector:@selector(autoLoginSuccessMethods)
                                 Observer:self];
+    
+//    NSString *userType = @"2";
+//    NSString *schoolId = @"5";
+//    NSString *address = @"上海市杨浦区扬州路588弄";
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"888903",@"userId",@"曹庆中",@"userName",@"2",@"sex",@"412721199999999999",@"idNum",userType,@"userType",@"河南省",@"province",@"郑州市",@"city",@"",@"area",address,@"address",schoolId,@"schoolId", nil];
+//    [APIRequest perfectUserDataWithPostDict:dict RequestSuccess:^{
+//        
+//    } fail:^{
+//    }];
+
 }
 #pragma mark - 通知
 - (void)autoLoginSuccessMethods
