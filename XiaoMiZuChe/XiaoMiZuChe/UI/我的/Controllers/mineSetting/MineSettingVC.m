@@ -44,6 +44,7 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     [APIRequest getUserInfoWithUserId:userIdString RequestSuccess:^(id obj) {
         
         weakSelf.dataModel = (BasicData *)obj;
+        [weakSelf.tableView reloadData];
     } fail:^{
         FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"加载个人信息失败"];
         alert.navBlock = ^(){
@@ -87,7 +88,7 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     return (indexPath.row == 0)?80.f:44.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{WEAKSELF;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     
@@ -103,21 +104,41 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
         EditViewController *vc = [EditViewController new];
         if (row == 1) {
             vc.titleStr = @"姓名";
+            vc.editBlock = ^(NSString *modifyString){
+                
+                weakSelf.dataModel.userName = modifyString;
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            };
         }else if (row == 4){
             vc.titleStr = @"身份证号";
+            vc.editBlock = ^(NSString *modifyString){
+                
+                weakSelf.dataModel.idNum = modifyString;
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            };
         }else if (row == 7){
-            vc.titleStr = @"详细地址";
+            vc.titleStr = @"所在学校";
+            vc.editBlock = ^(NSString *modifyString){
+                
+                weakSelf.dataModel.address = modifyString;
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:7 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            };
         }
         vc.contentStr = @"";
-        vc.editBlock = ^(NSString *modifyString){
-            
-        };
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (void)modifyTheGender{
     NSInteger index = 0;
-    
+    NSString *sexString = [NSString stringWithFormat:@"%@",_dataModel.sex];
+    if ([sexString isEqualToString:@"0"]) {
+        index = 0;
+    }else if([sexString isEqualToString:@"1"]) {
+        index = 1;
+    }else {
+        index = 2;
+    }
+
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择性别" buttonTitles:@[@"男",@"女",@"保密"] redButtonIndex:index clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             

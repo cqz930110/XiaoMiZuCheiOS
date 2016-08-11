@@ -11,7 +11,9 @@
 //static NSString *const CELLIDENTIFER = @"editcellid";
 
 @interface EditViewController ()<UITextFieldDelegate>
-
+{
+    NSString *_lastString;
+}
 @property (strong, nonatomic) UITextField *editText;
 @property (strong, nonatomic) UIView *editView;
 @property (copy, nonatomic)   NSString *parameterStr;
@@ -32,11 +34,12 @@
 #pragma mark - private methods
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupNaviBarWithTitle:@"基本资料"];
+    [self setupNaviBarWithTitle:_titleStr];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
     [self setupNaviBarWithBtn:NaviRightBtn title:@"保存" img:nil];
     self.rightBtn.titleLabel.font = Font_16;
     
+    _lastString = _contentStr;
     [self.view addSubview:self.editView];
     [self.editView addSubview:self.editText];
 }
@@ -44,7 +47,13 @@
 - (void)rightBtnAction
 {
     if (_editText.text.length == 0) {
-        [JKPromptView showWithImageName:nil message:@"请您填写修改内容！"];
+        [JKPromptView showWithImageName:nil message:@"请您填写修改内容"];
+        return;
+    }
+    
+    if ([_editText.text isEqualToString:_lastString]) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     
@@ -57,10 +66,11 @@
         _parameterStr = @"address";
     }
     WEAKSELF;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userToken,@"Authorization",[PublicFunction shareInstance].m_user.userId,@"userId",_editText.text,_parameterStr, nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",_editText.text,_parameterStr, nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,UPDATEUSERDATAURL];
     [APIRequest updateUserDataWithPostDict:dict withURLString:urlString RequestSuccess:^{
         
+        weakSelf.editBlock(_editText.text);
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } fail:^{
         

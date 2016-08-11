@@ -77,7 +77,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 #pragma mark - event response
 - (void)logOutBtnEvent:(UIButton *)btn
 {WEAKSELF;
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"退出"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"退出账号" buttonTitles:@[@"退出"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0){
             DLog(@"退出登录");
             [USER_D removeObjectForKey:USERNAME];
@@ -90,7 +90,6 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
                 
                 weakSelf.tabBarController.selectedIndex = 0;
             }];
-
         }
     }];
     [sheet show];

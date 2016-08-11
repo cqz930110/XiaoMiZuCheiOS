@@ -67,6 +67,9 @@
 
 - (void)settingUIwithRow:(NSInteger)row
 {
+    
+    _nameLab.text = self.titleArr[row];
+
     if (row == 0) {
         _addresslab.hidden = YES;
         _headImg.hidden = NO;
@@ -83,31 +86,77 @@
         _lineView.frame = CGRectMake(15, 43.4, kMainScreenWidth-15, .6f);
         
         if (row == 1) {
-            _addresslab.text = @"";
-
+            if (_model.userName.length >0) {
+                _addresslab.text = _model.userName;
+            }
         }else if (row == 2){
-            if (_model.phone.length >=11) {
-                _addresslab.text = [QZManager getTheHiddenMobile:_model.phone];
+
+            NSString *sexString = [NSString stringWithFormat:@"%@",_model.sex];
+            if ([sexString isEqualToString:@"0"]) {
+                _addresslab.text = @"男";
+            }else if([sexString isEqualToString:@"1"]) {
+                _addresslab.text = @"女";
+            }else {
+                _addresslab.text = @"其他";
             }
 
         }else if (row == 3){
             self.accessoryType = UITableViewCellAccessoryNone;
-            _addresslab.text = @"男";
+            if (_model.phone.length >=11) {
+                _addresslab.text = [QZManager getTheHiddenMobile:_model.phone];
+            }
 
         }else if (row == 4){
+            if (_model.idNum.length >0) {
+                _addresslab.text = _model.idNum;
+            }
             
         }else if (row == 5){
             self.accessoryType = UITableViewCellAccessoryNone;
+            NSString *typeString = [NSString stringWithFormat:@"%@",_model.userType];
+            if ([typeString isEqualToString:@"1"]) {
+                _addresslab.text = @"学校用户";
+            }else {
+                _addresslab.text = @"普通用户";
+            }
 
         }else if (row == 6){
             
+            NSMutableString *areaString = [[NSMutableString alloc] init];
+            
+            if (_model.province.length >0) {
+                [areaString appendString:_model.province];
+            }
+            if (_model.city.length >0) {
+                [areaString appendString:_model.city];
+            }
+            if (_model.area.length >0) {
+                [areaString appendString:_model.area];
+            }
+            _addresslab.text = GET(areaString);
+            
         }else if (row == 7){
             
+            NSString *typeString = [NSString stringWithFormat:@"%@",_model.userType];
+            if ([typeString isEqualToString:@"1"]) {
+                
+                if (_model.schoolName.length >0) {
+                    _addresslab.text = _model.schoolName;
+                }
+
+            }else {
+                if (_model.address.length >0) {
+                    _addresslab.text = _model.address;
+                    _nameLab.text = @"详细地址";
+
+                }
+
+            }
+
         }
         
 
     }
-    _nameLab.text = self.titleArr[row];
 }
 
 #pragma mark - setters and getters

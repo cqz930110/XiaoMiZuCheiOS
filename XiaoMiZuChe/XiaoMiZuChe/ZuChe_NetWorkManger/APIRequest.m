@@ -144,7 +144,6 @@
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
-
         if (errorcode !=1) {
             fail();
             return ;
@@ -217,6 +216,8 @@
     [SVProgressHUD show];
     NSString *urlString = [NSString stringWithFormat:@"%@%@?userId=%@",kProjectBaseUrl,GETUSERINFOURL,userId];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -229,6 +230,7 @@
         success(model);
     } fail:^{
         fail();
+        [SVProgressHUD dismiss];
     }];
 }
 
