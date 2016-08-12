@@ -97,6 +97,9 @@
 		10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B6D0411D4367CE00800E32 /* RegisterController.xib */; };
 		1813EF8F1D5C6A0F0019CA33 /* FDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */; };
 		1813EF951D5C71B80019CA33 /* BasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813EF941D5C71B80019CA33 /* BasicData.m */; };
+		1826DCCA1D5DABEB007A0C45 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826DCC91D5DABEB007A0C45 /* ServiceViewController.m */; };
+		1826DCCE1D5DACCB007A0C45 /* error.html in Resources */ = {isa = PBXBuildFile; fileRef = 1826DCCC1D5DACCB007A0C45 /* error.html */; };
+		1826DCCF1D5DACCB007A0C45 /* wifi_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1826DCCD1D5DACCB007A0C45 /* wifi_pic.png */; };
 		182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2A1D5B060F00F68B9C /* XMAlertView.m */; };
 		182E2A2E1D5B065500F68B9C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2D1D5B065500F68B9C /* EditViewController.m */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
@@ -163,7 +166,6 @@
 		18EE9F0F1D5875CB00F217BD /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE9F0E1D5875CB00F217BD /* libstdc++.tbd */; };
 		18EE9F1C1D5888AC00F217BD /* NSJSONSerialization+LYJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F1B1D5888AC00F217BD /* NSJSONSerialization+LYJSON.m */; };
 		18EE9F221D59A21000F217BD /* SchoolData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F211D59A21000F217BD /* SchoolData.m */; };
-		18EE9F251D59B35B00F217BD /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F241D59B35B00F217BD /* UserData.m */; };
 		18EE9F281D59B62F00F217BD /* PublicFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F271D59B62F00F217BD /* PublicFunction.m */; };
 		18EE9F2C1D59D0EB00F217BD /* icon_minePhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE9F2B1D59D0EB00F217BD /* icon_minePhone@2x.png */; };
 		18EE9F2E1D59D27500F217BD /* icon_phone_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE9F2D1D59D27500F217BD /* icon_phone_no@2x.png */; };
@@ -302,6 +304,10 @@
 		1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAlertView.m; sourceTree = "<group>"; };
 		1813EF931D5C71B80019CA33 /* BasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicData.h; sourceTree = "<group>"; };
 		1813EF941D5C71B80019CA33 /* BasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicData.m; sourceTree = "<group>"; };
+		1826DCC81D5DABEB007A0C45 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		1826DCC91D5DABEB007A0C45 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		1826DCCC1D5DACCB007A0C45 /* error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = error.html; sourceTree = "<group>"; };
+		1826DCCD1D5DACCB007A0C45 /* wifi_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wifi_pic.png; sourceTree = "<group>"; };
 		182E2A291D5B060F00F68B9C /* XMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMAlertView.h; sourceTree = "<group>"; };
 		182E2A2A1D5B060F00F68B9C /* XMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMAlertView.m; sourceTree = "<group>"; };
 		182E2A2C1D5B065500F68B9C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -434,8 +440,6 @@
 		18EE9F1B1D5888AC00F217BD /* NSJSONSerialization+LYJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+LYJSON.m"; sourceTree = "<group>"; };
 		18EE9F201D59A21000F217BD /* SchoolData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolData.h; sourceTree = "<group>"; };
 		18EE9F211D59A21000F217BD /* SchoolData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolData.m; sourceTree = "<group>"; };
-		18EE9F231D59B35B00F217BD /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
-		18EE9F241D59B35B00F217BD /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		18EE9F261D59B62F00F217BD /* PublicFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicFunction.h; sourceTree = "<group>"; };
 		18EE9F271D59B62F00F217BD /* PublicFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicFunction.m; sourceTree = "<group>"; };
 		18EE9F2B1D59D0EB00F217BD /* icon_minePhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_minePhone@2x.png"; sourceTree = "<group>"; };
@@ -674,6 +678,15 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		1826DCCB1D5DACCB007A0C45 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				1826DCCC1D5DACCB007A0C45 /* error.html */,
+				1826DCCD1D5DACCB007A0C45 /* wifi_pic.png */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		182E2A281D5B05F800F68B9C /* XMAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -765,6 +778,8 @@
 			children = (
 				185930521D34897100F948D4 /* MineViewController.h */,
 				185930531D34897100F948D4 /* MineViewController.m */,
+				1826DCC81D5DABEB007A0C45 /* ServiceViewController.h */,
+				1826DCC91D5DABEB007A0C45 /* ServiceViewController.m */,
 				107821BD1D52272B009DE1D2 /* AboutViewController.h */,
 				107821BE1D52272B009DE1D2 /* AboutViewController.m */,
 				107821BF1D52272B009DE1D2 /* AboutViewController.xib */,
@@ -782,8 +797,6 @@
 				18EE9F211D59A21000F217BD /* SchoolData.m */,
 				1813EF931D5C71B80019CA33 /* BasicData.h */,
 				1813EF941D5C71B80019CA33 /* BasicData.m */,
-				18EE9F231D59B35B00F217BD /* UserData.h */,
-				18EE9F241D59B35B00F217BD /* UserData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1229,6 +1242,7 @@
 			children = (
 				1000D8471D58AB640040FE32 /* APIKey.h */,
 				1000D8481D58AB640040FE32 /* areas.plist */,
+				1826DCCB1D5DACCB007A0C45 /* Error */,
 				1000D8491D58AB640040FE32 /* JKCountDownButton */,
 				1000D84C1D58AB640040FE32 /* JSAnimatedImagesView */,
 				1000D8511D58AB640040FE32 /* JX_GCDTimer */,
@@ -1435,6 +1449,7 @@
 				1078217F1D521FA6009DE1D2 /* bg_unlock_btn@2x.png in Resources */,
 				107821981D521FA6009DE1D2 /* icon_satellite_active@2x.png in Resources */,
 				18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */,
+				1826DCCF1D5DACCB007A0C45 /* wifi_pic.png in Resources */,
 				184C29861D2BB22E00771220 /* Assets.xcassets in Resources */,
 				107821991D521FA6009DE1D2 /* icon_traffic_close@2x.png in Resources */,
 				107821AB1D521FA6009DE1D2 /* icon_id@2x.png in Resources */,
@@ -1481,6 +1496,7 @@
 				10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */,
 				1078218B1D521FA6009DE1D2 /* icon_battery_percent_90@2x.png in Resources */,
 				185930DF1D3490EB00F948D4 /* picker_alert_sigh@2x.png in Resources */,
+				1826DCCE1D5DACCB007A0C45 /* error.html in Resources */,
 				107821911D521FA6009DE1D2 /* icon_map_switch@2x.png in Resources */,
 				1000D8811D58AB640040FE32 /* WHC_ChoicePictureVC.xib in Resources */,
 				1078219F1D521FA6009DE1D2 /* icon_logout@2x.png in Resources */,
@@ -1566,6 +1582,7 @@
 				1859305E1D348BED00F948D4 /* BaseViewController.m in Sources */,
 				185930D91D3490EB00F948D4 /* UIImageView+Curled.m in Sources */,
 				18EE9F321D59D72B00F217BD /* EditKeyViewController.m in Sources */,
+				1826DCCA1D5DABEB007A0C45 /* ServiceViewController.m in Sources */,
 				182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */,
 				184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */,
 				185930F71D3490EB00F948D4 /* UIWebView+HTML5.m in Sources */,
@@ -1589,7 +1606,6 @@
 				1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */,
 				1000D87C1D58AB640040FE32 /* WHC_Asset.m in Sources */,
 				107821C71D5234E2009DE1D2 /* PerfectInformationVC.m in Sources */,
-				18EE9F251D59B35B00F217BD /* UserData.m in Sources */,
 				1000D8801D58AB640040FE32 /* WHC_ChoicePictureVC.m in Sources */,
 				1894C2B41D548BF80097F638 /* ModifyViewController.m in Sources */,
 				1000D8821D58AB640040FE32 /* WHC_PictureListVC.m in Sources */,

@@ -181,13 +181,14 @@
          
          NSData *data = operation.responseData;
          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-         
+         NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         DLog(@"success[Get]请求地址[%@]",urlStr);
+         DLog(@"success[Get]请求返回数据\n %@",result);
+
          //判断登录过期
          [[self class] goToLoginAction:dict];
          
          success(dict);
-         NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-         DLog(@"完成 %@", result);
          
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)

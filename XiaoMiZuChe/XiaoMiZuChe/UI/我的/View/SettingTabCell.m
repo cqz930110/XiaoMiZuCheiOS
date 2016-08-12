@@ -33,6 +33,7 @@
 - (void)initUI
 {
     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.nameLab];
     [self.contentView addSubview:self.headImg];
     [self.contentView addSubview:self.addresslab];

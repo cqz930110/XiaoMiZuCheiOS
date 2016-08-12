@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UserData.h"
+#import "BasicData.h"
 
 @interface PublicFunction : NSObject
 
-@property (nonatomic, strong) UserData *m_user;
+@property (nonatomic, strong) BasicData *m_user;
 @property (nonatomic) BOOL m_bLogin;
 @property (nonatomic, copy) NSString *userId;//用户编号
 

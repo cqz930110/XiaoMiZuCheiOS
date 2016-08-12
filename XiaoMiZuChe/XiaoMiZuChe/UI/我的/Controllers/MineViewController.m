@@ -12,6 +12,7 @@
 #import "LCActionSheet.h"
 #import "AboutViewController.h"
 #import "GcNoticeUtil.h"
+#import "ServiceViewController.h"
 
 static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -31,7 +32,11 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 
     [self initUI];
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
 #pragma mark - private methods
 - (void)initUI
 {
@@ -59,7 +64,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSInteger row = indexPath.row;
     
@@ -72,6 +77,9 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     }else if (row == 3) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"0531-67805000"]]];
         [self.callPhoneWebView loadRequest:request];
+    }else if (row == 2){
+        ServiceViewController *vc = [ServiceViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 #pragma mark - event response

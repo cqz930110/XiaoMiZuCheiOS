@@ -9,7 +9,6 @@
 #import "APIRequest.h"
 #import "ZhouDao_NetWorkManger.h"
 #import "SchoolData.h"//学校
-#import "UserData.h"
 #import "GcNoticeUtil.h"
 #import "BasicData.h"
 
@@ -90,7 +89,7 @@
             return ;
         }
         NSDictionary *dataDic = jsonDic[@"data"];
-        UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
+        BasicData *m_user = [[BasicData alloc] initWithDictionary:dataDic];
         [PublicFunction shareInstance].m_bLogin = YES;
         [PublicFunction shareInstance].m_user = m_user;
         [USER_D setObject:phone forKey:USERNAME];
@@ -149,7 +148,7 @@
             return ;
         }
         NSDictionary *dataDic = jsonDic[@"data"];
-        UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
+        BasicData *m_user = [[BasicData alloc] initWithDictionary:dataDic];
         [PublicFunction shareInstance].m_bLogin = YES;
         [PublicFunction shareInstance].m_user = m_user;
         [GcNoticeUtil sendNotification:DECIDEISLOGIN];
@@ -257,6 +256,31 @@
         fail();
     }];
 }
+#pragma mark - 修改用户头像接口
++ (void)updateHeadPicWithParaDict:(NSDictionary *)dictionary
+                   RequestSuccess:(void (^)(NSString *headUrlString))success
+                             fail:(void (^)())fail
+{    [SVProgressHUD show];
+    NSDictionary *dict1  = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId" ,nil];
+
+    [ZhouDao_NetWorkManger postUploadWithUrl:[NSString stringWithFormat:@"%@%@",kProjectBaseUrl,UPDATEHEADPICURL]  parameters:dict1 WithImgDic:dictionary success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        NSDictionary *dataDict = jsonDic[@"data"];
+        BasicData *basicModel = [[BasicData alloc] initWithDictionary:dataDict];
+        success(basicModel.headPic);
+    } fail:^{
+        fail();
+        [SVProgressHUD dismiss];
+    }];
+}
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse
 {
@@ -282,7 +306,7 @@
                 return ;
             }
             NSDictionary *dataDic = jsonDic[@"data"];
-            UserData *m_user = [[UserData alloc] initWithDictionary:dataDic];
+            BasicData *m_user = [[BasicData alloc] initWithDictionary:dataDic];
             [PublicFunction shareInstance].m_bLogin = YES;
             [PublicFunction shareInstance].m_user = m_user;
             

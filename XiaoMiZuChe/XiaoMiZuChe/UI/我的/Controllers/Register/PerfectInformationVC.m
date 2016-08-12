@@ -10,7 +10,7 @@
 #import "MyPickView.h"
 #import "LCActionSheet.h"
 #import "ZHPickView.h"
-#import "UserData.h"
+#import "BasicData.h"
 @interface PerfectInformationVC ()<UITextFieldDelegate>
 {
     NSString *_province;
@@ -183,7 +183,7 @@
     NSString *userType = [_userTypeLab.text isEqualToString:@"学校用户"]?@"1":@"2";
     NSString *schoolId = _schoolDict[_schoolLab.text];
     NSString *address = _detailAddressText.text;
-    UserData *m_user = [PublicFunction shareInstance].m_user;
+    BasicData *m_user = [PublicFunction shareInstance].m_user;
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",address,@"address",schoolId,@"schoolId", nil];
     [APIRequest perfectUserDataWithPostDict:dict RequestSuccess:^{
         

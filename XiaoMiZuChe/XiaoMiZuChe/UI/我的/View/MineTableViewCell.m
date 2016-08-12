@@ -15,6 +15,7 @@
     // Initialization code
     
 
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [self.contentView addSubview:self.iconImgView];
     [self.contentView addSubview:self.titleLab];

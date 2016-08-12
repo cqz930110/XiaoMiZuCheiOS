@@ -137,6 +137,17 @@
                               fail:(void (^)())fail;
 
 /**
+ *  修改用户头像接口
+ *
+ *  @param dictionary 文件字典
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)updateHeadPicWithParaDict:(NSDictionary *)dictionary
+                    RequestSuccess:(void (^)(NSString *headUrlString))success
+                              fail:(void (^)())fail;
+
+/**
  *  自动登录
  */
 + (void)automaticLoginEventResponse;

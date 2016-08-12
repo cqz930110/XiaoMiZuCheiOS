@@ -53,4 +53,8 @@
  9  修改用户资料接口
  */
 #define  UPDATEUSERDATAURL            @"app/user/updateUserData.do"
+/*
+ 10  修改用户头像接口
+ */
+#define  UPDATEHEADPICURL             @"app/user/updateHeadPic.do"
 

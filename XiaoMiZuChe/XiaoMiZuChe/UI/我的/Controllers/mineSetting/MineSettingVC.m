@@ -15,27 +15,33 @@
 #import "EditViewController.h"
 #import "MyPickView.h"
 #import "BasicData.h"
+#import "ZHPickView.h"
 
 static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
 @interface MineSettingVC ()<UITableViewDataSource,UITableViewDelegate,WHC_ChoicePictureVCDelegate,WHC_CameraVCDelegate>
-
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImage *headImage;
 @property (strong, nonatomic) BasicData *dataModel;
+@property (strong, nonatomic) NSMutableDictionary *schoolDict;
 
 @end
 
 @implementation MineSettingVC
 
 #pragma mark - life cycle
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [PublicFunction shareInstance].m_user = _dataModel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self initUI];
     [self loadBasicData];
 }
-
 #pragma mark - private methods
 
 - (void)loadBasicData
@@ -44,6 +50,9 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     [APIRequest getUserInfoWithUserId:userIdString RequestSuccess:^(id obj) {
         
         weakSelf.dataModel = (BasicData *)obj;
+        if ([weakSelf.dataModel.userType integerValue] == 1) {
+            [weakSelf loadSchoolData];
+        }
         [weakSelf.tableView reloadData];
     } fail:^{
         FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"加载个人信息失败"];
@@ -53,12 +62,46 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
         };
     }];
 }
+- (void)loadSchoolData{WEAKSELF;
+    
+    [APIRequest getSchoolsWithProvince:_dataModel.province withCity:_dataModel.city witharea:_dataModel.area RequestSuccess:^(NSMutableDictionary *dict) {
+        
+        weakSelf.schoolDict = dict;
+    } fail:^{
+    }];
+}
+- (void)postUserDataWithDict:(NSDictionary *)dict withContent:(NSString *)conString WithProvince:(NSString *)province WithCity:(NSString *)city Witharea:(NSString *)area WithRow:(NSInteger)row
+{WEAKSELF;
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,UPDATEUSERDATAURL];
+
+    [APIRequest updateUserDataWithPostDict:dict withURLString:urlString RequestSuccess:^{
+        
+        if (row == 7) {
+            weakSelf.dataModel.schoolName = conString;
+        }else if (row == 2){
+            if ([conString isEqualToString:@"男"]) {
+                weakSelf.dataModel.sex = @0;
+            }else if ([conString isEqualToString:@"女"]){
+                weakSelf.dataModel.sex = @1;
+            }else{
+                weakSelf.dataModel.sex = @2;
+            }
+        }else {
+            weakSelf.dataModel.province = province;
+            weakSelf.dataModel.city = city;
+            weakSelf.dataModel.area = area;
+        }
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+
+    } fail:^{
+    }];
+
+}
 - (void)initUI{
     
     [self setupNaviBarWithTitle:@"基本资料"];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
 
-    
     [self.view addSubview:self.tableView];
 }
 #pragma mark -UITableViewDataSource
@@ -88,8 +131,8 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     return (indexPath.row == 0)?80.f:44.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{WEAKSELF;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     
     if (row == 0) {
@@ -99,54 +142,92 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     }else if (row == 6){
         [self selectProvinceCityArea];
         
-    }else if (row == 7 || row == 1 || row == 4){
+    }else if (row == 7){
         
-        EditViewController *vc = [EditViewController new];
-        if (row == 1) {
-            vc.titleStr = @"姓名";
-            vc.editBlock = ^(NSString *modifyString){
-                
-                weakSelf.dataModel.userName = modifyString;
-                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-            };
-        }else if (row == 4){
-            vc.titleStr = @"身份证号";
-            vc.editBlock = ^(NSString *modifyString){
-                
-                weakSelf.dataModel.idNum = modifyString;
-                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-            };
-        }else if (row == 7){
-            vc.titleStr = @"所在学校";
-            vc.editBlock = ^(NSString *modifyString){
-                
-                weakSelf.dataModel.address = modifyString;
-                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:7 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-            };
-        }
-        vc.contentStr = @"";
-        [self.navigationController pushViewController:vc animated:YES];
+        [self editUserTypeData];
+    }else if (row == 1 || row == 4){
+        [self editUserInformationWithRow:row];
     }
 }
-- (void)modifyTheGender{
+- (void)editUserTypeData
+{WEAKSELF;
+    if ([_dataModel.userType  integerValue] == 2) {
+        
+        EditViewController *vc = [EditViewController new];
+        vc.titleStr = @"详细地址";
+        if (_dataModel.address.length >0) {
+            vc.contentStr = _dataModel.address;
+        }
+        vc.editBlock = ^(NSString *modifyString){
+            
+            weakSelf.dataModel.address = modifyString;
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:7 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        if (self.schoolDict) {
+            [self selectSchoolEvent];
+        }
+    }
+}
+- (void)selectSchoolEvent{WEAKSELF;
+    NSArray *arrays = [_schoolDict allKeys];
+    ZHPickView *pickView = [[ZHPickView alloc] init];
+    [pickView setDataViewWithItem:arrays title:@"选择学校"];
+    [pickView showPickView:self];
+    pickView.block = ^(NSString *schoolString)
+    {
+        NSString *schoolId = _schoolDict[schoolString];
+
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",GET(schoolId),@"schoolId", nil];
+        [weakSelf postUserDataWithDict:dict withContent:schoolString WithProvince:nil WithCity:nil Witharea:nil WithRow:7];
+    };
+}
+- (void)editUserInformationWithRow:(NSInteger)row
+{WEAKSELF;
+    EditViewController *vc = [EditViewController new];
+    if (row == 1) {
+        vc.titleStr = @"姓名";
+        if (_dataModel.userName.length >0) {
+            vc.contentStr = _dataModel.userName;
+        }
+        vc.editBlock = ^(NSString *modifyString){
+            
+            weakSelf.dataModel.userName = modifyString;
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        };
+    }else if (row == 4){
+        vc.titleStr = @"身份证号";
+        if (_dataModel.idNum.length >0) {
+            vc.contentStr = _dataModel.idNum;
+        }
+        vc.editBlock = ^(NSString *modifyString){
+            
+            weakSelf.dataModel.idNum = modifyString;
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        };
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (void)modifyTheGender{WEAKSELF;
     NSInteger index = 0;
     NSString *sexString = [NSString stringWithFormat:@"%@",_dataModel.sex];
-    if ([sexString isEqualToString:@"0"]) {
-        index = 0;
-    }else if([sexString isEqualToString:@"1"]) {
+    if ([sexString isEqualToString:@"1"]) {
         index = 1;
-    }else {
+    }else if([sexString isEqualToString:@"2"]) {
         index = 2;
     }
-
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择性别" buttonTitles:@[@"男",@"女",@"保密"] redButtonIndex:index clicked:^(NSInteger buttonIndex) {
+        
+        NSString *sexString = @"";
         if (buttonIndex == 0) {
-            
+            sexString = @"男";
         }else if(buttonIndex == 1) {
-            
-        }else if(buttonIndex == 2) {
-            
+            sexString = @"女";
         }
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",[NSString stringWithFormat:@"%ld",(long)buttonIndex],@"sex", nil];
+        [weakSelf postUserDataWithDict:dict withContent:sexString WithProvince:nil WithCity:nil Witharea:nil WithRow:2];
     }];
     [sheet show];
 }
@@ -155,6 +236,8 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
     MyPickView *pickView = [[MyPickView  alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
     pickView.pickBlock = ^(NSString *provice,NSString *city,NSString *area){
         
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",provice,@"province",city,@"city",area,@"area", nil];
+        [weakSelf postUserDataWithDict:dict withContent:nil WithProvince:provice WithCity:city Witharea:area WithRow:6];
     };
     [windows addSubview:pickView];
 }
@@ -197,15 +280,25 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 }
 #pragma mark - WHC_ChoicePictureVCDelegate
 - (void)WHCChoicePictureVC:(WHC_ChoicePictureVC *)choicePictureVC didSelectedPhotoArr:(NSArray *)photoArr{
+    WEAKSELF;
     if (photoArr.count >0) {
         CGSize imgSize = CGSizeMake(80, 80);
         _headImage = [QZManager compressOriginalImage:photoArr[0] toSize:imgSize];
         
-        /**
-         *  上传图片
-         */
+        NSData *fileData = [QZManager compressOriginalImage:_headImage toMaxDataSizeKBytes:100.f];
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:fileData,@"headPic", nil];
         
-        [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
+        kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
+            
+            [APIRequest updateHeadPicWithParaDict:dictionary RequestSuccess:^(NSString *headUrlString) {
+                
+                kDISPATCH_MAIN_THREAD((^{
+                    weakSelf.dataModel.headPic = headUrlString;
+                    [weakSelf.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
+                }));
+            } fail:^{
+            }];
+        });
     }
 }
 
@@ -217,6 +310,13 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
 #pragma mark - setters and getters
 
+- (NSMutableDictionary *)schoolDict
+{
+    if (!_schoolDict) {
+        _schoolDict = [NSMutableDictionary dictionary];
+    }
+    return _schoolDict;
+}
 - (UITableView *)tableView
 {
     if (!_tableView) {
