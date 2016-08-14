@@ -27,7 +27,7 @@
 #import "HomeViewController.h"
 #import "MallViewController.h"
 #import "MineViewController.h"
-#import "CarRentalVC.h"
+#import "CarRentalViewController.h"
 
 @interface ZCTabBarControllerConfig ()
 
@@ -58,7 +58,7 @@
     UIViewController *firstNavigationController = [[CYLBaseNavigationController alloc]
                                                    initWithRootViewController:firstViewController];
     
-    CarRentalVC *secondViewController = [[CarRentalVC alloc] init];
+    CarRentalViewController *secondViewController = [[CarRentalViewController alloc] init];
     UIViewController *secondNavigationController = [[CYLBaseNavigationController alloc]
                                                     initWithRootViewController:secondViewController];
     

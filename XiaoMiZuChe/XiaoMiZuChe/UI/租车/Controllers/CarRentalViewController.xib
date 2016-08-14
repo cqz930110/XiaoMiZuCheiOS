@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarRentalViewController">
+            <connections>
+                <outlet property="carImgView" destination="7we-IC-xk9" id="cjh-4r-ATL"/>
+                <outlet property="carText" destination="S2l-oc-c4C" id="avH-9g-qWP"/>
+                <outlet property="immBtn" destination="aXM-K2-8eh" id="HBZ-7z-Fn9"/>
+                <outlet property="nearBtn" destination="z6Y-LK-vEz" id="gOT-P0-vdl"/>
+                <outlet property="phoneImgView" destination="uYG-eH-SMF" id="vsf-Ol-DuC"/>
+                <outlet property="phoneText" destination="bRX-PL-MEr" id="tem-k6-2xD"/>
+                <outlet property="sendCodeBtn" destination="UCR-3W-MJf" id="v7Z-mv-waf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入收到的验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2l-oc-c4C">
+                    <rect key="frame" x="70" y="95" width="210" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ebike.png" translatesAutoresizingMaskIntoConstraints="NO" id="7we-IC-xk9">
+                    <rect key="frame" x="40" y="95" width="20" height="25"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAu-OX-plf">
+                    <rect key="frame" x="40" y="130" width="240" height="1"/>
+                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCR-3W-MJf" customClass="JKCountDownButton">
+                    <rect key="frame" x="205" y="139" width="75" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="vSa-cN-bmq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="发送验证码">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sendCodeButtonEvent:" destination="-1" eventType="touchUpInside" id="RdJ-Ce-OJR"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_code.png" translatesAutoresizingMaskIntoConstraints="NO" id="uYG-eH-SMF">
+                    <rect key="frame" x="40" y="137" width="20" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Ki2-M2-1ig"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2r-pK-CqQ">
+                    <rect key="frame" x="40" y="175" width="240" height="1"/>
+                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-PL-MEr">
+                    <rect key="frame" x="70" y="137" width="135" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXM-K2-8eh">
+                    <rect key="frame" x="40" y="206" width="240" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.62745098039215685" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0HG-z8-nJe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="立即申请">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="applyImmediatelyBtnEvent:" destination="-1" eventType="touchUpInside" id="H3M-MG-5jd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6Y-LK-vEz">
+                    <rect key="frame" x="40" y="266" width="240" height="40"/>
+                    <color key="backgroundColor" red="0.035294117647058823" green="0.73333333333333328" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="btn_around_car.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="nearTheVehicleBtnEvent:" destination="-1" eventType="touchUpInside" id="91M-LF-hhn"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uYG-eH-SMF" firstAttribute="leading" secondItem="a2r-pK-CqQ" secondAttribute="leading" id="0mb-io-GQD"/>
+                <constraint firstItem="a2r-pK-CqQ" firstAttribute="leading" secondItem="aXM-K2-8eh" secondAttribute="leading" id="15l-eD-xRI"/>
+                <constraint firstItem="z6Y-LK-vEz" firstAttribute="top" secondItem="aXM-K2-8eh" secondAttribute="bottom" constant="20" id="2ze-BR-jBn"/>
+                <constraint firstItem="uYG-eH-SMF" firstAttribute="top" secondItem="HAu-OX-plf" secondAttribute="bottom" constant="6" id="3GA-9G-ARX"/>
+                <constraint firstItem="a2r-pK-CqQ" firstAttribute="top" secondItem="bRX-PL-MEr" secondAttribute="bottom" constant="8" symbolic="YES" id="4P6-ED-KB7"/>
+                <constraint firstItem="UCR-3W-MJf" firstAttribute="trailing" secondItem="a2r-pK-CqQ" secondAttribute="trailing" id="5Zc-qM-jnu"/>
+                <constraint firstItem="S2l-oc-c4C" firstAttribute="leading" secondItem="7we-IC-xk9" secondAttribute="trailing" constant="10" id="6HD-9y-xSr"/>
+                <constraint firstItem="a2r-pK-CqQ" firstAttribute="top" secondItem="uYG-eH-SMF" secondAttribute="bottom" constant="13" id="6N1-bE-pvS"/>
+                <constraint firstItem="7we-IC-xk9" firstAttribute="top" secondItem="S2l-oc-c4C" secondAttribute="top" id="AUq-bM-UHZ"/>
+                <constraint firstItem="HAu-OX-plf" firstAttribute="top" secondItem="7we-IC-xk9" secondAttribute="bottom" constant="10" id="BZS-jM-7A0"/>
+                <constraint firstItem="aXM-K2-8eh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="DjE-NT-ZlN"/>
+                <constraint firstItem="aXM-K2-8eh" firstAttribute="leading" secondItem="z6Y-LK-vEz" secondAttribute="leading" id="Dme-07-q6O"/>
+                <constraint firstItem="uYG-eH-SMF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="137" id="Fai-VJ-S3v"/>
+                <constraint firstItem="HAu-OX-plf" firstAttribute="leading" secondItem="uYG-eH-SMF" secondAttribute="leading" id="OxA-Ex-vFE"/>
+                <constraint firstItem="7we-IC-xk9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="Qaz-Ht-D3v"/>
+                <constraint firstItem="S2l-oc-c4C" firstAttribute="leading" secondItem="bRX-PL-MEr" secondAttribute="leading" id="RJi-1d-1ct"/>
+                <constraint firstItem="HAu-OX-plf" firstAttribute="trailing" secondItem="UCR-3W-MJf" secondAttribute="trailing" id="XLP-nr-n98"/>
+                <constraint firstItem="UCR-3W-MJf" firstAttribute="top" secondItem="HAu-OX-plf" secondAttribute="bottom" constant="8" symbolic="YES" id="Zv1-3D-igy"/>
+                <constraint firstItem="7we-IC-xk9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="ajl-IA-RwG"/>
+                <constraint firstItem="HAu-OX-plf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="b0I-I3-SUq"/>
+                <constraint firstItem="HAu-OX-plf" firstAttribute="top" secondItem="S2l-oc-c4C" secondAttribute="bottom" constant="5" id="bcG-hh-aDT"/>
+                <constraint firstItem="uYG-eH-SMF" firstAttribute="top" secondItem="bRX-PL-MEr" secondAttribute="top" id="dFM-va-Gg2"/>
+                <constraint firstItem="S2l-oc-c4C" firstAttribute="trailing" secondItem="HAu-OX-plf" secondAttribute="trailing" id="dYc-M3-nMS"/>
+                <constraint firstItem="7we-IC-xk9" firstAttribute="leading" secondItem="HAu-OX-plf" secondAttribute="leading" id="hh5-nF-RrF"/>
+                <constraint firstItem="UCR-3W-MJf" firstAttribute="leading" secondItem="bRX-PL-MEr" secondAttribute="trailing" id="iCv-kG-UCQ"/>
+                <constraint firstItem="a2r-pK-CqQ" firstAttribute="trailing" secondItem="aXM-K2-8eh" secondAttribute="trailing" id="nYW-W3-gXs"/>
+                <constraint firstItem="aXM-K2-8eh" firstAttribute="trailing" secondItem="z6Y-LK-vEz" secondAttribute="trailing" id="q0b-fL-d58"/>
+                <constraint firstItem="bRX-PL-MEr" firstAttribute="centerY" secondItem="UCR-3W-MJf" secondAttribute="centerY" id="tFl-y9-doV"/>
+                <constraint firstItem="aXM-K2-8eh" firstAttribute="top" secondItem="a2r-pK-CqQ" secondAttribute="bottom" constant="30" id="z19-P9-13B"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="267" y="230"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_around_car.png" width="288" height="40"/>
+        <image name="icon_code.png" width="20" height="25"/>
+        <image name="icon_ebike.png" width="20" height="25"/>
+    </resources>
+</document>

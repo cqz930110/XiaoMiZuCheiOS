@@ -9,9 +9,17 @@
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "GcNoticeUtil.h"
+#import "CustomMenuBtn.h"
+#import "HandleCarViewController.h"
+
+#define BUTTONWITH    ([UIScreen mainScreen].bounds.size.width - 1.2f)/3.f
+#define kMenuButtonBaseTag 7700
 
 @interface HomeViewController ()
-@property (nonatomic, assign) UIImageView *bgview;
+
+@property (nonatomic, strong) CustomMenuBtn *handleCardBtn;//办卡
+@property (nonatomic, strong) CustomMenuBtn *applydBtn;//申请用车
+@property (nonatomic, strong) CustomMenuBtn *repayCarBtn;//还车
 
 @end
 
@@ -37,19 +45,15 @@
 #pragma mark - private methods
 - (void)initUI{
     [self setupNaviBarWithTitle:@"小米租车"];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+
     [GcNoticeUtil handleNotification:DECIDEISLOGIN
                                 Selector:@selector(autoLoginSuccessMethods)
                                 Observer:self];
     
-//    NSString *userType = @"2";
-//    NSString *schoolId = @"5";
-//    NSString *address = @"上海市杨浦区扬州路588弄";
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"888903",@"userId",@"曹庆中",@"userName",@"2",@"sex",@"412721199999999999",@"idNum",userType,@"userType",@"河南省",@"province",@"郑州市",@"city",@"",@"area",address,@"address",schoolId,@"schoolId", nil];
-//    [APIRequest perfectUserDataWithPostDict:dict RequestSuccess:^{
-//        
-//    } fail:^{
-//    }];
+    [self.view addSubview:self.handleCardBtn];
+    [self.view addSubview:self.applydBtn];
+    [self.view addSubview:self.repayCarBtn];
 
 }
 #pragma mark - 通知
@@ -63,7 +67,6 @@
         [self.rightBtn setTitle:@"" forState:0];
     }
 }
-#pragma mark - getters and setters
 #pragma mark - event respose
 - (void)rightBtnAction
 {
@@ -75,13 +78,77 @@
     LoginViewController *loginVC = [LoginViewController new];
     [self presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
 }
+- (void)selectdBtnEvent:(CustomMenuBtn *)btn
+{
+    NSInteger index = btn.tag - kMenuButtonBaseTag;
+    switch (index) {
+        case 1:
+        {
+            HandleCarViewController *vc = [HandleCarViewController new];
+            [self.navigationController   pushViewController:vc animated:YES];
+            
+        }
+            break;
+        case 2:
+        {
+            self.tabBarController.selectedIndex = 1;
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark - getters and setters
+- (CustomMenuBtn *)handleCardBtn
+{
+    if (!_handleCardBtn) {
+       _handleCardBtn = [CustomMenuBtn buttonWithType:UIButtonTypeCustom];
+        _handleCardBtn.frame = CGRectMake(0, kMainScreenHeight - 149.f, BUTTONWITH, 100);
+        [_handleCardBtn setImage:kGetImage(@"bg_manage_card") forState:0];
+        [_handleCardBtn setTitle:@"办租车卡" forState:0];
+        [_handleCardBtn setTag:1 + kMenuButtonBaseTag];
+        [_handleCardBtn setTitleColor:hexColor(333333) forState:0];
+        [_handleCardBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _handleCardBtn;
+}
+- (CustomMenuBtn *)applydBtn
+{
+    if (!_applydBtn) {
+        _applydBtn = [CustomMenuBtn buttonWithType:UIButtonTypeCustom];
+        _applydBtn.frame = CGRectMake(.6f+BUTTONWITH , kMainScreenHeight - 149.f, BUTTONWITH, 100);
+        [_applydBtn setImage:kGetImage(@"bg_hire_car") forState:0];
+        [_applydBtn setTitle:@"申请用车" forState:0];
+        [_applydBtn setTag:2 + kMenuButtonBaseTag];
+        [_applydBtn setTitleColor:hexColor(333333) forState:0];
+        [_applydBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _applydBtn;
+}
+- (CustomMenuBtn *)repayCarBtn
+{
+    if (!_repayCarBtn) {
+        _repayCarBtn = [CustomMenuBtn buttonWithType:UIButtonTypeCustom];
+        _repayCarBtn.frame = CGRectMake(1.2f+ 2*BUTTONWITH , kMainScreenHeight - 149.f, BUTTONWITH, 100);
+        [_repayCarBtn setTag:3 + kMenuButtonBaseTag];
+        [_repayCarBtn setImage:kGetImage(@"bg_back_car") forState:0];
+        [_repayCarBtn setTitle:@"还车" forState:0];
+        [_repayCarBtn setTitleColor:hexColor(333333) forState:0];
+        [_repayCarBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _repayCarBtn;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
 }
-
 /*
 #pragma mark - Navigation
 

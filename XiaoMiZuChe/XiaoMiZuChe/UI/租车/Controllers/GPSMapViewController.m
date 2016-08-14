@@ -1,40 +1,39 @@
 //
-//  CarRentalVC.m
+//  GPSMapViewController.m
 //  XiaoMiZuChe
 //
-//  Created by apple on 16/7/12.
+//  Created by cqz on 16/8/13.
 //  Copyright © 2016年 QZ. All rights reserved.
 //
 
-#import "CarRentalVC.h"
+#import "GPSMapViewController.h"
 //导航
 #import <AMap3DMap/MAMapKit/MAMapKit.h>
 #import <AMapNaviKit/AMapNaviKit.h>
 #import "AMapLocationKit.h"
 #import <MapKit/MapKit.h>
 
-@interface CarRentalVC ()<AMapLocationManagerDelegate,MAMapViewDelegate>
-
+@interface GPSMapViewController ()<AMapLocationManagerDelegate,MAMapViewDelegate>
 
 @property (nonatomic, strong) MAMapView *mapView;
+
 @end
 
-@implementation CarRentalVC
-
-#pragma mark - life cycle
+@implementation GPSMapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self setupNaviBarWithTitle:@"车辆控制"];
+    // Do any additional setup after loading the view from its nib.
     
     [self initUI];
-
 }
 #pragma mark - private methods
 - (void)initUI{
     
+    [self setupNaviBarWithTitle:@"附近车辆"];
+
     [self.view addSubview:self.mapView];
+    [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
 }
 
 #pragma mark - getters and setters
@@ -50,6 +49,7 @@
     
     return _mapView;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

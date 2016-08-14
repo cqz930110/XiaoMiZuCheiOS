@@ -146,6 +146,14 @@
 + (void)updateHeadPicWithParaDict:(NSDictionary *)dictionary
                     RequestSuccess:(void (^)(NSString *headUrlString))success
                               fail:(void (^)())fail;
+/**
+ *  获取租车卡年费接口
+ *
+ *  @param success 成功回调 返回年费数额
+ *  @param fail    失败回调
+ */
++ (void)getVipYearPriceRequestSuccess:(void (^)(NSString *moneyString))success
+                             fail:(void (^)())fail;
 
 /**
  *  自动登录

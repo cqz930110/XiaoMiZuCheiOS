@@ -281,6 +281,30 @@
         [SVProgressHUD dismiss];
     }];
 }
+#pragma mark - 获取租车卡年费接口
++ (void)getVipYearPriceRequestSuccess:(void (^)(NSString *moneyString))success
+                                 fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,GETVIPYEARPRICEURL];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:nil isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        NSString *moneyString = jsonDic[@"data"];
+        success(moneyString);
+    } fail:^{
+        [SVProgressHUD dismiss];
+        fail();
+    }];
+}
+#pragma mark -
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse
 {

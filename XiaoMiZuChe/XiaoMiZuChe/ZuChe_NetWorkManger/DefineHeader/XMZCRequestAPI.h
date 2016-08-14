@@ -57,4 +57,16 @@
  10  修改用户头像接口
  */
 #define  UPDATEHEADPICURL             @"app/user/updateHeadPic.do"
+/*
+ 11  获取租车卡年费接口
+ */
+#define  GETVIPYEARPRICEURL           @"app/user/getVipYearPrice.do"
+/*
+ 12  办理租车卡接口
+ */
+#define  HANDLEVIPCARDURL             @"app/user/handleVipCard.do"
+/*
+ 13  获取附近车辆接口
+ */
+#define  ARROUNDCARURLSTRING          @"app/map/arroundCar.do"
 

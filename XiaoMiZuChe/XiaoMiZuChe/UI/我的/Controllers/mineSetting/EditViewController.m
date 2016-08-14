@@ -37,6 +37,7 @@
     [self setupNaviBarWithTitle:_titleStr];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
     [self setupNaviBarWithBtn:NaviRightBtn title:@"保存" img:nil];
+    [self.rightBtn setTitleColor:hexColor(333333) forState:0];
     self.rightBtn.titleLabel.font = Font_16;
     
     _lastString = _contentStr;
