@@ -306,7 +306,8 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 {
     [picker dismissViewControllerAnimated:YES completion:^{
     }];
-    UIImage  * image = info[@"UIImagePickerControllerOriginalImage"];
+    // UIImagePickerControllerOriginalImage
+    UIImage  * image = info[@"UIImagePickerControllerEditedImage"];
     _headImage = image;
     kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
@@ -315,13 +316,18 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
     [self uploadHeaderImageItemClick];
 }
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0){
-    [picker dismissViewControllerAnimated:YES completion:^{
-    }];
-    _headImage = image;
-    [self uploadHeaderImageItemClick];
-
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([navigationController isKindOfClass:[UIImagePickerController class]] && ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary && [navigationController.viewControllers count] <=2) {
+        navigationController.navigationBar.translucent = NO;
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        navigationController.navigationBarHidden = NO;
+        navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }else {
+        navigationController.navigationBarHidden = YES;
+    }
 }
+
 - (void)uploadHeaderImageItemClick
 {
     WEAKSELF;
