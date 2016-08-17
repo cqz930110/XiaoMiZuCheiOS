@@ -7,9 +7,6 @@
 //
 
 #import "MineSettingVC.h"
-#import "WHC_PhotoListCell.h"
-#import "WHC_PictureListVC.h"
-#import "WHC_CameraVC.h"
 #import "LCActionSheet.h"
 #import "SettingTabCell.h"
 #import "EditViewController.h"
@@ -19,7 +16,7 @@
 
 static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 
-@interface MineSettingVC ()<UITableViewDataSource,UITableViewDelegate,WHC_ChoicePictureVCDelegate,WHC_CameraVCDelegate>
+@interface MineSettingVC ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImage *headImage;
 @property (strong, nonatomic) BasicData *dataModel;
@@ -260,30 +257,77 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 SHOW_ALERT(@"亲，您的设备没有摄像头-_-!!");
             }else{
-                WHC_CameraVC * vc = [WHC_CameraVC new];
-                vc.delegate = self;
-                [self presentViewController:vc animated:YES completion:nil];
+
+                kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
+                    
+                    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                    imagePickerController.sourceType=UIImagePickerControllerSourceTypeCamera;
+                    imagePickerController.delegate = self;
+                    imagePickerController.showsCameraControls = YES;//是否显示照相机标准的控件库
+                    [imagePickerController setAllowsEditing:YES];//是否加入照相后预览时的编辑功能
+
+                    kDISPATCH_MAIN_THREAD(^{
+                        
+                        [self presentViewController:imagePickerController animated:YES completion:nil];
+                    });
+                });
             }
         }
             break;
         case 1:
-        {//从相册选择一张
-            WHC_PictureListVC  * vc = [WHC_PictureListVC new];
-            vc.delegate = self;
-            vc.maxChoiceImageNumberumber = 1;
-            [self presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
+        {
+            
+            kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
+                
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.delegate = self;
+                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                picker.allowsEditing = YES;
+                kDISPATCH_MAIN_THREAD(^{
+                    
+                    [self presentViewController:picker animated:YES completion:nil];
+                });
+            });
+            
         }
             break;
         default:
             break;
     }
 }
-#pragma mark - WHC_ChoicePictureVCDelegate
-- (void)WHCChoicePictureVC:(WHC_ChoicePictureVC *)choicePictureVC didSelectedPhotoArr:(NSArray *)photoArr{
+#pragma mark - UIImagePickerControllerDelegate
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+    }];
+    UIImage  * image = info[@"UIImagePickerControllerOriginalImage"];
+    _headImage = image;
+    kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+
+    });
+
+    [self uploadHeaderImageItemClick];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0){
+    [picker dismissViewControllerAnimated:YES completion:^{
+    }];
+    _headImage = image;
+    [self uploadHeaderImageItemClick];
+
+}
+- (void)uploadHeaderImageItemClick
+{
     WEAKSELF;
-    if (photoArr.count >0) {
-        CGSize imgSize = CGSizeMake(80, 80);
-        _headImage = [QZManager compressOriginalImage:photoArr[0] toSize:imgSize];
+    if (_headImage >0) {
+//        CGSize imgSize = CGSizeMake(80, 80);
+//        _headImage = [QZManager compressOriginalImage:_headImage toSize:imgSize];
         
         NSData *fileData = [QZManager compressOriginalImage:_headImage toMaxDataSizeKBytes:100.f];
         NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:fileData,@"headPic", nil];
@@ -293,19 +337,16 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
             [APIRequest updateHeadPicWithParaDict:dictionary RequestSuccess:^(NSString *headUrlString) {
                 
                 kDISPATCH_MAIN_THREAD((^{
+                    
                     weakSelf.dataModel.headPic = headUrlString;
                     [weakSelf.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
                 }));
             } fail:^{
+                _headImage = nil;
             }];
         });
     }
-}
 
-#pragma mark - WHC_CameraVCDelegate
-- (void)WHCCameraVC:(WHC_CameraVC *)cameraVC didSelectedPhoto:(UIImage *)photo{
-    
-    [self WHCChoicePictureVC:nil didSelectedPhotoArr:@[photo]];
 }
 
 #pragma mark - setters and getters

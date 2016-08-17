@@ -17,14 +17,6 @@
 		1000D8771D58AB640040FE32 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D8581D58AB640040FE32 /* SDPhotoBrowser.m */; };
 		1000D8781D58AB640040FE32 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D85B1D58AB640040FE32 /* SDWaitingView.m */; };
 		1000D87B1D58AB640040FE32 /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D8611D58AB640040FE32 /* SpeechSynthesizer.m */; };
-		1000D87C1D58AB640040FE32 /* WHC_Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D8651D58AB640040FE32 /* WHC_Asset.m */; };
-		1000D87D1D58AB640040FE32 /* WHC_PhotoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D8671D58AB640040FE32 /* WHC_PhotoListCell.m */; };
-		1000D87E1D58AB640040FE32 /* WHC_CameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D8691D58AB640040FE32 /* WHC_CameraVC.m */; };
-		1000D87F1D58AB640040FE32 /* WHC_CameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1000D86A1D58AB640040FE32 /* WHC_CameraVC.xib */; };
-		1000D8801D58AB640040FE32 /* WHC_ChoicePictureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D86C1D58AB640040FE32 /* WHC_ChoicePictureVC.m */; };
-		1000D8811D58AB640040FE32 /* WHC_ChoicePictureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1000D86D1D58AB640040FE32 /* WHC_ChoicePictureVC.xib */; };
-		1000D8821D58AB640040FE32 /* WHC_PictureListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000D86F1D58AB640040FE32 /* WHC_PictureListVC.m */; };
-		1000D8831D58AB640040FE32 /* WHC_PictureListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1000D8701D58AB640040FE32 /* WHC_PictureListVC.xib */; };
 		101A7D5D1D5EBAE8005D55BE /* CustomMenuBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 101A7D5C1D5EBAE8005D55BE /* CustomMenuBtn.m */; };
 		101A7D601D5EE32D005D55BE /* HandleCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101A7D5F1D5EE32D005D55BE /* HandleCarViewController.m */; };
 		101A7D631D5EE89F005D55BE /* HandleCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 101A7D621D5EE89F005D55BE /* HandleCardView.m */; };
@@ -219,19 +211,6 @@
 		1000D85B1D58AB640040FE32 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		1000D8601D58AB640040FE32 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
 		1000D8611D58AB640040FE32 /* SpeechSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesizer.m; sourceTree = "<group>"; };
-		1000D8641D58AB640040FE32 /* WHC_Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_Asset.h; sourceTree = "<group>"; };
-		1000D8651D58AB640040FE32 /* WHC_Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_Asset.m; sourceTree = "<group>"; };
-		1000D8661D58AB640040FE32 /* WHC_PhotoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_PhotoListCell.h; sourceTree = "<group>"; };
-		1000D8671D58AB640040FE32 /* WHC_PhotoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_PhotoListCell.m; sourceTree = "<group>"; };
-		1000D8681D58AB640040FE32 /* WHC_CameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_CameraVC.h; sourceTree = "<group>"; };
-		1000D8691D58AB640040FE32 /* WHC_CameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_CameraVC.m; sourceTree = "<group>"; };
-		1000D86A1D58AB640040FE32 /* WHC_CameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_CameraVC.xib; sourceTree = "<group>"; };
-		1000D86B1D58AB640040FE32 /* WHC_ChoicePictureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_ChoicePictureVC.h; sourceTree = "<group>"; };
-		1000D86C1D58AB640040FE32 /* WHC_ChoicePictureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_ChoicePictureVC.m; sourceTree = "<group>"; };
-		1000D86D1D58AB640040FE32 /* WHC_ChoicePictureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_ChoicePictureVC.xib; sourceTree = "<group>"; };
-		1000D86E1D58AB640040FE32 /* WHC_PictureListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_PictureListVC.h; sourceTree = "<group>"; };
-		1000D86F1D58AB640040FE32 /* WHC_PictureListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_PictureListVC.m; sourceTree = "<group>"; };
-		1000D8701D58AB640040FE32 /* WHC_PictureListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHC_PictureListVC.xib; sourceTree = "<group>"; };
 		101A7D5B1D5EBAE8005D55BE /* CustomMenuBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMenuBtn.h; sourceTree = "<group>"; };
 		101A7D5C1D5EBAE8005D55BE /* CustomMenuBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMenuBtn.m; sourceTree = "<group>"; };
 		101A7D5E1D5EE32D005D55BE /* HandleCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleCarViewController.h; sourceTree = "<group>"; };
@@ -557,34 +536,6 @@
 				1000D8611D58AB640040FE32 /* SpeechSynthesizer.m */,
 			);
 			path = SpeechSynthesizer;
-			sourceTree = "<group>";
-		};
-		1000D8621D58AB640040FE32 /* WHCLib */ = {
-			isa = PBXGroup;
-			children = (
-				1000D8631D58AB640040FE32 /* cell */,
-				1000D8681D58AB640040FE32 /* WHC_CameraVC.h */,
-				1000D8691D58AB640040FE32 /* WHC_CameraVC.m */,
-				1000D86A1D58AB640040FE32 /* WHC_CameraVC.xib */,
-				1000D86B1D58AB640040FE32 /* WHC_ChoicePictureVC.h */,
-				1000D86C1D58AB640040FE32 /* WHC_ChoicePictureVC.m */,
-				1000D86D1D58AB640040FE32 /* WHC_ChoicePictureVC.xib */,
-				1000D86E1D58AB640040FE32 /* WHC_PictureListVC.h */,
-				1000D86F1D58AB640040FE32 /* WHC_PictureListVC.m */,
-				1000D8701D58AB640040FE32 /* WHC_PictureListVC.xib */,
-			);
-			path = WHCLib;
-			sourceTree = "<group>";
-		};
-		1000D8631D58AB640040FE32 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				1000D8641D58AB640040FE32 /* WHC_Asset.h */,
-				1000D8651D58AB640040FE32 /* WHC_Asset.m */,
-				1000D8661D58AB640040FE32 /* WHC_PhotoListCell.h */,
-				1000D8671D58AB640040FE32 /* WHC_PhotoListCell.m */,
-			);
-			path = cell;
 			sourceTree = "<group>";
 		};
 		107821351D521FA6009DE1D2 /* MapImg */ = {
@@ -1274,7 +1225,6 @@
 				1000D8511D58AB640040FE32 /* JX_GCDTimer */,
 				1000D8541D58AB640040FE32 /* SDPhotoBrowser */,
 				1000D85F1D58AB640040FE32 /* SpeechSynthesizer */,
-				1000D8621D58AB640040FE32 /* WHCLib */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1483,8 +1433,6 @@
 				107821AB1D521FA6009DE1D2 /* icon_id@2x.png in Resources */,
 				107821AE1D521FA6009DE1D2 /* icon_logo@2x.png in Resources */,
 				18EE9F2C1D59D0EB00F217BD /* icon_minePhone@2x.png in Resources */,
-				1000D87F1D58AB640040FE32 /* WHC_CameraVC.xib in Resources */,
-				1000D8831D58AB640040FE32 /* WHC_PictureListVC.xib in Resources */,
 				107821A81D521FA6009DE1D2 /* pic_vip_card@2x.png in Resources */,
 				1078217C1D521FA6009DE1D2 /* bg_car_status@2x.png in Resources */,
 				189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */,
@@ -1526,7 +1474,6 @@
 				185930DF1D3490EB00F948D4 /* picker_alert_sigh@2x.png in Resources */,
 				1826DCCE1D5DACCB007A0C45 /* error.html in Resources */,
 				107821911D521FA6009DE1D2 /* icon_map_switch@2x.png in Resources */,
-				1000D8811D58AB640040FE32 /* WHC_ChoicePictureVC.xib in Resources */,
 				1078219F1D521FA6009DE1D2 /* icon_logout@2x.png in Resources */,
 				107821C81D5234E2009DE1D2 /* PerfectInformationVC.xib in Resources */,
 				18EE9F2E1D59D27500F217BD /* icon_phone_no@2x.png in Resources */,
@@ -1631,16 +1578,12 @@
 				185930DD1D3490EB00F948D4 /* GcNoticeUtil.m in Sources */,
 				185930EC1D3490EB00F948D4 /* NSString+MHCommon.m in Sources */,
 				101A7D631D5EE89F005D55BE /* HandleCardView.m in Sources */,
-				1000D87D1D58AB640040FE32 /* WHC_PhotoListCell.m in Sources */,
 				185930F21D3490EB00F948D4 /* ParallaxHeaderView.m in Sources */,
 				101A7D6C1D5F03E4005D55BE /* GPSMapViewController.m in Sources */,
 				1000D8461D58AAE30040FE32 /* MyPickView.m in Sources */,
 				1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */,
-				1000D87C1D58AB640040FE32 /* WHC_Asset.m in Sources */,
 				107821C71D5234E2009DE1D2 /* PerfectInformationVC.m in Sources */,
-				1000D8801D58AB640040FE32 /* WHC_ChoicePictureVC.m in Sources */,
 				1894C2B41D548BF80097F638 /* ModifyViewController.m in Sources */,
-				1000D8821D58AB640040FE32 /* WHC_PictureListVC.m in Sources */,
 				185930E11D3490EB00F948D4 /* JRNLocalNotificationCenter.m in Sources */,
 				185931041D3490EB00F948D4 /* NSString+SPStr.m in Sources */,
 				18EE9F1C1D5888AC00F217BD /* NSJSONSerialization+LYJSON.m in Sources */,
@@ -1649,7 +1592,6 @@
 				185930F41D3490EB00F948D4 /* UIView+WhenTappedBlocks.m in Sources */,
 				189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */,
 				185931021D3490EB00F948D4 /* FDCalendar.m in Sources */,
-				1000D87E1D58AB640040FE32 /* WHC_CameraVC.m in Sources */,
 				185930511D34896000F948D4 /* MallViewController.m in Sources */,
 				185930D61D3490EB00F948D4 /* AnimationTools.m in Sources */,
 				1813EF8F1D5C6A0F0019CA33 /* FDAlertView.m in Sources */,
