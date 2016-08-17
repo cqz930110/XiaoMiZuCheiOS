@@ -348,6 +348,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [PublicFunction shareInstance].m_bLogin = NO;
                 [GcNoticeUtil sendNotification:DECIDEISLOGIN];
                 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];
                 delegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
 
             };
