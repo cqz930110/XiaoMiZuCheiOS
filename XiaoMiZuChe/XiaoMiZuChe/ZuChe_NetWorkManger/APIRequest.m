@@ -304,6 +304,30 @@
         fail();
     }];
 }
+#pragma mark -  办理租车卡接口
++ (void)handleVipCardRequestSuccess:(void (^)())success
+                               fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,HANDLEVIPCARDURL];
+    NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        success();
+    } fail:^{
+        [SVProgressHUD dismiss];
+        fail();
+    }];
+}
 #pragma mark -
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse
