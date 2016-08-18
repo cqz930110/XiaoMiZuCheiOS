@@ -41,12 +41,19 @@
 }
 #pragma mark - event respose
 - (void)immediatelyToDealWith:(UIButton *)btn
-{
+{WEAKSELF;
     DLog(@"立即办理获取年费");
-    _payView = [[HandleCardView alloc] initWithFrame:kMainScreenFrameRect
-                                                       WithMoney:@"400"];
-    _payView.delegate = self;
-    [self.view addSubview:_payView];
+    [APIRequest getVipYearPriceRequestSuccess:^(NSString *moneyString) {
+        
+        weakSelf.payView = [[HandleCardView alloc] initWithFrame:kMainScreenFrameRect
+                                               WithMoney:moneyString];
+        weakSelf.payView.delegate = self;
+        [self.view addSubview:weakSelf.payView];
+        
+    } fail:^{
+        
+    }];
+    
 }
 #pragma mark - HandleCardViewPro
 - (void)choiceOfPaymentWithIndex:(NSInteger)index

@@ -13,6 +13,7 @@
 #import "AboutViewController.h"
 #import "GcNoticeUtil.h"
 #import "ServiceViewController.h"
+#import "HandleCarViewController.h"
 
 static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -80,6 +81,9 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     }else if (row == 2){
         ServiceViewController *vc = [ServiceViewController new];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if(row == 1){
+        HandleCarViewController *vc = [HandleCarViewController new];
+        [self.navigationController   pushViewController:vc animated:YES];
     }
 }
 #pragma mark - event response

@@ -20,3 +20,6 @@ pod 'pop', '~> 1.0.9'
 pod 'AMapNavi', '~> 2.0.0'                #导航SDK
 pod 'AMapLocation', '~> 2.0.0'            #定位SDK
 pod 'AMapSearch', '~> 4.0.0'              #搜索服务SDK
+
+#Bugly 错误日志
+pod 'Bugly'

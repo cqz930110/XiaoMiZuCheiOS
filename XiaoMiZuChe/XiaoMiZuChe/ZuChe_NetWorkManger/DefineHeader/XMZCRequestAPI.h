@@ -69,4 +69,12 @@
  13  获取附近车辆接口
  */
 #define  ARROUNDCARURLSTRING          @"app/map/arroundCar.do"
+/*
+ 14  获取用户当前租车信息
+ */
+#define  GETUSERCARRECORDURL          @"app/car/getUserCarRecord.do?"
+/*
+ 15  获取附近车辆接口
+ */
+#define  ARROUNDCARURLSTRING          @"app/map/arroundCar.do"
 

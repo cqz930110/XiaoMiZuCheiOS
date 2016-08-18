@@ -10,14 +10,6 @@
 
 @interface APIRequest : NSObject
 
-///*
-// * 赔偿标准首页列表
-// */
-//+ (void)getcompensationList:(NSString *)comId
-//                   withCity:(NSString *)city
-//                   withYear:(NSString *)year
-//             RequestSuccess:(void (^)(NSArray *arrays))success
-//                       fail:(void (^)())fail;
 
 /**
  *  验证验证码
@@ -163,7 +155,24 @@
  */
 + (void)handleVipCardRequestSuccess:(void (^)())success
                                fail:(void (^)())fail;
-
+/**
+ *  获取用户当前租车信息
+ *
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)getUserCarRecordRequestSuccess:(void (^)())success
+                               fail:(void (^)())fail;
+/**
+ *  获取附近车辆接口
+ *
+ *  @param lon     经度 用户所在位置，取手机定位信息
+ *  @param lat     纬度 用户所在位置，取手机定位信息
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)())success
+                                  fail:(void (^)())fail;
 
 /**
  *  自动登录

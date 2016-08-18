@@ -24,9 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *userTypeLab;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLab;
 @property (weak, nonatomic) IBOutlet UIView *bottomLine;
-@property (weak, nonatomic) IBOutlet UIButton *completeBtn;
+@property (strong, nonatomic) UIButton *completeBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
-@property (weak, nonatomic) IBOutlet UILabel *agreementLab;
+@property (strong, nonatomic) UILabel *agreementLab;
 @property (strong, nonatomic) UITextField *detailAddressText;
 @property (strong, nonatomic) NSMutableDictionary *schoolDict;
 
@@ -51,18 +51,21 @@
     _area       = @"";
     _schoolDict = [NSMutableDictionary dictionary];
     self.cardNumText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    LRViewBorderRadius(_completeBtn, 5.f, 0, [UIColor clearColor]);
+    self.nameText.textColor = thirdColor;
+    self.cardNumText.textColor = thirdColor;
+    [self.nameText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
+    [self.cardNumText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
+
     _bottomLine.hidden = YES;
     _schoolLab.hidden  = YES;
     _arrowImgView.hidden = YES;
     [self.view addSubview:self.detailAddressText];
+    [self.view addSubview:self.completeBtn];
+    [self.view addSubview:self.agreementLab];
     self.detailAddressText.hidden = YES;
     self.areaLab.textColor = NINEColor;
     self.userTypeLab.textColor = NINEColor;
     self.schoolLab.textColor = NINEColor;
-
-//    _completeBtn.frame = CGRectMake(40, 272.f, kMainScreenWidth - 80.f, 40.f);
-//    _agreementLab.frame = CGRectMake(40, 327.f, kMainScreenWidth - 80.f, 40.f);
 
     [self.areaLab whenCancelTapped:^{
         [weakSelf selectProvinceCityArea];
@@ -99,9 +102,7 @@
         if (buttonIndex == 0) {
             weakSelf.userTypeLab.text = @"学校用户";
             weakSelf.userTypeLab.textColor = thirdColor;
-            weakSelf.schoolLab.hidden  = NO;
-            weakSelf.arrowImgView.hidden = NO;
-            weakSelf.detailAddressText.hidden = YES;
+            [weakSelf whetherOrNotVisible:NO];
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.schoolLab.textColor = NINEColor;
@@ -111,15 +112,22 @@
         }else if (buttonIndex == 1){
             weakSelf.userTypeLab.text = @"普通用户";
             weakSelf.userTypeLab.textColor = thirdColor;
-            weakSelf.schoolLab.hidden  = YES;
-            weakSelf.arrowImgView.hidden = YES;
-            weakSelf.detailAddressText.hidden = NO;
+            [weakSelf whetherOrNotVisible:YES];
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.detailAddressText.text = @"";
         }
     }];
     [sheet show];
+}
+- (void)whetherOrNotVisible:(BOOL)islook
+{
+   _schoolLab.hidden  = islook;
+   _arrowImgView.hidden = islook;
+   _detailAddressText.hidden = !islook;
+    _completeBtn.frame = CGRectMake(40, 312.f, kMainScreenWidth - 80.f, 40.f);
+    _agreementLab.frame = CGRectMake(40, 367.f, kMainScreenWidth - 80.f, 40.f);
+
 }
 - (void)loadSchoolData{WEAKSELF;
     
@@ -165,7 +173,7 @@
 
 #pragma mark - event response
 
-- (IBAction)completeRegisterBtnEvent:(id)sender {
+- (void)completeRegisterBtnEvent:(id)sender {WEAKSELF;
     
     if (_nameText.text.length<=0) {
         [JKPromptView showWithImageName:nil message:@"请您输入姓名"];
@@ -184,10 +192,19 @@
     NSString *schoolId = _schoolDict[_schoolLab.text];
     NSString *address = _detailAddressText.text;
     BasicData *m_user = [PublicFunction shareInstance].m_user;
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",address,@"address",schoolId,@"schoolId", nil];
-    [APIRequest perfectUserDataWithPostDict:dict RequestSuccess:^{
+    
+    NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
+    if ([userType isEqualToString:@"1"]) {
+        mutableDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",schoolId,@"schoolId", nil];
+    }else {
+        [NSDictionary dictionaryWithObjectsAndKeys:m_user.userId,@"userId",_nameText.text,@"userName",@"2",@"sex",_cardNumText.text,@"idNum",userType,@"userType",_province,@"province",_city,@"city",_area,@"area",address,@"address", nil];
+    }
+    
+    [APIRequest perfectUserDataWithPostDict:mutableDict RequestSuccess:^{
         
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } fail:^{
+        
     }];
 }
 
@@ -203,10 +220,39 @@
         _detailAddressText.keyboardType = UIKeyboardTypeASCIICapable;
         _detailAddressText.returnKeyType = UIReturnKeyDone;
         _detailAddressText.placeholder = @"请输入详细地址";
+        _detailAddressText.textColor = thirdColor;
+        [_detailAddressText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
     }
     return _detailAddressText;
 }
-
+- (UIButton *)completeBtn
+{
+    if (!_completeBtn) {
+        
+        _completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_completeBtn setTitleColor:[UIColor whiteColor] forState:0];
+        [_completeBtn setTitle:@"完成注册" forState:0];
+        _completeBtn.frame = CGRectMake(40, 272.f, kMainScreenWidth - 80, 40);
+        _completeBtn.backgroundColor = hexColor(FFA043);
+        _completeBtn.layer.masksToBounds = YES;
+        _completeBtn.layer.cornerRadius = 5.f;
+        [_completeBtn addTarget:self action:@selector(completeRegisterBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _completeBtn;
+}
+- (UILabel *)agreementLab
+{
+    if (!_agreementLab) {
+        _agreementLab = [[UILabel alloc] initWithFrame:CGRectMake(40, 327.f, kMainScreenWidth - 80, 20)];
+        _agreementLab.backgroundColor = [UIColor clearColor];
+        _agreementLab.font = Font_14;
+        _agreementLab.textAlignment = NSTextAlignmentCenter;
+        _agreementLab.text = @"点击完成注册视为你同意《用户协议》";
+        _agreementLab.textColor = hexColor(999999);
+        
+    }
+    return _agreementLab;
+}
 #pragma mark -手势
 - (void)dismissKeyBoard{
     [self.view endEditing:YES];

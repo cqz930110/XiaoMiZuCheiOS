@@ -96,7 +96,15 @@
             break;
         case 3:
         {
-            
+            if ([PublicFunction shareInstance].m_bLogin == NO) {
+                [JKPromptView showWithImageName:nil message:@"请您先登录账号,再进行还车"];
+                return;
+            }
+            [APIRequest getUserCarRecordRequestSuccess:^{
+                
+            } fail:^{
+                
+            }];
         }
             break;
         default:

@@ -287,7 +287,7 @@
 {
     [SVProgressHUD show];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,GETVIPYEARPRICEURL];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:nil isNeedHead:YES success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [SVProgressHUD dismiss];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -322,6 +322,64 @@
             fail();
             return ;
         }
+        success();
+    } fail:^{
+        [SVProgressHUD dismiss];
+        fail();
+    }];
+}
+#pragma mark - 获取用户当前租车信息
++ (void)getUserCarRecordRequestSuccess:(void (^)())success
+                                  fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@userId%@",kProjectBaseUrl,GETUSERCARRECORDURL,userId];
+    
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        success();
+    } fail:^{
+        fail();
+        [SVProgressHUD dismiss];
+    }];
+}
+#pragma mark - 获取附近车辆接口
++ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)())success
+                        fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,ARROUNDCARURLSTRING];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:lon,@"lon",lat,@"lat", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        if (errorcode !=1) {
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        
+        NSMutableArray *arrays = [NSMutableArray array];
+        NSArray *arr = jsonDic[@"data"];
+        [arrays addObjectsFromArray:arr];
+        if (arrays.count == 0) {
+            [JKPromptView showWithImageName:nil message:msg];
+            return ;
+        }
+        
+        [JKPromptView showWithImageName:nil message:msg];
+
         success();
     } fail:^{
         [SVProgressHUD dismiss];
