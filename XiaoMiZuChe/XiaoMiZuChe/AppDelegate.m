@@ -9,13 +9,14 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "IQKeyboardManager.h"
-
+#import <Bugly/Bugly.h>
 /**
  高德地图
  */
 #import "APIKey.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
+
 /**
  *  短信
  */
@@ -46,15 +47,14 @@
     //设置缓存
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
-
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+     [Bugly startWithAppId:@"此处替换为你的AppId"];
+    kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
+        
         //键盘配置
         [[IQKeyboardManager sharedManager] setEnable:YES];
         [IQKeyboardManager sharedManager].shouldShowTextFieldPlaceholder = YES;
         [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
-        
     });
     [APIRequest automaticLoginEventResponse];
 
