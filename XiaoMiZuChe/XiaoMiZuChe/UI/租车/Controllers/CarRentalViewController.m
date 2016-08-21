@@ -9,7 +9,9 @@
 #import "CarRentalViewController.h"
 #import "JKCountDownButton.h"
 #import "GPSMapViewController.h"
-@interface CarRentalViewController ()<UITextFieldDelegate>
+#import "LoginViewController.h"
+
+@interface CarRentalViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *carImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *phoneImgView;
 @property (weak, nonatomic) IBOutlet UITextField *carText;
@@ -17,11 +19,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *immBtn;
 @property (weak, nonatomic) IBOutlet JKCountDownButton *sendCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nearBtn;
+@property (weak, nonatomic) IBOutlet UIView *codeLineView;
+@property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 
 @end
 
 @implementation CarRentalViewController
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +42,10 @@
     LRViewBorderRadius(_immBtn, 5.f, 0, [UIColor whiteColor]);
     LRViewBorderRadius(_nearBtn, 5.f, 0, [UIColor whiteColor]);
     LRViewBorderRadius(_sendCodeBtn, 3.f, 1, hexColor(999999));
+
+    
+    [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateNormal];
+    [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateSelected];
 
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.carText.keyboardType  = UIKeyboardTypeNumbersAndPunctuation;
@@ -72,14 +83,18 @@
     if (textField.tag == 3888) {
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_code_active");
+            self.phoneLineView.backgroundColor = hexColor(F08200);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_code");
+            self.phoneLineView.backgroundColor = hexColor(999999);
         }
     }else {
         if (textField.text.length >0) {
             self.carImgView.image = kGetImage(@"icon_ebike_active");
+            self.codeLineView.backgroundColor = hexColor(F08200);
         }else {
             self.carImgView.image = kGetImage(@"icon_ebike");
+            self.codeLineView.backgroundColor = hexColor(999999);
         }
     }
 }
@@ -105,6 +120,24 @@
 
 - (IBAction)applyImmediatelyBtnEvent:(UIButton *)sender {
     [self dismissKeyBoard];
+    
+    
+    if ([PublicFunction shareInstance].m_bLogin == YES) {
+        if (_carText.text.length<=0) {
+            [JKPromptView showWithImageName:nil message:@"请输入车辆编号"];
+            return;
+        }else if (_phoneText.text.length <=0){
+            [JKPromptView showWithImageName:nil message:@"请输入收到的验证码"];
+            return;
+        }
+
+    
+    }else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"请先登录，再进行租车" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去登录", nil];
+        [alertView show];
+    }
+
     DLog(@"立即申请");
 }
 
@@ -113,6 +146,14 @@
     [self dismissKeyBoard];
     GPSMapViewController *gpsVC = [GPSMapViewController new];
     [self.navigationController pushViewController:gpsVC animated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        LoginViewController *loginVC = [LoginViewController new];
+        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+    }
 }
 #pragma mark - getters and setters
 #pragma mark -手势

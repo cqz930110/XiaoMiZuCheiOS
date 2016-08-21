@@ -21,11 +21,11 @@
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         //3.图片的内容模式
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        
         [self addTarget:self action:@selector(scaleToSmall)
        forControlEvents:UIControlEventTouchDown | UIControlEventTouchDragEnter];
         [self addTarget:self action:@selector(scaleToDefault)
        forControlEvents:UIControlEventTouchDragExit];
+        
     }
     return self;
 }

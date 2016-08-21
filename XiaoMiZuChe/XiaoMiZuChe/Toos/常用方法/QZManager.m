@@ -39,6 +39,17 @@ singleton_for_class(QZManager)
     // 不为空
     return NO;
 }
+//判断系统版本
+- (BOOL)isSystemVersioniOS8
+{
+    UIDevice *device = [UIDevice currentDevice];
+    float sysVersion = [device.systemVersion floatValue];
+    if (sysVersion >= 8.0f)
+    {
+        return YES;
+    }
+    return NO;
+}
 
 #pragma mark-判断是否为纯数字
 + (BOOL)isPureInt:(NSString*)string{

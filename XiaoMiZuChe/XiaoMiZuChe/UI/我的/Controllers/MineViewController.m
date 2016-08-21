@@ -14,6 +14,7 @@
 #import "GcNoticeUtil.h"
 #import "ServiceViewController.h"
 #import "HandleCarViewController.h"
+#import "LoginViewController.h"
 
 static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -26,6 +27,10 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 @end
 
 @implementation MineViewController
+-(void)dealloc
+{
+    [GcNoticeUtil removeAllNotification:self];
+}
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
@@ -45,9 +50,15 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.footView addSubview:self.logOutBtn];
+    if ([PublicFunction shareInstance].m_bLogin == NO) {
+        self.footView.hidden = YES;
+    }
     self.tableView.tableFooterView = self.footView;
+    
+    [GcNoticeUtil handleNotification:LOGINSUCCESS
+                            Selector:@selector(LoginSuccessMethods)
+                            Observer:self];
 }
-
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -66,12 +77,15 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     NSInteger row = indexPath.row;
-    
     if (row == 0) {
-        MineSettingVC *vc = [MineSettingVC new];
-        [self.navigationController  pushViewController:vc animated:YES];
+        if ([PublicFunction shareInstance].m_bLogin == YES) {
+            MineSettingVC *vc = [MineSettingVC new];
+            [self.navigationController  pushViewController:vc animated:YES];
+        }else {
+            LoginViewController *loginVC = [LoginViewController new];
+            [self presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
+        }
     }else if (row == 4) {
         AboutViewController *vc = [AboutViewController new];
         [self.navigationController  pushViewController:vc animated:YES];
@@ -83,10 +97,16 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
         [self.navigationController pushViewController:vc animated:YES];
     }else if(row == 1){
         HandleCarViewController *vc = [HandleCarViewController new];
-        [self.navigationController   pushViewController:vc animated:YES];
+        [self.navigationController  pushViewController:vc animated:YES];
     }
 }
 #pragma mark - event response
+- (void)LoginSuccessMethods
+{
+    DLog(@"登录成功");
+    
+    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
 - (void)logOutBtnEvent:(UIButton *)btn
 {WEAKSELF;
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"退出账号" buttonTitles:@[@"退出"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
@@ -124,7 +144,6 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (UIButton *)logOutBtn
 {
     if (!_logOutBtn) {
-        
         _logOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _logOutBtn.frame = CGRectMake(0, 0.6, kMainScreenWidth, 44.f);
         [_logOutBtn setImage:kGetImage(@"icon_logout") forState:0];

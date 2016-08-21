@@ -23,9 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *areaLab;
 @property (weak, nonatomic) IBOutlet UILabel *userTypeLab;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLab;
-@property (weak, nonatomic) IBOutlet UIView *bottomLine;
-@property (strong, nonatomic) UIButton *completeBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
+@property (weak, nonatomic) IBOutlet UIView *nameLineView;
+@property (weak, nonatomic) IBOutlet UIView *cardNumLineView;
+@property (weak, nonatomic) IBOutlet UIView *areaLineView;
+@property (weak, nonatomic) IBOutlet UIView *userTypeLineView;
+
+@property (strong, nonatomic) UIButton *completeBtn;
 @property (strong, nonatomic) UILabel *agreementLab;
 @property (strong, nonatomic) UITextField *detailAddressText;
 @property (strong, nonatomic) NSMutableDictionary *schoolDict;
@@ -33,7 +38,10 @@
 @end
 
 @implementation PerfectInformationVC
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +63,23 @@
     self.cardNumText.textColor = thirdColor;
     [self.nameText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
     [self.cardNumText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
+    
+    self.nameText.tag = 3006;
+    self.cardNumText.tag = 3007;
+    self.detailAddressText.tag = 3008;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.nameText];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.cardNumText];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.detailAddressText];
+
 
     _bottomLine.hidden = YES;
     _schoolLab.hidden  = YES;
@@ -89,6 +114,7 @@
     [pickView showPickView:self];
     pickView.block = ^(NSString *schoolString)
     {
+        weakSelf.bottomLine.backgroundColor = hexColor(F08200);
         weakSelf.schoolLab.textColor = thirdColor;
         weakSelf.schoolLab.text = schoolString;
     };
@@ -107,6 +133,7 @@
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.schoolLab.textColor = NINEColor;
             weakSelf.detailAddressText.text = @"";
+            weakSelf.userTypeLineView.backgroundColor = hexColor(F08200);
 
             [weakSelf loadSchoolData];
         }else if (buttonIndex == 1){
@@ -116,6 +143,8 @@
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.detailAddressText.text = @"";
+            weakSelf.userTypeLineView.backgroundColor = hexColor(F08200);
+
         }
     }];
     [sheet show];
@@ -142,6 +171,7 @@
     MyPickView *pickView = [[MyPickView  alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
     pickView.pickBlock = ^(NSString *provice,NSString *city,NSString *area){
         
+        weakSelf.areaLineView.backgroundColor = hexColor(F08200);
         weakSelf.areaLab.textColor = thirdColor;
         DLog(@"地区是－－－%@:%@,%@",provice,city,area);
         _province = provice;_city = city;
@@ -168,6 +198,27 @@
     BOOL flag=[NSString isContainsTwoEmoji:textField.text];
     if (flag){
         textField.text = [NSString disable_emoji:textField.text];
+    }
+    if (textField.tag == 3006) {
+        if (_nameText.text.length >0) {
+            self.nameLineView.backgroundColor = hexColor(F08200);
+        }else {
+            self.nameLineView.backgroundColor = hexColor(999999);
+        }
+    }
+    if (textField.tag == 3007) {
+        if (_cardNumText.text.length >0) {
+            self.cardNumLineView.backgroundColor = hexColor(F08200);
+        }else {
+            self.cardNumLineView.backgroundColor = hexColor(999999);
+        }
+    }
+    if (textField.tag == 3008) {
+        if (_detailAddressText.text.length >0) {
+            self.bottomLine.backgroundColor = hexColor(F08200);
+        }else {
+            self.bottomLine.backgroundColor = hexColor(999999);
+        }
     }
 }
 

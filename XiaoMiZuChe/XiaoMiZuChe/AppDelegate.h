@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ZCTabBarControllerConfig.h"
+static NSString *appKey = @"7c7975ba2d3c765bc13a0344";
+static NSString *channel = @"Publish channel";
+static BOOL isProduction = FALSE;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

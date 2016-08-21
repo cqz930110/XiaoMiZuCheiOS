@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,9 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModifyViewController">
             <connections>
                 <outlet property="codeImgView" destination="F4w-HS-oAX" id="7qw-aJ-5UR"/>
+                <outlet property="codeLineView" destination="5KK-5a-yf5" id="tnC-ew-xZP"/>
                 <outlet property="codeText" destination="aap-BD-JZM" id="wcc-rK-v0p"/>
                 <outlet property="nextBtn" destination="Grl-Io-irY" id="Ax8-Et-UeX"/>
                 <outlet property="phoneImgView" destination="Khk-gY-mKE" id="LB5-pw-CWj"/>
+                <outlet property="phoneLiveView" destination="yWV-7m-LWg" id="1pv-ad-RV0"/>
                 <outlet property="phoneText" destination="ScK-2h-PKF" id="AbN-dE-zSS"/>
                 <outlet property="sendBtn" destination="Gk1-Kv-HAv" id="6kL-u8-NFI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,7 +45,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWV-7m-LWg">
                     <rect key="frame" x="40" y="130" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScK-2h-PKF">
                     <rect key="frame" x="70" y="95" width="135" height="30"/>
@@ -60,7 +62,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KK-5a-yf5">
                     <rect key="frame" x="40" y="175" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="IkR-xN-PL3"/>
                     </constraints>
@@ -71,7 +73,7 @@
                         <constraint firstAttribute="width" constant="75" id="PK4-bW-9K3"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="发送验证码">
+                    <state key="normal" title="获取验证码">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>

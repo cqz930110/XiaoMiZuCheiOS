@@ -18,10 +18,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *phoneImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImgView;
+@property (weak, nonatomic) IBOutlet UIView *phoneLiveView;
+@property (weak, nonatomic) IBOutlet UIView *codeLineView;
 
 @end
 
 @implementation ModifyViewController
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,14 +80,18 @@
         }
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_phone_active");
+            self.phoneLiveView.backgroundColor = hexColor(F08200);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_phone_no");
+            self.phoneLiveView.backgroundColor = hexColor(999999);
         }
     }else {
         if (textField.text.length >0) {
             self.codeImgView.image = kGetImage(@"icon_code_active");
+            self.codeLineView.backgroundColor = hexColor(F08200);
         }else {
             self.codeImgView.image = kGetImage(@"icon_code");
+            self.codeLineView.backgroundColor = hexColor(999999);
         }
     }
 }

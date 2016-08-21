@@ -16,10 +16,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *keyText;
 @property (weak, nonatomic) IBOutlet UITextField *sureKeyText;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+@property (weak, nonatomic) IBOutlet UIView *keyLineView;
+@property (weak, nonatomic) IBOutlet UIView *sureKeyLineView;
 
 @end
 
 @implementation EditKeyViewController
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,14 +75,18 @@
         
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
+            self.keyLineView.backgroundColor = hexColor(F08200);
         }else {
             self.keyImgView.image = kGetImage(@"icon_pass");
+            self.keyLineView.backgroundColor = hexColor(999999);
         }
     }else {
         if (textField.text.length >0) {
             self.sureKeyImgView.image = kGetImage(@"icon_pass_active");
+            self.sureKeyLineView.backgroundColor = hexColor(F08200);
         }else {
             self.sureKeyImgView.image = kGetImage(@"icon_pass");
+            self.sureKeyLineView.backgroundColor = hexColor(999999);
         }
     }
 }

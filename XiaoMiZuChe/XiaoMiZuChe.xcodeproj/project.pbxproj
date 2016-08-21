@@ -24,6 +24,16 @@
 		101A7D681D5EFB6A005D55BE /* CarRentalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 101A7D661D5EFB6A005D55BE /* CarRentalViewController.xib */; };
 		101A7D6C1D5F03E4005D55BE /* GPSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 101A7D6A1D5F03E4005D55BE /* GPSMapViewController.m */; };
 		101A7D6D1D5F03E4005D55BE /* GPSMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 101A7D6B1D5F03E4005D55BE /* GPSMapViewController.xib */; };
+		1024B0681D69A203008B3E99 /* NearCardata.m in Sources */ = {isa = PBXBuildFile; fileRef = 1024B0671D69A203008B3E99 /* NearCardata.m */; };
+		1024B06E1D69AF16008B3E99 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B06D1D69AF16008B3E99 /* CFNetwork.framework */; };
+		1024B0701D69AF20008B3E99 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B06F1D69AF20008B3E99 /* CoreFoundation.framework */; };
+		1024B0721D69AF2C008B3E99 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0711D69AF2C008B3E99 /* CoreTelephony.framework */; };
+		1024B0741D69AF33008B3E99 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0731D69AF33008B3E99 /* SystemConfiguration.framework */; };
+		1024B0761D69AF3B008B3E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0751D69AF3B008B3E99 /* CoreGraphics.framework */; };
+		1024B0781D69AF47008B3E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0771D69AF47008B3E99 /* Foundation.framework */; };
+		1024B07A1D69AF50008B3E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0791D69AF50008B3E99 /* UIKit.framework */; };
+		1024B07C1D69AF60008B3E99 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B07B1D69AF60008B3E99 /* Security.framework */; };
+		1024B0811D69B139008B3E99 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */; };
 		1078217A1D521FA6009DE1D2 /* bg_back_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821361D521FA6009DE1D2 /* bg_back_car@2x.png */; };
 		1078217B1D521FA6009DE1D2 /* bg_back_car_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */; };
 		1078217C1D521FA6009DE1D2 /* bg_car_status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821381D521FA6009DE1D2 /* bg_car_status@2x.png */; };
@@ -223,6 +233,18 @@
 		101A7D691D5F03E4005D55BE /* GPSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSMapViewController.h; sourceTree = "<group>"; };
 		101A7D6A1D5F03E4005D55BE /* GPSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSMapViewController.m; sourceTree = "<group>"; };
 		101A7D6B1D5F03E4005D55BE /* GPSMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GPSMapViewController.xib; sourceTree = "<group>"; };
+		1024B0661D69A203008B3E99 /* NearCardata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearCardata.h; sourceTree = "<group>"; };
+		1024B0671D69A203008B3E99 /* NearCardata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearCardata.m; sourceTree = "<group>"; };
+		1024B06D1D69AF16008B3E99 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1024B06F1D69AF20008B3E99 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1024B0711D69AF2C008B3E99 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1024B0731D69AF33008B3E99 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1024B0751D69AF3B008B3E99 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1024B0771D69AF47008B3E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1024B0791D69AF50008B3E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1024B07B1D69AF60008B3E99 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
+		1024B0801D69B139008B3E99 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		107821361D521FA6009DE1D2 /* bg_back_car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car@2x.png"; sourceTree = "<group>"; };
 		107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car_btn@2x.png"; sourceTree = "<group>"; };
 		107821381D521FA6009DE1D2 /* bg_car_status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_car_status@2x.png"; sourceTree = "<group>"; };
@@ -451,11 +473,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EE9F071D58759E00F217BD /* libz.tbd in Frameworks */,
+				1024B07C1D69AF60008B3E99 /* Security.framework in Frameworks */,
+				1024B07A1D69AF50008B3E99 /* UIKit.framework in Frameworks */,
+				1024B0781D69AF47008B3E99 /* Foundation.framework in Frameworks */,
+				1024B0761D69AF3B008B3E99 /* CoreGraphics.framework in Frameworks */,
+				1024B0741D69AF33008B3E99 /* SystemConfiguration.framework in Frameworks */,
+				1024B0721D69AF2C008B3E99 /* CoreTelephony.framework in Frameworks */,
+				1024B0701D69AF20008B3E99 /* CoreFoundation.framework in Frameworks */,
+				1024B06E1D69AF16008B3E99 /* CFNetwork.framework in Frameworks */,
 				18EE9F0F1D5875CB00F217BD /* libstdc++.tbd in Frameworks */,
 				18EE9F0D1D5875BF00F217BD /* JavaScriptCore.framework in Frameworks */,
 				18EE9F0B1D5875B500F217BD /* MessageUI.framework in Frameworks */,
+				1024B0811D69B139008B3E99 /* jpush-ios-2.1.8.a in Frameworks */,
 				18EE9F091D5875AB00F217BD /* libicucore.tbd in Frameworks */,
-				18EE9F071D58759E00F217BD /* libz.tbd in Frameworks */,
 				366F200B9FB5094C6575D7F8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,6 +567,15 @@
 				1000D8611D58AB640040FE32 /* SpeechSynthesizer.m */,
 			);
 			path = SpeechSynthesizer;
+			sourceTree = "<group>";
+		};
+		1024B07E1D69B139008B3E99 /* JPUSHServiceLib */ = {
+			isa = PBXGroup;
+			children = (
+				1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */,
+				1024B0801D69B139008B3E99 /* JPUSHService.h */,
+			);
+			path = JPUSHServiceLib;
 			sourceTree = "<group>";
 		};
 		107821351D521FA6009DE1D2 /* MapImg */ = {
@@ -839,6 +879,8 @@
 		185930431D3488EB00F948D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1024B0661D69A203008B3E99 /* NearCardata.h */,
+				1024B0671D69A203008B3E99 /* NearCardata.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1219,6 +1261,7 @@
 			children = (
 				1000D8471D58AB640040FE32 /* APIKey.h */,
 				1000D8481D58AB640040FE32 /* areas.plist */,
+				1024B07E1D69B139008B3E99 /* JPUSHServiceLib */,
 				1826DCCB1D5DACCB007A0C45 /* Error */,
 				1000D8491D58AB640040FE32 /* JKCountDownButton */,
 				1000D84C1D58AB640040FE32 /* JSAnimatedImagesView */,
@@ -1270,6 +1313,14 @@
 		3DCEB6EA3FD1E163E8A5DAA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1024B07B1D69AF60008B3E99 /* Security.framework */,
+				1024B0791D69AF50008B3E99 /* UIKit.framework */,
+				1024B0771D69AF47008B3E99 /* Foundation.framework */,
+				1024B0751D69AF3B008B3E99 /* CoreGraphics.framework */,
+				1024B0731D69AF33008B3E99 /* SystemConfiguration.framework */,
+				1024B0711D69AF2C008B3E99 /* CoreTelephony.framework */,
+				1024B06F1D69AF20008B3E99 /* CoreFoundation.framework */,
+				1024B06D1D69AF16008B3E99 /* CFNetwork.framework */,
 				18EE9F0E1D5875CB00F217BD /* libstdc++.tbd */,
 				18EE9F0C1D5875BF00F217BD /* JavaScriptCore.framework */,
 				18EE9F0A1D5875B500F217BD /* MessageUI.framework */,
@@ -1607,6 +1658,7 @@
 				107821C01D52272B009DE1D2 /* AboutViewController.m in Sources */,
 				1859305B1D348BE600F948D4 /* DTApiBaseBean.m in Sources */,
 				185930E01D3490EB00F948D4 /* UIView+JKPicker.m in Sources */,
+				1024B0681D69A203008B3E99 /* NearCardata.m in Sources */,
 				1859304B1D34890B00F948D4 /* HomeViewController.m in Sources */,
 				1000D8781D58AB640040FE32 /* SDWaitingView.m in Sources */,
 				185930FB1D3490EB00F948D4 /* QZManager.m in Sources */,
@@ -1750,6 +1802,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility",
@@ -1759,6 +1812,10 @@
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility/JPUSHServiceLib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5bea8180-0a4a-4683-9497-d9c0c3dae6e0";
@@ -1775,6 +1832,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility",
@@ -1784,6 +1842,10 @@
 				INFOPLIST_FILE = XiaoMiZuChe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XiaoMiZuChe/Resource/Utility/JPUSHServiceLib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5bea8180-0a4a-4683-9497-d9c0c3dae6e0";

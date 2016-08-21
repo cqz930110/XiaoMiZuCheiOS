@@ -36,6 +36,8 @@
 #import "NSString+Emoji.h"
 #import "PublicFunction.h"
 #import "FDAlertView.h"
+#import "GcNoticeUtil.h"
+
 /**
  *  短信
  */
@@ -44,6 +46,7 @@
 #define USERNAME                          @"userLoginName"
 #define USERKEY                           @"userLoginKey"
 #define DECIDEISLOGIN                     @"autoLoginSuccess"
+#define LOGINSUCCESS                      @"LoginSuccessevent"
 
 
 #endif

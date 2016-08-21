@@ -24,7 +24,14 @@ singleton_for_header(QZManager)
  *  @return 返回YES为空，NO为不空
  */
 + (BOOL)isBlankString:(NSString *)string;
+#pragma mark - 判断iOS 版本
+/**
+ *  判断系统版本
+ *
+ *  @return 是否是iOS8
+ */
 
+- (BOOL)isSystemVersioniOS8;
 #pragma mark-判断是否为纯数字
 /**
  *  判断是否为纯数字

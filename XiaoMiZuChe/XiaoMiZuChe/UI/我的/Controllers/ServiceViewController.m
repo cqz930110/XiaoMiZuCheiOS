@@ -37,7 +37,7 @@
 }
 - (void)loadServiceURLString{
     
-    [_webView loadURL:@"https://www.baidu.com"];
+    [_webView loadURL:@"http://www.gnets.cn:8088/xmzc_api/app/h5/service_descrip.html"];
     if (_singleTap) {
         [_webView removeGestureRecognizer:_singleTap];
     }

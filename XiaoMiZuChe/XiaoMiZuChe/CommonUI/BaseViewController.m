@@ -103,7 +103,8 @@
 
 
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"#F4F4F4"]];
+//    [self.view setBackgroundColor:[UIColor colorWithHexString:@"#F4F4F4"]];
+    self.view.backgroundColor = [UIColor whiteColor];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -126,8 +127,6 @@
     
     // Title label
     [self.naviBarView addSubview:self.titleLabel];
-
-    self.view.backgroundColor = ViewBackColor;
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 63.4, kMainScreenWidth, .6f)];
     lineView.backgroundColor = hexColor(E6E8EA);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,11 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="codeLineView" destination="pg7-g2-Itd" id="InH-Md-SLD"/>
                 <outlet property="codeText" destination="ZcF-ih-xdp" id="AEU-ZL-Etu"/>
                 <outlet property="forgetBtn" destination="06z-xZ-MOK" id="Rj4-J2-0dm"/>
                 <outlet property="keyImgView" destination="TaJ-Gp-kaa" id="eYZ-HQ-XYt"/>
                 <outlet property="loginBtn" destination="wci-j9-5EN" id="WYV-xC-byD"/>
                 <outlet property="nameImgView" destination="Dcm-a1-G8E" id="DUd-pj-XfV"/>
+                <outlet property="phoneLineView" destination="Q6N-MF-cQf" id="MLa-cw-HmA"/>
                 <outlet property="phoneText" destination="pCd-LA-kSj" id="C9c-I3-V6k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,14 +23,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9h-xg-MEc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9h-xg-MEc">
                     <rect key="frame" x="66" y="74" width="188" height="41"/>
                 </imageView>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-MF-cQf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-MF-cQf">
                     <rect key="frame" x="40" y="179" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.50980392156862742" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCd-LA-kSj">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCd-LA-kSj">
                     <rect key="frame" x="70" y="144" width="210" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -43,7 +45,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pg7-g2-Itd">
                     <rect key="frame" x="40" y="224" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.50980392156862742" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="l2q-aL-3QG"/>
                     </constraints>
@@ -89,7 +91,7 @@
                         <action selector="registerBtnEvent:" destination="-1" eventType="touchUpInside" id="VzC-mw-Snk"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_id.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dcm-a1-G8E">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_id.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dcm-a1-G8E">
                     <rect key="frame" x="40" y="144" width="20" height="25"/>
                 </imageView>
             </subviews>

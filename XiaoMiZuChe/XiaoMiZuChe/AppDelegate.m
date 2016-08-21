@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
 #import "IQKeyboardManager.h"
 #import <Bugly/Bugly.h>
 /**
@@ -16,6 +15,8 @@
 #import "APIKey.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
+//推送
+#import "JPUSHService.h"
 
 /**
  *  短信
@@ -35,6 +36,10 @@
     //地图
     [self configureAPIKey];
     [self configurationWindowRootVC];
+    //bugly
+    [Bugly startWithAppId:@"485055dfb5"];
+    //极光推送
+    [self initJPushMethod:launchOptions];
 
     return YES;
 }
@@ -76,18 +81,93 @@
     }
     [AMapServices sharedServices].apiKey = (NSString *)APIKey;
 }
-
-#pragma mark -UITabBarControllerDelegate
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+#pragma mark -极光推送
+- (void)initJPushMethod:(NSDictionary *)launchOptions
 {
-    if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
-        if ([PublicFunction shareInstance].m_bLogin == NO) {
-            LoginViewController *loginVC = [LoginViewController new];
-            [tabBarController presentViewController:[[UINavigationController alloc]initWithRootViewController:loginVC] animated:YES completion:nil];
-            return NO;
-        }
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
     }
-    return YES;
+    
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel apsForProduction:isProduction];
+}
+- (void)networkDidReceiveMessage:(NSNotification *)notification
+{
+//    NSDictionary * userInfo = [notification userInfo];
+//    
+//    NSString *content = [userInfo valueForKey:@"content"];
+//    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+//    NSString *eventType = [NSString stringWithFormat:@"%@",[extras valueForKey:@"eventType"]]; //自定义参数，key是自己定义的
+//    //8关闭超时 7关闭成功 6开启超时 5开启成功
+//    
+//    NSString *userName = [USER_D objectForKey:@"user_phone"];
+//    
+//    if (userName.length >0)
+//    {
+//        if ([eventType isEqualToString:@"10"])
+//        {
+//            [USER_D removeObjectForKey:@"user_phone"];
+//            [USER_D removeObjectForKey:@"user_password"];
+//            [USER_D synchronize];
+//            
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下线通知" message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
+//            //alertView.alertViewStyle = UIAlertViewStyleDefault;
+//            [alertView show];
+//        }else{
+//            [JKPromptView showWithImageName:nil message:content];
+//        }
+//        
+//        if ([eventType isEqualToString:@"9"])
+//        {
+//            [[SoundManager sharedSoundManager] musicPlayByName:@"msg_prompt"];
+//        }
+//        if (eventType.intValue == 8 || eventType.intValue == 7 || eventType.intValue == 6 || eventType.intValue == 5) {
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"OpenVf" object:nil userInfo:@{@"eventType":eventType}];
+//        }
+//        
+//    }
+//    
+//    //    LogRed(@"自定义消息1   %@",content);
+//    //    LogRed(@"自定义消息2   %@",extras);
+//    //    LogRed(@"自定义消息3   %@",customizeField1);
+//    //
+//    //    XYShowAlert(content, @"我知道了");
+//    DLog(@"消息是－－－－－%@",userInfo);
+}
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    DLog(@"token---:%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]stringByReplacingOccurrencesOfString: @">" withString: @""]stringByReplacingOccurrencesOfString: @" " withString: @""]);
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    //点击进来时候
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
+    //Optional
+    DLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -96,18 +176,84 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
 }
-
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
+    
+}
+//判断不同系统下用户是否在设置界面关闭了推送
+- (BOOL)isAllowedNotification {
+    
+    //iOS8 check if user allow notification
+    if ([[QZManager sharedQZManager] isSystemVersioniOS8])
+    {
+        // system is iOS8
+        UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (UIUserNotificationTypeNone != setting.types)
+        {
+            return YES;
+        }
+    }
+    else
+    {
+        //iOS7
+        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        if(UIRemoteNotificationTypeNone != type)
+            return YES;
+    }
+    
+    return NO;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+
+//程序成为活动状态后走的方法
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    BOOL isOpenNotify = [self isAllowedNotification];
+    //开启推送
+    if (isOpenNotify)
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    //关闭推送
+    else
+    {
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    }
+    
+    //    if (ISIos8)
+    //    {
+    //        BOOL isRemoteNotify = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
+    //        if (isRemoteNotify)
+    //        {
+    //            [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //        }
+    //        else
+    //        {
+    //            [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    //        }
+    //    }
+    //    else
+    //    {
+    //        //用户关闭了推送
+    //        if ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone)
+    //        {
+    //            [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    //        }
+    //        else
+    //        {
+    //            [[UIApplication sharedApplication] registerForRemoteNotifications];
+    //        }
+    //    }
+    
+    
 }
-
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

@@ -8,6 +8,11 @@
 
 #import "MineTableViewCell.h"
 
+@interface MineTableViewCell()
+
+@property (nonatomic, strong) UILabel *noLoginLabel;//
+@end
+
 @implementation MineTableViewCell
 
 - (void)awakeFromNib {
@@ -20,6 +25,7 @@
     [self.contentView addSubview:self.iconImgView];
     [self.contentView addSubview:self.titleLab];
     [self.contentView addSubview:self.lineView];
+    [self.contentView addSubview:self.noLoginLabel];
 }
 
 - (void)settingCellStyle:(NSInteger)indexRow
@@ -32,21 +38,29 @@
         _titleLab.hidden = YES;
         
         _headImgView.hidden = NO;
-        _phoneLab.hidden = NO;
-        _registerTimeLab.hidden = NO;
         _lineView.hidden = NO;
         
         _headImgView.layer.masksToBounds = YES;
         _headImgView.layer.cornerRadius = _headImgView.frame.size.width/2.f;
         
-        _phoneLab.text = [QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone];
-        _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
-        [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
+        if ([PublicFunction shareInstance].m_bLogin == YES) {
+            _noLoginLabel.hidden = YES;
+            _phoneLab.hidden = NO;
+            _registerTimeLab.hidden = NO;
+            _phoneLab.text = [QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone];
+            _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
+            [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
+        }else {
+            _noLoginLabel.hidden = NO;
+            _phoneLab.hidden = YES;
+            _registerTimeLab.hidden = YES;
+        }
+        
         
     } else {
         _iconImgView.hidden  = NO;
         _titleLab.hidden = NO;
-        
+        _noLoginLabel.hidden = YES;
         _headImgView.hidden = YES;
         _phoneLab.hidden = YES;
         _registerTimeLab.hidden = YES;
@@ -115,6 +129,16 @@
         _lineView.backgroundColor = lineColor;
     }
     return _lineView;
+}
+- (UILabel *)noLoginLabel
+{
+    if (!_noLoginLabel) {
+        _noLoginLabel  = [[UILabel alloc] initWithFrame:CGRectMake(93, 37.5f, 120, 20)];
+        _noLoginLabel.font = Font_15;
+        _noLoginLabel.text = @"登录/注册";
+        _noLoginLabel.textColor = hexColor(999999);
+    }
+    return _noLoginLabel;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

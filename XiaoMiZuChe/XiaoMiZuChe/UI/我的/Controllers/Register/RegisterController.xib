@@ -8,11 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterController">
             <connections>
                 <outlet property="codeImgView" destination="yBd-FX-Mae" id="sMa-dQ-zuH"/>
+                <outlet property="codeLineView" destination="t8v-Fe-Vqe" id="CdJ-rt-76a"/>
                 <outlet property="codeText" destination="cW6-hF-1Jr" id="9Od-Dp-bju"/>
                 <outlet property="keyImgView" destination="Ok4-CU-t8I" id="CsF-p4-WoH"/>
+                <outlet property="keyLineView" destination="K9W-WG-2nW" id="kfb-v6-4dj"/>
                 <outlet property="keyText" destination="Qoo-m5-ukr" id="E4l-cn-HEQ"/>
                 <outlet property="nextBtn" destination="tKd-hG-D47" id="Gjq-KY-KWb"/>
                 <outlet property="phoneImgView" destination="MWt-H4-4n1" id="HFw-u4-cqr"/>
+                <outlet property="phoneLineView" destination="c5I-0P-mHZ" id="avZ-bw-VB1"/>
                 <outlet property="phoneText" destination="Hcp-qa-w8g" id="C0Y-6d-4rY"/>
                 <outlet property="sendCodeBtn" destination="aN8-dS-Id3" id="bCU-tk-Myp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -45,7 +48,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5I-0P-mHZ">
                     <rect key="frame" x="40" y="130" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcp-qa-w8g">
                     <rect key="frame" x="70" y="95" width="135" height="30"/>
@@ -62,7 +65,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8v-Fe-Vqe">
                     <rect key="frame" x="40" y="175" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aN8-dS-Id3" customClass="JKCountDownButton">
                     <rect key="frame" x="205" y="97" width="75" height="25"/>
@@ -70,7 +73,7 @@
                         <constraint firstAttribute="width" constant="75" id="QNh-T8-wAs"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="发送验证码">
+                    <state key="normal" title="获取验证码">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -87,7 +90,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9W-WG-2nW">
                     <rect key="frame" x="40" y="221" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="l2O-Vl-rsH"/>
                     </constraints>

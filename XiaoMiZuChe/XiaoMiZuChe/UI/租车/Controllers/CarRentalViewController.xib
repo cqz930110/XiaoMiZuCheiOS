@@ -9,9 +9,11 @@
             <connections>
                 <outlet property="carImgView" destination="7we-IC-xk9" id="cjh-4r-ATL"/>
                 <outlet property="carText" destination="S2l-oc-c4C" id="avH-9g-qWP"/>
+                <outlet property="codeLineView" destination="HAu-OX-plf" id="VvY-Oa-1hz"/>
                 <outlet property="immBtn" destination="aXM-K2-8eh" id="HBZ-7z-Fn9"/>
                 <outlet property="nearBtn" destination="z6Y-LK-vEz" id="gOT-P0-vdl"/>
                 <outlet property="phoneImgView" destination="uYG-eH-SMF" id="vsf-Ol-DuC"/>
+                <outlet property="phoneLineView" destination="a2r-pK-CqQ" id="Hvl-Uc-VkC"/>
                 <outlet property="phoneText" destination="bRX-PL-MEr" id="tem-k6-2xD"/>
                 <outlet property="sendCodeBtn" destination="UCR-3W-MJf" id="v7Z-mv-waf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入收到的验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2l-oc-c4C">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入车辆编号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2l-oc-c4C">
                     <rect key="frame" x="70" y="95" width="210" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -32,7 +34,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAu-OX-plf">
                     <rect key="frame" x="40" y="130" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCR-3W-MJf" customClass="JKCountDownButton">
                     <rect key="frame" x="205" y="139" width="75" height="25"/>
@@ -40,7 +42,7 @@
                         <constraint firstAttribute="width" constant="75" id="vSa-cN-bmq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="发送验证码">
+                    <state key="normal" title="获取验证码">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -55,9 +57,9 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2r-pK-CqQ">
                     <rect key="frame" x="40" y="175" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码/租车卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-PL-MEr">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入收到的验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-PL-MEr">
                     <rect key="frame" x="70" y="137" width="135" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -76,10 +78,10 @@
                         <action selector="applyImmediatelyBtnEvent:" destination="-1" eventType="touchUpInside" id="H3M-MG-5jd"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6Y-LK-vEz">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6Y-LK-vEz">
                     <rect key="frame" x="40" y="266" width="240" height="40"/>
                     <color key="backgroundColor" red="0.035294117647058823" green="0.73333333333333328" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="btn_around_car.png">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -124,7 +126,6 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_around_car.png" width="288" height="40"/>
         <image name="icon_code.png" width="20" height="25"/>
         <image name="icon_ebike.png" width="20" height="25"/>
     </resources>

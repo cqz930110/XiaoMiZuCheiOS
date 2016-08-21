@@ -96,6 +96,7 @@
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];
         [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+        [GcNoticeUtil sendNotification:LOGINSUCCESS];
 
         success();
     } fail:^{
@@ -152,6 +153,8 @@
         [PublicFunction shareInstance].m_bLogin = YES;
         [PublicFunction shareInstance].m_user = m_user;
         [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+        [GcNoticeUtil sendNotification:LOGINSUCCESS];
+
         [USER_D setObject:loginName forKey:USERNAME];
         [USER_D setObject:password forKey:USERKEY];
         [USER_D synchronize];

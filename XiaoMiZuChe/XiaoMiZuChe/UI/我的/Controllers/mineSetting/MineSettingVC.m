@@ -25,6 +25,10 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
 @end
 
 @implementation MineSettingVC
+-(void)dealloc
+{
+    [GcNoticeUtil removeAllNotification:self];
+}
 
 #pragma mark - life cycle
 

@@ -11,4 +11,5 @@
 
 @interface LoginViewController : BaseViewController
 
+//@property (nonatomic, copy) ZCBlock successLoginBlock;
 @end

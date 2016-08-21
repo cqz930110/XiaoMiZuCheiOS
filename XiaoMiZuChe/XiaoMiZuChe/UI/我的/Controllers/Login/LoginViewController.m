@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *nameImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *keyImgView;
 
+@property (weak, nonatomic) IBOutlet UIView *codeLineView;
+@property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 @end
 
 @implementation LoginViewController
@@ -81,14 +83,18 @@
         }
         if (textField.text.length >0) {
             self.nameImgView.image = kGetImage(@"icon_id_active");
+            self.phoneLineView.backgroundColor = hexColor(F08200);
         }else {
             self.nameImgView.image = kGetImage(@"icon_menu_my");
+            self.phoneLineView.backgroundColor = hexColor(999999);
         }
     }else {
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
+            self.codeLineView.backgroundColor = hexColor(F08200);
         }else {
             self.keyImgView.image = kGetImage(@"icon_pass");
+            self.codeLineView.backgroundColor = hexColor(999999);
         }
     }
 
@@ -121,6 +127,7 @@
     NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{
+
         
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             

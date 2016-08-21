@@ -20,6 +20,7 @@
 @property (nonatomic, strong) CustomMenuBtn *handleCardBtn;//办卡
 @property (nonatomic, strong) CustomMenuBtn *applydBtn;//申请用车
 @property (nonatomic, strong) CustomMenuBtn *repayCarBtn;//还车
+@property (nonatomic, strong) UIView *topLineView;//顶部的线
 
 @end
 
@@ -51,6 +52,8 @@
                                 Selector:@selector(autoLoginSuccessMethods)
                                 Observer:self];
     
+    
+    [self.view addSubview:self.topLineView];
     [self.view addSubview:self.handleCardBtn];
     [self.view addSubview:self.applydBtn];
     [self.view addSubview:self.repayCarBtn];
@@ -122,6 +125,9 @@
         [_handleCardBtn setTag:1 + kMenuButtonBaseTag];
         [_handleCardBtn setTitleColor:hexColor(333333) forState:0];
         [_handleCardBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_handleCardBtn.frame.size.width - 0.6f, 15, .6f, _handleCardBtn.frame.size.height - 30.f)];
+        lineView.backgroundColor = lineColor;
+        [_handleCardBtn addSubview:lineView];
     }
     return _handleCardBtn;
 }
@@ -135,6 +141,10 @@
         [_applydBtn setTag:2 + kMenuButtonBaseTag];
         [_applydBtn setTitleColor:hexColor(333333) forState:0];
         [_applydBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_applydBtn.frame.size.width - 0.6f, 15, .6f, _applydBtn.frame.size.height - 30.f)];
+        lineView.backgroundColor = lineColor;
+        [_applydBtn addSubview:lineView];
+
     }
     return _applydBtn;
 }
@@ -151,7 +161,14 @@
     }
     return _repayCarBtn;
 }
-
+- (UIView *)topLineView
+{
+    if (!_topLineView) {
+        _topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 149.6f, kMainScreenWidth, .6f)];
+        _topLineView.backgroundColor = lineColor;
+    }
+    return _topLineView;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

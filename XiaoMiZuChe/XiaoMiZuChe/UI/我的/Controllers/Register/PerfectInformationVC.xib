@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,12 +8,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PerfectInformationVC">
             <connections>
                 <outlet property="areaLab" destination="yiE-gr-0tn" id="mtt-lF-Oye"/>
+                <outlet property="areaLineView" destination="cxX-3C-LdU" id="eYx-Yd-fig"/>
                 <outlet property="arrowImgView" destination="HZ4-ek-1vd" id="cCG-4n-yEh"/>
                 <outlet property="bottomLine" destination="jjC-er-PcU" id="c68-11-f07"/>
+                <outlet property="cardNumLineView" destination="tNb-4s-4Rt" id="Tu8-QY-64x"/>
                 <outlet property="cardNumText" destination="W9M-Ge-R1R" id="rd5-7L-TDv"/>
+                <outlet property="nameLineView" destination="Bzy-uS-r8l" id="toV-Pw-VVz"/>
                 <outlet property="nameText" destination="orM-bt-EdJ" id="Uic-GB-6WT"/>
                 <outlet property="schoolLab" destination="Aeg-9y-hu1" id="RRb-je-OsN"/>
                 <outlet property="userTypeLab" destination="hUz-dz-wKr" id="CTd-h9-PW4"/>
+                <outlet property="userTypeLineView" destination="fg6-jc-iFA" id="20k-bY-sj9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,7 +28,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bzy-uS-r8l">
                     <rect key="frame" x="40" y="129" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orM-bt-EdJ">
                     <rect key="frame" x="40" y="94" width="240" height="30"/>
@@ -36,7 +40,7 @@
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNb-4s-4Rt">
                     <rect key="frame" x="40" y="170" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入身份证号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W9M-Ge-R1R">
                     <rect key="frame" x="40" y="135" width="240" height="30"/>
@@ -54,7 +58,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxX-3C-LdU">
                     <rect key="frame" x="40" y="210" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="nde-9I-hzi"/>
                     </constraints>
@@ -70,7 +74,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fg6-jc-iFA">
                     <rect key="frame" x="40" y="250" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="GCe-ha-Rcy"/>
                     </constraints>
@@ -83,7 +87,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjC-er-PcU">
                     <rect key="frame" x="40" y="291" width="240" height="1"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="gOO-A1-8J7"/>
                     </constraints>

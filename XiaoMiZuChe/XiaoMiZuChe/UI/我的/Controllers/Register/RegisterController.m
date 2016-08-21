@@ -22,9 +22,18 @@
 @property (weak, nonatomic) IBOutlet UIImageView *codeImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *keyImgView;
 
+@property (weak, nonatomic) IBOutlet UIView *phoneLineView;
+@property (weak, nonatomic) IBOutlet UIView *codeLineView;
+@property (weak, nonatomic) IBOutlet UIView *keyLineView;
+
 @end
 
 @implementation RegisterController
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,21 +93,31 @@
         }
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_phone_active");
+            self.phoneLineView.backgroundColor = hexColor(F08200);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_phone_no");
+            self.phoneLineView.backgroundColor = hexColor(999999);
         }
 
     }else if (textField.tag == 2016){
         if (textField.text.length >0) {
             self.codeImgView.image = kGetImage(@"icon_code_active");
+            self.codeLineView.backgroundColor = hexColor(F08200);
+
         }else {
             self.codeImgView.image = kGetImage(@"icon_code");
+            self.codeLineView.backgroundColor = hexColor(999999);
+
         }
     }else if (textField.tag == 2017){
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
+            self.keyLineView.backgroundColor = hexColor(F08200);
+
         }else {
             self.keyImgView.image = kGetImage(@"icon_pass");
+            self.keyLineView.backgroundColor = hexColor(999999);
+
         }
     }
 }
