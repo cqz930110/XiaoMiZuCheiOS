@@ -77,4 +77,7 @@
  15  获取附近车辆接口
  */
 #define  ARROUNDCARURLSTRING          @"app/map/arroundCar.do"
-
+/*
+ 16  退出账号接口
+ */
+#define  LOGOUTURLSTRING              @"app/logout.do"

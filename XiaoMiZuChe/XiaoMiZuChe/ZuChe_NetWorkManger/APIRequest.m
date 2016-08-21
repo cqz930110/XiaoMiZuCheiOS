@@ -389,6 +389,30 @@
         fail();
     }];
 }
+#pragma mark - 退出账号接口 get请求
++ (void)getLogoutWithURLString:(NSString *)urlStr
+                RequestSuccess:(void (^)())success
+                          fail:(void (^)())fail
+{
+    [SVProgressHUD show];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlStr isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [SVProgressHUD dismiss];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        success();
+    } fail:^{
+        fail();
+        [SVProgressHUD dismiss];
+    }];
+
+}
+
 #pragma mark -
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse

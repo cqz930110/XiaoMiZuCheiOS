@@ -173,6 +173,16 @@
  */
 + (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)())success
                                   fail:(void (^)())fail;
+/**
+ *  退出账号接口 get请求
+ *
+ *  @param urlStr  URL
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)getLogoutWithURLString:(NSString *)urlStr
+                       RequestSuccess:(void (^)())success
+                                 fail:(void (^)())fail;
 
 /**
  *  自动登录

@@ -104,23 +104,30 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (void)LoginSuccessMethods
 {
     DLog(@"登录成功");
-    
+    self.footView.hidden = NO;
     [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 - (void)logOutBtnEvent:(UIButton *)btn
 {WEAKSELF;
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"退出账号" buttonTitles:@[@"退出"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0){
-            DLog(@"退出登录");
-            [USER_D removeObjectForKey:USERNAME];
-            [USER_D removeObjectForKey:USERKEY];
-            [USER_D synchronize];
-            [PublicFunction shareInstance].m_bLogin = NO;
-            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
-
-            [UIView animateWithDuration:0.35f animations:^{
+            
+            NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGOUTURLSTRING];
+            [APIRequest getLogoutWithURLString:urlString RequestSuccess:^{
                 
-                weakSelf.tabBarController.selectedIndex = 0;
+                DLog(@"退出登录");
+                [USER_D removeObjectForKey:USERNAME];
+                [USER_D removeObjectForKey:USERKEY];
+                [USER_D synchronize];
+                [PublicFunction shareInstance].m_bLogin = NO;
+                [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+                
+                [UIView animateWithDuration:0.35f animations:^{
+                    
+                    weakSelf.tabBarController.selectedIndex = 0;
+                }];
+                
+            } fail:^{
             }];
         }
     }];
