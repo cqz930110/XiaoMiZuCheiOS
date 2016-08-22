@@ -12,6 +12,7 @@
 #import <AMapNaviKit/AMapNaviKit.h>
 #import "AMapLocationKit.h"
 #import <MapKit/MapKit.h>
+#import "NearCardata.h"
 
 @interface GPSMapViewController ()<AMapLocationManagerDelegate,MAMapViewDelegate>
 
@@ -28,6 +29,8 @@
     // Do any additional setup after loading the view from its nib.
     
     [self initUI];
+    [self getArroundCarRequest];
+
 }
 #pragma mark - private methods
 - (void)initUI{
@@ -64,16 +67,54 @@
 }
 #pragma mark -
 - (void)getArroundCarRequest
-{
+{WEAKSELF;
     NSInteger lonint = _userLocation.coordinate.longitude * 1000000;
     NSInteger latint = _userLocation.coordinate.latitude * 1000000;
     NSString *lon = [NSString stringWithFormat:@"%ld",lonint];
     NSString *lat = [NSString stringWithFormat:@"%ld",latint];
 
-    [APIRequest getArroundCarWithLon:lon withLat:lat RequestSuccess:^{
+    [APIRequest getArroundCarWithLon:lon withLat:lat RequestSuccess:^(NSArray *arrays) {
         
+        if (arrays.count > 0) {
+            [arrays enumerateObjectsUsingBlock:^(NearCardata *model, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                CLLocationCoordinate2D coordinate = {[model.lat integerValue]/1000000.0, [model.lon integerValue]/1000000.0};
+                MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
+                [annotation setCoordinate:coordinate];
+                [annotation setTitle:model.carportName];
+                [annotation setSubtitle:model.distance];
+                [weakSelf.mapView addAnnotation:annotation];
+                if (idx == arrays.count - 1) {
+                    [weakSelf.mapView setCenterCoordinate:coordinate animated:YES];
+                    DLog(@"数量是－－－－－－%ld",weakSelf.mapView.annotations.count);
+                }
+            }];
+        }
     } fail:^{
+        
     }];
+}
+#pragma mark - MAMapViewDelegate
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:reuseIndetifier];
+        }
+//        // 设置为NO，用以调用自定义的calloutView
+//        annotationView.canShowCallout = NO;
+        annotationView.canShowCallout= YES;
+        annotationView.image = [UIImage imageNamed:@"icon_ebike_online"];
+        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        annotationView.centerOffset = CGPointMake(0, -18);
+        return annotationView;
+    }
+    return nil;
 }
 #pragma mark - getters and setters
 - (MAMapView *)mapView

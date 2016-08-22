@@ -11,6 +11,7 @@
 #import "SchoolData.h"//学校
 #import "GcNoticeUtil.h"
 #import "BasicData.h"
+#import "NearCardata.h"//附近车辆
 
 @implementation APIRequest
 
@@ -356,9 +357,34 @@
     }];
 }
 #pragma mark - 获取附近车辆接口
-+ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)())success
-                        fail:(void (^)())fail
++ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)(NSArray *arrays))success fail:(void (^)())fail
 {
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"NearCarCount" ofType:@"txt"];
+//    NSData *data = [NSData dataWithContentsOfFile:path];
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//    NSUInteger errorcode = [dict[@"code"] integerValue];
+//    NSString *msg = dict[@"errmsg"];
+//    if (errorcode !=1) {
+//        [JKPromptView showWithImageName:nil message:msg];
+//        fail();
+//        return;
+//    }
+//    NSArray *arr = dict[@"data"];
+//    if (arr.count == 0) {
+//        [JKPromptView showWithImageName:nil message:msg];
+//        fail();
+//        return;
+//    }
+//    
+//    NSMutableArray *arrays = [NSMutableArray array];
+//    [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
+//        [arrays addObject:model];
+//    }];
+//    success(arrays);
+
     [SVProgressHUD show];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,ARROUNDCARURLSTRING];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:lon,@"lon",lat,@"lat", nil];
@@ -370,20 +396,22 @@
         if (errorcode !=1) {
             [JKPromptView showWithImageName:nil message:msg];
             fail();
-            return ;
+            return;
+        }
+        NSArray *arr = dict[@"data"];
+        if (arr.count == 0) {
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return;
         }
         
         NSMutableArray *arrays = [NSMutableArray array];
-        NSArray *arr = jsonDic[@"data"];
-        [arrays addObjectsFromArray:arr];
-        if (arrays.count == 0) {
-            [JKPromptView showWithImageName:nil message:msg];
-            return ;
-        }
-        
-        [JKPromptView showWithImageName:nil message:msg];
-
-        success();
+        [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
+            [arrays addObject:model];
+        }];
+        success(arrays);
     } fail:^{
         [SVProgressHUD dismiss];
         fail();

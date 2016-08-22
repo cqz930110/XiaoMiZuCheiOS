@@ -63,7 +63,7 @@
     });
     [APIRequest automaticLoginEventResponse];
 
-//    [NSThread sleepForTimeInterval:2.f];
+    [NSThread sleepForTimeInterval:2.f];
     //tabbar
    
     self.tabBarControllerConfig = [[ZCTabBarControllerConfig alloc] init];

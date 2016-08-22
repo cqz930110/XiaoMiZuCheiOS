@@ -24,6 +24,7 @@
     TTVIEW_RELEASE_SAFELY(_vipCardImgView);
     TTVIEW_RELEASE_SAFELY(_immediatelyBtn);
 }
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     

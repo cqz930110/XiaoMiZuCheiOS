@@ -171,7 +171,7 @@
  *  @param success 成功回调
  *  @param fail    失败回调
  */
-+ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)())success
++ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)(NSArray *arrays))success
                                   fail:(void (^)())fail;
 /**
  *  退出账号接口 get请求

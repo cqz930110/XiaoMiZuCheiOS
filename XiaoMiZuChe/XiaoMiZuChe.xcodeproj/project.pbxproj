@@ -111,6 +111,7 @@
 		1826DCCF1D5DACCB007A0C45 /* wifi_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1826DCCD1D5DACCB007A0C45 /* wifi_pic.png */; };
 		182E2A2B1D5B060F00F68B9C /* XMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2A1D5B060F00F68B9C /* XMAlertView.m */; };
 		182E2A2E1D5B065500F68B9C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E2A2D1D5B065500F68B9C /* EditViewController.m */; };
+		183E2B5A1D6AA1B900982D1D /* NearCarCount.txt in Resources */ = {isa = PBXBuildFile; fileRef = 183E2B591D6AA1B900982D1D /* NearCarCount.txt */; };
 		184C297B1D2BB22E00771220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297A1D2BB22E00771220 /* main.m */; };
 		184C297E1D2BB22E00771220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C297D1D2BB22E00771220 /* AppDelegate.m */; };
 		184C29861D2BB22E00771220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184C29851D2BB22E00771220 /* Assets.xcassets */; };
@@ -331,6 +332,7 @@
 		182E2A2A1D5B060F00F68B9C /* XMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMAlertView.m; sourceTree = "<group>"; };
 		182E2A2C1D5B065500F68B9C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		182E2A2D1D5B065500F68B9C /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		183E2B591D6AA1B900982D1D /* NearCarCount.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NearCarCount.txt; sourceTree = "<group>"; };
 		184C29761D2BB22E00771220 /* XiaoMiZuChe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoMiZuChe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C297A1D2BB22E00771220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		184C297C1D2BB22E00771220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				18EE9F1B1D5888AC00F217BD /* NSJSONSerialization+LYJSON.m */,
 				18EE9F011D5854F400F217BD /* APIRequest.h */,
 				18EE9F021D5854F400F217BD /* APIRequest.m */,
+				183E2B591D6AA1B900982D1D /* NearCarCount.txt */,
 			);
 			path = ZuChe_NetWorkManger;
 			sourceTree = "<group>";
@@ -1480,6 +1483,7 @@
 				1826DCCF1D5DACCB007A0C45 /* wifi_pic.png in Resources */,
 				101A7D681D5EFB6A005D55BE /* CarRentalViewController.xib in Resources */,
 				184C29861D2BB22E00771220 /* Assets.xcassets in Resources */,
+				183E2B5A1D6AA1B900982D1D /* NearCarCount.txt in Resources */,
 				107821991D521FA6009DE1D2 /* icon_traffic_close@2x.png in Resources */,
 				107821AB1D521FA6009DE1D2 /* icon_id@2x.png in Resources */,
 				107821AE1D521FA6009DE1D2 /* icon_logo@2x.png in Resources */,
