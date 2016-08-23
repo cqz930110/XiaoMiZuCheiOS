@@ -165,6 +165,7 @@
 		189EC4941D5044C700D536B9 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4921D5044C700D536B9 /* MineTableViewCell.m */; };
 		189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4931D5044C700D536B9 /* MineTableViewCell.xib */; };
 		189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4BE1D50702B00D536B9 /* SettingTabCell.m */; };
+		18B2E15E1D6BEBB90076B597 /* police_btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B2E15D1D6BEBB90076B597 /* police_btn_close@2x.png */; };
 		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
 		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18EE9F031D5854F400F217BD /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F021D5854F400F217BD /* APIRequest.m */; };
@@ -444,6 +445,7 @@
 		189EC4931D5044C700D536B9 /* MineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineTableViewCell.xib; sourceTree = "<group>"; };
 		189EC4BD1D50702B00D536B9 /* SettingTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTabCell.h; sourceTree = "<group>"; };
 		189EC4BE1D50702B00D536B9 /* SettingTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTabCell.m; sourceTree = "<group>"; };
+		18B2E15D1D6BEBB90076B597 /* police_btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "police_btn_close@2x.png"; sourceTree = "<group>"; };
 		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				107821531D521FA6009DE1D2 /* icon_satellite@2x.png */,
 				107821541D521FA6009DE1D2 /* icon_satellite_active@2x.png */,
 				107821551D521FA6009DE1D2 /* icon_traffic_close@2x.png */,
+				18B2E15D1D6BEBB90076B597 /* police_btn_close@2x.png */,
 				107821561D521FA6009DE1D2 /* icon_traffic_open@2x.png */,
 			);
 			path = MapImg;
@@ -1505,6 +1508,7 @@
 				107821AF1D521FA6009DE1D2 /* icon_menu_hireCar@2x.png in Resources */,
 				107821B51D521FA6009DE1D2 /* icon_menu_shop@2x.png in Resources */,
 				107821C11D52272B009DE1D2 /* AboutViewController.xib in Resources */,
+				18B2E15E1D6BEBB90076B597 /* police_btn_close@2x.png in Resources */,
 				1078218C1D521FA6009DE1D2 /* icon_code@2x.png in Resources */,
 				107821A21D521FA6009DE1D2 /* bg_alipay@2x.png in Resources */,
 				107821AA1D521FA6009DE1D2 /* icon_ebike_active@2x.png in Resources */,

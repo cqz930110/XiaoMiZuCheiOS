@@ -11,11 +11,11 @@
 #import "GcNoticeUtil.h"
 #import "CustomMenuBtn.h"
 #import "HandleCarViewController.h"
-
+#import "XMAlertView.h"
 #define BUTTONWITH    ([UIScreen mainScreen].bounds.size.width - 1.2f)/3.f
 #define kMenuButtonBaseTag 7700
 
-@interface HomeViewController ()
+@interface HomeViewController ()<XMAlertViewPro>
 
 @property (nonatomic, strong) CustomMenuBtn *handleCardBtn;//办卡
 @property (nonatomic, strong) CustomMenuBtn *applydBtn;//申请用车
@@ -103,16 +103,26 @@
                 [JKPromptView showWithImageName:nil message:@"请您先登录账号,再进行还车"];
                 return;
             }
-            [APIRequest getUserCarRecordRequestSuccess:^{
-                
-            } fail:^{
-                
-            }];
+            
+            UIWindow *window = [QZManager getWindow];
+            XMAlertView *alertView = [[XMAlertView alloc] initWithVerificationCodeWithStyle:XMAlertViewStyleVerCode];
+            alertView.delegate = self;
+            [window addSubview:alertView];
+
         }
             break;
         default:
             break;
     }
+}
+#pragma mark - 
+- (void)alertView:(XMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+//    [APIRequest getUserCarRecordRequestSuccess:^{
+//        
+//    } fail:^{
+//        
+//    }];
 }
 #pragma mark - getters and setters
 - (CustomMenuBtn *)handleCardBtn

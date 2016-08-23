@@ -25,7 +25,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3f];
         
         _tit = tit;
         _msg = msg;
@@ -42,7 +42,6 @@
         self.zd_superView.layer.cornerRadius = 5.f;
         self.zd_superView.clipsToBounds = YES;
         [self addSubview:self.zd_superView];
-        
         
         UIWindow *window = [QZManager getWindow];
         [window addSubview:self];

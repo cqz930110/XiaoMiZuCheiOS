@@ -41,7 +41,10 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    if ([PublicFunction shareInstance].m_bLogin == YES) {
+        
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 #pragma mark - private methods
 - (void)initUI
@@ -112,7 +115,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"退出账号" buttonTitles:@[@"退出"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0){
             
-            NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGOUTURLSTRING];
+            NSString *urlString = [NSString stringWithFormat:@"%@%@?userId=%@",kProjectBaseUrl,LOGOUTURLSTRING,[PublicFunction shareInstance].m_user.userId];
             [APIRequest getLogoutWithURLString:urlString RequestSuccess:^{
                 
                 DLog(@"退出登录");
