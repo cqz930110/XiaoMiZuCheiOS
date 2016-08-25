@@ -48,7 +48,7 @@
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     });
     
     NSDictionary *dict = @{@"format": @"json"};
@@ -94,7 +94,7 @@
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     });
     
     // 设置超时时间
@@ -156,7 +156,7 @@
     [manager.requestSerializer setValue:[PublicFunction shareInstance].m_user.userToken forHTTPHeaderField:@"Authorization"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     });
 
     [manager POST:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)

@@ -59,8 +59,8 @@
     _area       = @"";
     _schoolDict = [NSMutableDictionary dictionary];
     self.cardNumText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    self.nameText.textColor = thirdColor;
-    self.cardNumText.textColor = thirdColor;
+    self.nameText.textColor = THIRDCOLOR;
+    self.cardNumText.textColor = THIRDCOLOR;
     [self.nameText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
     [self.cardNumText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
     
@@ -115,7 +115,7 @@
     pickView.block = ^(NSString *schoolString)
     {
         weakSelf.bottomLine.backgroundColor = hexColor(F08200);
-        weakSelf.schoolLab.textColor = thirdColor;
+        weakSelf.schoolLab.textColor = THIRDCOLOR;
         weakSelf.schoolLab.text = schoolString;
     };
 }
@@ -127,7 +127,7 @@
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择用户类型" buttonTitles:@[@"学校用户",@"普通用户"] redButtonIndex:index clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             weakSelf.userTypeLab.text = @"学校用户";
-            weakSelf.userTypeLab.textColor = thirdColor;
+            weakSelf.userTypeLab.textColor = THIRDCOLOR;
             [weakSelf whetherOrNotVisible:NO];
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
@@ -138,7 +138,7 @@
             [weakSelf loadSchoolData];
         }else if (buttonIndex == 1){
             weakSelf.userTypeLab.text = @"普通用户";
-            weakSelf.userTypeLab.textColor = thirdColor;
+            weakSelf.userTypeLab.textColor = THIRDCOLOR;
             [weakSelf whetherOrNotVisible:YES];
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
@@ -172,7 +172,7 @@
     pickView.pickBlock = ^(NSString *provice,NSString *city,NSString *area){
         
         weakSelf.areaLineView.backgroundColor = hexColor(F08200);
-        weakSelf.areaLab.textColor = thirdColor;
+        weakSelf.areaLab.textColor = THIRDCOLOR;
         DLog(@"地区是－－－%@:%@,%@",provice,city,area);
         _province = provice;_city = city;
         NSString *tempStr = [NSString stringWithFormat:@"%@-%@-%@",provice,city,area];
@@ -271,7 +271,7 @@
         _detailAddressText.keyboardType = UIKeyboardTypeASCIICapable;
         _detailAddressText.returnKeyType = UIReturnKeyDone;
         _detailAddressText.placeholder = @"请输入详细地址";
-        _detailAddressText.textColor = thirdColor;
+        _detailAddressText.textColor = THIRDCOLOR;
         [_detailAddressText setValue:NINEColor forKeyPath:@"_placeholderLabel.textColor"];
     }
     return _detailAddressText;

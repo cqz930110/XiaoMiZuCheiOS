@@ -48,15 +48,15 @@
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     DLog(@"开始加载");
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUD];
     DLog(@"加载完成");
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUD];
     
     [_webView loadHtml:@"error"];
     _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(againLoad)];

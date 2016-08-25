@@ -20,7 +20,6 @@
 #import "DefineHeader.h"
 #import "UIImageView+WebCache.h"
 
-#import "SVProgressHUD.h"
 #import "ZhouDao_NetWorkManger.h"
 #import "MJRefresh.h"
 #import "QZPathDefine.h"
@@ -37,6 +36,7 @@
 #import "PublicFunction.h"
 #import "FDAlertView.h"
 #import "GcNoticeUtil.h"
+#import "MBProgressHUD+Tools.h"
 
 /**
  *  短信

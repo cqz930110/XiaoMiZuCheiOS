@@ -166,6 +166,13 @@
 		189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4931D5044C700D536B9 /* MineTableViewCell.xib */; };
 		189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4BE1D50702B00D536B9 /* SettingTabCell.m */; };
 		18B2E15E1D6BEBB90076B597 /* police_btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B2E15D1D6BEBB90076B597 /* police_btn_close@2x.png */; };
+		18BDD43F1D6EDFFB001541E1 /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD4371D6EDFFB001541E1 /* Checkmark@2x.png */; };
+		18BDD4401D6EDFFB001541E1 /* Checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD4381D6EDFFB001541E1 /* Checkmark@3x.png */; };
+		18BDD4411D6EDFFB001541E1 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD4391D6EDFFB001541E1 /* error@2x.png */; };
+		18BDD4421D6EDFFB001541E1 /* error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD43A1D6EDFFB001541E1 /* error@3x.png */; };
+		18BDD4431D6EDFFB001541E1 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD43B1D6EDFFB001541E1 /* info@2x.png */; };
+		18BDD4441D6EDFFB001541E1 /* info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD43C1D6EDFFB001541E1 /* info@3x.png */; };
+		18BDD4451D6EDFFB001541E1 /* MBProgressHUD+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BDD43E1D6EDFFB001541E1 /* MBProgressHUD+Tools.m */; };
 		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
 		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18EE9F031D5854F400F217BD /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F021D5854F400F217BD /* APIRequest.m */; };
@@ -446,6 +453,14 @@
 		189EC4BD1D50702B00D536B9 /* SettingTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTabCell.h; sourceTree = "<group>"; };
 		189EC4BE1D50702B00D536B9 /* SettingTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTabCell.m; sourceTree = "<group>"; };
 		18B2E15D1D6BEBB90076B597 /* police_btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "police_btn_close@2x.png"; sourceTree = "<group>"; };
+		18BDD4371D6EDFFB001541E1 /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
+		18BDD4381D6EDFFB001541E1 /* Checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@3x.png"; sourceTree = "<group>"; };
+		18BDD4391D6EDFFB001541E1 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		18BDD43A1D6EDFFB001541E1 /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
+		18BDD43B1D6EDFFB001541E1 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		18BDD43C1D6EDFFB001541E1 /* info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
+		18BDD43D1D6EDFFB001541E1 /* MBProgressHUD+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Tools.h"; sourceTree = "<group>"; };
+		18BDD43E1D6EDFFB001541E1 /* MBProgressHUD+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Tools.m"; sourceTree = "<group>"; };
 		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -1267,6 +1282,7 @@
 			children = (
 				1000D8471D58AB640040FE32 /* APIKey.h */,
 				1000D8481D58AB640040FE32 /* areas.plist */,
+				18BDD4361D6EDFFB001541E1 /* MBProgressHUDTools */,
 				1024B07E1D69B139008B3E99 /* JPUSHServiceLib */,
 				1826DCCB1D5DACCB007A0C45 /* Error */,
 				1000D8491D58AB640040FE32 /* JKCountDownButton */,
@@ -1304,6 +1320,21 @@
 				182E2A2D1D5B065500F68B9C /* EditViewController.m */,
 			);
 			path = mineSetting;
+			sourceTree = "<group>";
+		};
+		18BDD4361D6EDFFB001541E1 /* MBProgressHUDTools */ = {
+			isa = PBXGroup;
+			children = (
+				18BDD4371D6EDFFB001541E1 /* Checkmark@2x.png */,
+				18BDD4381D6EDFFB001541E1 /* Checkmark@3x.png */,
+				18BDD4391D6EDFFB001541E1 /* error@2x.png */,
+				18BDD43A1D6EDFFB001541E1 /* error@3x.png */,
+				18BDD43B1D6EDFFB001541E1 /* info@2x.png */,
+				18BDD43C1D6EDFFB001541E1 /* info@3x.png */,
+				18BDD43D1D6EDFFB001541E1 /* MBProgressHUD+Tools.h */,
+				18BDD43E1D6EDFFB001541E1 /* MBProgressHUD+Tools.m */,
+			);
+			path = MBProgressHUDTools;
 			sourceTree = "<group>";
 		};
 		18E12EF51D3F273700E02877 /* Login */ = {
@@ -1460,6 +1491,7 @@
 				101A7D6D1D5F03E4005D55BE /* GPSMapViewController.xib in Resources */,
 				1078218F1D521FA6009DE1D2 /* icon_ebike_online@2x.png in Resources */,
 				185930F51D3490EB00F948D4 /* SearchWebView.js in Resources */,
+				18BDD4441D6EDFFB001541E1 /* info@3x.png in Resources */,
 				107821961D521FA6009DE1D2 /* icon_plane_active@2x.png in Resources */,
 				107821821D521FA6009DE1D2 /* icon_battery_percent_100@2x.png in Resources */,
 				107821B11D521FA6009DE1D2 /* icon_menu_home@2x.png in Resources */,
@@ -1483,6 +1515,7 @@
 				1078217F1D521FA6009DE1D2 /* bg_unlock_btn@2x.png in Resources */,
 				107821981D521FA6009DE1D2 /* icon_satellite_active@2x.png in Resources */,
 				18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */,
+				18BDD43F1D6EDFFB001541E1 /* Checkmark@2x.png in Resources */,
 				1826DCCF1D5DACCB007A0C45 /* wifi_pic.png in Resources */,
 				101A7D681D5EFB6A005D55BE /* CarRentalViewController.xib in Resources */,
 				184C29861D2BB22E00771220 /* Assets.xcassets in Resources */,
@@ -1500,6 +1533,7 @@
 				107821B71D521FA6009DE1D2 /* icon_pass@2x.png in Resources */,
 				107821BC1D52242A009DE1D2 /* icon_logo_about@2x.png in Resources */,
 				107821B21D521FA6009DE1D2 /* icon_menu_home_active@2x.png in Resources */,
+				18BDD4421D6EDFFB001541E1 /* error@3x.png in Resources */,
 				107821831D521FA6009DE1D2 /* icon_battery_percent_10@2x.png in Resources */,
 				107821A61D521FA6009DE1D2 /* bg_wxpay@2x.png in Resources */,
 				107821B61D521FA6009DE1D2 /* icon_menu_shop_active@2x.png in Resources */,
@@ -1507,6 +1541,7 @@
 				1078217B1D521FA6009DE1D2 /* bg_back_car_btn@2x.png in Resources */,
 				107821AF1D521FA6009DE1D2 /* icon_menu_hireCar@2x.png in Resources */,
 				107821B51D521FA6009DE1D2 /* icon_menu_shop@2x.png in Resources */,
+				18BDD4411D6EDFFB001541E1 /* error@2x.png in Resources */,
 				107821C11D52272B009DE1D2 /* AboutViewController.xib in Resources */,
 				18B2E15E1D6BEBB90076B597 /* police_btn_close@2x.png in Resources */,
 				1078218C1D521FA6009DE1D2 /* icon_code@2x.png in Resources */,
@@ -1518,6 +1553,7 @@
 				107821AC1D521FA6009DE1D2 /* icon_id_active@2x.png in Resources */,
 				1000D8711D58AB640040FE32 /* areas.plist in Resources */,
 				107821AD1D521FA6009DE1D2 /* icon_left_arrow@2x.png in Resources */,
+				18BDD4431D6EDFFB001541E1 /* info@2x.png in Resources */,
 				107821971D521FA6009DE1D2 /* icon_satellite@2x.png in Resources */,
 				107821881D521FA6009DE1D2 /* icon_battery_percent_60@2x.png in Resources */,
 				107821B01D521FA6009DE1D2 /* icon_menu_hireCar_active@2x.png in Resources */,
@@ -1531,6 +1567,7 @@
 				10B6D0431D4367CE00800E32 /* RegisterController.xib in Resources */,
 				1078218B1D521FA6009DE1D2 /* icon_battery_percent_90@2x.png in Resources */,
 				185930DF1D3490EB00F948D4 /* picker_alert_sigh@2x.png in Resources */,
+				18BDD4401D6EDFFB001541E1 /* Checkmark@3x.png in Resources */,
 				1826DCCE1D5DACCB007A0C45 /* error.html in Resources */,
 				107821911D521FA6009DE1D2 /* icon_map_switch@2x.png in Resources */,
 				1078219F1D521FA6009DE1D2 /* icon_logout@2x.png in Resources */,
@@ -1633,6 +1670,7 @@
 				1000D8741D58AB640040FE32 /* MSWeakTimer.m in Sources */,
 				185930F31D3490EB00F948D4 /* UIColor+Helper.m in Sources */,
 				185930EB1D3490EB00F948D4 /* NSString+Emoji.m in Sources */,
+				18BDD4451D6EDFFB001541E1 /* MBProgressHUD+Tools.m in Sources */,
 				101A7D601D5EE32D005D55BE /* HandleCarViewController.m in Sources */,
 				185930DD1D3490EB00F948D4 /* GcNoticeUtil.m in Sources */,
 				185930EC1D3490EB00F948D4 /* NSString+MHCommon.m in Sources */,

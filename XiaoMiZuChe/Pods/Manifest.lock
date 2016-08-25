@@ -35,12 +35,12 @@ PODS:
   - FDFullscreenPopGesture (1.1)
   - IQKeyboardManager (3.3.7)
   - LCActionSheet (1.2.3)
+  - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.10)
   - pop (1.0.9)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
-  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
@@ -52,10 +52,10 @@ DEPENDENCIES:
   - FDFullscreenPopGesture (= 1.1)
   - IQKeyboardManager (~> 3.3.4)
   - LCActionSheet (~> 1.2.0)
+  - MBProgressHUD (~> 1.0.0)
   - MJRefresh (~> 3.1.0)
   - pop (~> 1.0.9)
   - SDWebImage (~> 3.7.5)
-  - SVProgressHUD (~> 2.0.3)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -69,9 +69,9 @@ SPEC CHECKSUMS:
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   LCActionSheet: 690882cd8b9a6713f1b2881c3bb2c7f11954d034
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
 COCOAPODS: 0.39.0

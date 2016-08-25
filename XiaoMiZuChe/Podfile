@@ -8,7 +8,9 @@ pod 'LCActionSheet', '~> 1.2.0'
 #tabbar
 pod 'CYLTabBarController', '~> 1.5.6'     #TabBar1.2.1
 pod 'MJRefresh', '~> 3.1.0'
-pod 'SVProgressHUD', '~> 2.0.3'
+#pod 'SVProgressHUD', '~> 2.0.3'
+pod 'MBProgressHUD', '~> 1.0.0'
+
 #滑动返回
 pod 'FDFullscreenPopGesture', '1.1'
 

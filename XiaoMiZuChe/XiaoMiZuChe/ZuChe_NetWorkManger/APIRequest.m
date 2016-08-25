@@ -76,12 +76,12 @@
                RequestSuccess:(void (^)())success
                          fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",clientId,@"clientId",platform,@"platform", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,REGISTERUSERURL];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -101,7 +101,7 @@
 
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -110,11 +110,11 @@
                      RequestSuccess:(void (^)())success
                                fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,PERFECTUSERURL];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dictionary isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -124,7 +124,7 @@
         }
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -136,12 +136,12 @@
                      RequestSuccess:(void (^)())success
                                fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",clientId,@"clientId",platform,@"platform", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGINURLSTRING];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -161,7 +161,7 @@
         [USER_D synchronize];
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -171,13 +171,13 @@
                  RequestSuccess:(void (^)())success
                            fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:userId,@"userId",password,@"password", nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,RESETPASSWORD];
     
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -189,7 +189,7 @@
         [USER_D synchronize];
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -216,11 +216,11 @@
                RequestSuccess:(void (^)(id obj))success
                          fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@?userId=%@",kProjectBaseUrl,GETUSERINFOURL,userId];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -233,7 +233,7 @@
         success(model);
     } fail:^{
         fail();
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     }];
 }
 
@@ -243,10 +243,10 @@
                     RequestSuccess:(void (^)())success
                               fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dictionary isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -256,7 +256,7 @@
         }
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -264,12 +264,12 @@
 + (void)updateHeadPicWithParaDict:(NSDictionary *)dictionary
                    RequestSuccess:(void (^)(NSString *headUrlString))success
                              fail:(void (^)())fail
-{    [SVProgressHUD show];
+{    [MBProgressHUD showMBLoadingWithText:nil];
     NSDictionary *dict1  = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId" ,nil];
 
     [ZhouDao_NetWorkManger postUploadWithUrl:[NSString stringWithFormat:@"%@%@",kProjectBaseUrl,UPDATEHEADPICURL]  parameters:dict1 WithImgDic:dictionary success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -282,18 +282,18 @@
         success(basicModel.headPic);
     } fail:^{
         fail();
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     }];
 }
 #pragma mark - 获取租车卡年费接口
 + (void)getVipYearPriceRequestSuccess:(void (^)(NSString *moneyString))success
                                  fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,GETVIPYEARPRICEURL];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -304,7 +304,7 @@
         NSString *moneyString = jsonDic[@"data"];
         success(moneyString);
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -312,13 +312,13 @@
 + (void)handleVipCardRequestSuccess:(void (^)())success
                                fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,HANDLEVIPCARDURL];
     NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId", nil];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];
@@ -328,7 +328,7 @@
         }
         success();
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -336,13 +336,13 @@
 + (void)getUserCarRecordRequestSuccess:(void (^)())success
                                   fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *userId = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
     NSString *urlString = [NSString stringWithFormat:@"%@%@userId%@",kProjectBaseUrl,GETUSERCARRECORDURL,userId];
     
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -353,7 +353,7 @@
         success();
     } fail:^{
         fail();
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     }];
 }
 #pragma mark - 获取附近车辆接口
@@ -385,12 +385,12 @@
 //    }];
 //    success(arrays);
 
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,ARROUNDCARURLSTRING];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:lon,@"lon",lat,@"lat", nil];
     [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         if (errorcode !=1) {
@@ -413,7 +413,7 @@
         }];
         success(arrays);
     } fail:^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         fail();
     }];
 }
@@ -422,10 +422,10 @@
                 RequestSuccess:(void (^)())success
                           fail:(void (^)())fail
 {
-    [SVProgressHUD show];
+    [MBProgressHUD showMBLoadingWithText:nil];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlStr isNeedHead:YES success:^(NSDictionary *jsonDic) {
         
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         NSString *msg = jsonDic[@"errmsg"];
         [JKPromptView showWithImageName:nil message:msg];
@@ -436,7 +436,7 @@
         success();
     } fail:^{
         fail();
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     }];
 
 }
@@ -460,7 +460,7 @@
         NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGINURLSTRING];
         [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
             
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             NSUInteger errorcode = [jsonDic[@"code"] integerValue];
             if (errorcode !=1) {
                 [GcNoticeUtil sendNotification:DECIDEISLOGIN];

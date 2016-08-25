@@ -88,7 +88,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:frame];
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
         [_titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [_titleLabel setTextColor:thirdColor];
+        [_titleLabel setTextColor:THIRDCOLOR];
     }
     return _titleLabel;
 }

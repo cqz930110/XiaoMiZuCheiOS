@@ -136,7 +136,7 @@
         [_handleCardBtn setTitleColor:hexColor(333333) forState:0];
         [_handleCardBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_handleCardBtn.frame.size.width - 0.6f, 15, .6f, _handleCardBtn.frame.size.height - 30.f)];
-        lineView.backgroundColor = lineColor;
+        lineView.backgroundColor = LINECOLOR;
         [_handleCardBtn addSubview:lineView];
     }
     return _handleCardBtn;
@@ -152,7 +152,7 @@
         [_applydBtn setTitleColor:hexColor(333333) forState:0];
         [_applydBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(_applydBtn.frame.size.width - 0.6f, 15, .6f, _applydBtn.frame.size.height - 30.f)];
-        lineView.backgroundColor = lineColor;
+        lineView.backgroundColor = LINECOLOR;
         [_applydBtn addSubview:lineView];
 
     }
@@ -175,7 +175,7 @@
 {
     if (!_topLineView) {
         _topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 149.6f, kMainScreenWidth, .6f)];
-        _topLineView.backgroundColor = lineColor;
+        _topLineView.backgroundColor = LINECOLOR;
     }
     return _topLineView;
 }

@@ -168,7 +168,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (UIView *)footView{
     if (!_footView) {
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 45.2f)];
-        _footView.backgroundColor = lineColor;
+        _footView.backgroundColor = LINECOLOR;
     }
     return _footView;
 }

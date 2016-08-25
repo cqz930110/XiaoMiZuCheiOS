@@ -109,7 +109,7 @@
     if (!_titleLab) {
         _titleLab  = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 120, 20)];
         _titleLab.font = Font_15;
-        _titleLab.textColor = thirdColor;
+        _titleLab.textColor = THIRDCOLOR;
     }
     return _titleLab;
 }
@@ -126,7 +126,7 @@
 {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = lineColor;
+        _lineView.backgroundColor = LINECOLOR;
     }
     return _lineView;
 }

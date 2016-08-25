@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -40,11 +45,6 @@
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,11 +62,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CD58A8B92F725E06BCC0904E8B741EF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2602F3D0DAC534568B6AD7EEA0DD1959</key>
 		<dict>
 			<key>primary</key>
@@ -77,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44D3058EC180BBE1DF0151922718EEAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>51F5DDEF4BEC7A59002C4065BBC4360A</key>
+		<key>4F10B4828170E15717FDFE0536582F5D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>ADBA9A9D7393294216C9390E35ABAD74</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BBD31B258AB88D877D5D602AE3F16E6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CEF38B8F044B2B32B82108547918745E</key>
+		<key>D058B89EB3B3DF45457A2DCD3971AFFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF59CBAF1A6A8BF55732EA11CAB7A565</key>
 		<dict>
 			<key>primary</key>
 			<true/>
