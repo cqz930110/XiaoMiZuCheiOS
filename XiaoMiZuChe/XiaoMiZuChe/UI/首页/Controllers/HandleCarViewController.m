@@ -12,6 +12,9 @@
 #import "APAuthV2Info.h"
 #import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApiManager.h"
+#import "AFNetworking.h"
+#import "WXApiRequestHandler.h"
 
 @interface HandleCarViewController ()<HandleCardViewPro>
 
@@ -67,13 +70,13 @@
     switch (index) {
         case 0:
         {//微信
-            
+            [self payMethodsWithWeiXin];
         }
             break;
         case 1:
         {//支付宝
             
-            [self getOrderInfoAndPay:@"88888" With:@"" Withamount:[NSString stringWithFormat:@"%.2f", 0.01]];
+            [self getOrderInfoAndPay:@"88888" Withamount:[NSString stringWithFormat:@"%.2f", 0.01]];
         }
             break;
         case 2:
@@ -87,8 +90,96 @@
     }
 }
 #pragma mark
+#pragma mark - 微信支付
+- (void)payMethodsWithWeiXin
+{
+    NSString *res = [WXApiRequestHandler jumpToBizPay];
+    if( ![@"" isEqual:res] ){
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"支付失败" message:res delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alter show];
+    }
+
+    
+   /*2
+    NSMutableDictionary *dataDic = [NSMutableDictionary  dictionary];
+    NSMutableString *stamp  = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"timestamp"];
+    //调起微信支付
+    PayReq* req             = [[PayReq alloc] init];
+    req.partnerId           = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"partnerid"];
+    req.prepayId            = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"prepayid"];
+    req.nonceStr            = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"noncestr"];
+    req.timeStamp           = stamp.intValue;
+    req.package             = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"packageValue"];
+    req.sign                = [ [dataDic objectForKey:@"callOrderBean"] objectForKey:@"sign"];
+    [WXApi sendReq:req];
+    */
+
+    /*3
+    ////////////  第一步 统一下单
+    // 添加商品信息
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:WeChatAppID forKey:@"appid"];
+    [dict setObject:@"PayDemo_WeChatPayTest_body" forKey:@"body"];
+    [dict setObject:WeChatMCH_ID forKey:@"mch_id"];
+    [dict setObject:[QZManager getRandomString] forKey:@"nonce_str"];
+    [dict setObject:WeChatNOTIFY_URL forKey:@"notify_url"];
+    [dict setObject:[QZManager getRandomString] forKey:@"out_trade_no"];
+    [dict setObject:[QZManager getIPAddress] forKey:@"spbill_create_ip"];
+    [dict setObject:@"1" forKey:@"total_fee"];
+    [dict setObject:@"APP" forKey:@"trade_type"];
+    
+    // 签名
+    NSDictionary *params = [QZManager partnerSignOrder:dict];
+    // 转化成XML格式 引用三方框架XMLDictionary
+    NSString *postStr = [params XMLString];
+    
+    // 调用微信"统一下单"API
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=ios"]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postStr dataUsingEncoding:NSUTF8StringEncoding]];
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // 转换成Dictionary格式
+        NSDictionary *dict = [NSDictionary dictionaryWithXMLData:responseObject];
+        if(dict != nil)
+        {
+            ////////////  第二步 调起支付接口
+            // 添加调起数据
+            PayReq* req             = [[PayReq alloc] init];
+            req.partnerId           = WeChatMCH_ID;
+            req.prepayId            = [dict objectForKey:@"prepay_id"];
+            req.nonceStr            = [dict objectForKey:@"nonce_str"];
+            req.timeStamp           = [[NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970]] intValue];
+            req.package             = @"Sign=WXPay";
+            
+            // 添加签名数据并生成签名
+            NSMutableDictionary *rdict = [NSMutableDictionary dictionary];
+            [rdict setObject:WeChatAppID forKey:@"appid"];
+            [rdict setObject:req.partnerId forKey:@"partnerid"];
+            [rdict setObject:req.prepayId forKey:@"prepayid"];
+            [rdict setObject:req.nonceStr forKey:@"noncestr"];
+            [rdict setObject:[NSString stringWithFormat:@"%u",(unsigned int)req.timeStamp] forKey:@"timestamp"];
+            [rdict setObject:req.package forKey:@"package"];
+            NSDictionary *result = [QZManager partnerSignOrder:rdict];
+            req.sign                = [result objectForKey:@"sign"];
+            
+            // 调起客户端
+            [WXApi sendReq:req];
+            // 返回结果 在WXApiManager中
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    [[NSOperationQueue mainQueue] addOperation:op];
+    */
+
+}
+
 #pragma mark -支付宝
-- (void)getOrderInfoAndPay:(NSString *)orderNumber With:(NSString *)notifyUrl Withamount:(NSString *)amountM
+- (void)getOrderInfoAndPay:(NSString *)orderNumber Withamount:(NSString *)amountM
 {
     //重要说明
     //这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
@@ -98,7 +189,7 @@
     /*=======================需要填写商户app申请的===================================*/
     /*============================================================================*/
     NSString *appID = @"009999";
-    NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKVColdImSz3zofvrwquFoKjb2ZMMhaHSgKyKP/H0kbb0+1j6qf2WHFCb29O8nR67oUXiN0UCmab3I55mVngSBGna+JnKypciAAygzpticPrV3bfjFJ4KmiAF9N5NS+Z7c+F1ZY6cHMVr6ZWaKaexSKHApmRSR68+XubMgK6QmVVAgMBAAECgYBpqLG8lnkArCtK9C546JcRzUaTJBI+Hx9tm9TkvDAwB6p2s5Q68SDYwP4YL2SKnnJTe5mQp5iCxBH+sbYfJWtNfqAkOuwoi6mfiL+/exQQDJyp+sQqjLx1T4BhhGNKYFTkD+G4Q2gd6VuMDv8lM9sk4m0V6thVdkDLSgIt2cYjoQJBANvpkneyMGkRDfkFOI4EsK1wur0TECUjIhkZycYwHOxSPhLQsluM7QozTgWC8jN58NJQFvIeg8WEphUmjhzKdz0CQQDAYSZm1x+AgS9LVKTGhzA1p7EovDNR1LSKgOG+YPnAzXNyPQfcnRiJ9WSJvwkfhqYN6RLF40X/DJHcTct7dMf5AkADe6mUN8BIibqc7RY+OZjKxnROtlSVIf9SQnRNrUln/M164s9QX+UJOlLMB4zqf83uptIWN6GCqV0wDJJHpnVJAkBagtrAc+IcYatQs+g6h4xFEjqlwbYbgAnZSD3thk67SW5RhylVwIu1DMFalYjDTmR+EvSEKiPalZ1imy9rTExxAkEAixNflSmGiINqyd1VWaHbpFtlg8RTvE9cQNHJytStPcYRovF2TCbPiNV6yNCxJvgA6rx7tpfJfItaYcC2YyfeTA==";
+    NSString *privateKey = @"";
     /*============================================================================*/
     /*============================================================================*/
     /*============================================================================*/
@@ -126,7 +217,7 @@
     order.version = app_build;
     // NOTE: sign_type设置
     order.sign_type = @"RSA";
-    order.notify_url = notifyUrl;// NOTE: (非必填项)支付宝服务器主动通知商户服务器里指定的页面http路径
+    order.notify_url = AlipayBackURL;// NOTE: (非必填项)支付宝服务器主动通知商户服务器里指定的页面http路径
     // NOTE: 商品数据
     order.biz_content = [BizContent new];
     order.biz_content.body = @"租车卡年费支付宝支付";//商品描述

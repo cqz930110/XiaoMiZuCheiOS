@@ -16,6 +16,8 @@ pod 'FDFullscreenPopGesture', '1.1'
 
 #动画
 pod 'pop', '~> 1.0.9'
+#解析xml
+pod 'XMLDictionary', '~> 1.4'
 
 #地图
 #pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)

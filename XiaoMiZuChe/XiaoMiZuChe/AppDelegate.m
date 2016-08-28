@@ -18,11 +18,13 @@
 //推送
 #import "JPUSHService.h"
 
-/**
+/*
  *  短信
  */
 #import "AFNetworkActivityIndicatorManager.h"
+// 支付
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApiManager.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -38,7 +40,7 @@
     [self configureAPIKey];
     [self configurationWindowRootVC];
     //bugly
-    [Bugly startWithAppId:@"485055dfb5"];
+    [Bugly startWithAppId:BuglyAPPID];
     //极光推送
     [self initJPushMethod:launchOptions];
 
@@ -54,7 +56,6 @@
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-     [Bugly startWithAppId:@"此处替换为你的AppId"];
     kDISPATCH_GLOBAL_QUEUE_DEFAULT(^{
         
         //键盘配置
@@ -72,6 +73,11 @@
     [self.window setRootViewController:self.tabBarControllerConfig.tabBarController];
     [self.window makeKeyAndVisible];
 }
+- (void)weiXinRegisterAppInit
+{
+    [WXApi registerApp:WeChatAppID withDescription:@"XiaoMiZuChe"];
+}
+
 #pragma mark - 配置地图
 - (void)configureAPIKey
 {
@@ -256,6 +262,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 #pragma mark -
 #pragma mark - 支付回调
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -264,19 +274,23 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if ([url.host isEqualToString:@"safepay"]) {
         
         [self alipaySDKopenURL:url];
+    }else
+    {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+
     }
     return YES;
 }
 
-// NOTE: 9.0以后使用新API接口
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
-{
-    if ([url.host isEqualToString:@"safepay"]) {
-        
-        [self alipaySDKopenURL:url];
-    }
-    return YES;
-}
+//// NOTE: 9.0以后使用新API接口
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+//{
+//    if ([url.host isEqualToString:@"safepay"]) {
+//        
+//        [self alipaySDKopenURL:url];
+//    }
+//    return YES;
+//}
 #pragma mark -支付宝回调
 - (void)alipaySDKopenURL:(NSURL *)url
 {

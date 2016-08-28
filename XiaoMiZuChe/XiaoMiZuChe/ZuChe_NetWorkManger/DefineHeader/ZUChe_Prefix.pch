@@ -37,6 +37,7 @@
 #import "FDAlertView.h"
 #import "GcNoticeUtil.h"
 #import "MBProgressHUD+Tools.h"
+#import <XMLDictionary/XMLDictionary.h>
 
 /**
  *  短信
@@ -47,6 +48,29 @@
 #define USERKEY                           @"userLoginKey"
 #define DECIDEISLOGIN                     @"autoLoginSuccess"
 #define LOGINSUCCESS                      @"LoginSuccessevent"
+
+/**
+ *  Bugly APPID
+ */
+#define BuglyAPPID                        @"485055dfb5"
+/**
+ *  支付
+ */
+#define AlipayAPPID                       @"2014072300007148"
+#define AlipayRSA_PRIVATE                 @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKVColdImSz3zofvrwquFoKjb2ZMMhaHSgKyKP/H0kbb0+1j6qf2WHFCb29O8nR67oUXiN0UCmab3I55mVngSBGna+JnKypciAAygzpticPrV3bfjFJ4KmiAF9N5NS+Z7c+F1ZY6cHMVr6ZWaKaexSKHApmRSR68+XubMgK6QmVVAgMBAAECgYBpqLG8lnkArCtK9C546JcRzUaTJBI+Hx9tm9TkvDAwB6p2s5Q68SDYwP4YL2SKnnJTe5mQp5iCxBH+sbYfJWtNfqAkOuwoi6mfiL+/exQQDJyp+sQqjLx1T4BhhGNKYFTkD+G4Q2gd6VuMDv8lM9sk4m0V6thVdkDLSgIt2cYjoQJBANvpkneyMGkRDfkFOI4EsK1wur0TECUjIhkZycYwHOxSPhLQsluM7QozTgWC8jN58NJQFvIeg8WEphUmjhzKdz0CQQDAYSZm1x+AgS9LVKTGhzA1p7EovDNR1LSKgOG+YPnAzXNyPQfcnRiJ9WSJvwkfhqYN6RLF40X/DJHcTct7dMf5AkADe6mUN8BIibqc7RY+OZjKxnROtlSVIf9SQnRNrUln/M164s9QX+UJOlLMB4zqf83uptIWN6GCqV0wDJJHpnVJAkBagtrAc+IcYatQs+g6h4xFEjqlwbYbgAnZSD3thk67SW5RhylVwIu1DMFalYjDTmR+EvSEKiPalZ1imy9rTExxAkEAixNflSmGiINqyd1VWaHbpFtlg8RTvE9cQNHJytStPcYRovF2TCbPiNV6yNCxJvgA6rx7tpfJfItaYcC2YyfeTA=="
+//获取服务器端支付数据地址（商户自定义）
+#define AlipayBackURL                     @""
+//////////////////////////微信//////////////////////////////
+#define WeChatAppID                       @"wxb4ba3c02aa476ea1"
+#define WeChatAppSecret                   @""
+//商户号，填写商户对应参数
+#define WeChatMCH_ID                      @""
+//商户API密钥，填写相应参数
+#define WeChatPARTNER_ID                  @""
+//支付结果回调页面
+#define WeChatNOTIFY_URL                  @""
+
+
 
 
 #endif

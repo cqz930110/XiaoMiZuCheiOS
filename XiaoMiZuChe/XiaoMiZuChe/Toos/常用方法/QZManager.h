@@ -404,6 +404,18 @@ singleton_for_header(QZManager)
  *  获取设备 IP 地址
  */
 + (NSString *)getIPAddress;
+/**
+ * 获取32为随机字符串
+ */
++ (NSString *)getRandomString;
+/**
+ * 签名，并返回添加签名的完整字典
+ */
++ (NSMutableDictionary *)partnerSignOrder:(NSDictionary*)paramDic;
+/**
+ * MD5 签名
+ */
++ (NSString *)signString:(NSString*)origString;
 
 #pragma mark - 判断字符串中是否含有空格
 /**
