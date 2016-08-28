@@ -83,7 +83,9 @@
 }
 - (void)cancelOrSureEvent{
     
-    _navBlock();
+    if (_navBlock) {
+        _navBlock();
+    }
     [self zd_Windowclose];
 }
 #pragma mark -关闭

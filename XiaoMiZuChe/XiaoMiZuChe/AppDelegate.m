@@ -22,6 +22,7 @@
  *  短信
  */
 #import "AFNetworkActivityIndicatorManager.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -252,8 +253,53 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     //        }
     //    }
     
+}
+#pragma mark -
+#pragma mark - 支付回调
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [self alipaySDKopenURL:url];
+    }
+    return YES;
+}
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [self alipaySDKopenURL:url];
+    }
+    return YES;
+}
+#pragma mark -支付宝回调
+- (void)alipaySDKopenURL:(NSURL *)url
+{
+    // 支付跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        
+        //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
+        NSString *message = @"";
+        switch([[resultDic objectForKey:@"resultStatus"] integerValue])
+        {
+            case 9000:message = @"订单支付成功";break;
+            case 8000:message = @"正在处理中";break;
+            case 4000:message = @"订单支付失败";break;
+            case 6001:message = @"用户中途取消";break;
+            case 6002:message = @"网络连接错误";break;
+            default:message = @"未知错误";
+        }
+        
+        DLog(@"result = %@",resultDic);
+    }];
     
 }
+
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

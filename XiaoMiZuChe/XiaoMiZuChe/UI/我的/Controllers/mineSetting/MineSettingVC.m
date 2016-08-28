@@ -56,11 +56,12 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
         }
         [weakSelf.tableView reloadData];
     } fail:^{
-        FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"加载个人信息失败"];
-        alert.navBlock = ^(){
-            
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        };
+//        FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"加载个人信息失败"];
+//        alert.navBlock = ^(){
+//
+//            [PublicFunction shareInstance].m_bLogin = NO;
+//            [weakSelf.navigationController popViewControllerAnimated:YES];
+//        };
     }];
 }
 - (void)loadSchoolData{WEAKSELF;

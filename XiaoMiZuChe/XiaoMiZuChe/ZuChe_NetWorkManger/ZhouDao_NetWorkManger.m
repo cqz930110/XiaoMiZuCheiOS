@@ -342,10 +342,11 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"您的登录信息过期，请重新登录"];
             alert.tag = 1234;
             alert.navBlock = ^(){
+                [PublicFunction shareInstance].m_bLogin = NO;
+
                 [USER_D removeObjectForKey:USERNAME];
                 [USER_D removeObjectForKey:USERKEY];
                 [USER_D synchronize];
-                [PublicFunction shareInstance].m_bLogin = NO;
                 [GcNoticeUtil sendNotification:DECIDEISLOGIN];
                 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
                 [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];

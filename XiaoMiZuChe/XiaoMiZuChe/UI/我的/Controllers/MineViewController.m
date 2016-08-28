@@ -41,10 +41,9 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([PublicFunction shareInstance].m_bLogin == YES) {
-        
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    ([PublicFunction shareInstance].m_bLogin == NO)?[self.footView setHidden:YES]:[self.footView setHidden:NO];
+
 }
 #pragma mark - private methods
 - (void)initUI
@@ -53,9 +52,6 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.footView addSubview:self.logOutBtn];
-    if ([PublicFunction shareInstance].m_bLogin == NO) {
-        self.footView.hidden = YES;
-    }
     self.tableView.tableFooterView = self.footView;
     
     [GcNoticeUtil handleNotification:LOGINSUCCESS
@@ -155,7 +151,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 {
     if (!_logOutBtn) {
         _logOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _logOutBtn.frame = CGRectMake(0, 0.6, kMainScreenWidth, 44.f);
+        _logOutBtn.frame = CGRectMake(0, 0, kMainScreenWidth, 44.f);
         [_logOutBtn setImage:kGetImage(@"icon_logout") forState:0];
         [_logOutBtn setTitle:@"退出登录" forState:0];
         [_logOutBtn setTitleColor:hexColor(333333) forState:0];
@@ -167,7 +163,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
 }
 - (UIView *)footView{
     if (!_footView) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 45.2f)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 44.6f)];
         _footView.backgroundColor = LINECOLOR;
     }
     return _footView;
