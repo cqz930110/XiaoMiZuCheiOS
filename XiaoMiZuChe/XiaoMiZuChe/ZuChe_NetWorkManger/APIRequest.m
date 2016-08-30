@@ -360,62 +360,62 @@
 + (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)(NSArray *arrays))success fail:(void (^)())fail
 {
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"NearCarCount" ofType:@"txt"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSUInteger errorcode = [dict[@"code"] integerValue];
-    NSString *msg = dict[@"errmsg"];
-    if (errorcode !=1) {
-        [JKPromptView showWithImageName:nil message:msg];
-        fail();
-        return;
-    }
-    NSArray *arr = dict[@"data"];
-    if (arr.count == 0) {
-        [JKPromptView showWithImageName:nil message:msg];
-        fail();
-        return;
-    }
-    
-    NSMutableArray *arrays = [NSMutableArray array];
-    [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
-        [arrays addObject:model];
-    }];
-    success(arrays);
-
-//    [MBProgressHUD showMBLoadingWithText:nil];
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,ARROUNDCARURLSTRING];
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:lon,@"lon",lat,@"lat", nil];
-//    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
-//        
-//        [MBProgressHUD hideHUD];
-//        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
-//        NSString *msg = jsonDic[@"errmsg"];
-//        if (errorcode !=1) {
-//            [JKPromptView showWithImageName:nil message:msg];
-//            fail();
-//            return;
-//        }
-//        NSArray *arr = dict[@"data"];
-//        if (arr.count == 0) {
-//            [JKPromptView showWithImageName:nil message:msg];
-//            fail();
-//            return;
-//        }
-//        
-//        NSMutableArray *arrays = [NSMutableArray array];
-//        [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
-//            
-//            NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
-//            [arrays addObject:model];
-//        }];
-//        success(arrays);
-//    } fail:^{
-//        [MBProgressHUD hideHUD];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"NearCarCount" ofType:@"txt"];
+//    NSData *data = [NSData dataWithContentsOfFile:path];
+//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//    NSUInteger errorcode = [dict[@"code"] integerValue];
+//    NSString *msg = dict[@"errmsg"];
+//    if (errorcode !=1) {
+//        [JKPromptView showWithImageName:nil message:msg];
 //        fail();
+//        return;
+//    }
+//    NSArray *arr = dict[@"data"];
+//    if (arr.count == 0) {
+//        [JKPromptView showWithImageName:nil message:msg];
+//        fail();
+//        return;
+//    }
+//    
+//    NSMutableArray *arrays = [NSMutableArray array];
+//    [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
+//        [arrays addObject:model];
 //    }];
+//    success(arrays);
+
+    [MBProgressHUD showMBLoadingWithText:nil];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,ARROUNDCARURLSTRING];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:lon,@"lon",lat,@"lat", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        if (errorcode !=1) {
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return;
+        }
+        NSArray *arr = dict[@"data"];
+        if (arr.count == 0) {
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return;
+        }
+        
+        NSMutableArray *arrays = [NSMutableArray array];
+        [arr enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NearCardata *model = [[NearCardata alloc] initWithDictionary:objDict];
+            [arrays addObject:model];
+        }];
+        success(arrays);
+    } fail:^{
+        [MBProgressHUD hideHUD];
+        fail();
+    }];
 }
 #pragma mark - 退出账号接口 get请求
 + (void)getLogoutWithURLString:(NSString *)urlStr
