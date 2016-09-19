@@ -11,6 +11,7 @@
 #import "NSString+MHCommon.h"
 #import "ModifyViewController.h"
 #import "GcNoticeUtil.h"
+#import "FCUUID.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -116,14 +117,22 @@
 }
 - (IBAction)loginBtnEvent:(id)sender {
     [self dismissKeyBoard];
+    
+    if (_phoneText.text.length == 0) {
+        
+        [JKPromptView showWithImageName:nil message:@"请您填写手机号码/租车卡号"];
+        return;
+    }else if (_codeText.text.length == 0){
+        
+        [JKPromptView showWithImageName:nil message:@"请您输入密码"];
+        return;
+    }
+    
     WEAKSELF;
     UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceUDID = [NSString stringWithFormat:@"%@",device.identifierForVendor];
-    DLog(@"输出设备的id---%@",deviceUDID);
-    NSArray *array = [deviceUDID componentsSeparatedByString:@">"];
-    NSString *udidStr = array[1];
-    DLog(@"设备标识符:%@",udidStr);
-    NSString *tempStr = [udidStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *deviceUDID = [FCUUID uuid];
+    DLog(@"设备标识符:%@",deviceUDID);
+    NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{

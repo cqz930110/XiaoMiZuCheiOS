@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupNaviBarWithTitle:@"基本资料"];
+    [self setupNaviBarWithTitle:@"关于"];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
     
     _versionLab.text = [NSString stringWithFormat:@"For iOS %@",[self getVersion]];

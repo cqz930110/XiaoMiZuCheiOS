@@ -13,9 +13,9 @@
 #endif /* XMZCRequestAPI_h */
 
 //线上
-//#define kProjectBaseUrl         @""
+#define kProjectBaseUrl         @"http://api.xiaomiddc.com/"
 //测试地
-#define kProjectBaseUrl               @"http://www.gnets.cn:8088/xmzc_api/"
+//#define kProjectBaseUrl               @"http://www.gnets.cn:8088/xmzc_api/"
 
 /*
  1 验证手机号

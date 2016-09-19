@@ -12,6 +12,7 @@
 #import "GcNoticeUtil.h"
 #import "BasicData.h"
 #import "NearCardata.h"//附近车辆
+#import "FCUUID.h"
 
 @implementation APIRequest
 
@@ -450,10 +451,9 @@
     if (loginName.length>0)
     {
         UIDevice *device = [UIDevice currentDevice];
-        NSString *deviceUDID = [NSString stringWithFormat:@"%@",device.identifierForVendor];
-        NSArray *array = [deviceUDID componentsSeparatedByString:@">"];
-        NSString *udidStr = array[1];
-        NSString *tempStr = [udidStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *deviceUDID = [FCUUID uuid];
+        DLog(@"设备标识符:%@",deviceUDID);
+        NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
         
         NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",aliasString,@"clientId",[NSString stringWithFormat:@"iOS%@",device.systemVersion],@"platform", nil];

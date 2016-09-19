@@ -18,12 +18,13 @@ pod 'FDFullscreenPopGesture', '1.1'
 pod 'pop', '~> 1.0.9'
 #解析xml
 pod 'XMLDictionary', '~> 1.4'
+pod 'FCUUID'
 
 #地图
 #pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)
-pod 'AMapNavi', '~> 2.0.0'                #导航SDK
-pod 'AMapLocation', '~> 2.0.0'            #定位SDK
-pod 'AMapSearch', '~> 4.0.0'              #搜索服务SDK
+pod 'AMapNavi', '~> 2.2.0'                #导航SDK
+pod 'AMapLocation', '~> 2.1.1'            #定位SDK
+pod 'AMapSearch', '~> 4.2.0'              #搜索服务SDK
 
 #Bugly 错误日志
 pod 'Bugly'

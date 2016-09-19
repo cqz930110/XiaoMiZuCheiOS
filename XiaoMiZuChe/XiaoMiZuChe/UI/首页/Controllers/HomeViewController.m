@@ -36,7 +36,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +44,7 @@
 }
 #pragma mark - private methods
 - (void)initUI{
-    [self setupNaviBarWithTitle:@"小米租车"];
+    [self setupNaviBarWithTitle:@"共享电动车"];
     self.view.backgroundColor = [UIColor whiteColor];
 
     [GcNoticeUtil handleNotification:DECIDEISLOGIN
