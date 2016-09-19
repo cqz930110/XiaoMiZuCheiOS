@@ -68,10 +68,10 @@
 #pragma mark -
 - (void)getArroundCarRequest
 {WEAKSELF;
-    NSInteger lonint = _userLocation.coordinate.longitude * 1000000;
-    NSInteger latint = _userLocation.coordinate.latitude * 1000000;
-    NSString *lon = [NSString stringWithFormat:@"%ld",lonint];
-    NSString *lat = [NSString stringWithFormat:@"%ld",latint];
+    float lonint = _userLocation.coordinate.longitude * 1000000;
+    float latint = _userLocation.coordinate.latitude * 1000000;
+    NSString *lon = [NSString stringWithFormat:@"%.0f",lonint];
+    NSString *lat = [NSString stringWithFormat:@"%.0f",latint];
 
     [APIRequest getArroundCarWithLon:lon withLat:lat RequestSuccess:^(NSArray *arrays) {
         

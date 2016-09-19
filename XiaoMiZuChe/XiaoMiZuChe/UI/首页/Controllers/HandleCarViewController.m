@@ -188,7 +188,7 @@
     /*============================================================================*/
     /*=======================需要填写商户app申请的===================================*/
     /*============================================================================*/
-    NSString *appID = @"009999";
+    NSString *appID = AlipayAPPID;
     NSString *privateKey = AlipayRSA_PRIVATE;
     /*============================================================================*/
     /*============================================================================*/
@@ -244,7 +244,6 @@
         
         // NOTE: 调用支付结果开始支付
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            
             
             DLog(@"reslut = %@",resultDic);
             NSInteger resultStatus = [[resultDic objectForKey:@"resultStatus"] integerValue];
