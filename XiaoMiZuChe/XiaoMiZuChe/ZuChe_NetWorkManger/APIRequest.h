@@ -185,6 +185,17 @@
                                  fail:(void (^)())fail;
 
 /**
+ *  发送短信
+ *  @param urlStr  短信URL
+ *  @param success 成功回调 短信验证码
+ *  @param fail    失败回调
+ */
++ (void)sendSMStWithURLString:(NSString *)urlStr
+                    withPhone:(NSString *)phone
+               RequestSuccess:(void (^)(NSString *code))success
+                         fail:(void (^)())fail;
+
+/**
  *  自动登录
  */
 + (void)automaticLoginEventResponse;

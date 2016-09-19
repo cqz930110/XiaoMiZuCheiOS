@@ -81,3 +81,20 @@
  16  退出账号接口
  */
 #define  LOGOUTURLSTRING              @"app/logout.do"
+/*
+ 17  发送注册短信验证码接口
+ */
+#define  SENDREGISTERCODEURL          @"app/sms/sendRegCode.do"
+/*
+ 18  发送找回密码短信验证码接口
+ */
+#define  SENDUPDATEPASSWORD           @"app/sms/sendUpdatePassCode.do"
+/*
+ 19  发送租车短信验证码接口
+ */
+#define  SENDHIRECARURL               @"app/sms/sendHireCarCode.do"
+/*
+ 20  发送还车短信验证码接口
+ */
+#define  SENDBACKCARURL              @"app/sms/sendBackCarCode.do"
+

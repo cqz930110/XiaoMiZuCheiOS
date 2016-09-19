@@ -441,7 +441,33 @@
     }];
 
 }
+#pragma mark - 发送短信
++ (void)sendSMStWithURLString:(NSString *)urlStr
+                    withPhone:(NSString *)phone
+               RequestSuccess:(void (^)(NSString *code))success
+                         fail:(void (^)())fail
+{
+    [MBProgressHUD showMBLoadingWithText:nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlStr  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        NSDictionary *dataDic = jsonDic[@"data"];
+        NSString *codeString = dataDic[@"code"];
+        success(codeString);
+    } fail:^{
+        [MBProgressHUD hideHUD];
+        fail();
+    }];
 
+}
 #pragma mark -
 #pragma mark - 自动登录
 + (void)automaticLoginEventResponse
