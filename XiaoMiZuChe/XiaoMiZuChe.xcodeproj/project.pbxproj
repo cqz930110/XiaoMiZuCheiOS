@@ -41,7 +41,6 @@
 		1024B0781D69AF47008B3E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0771D69AF47008B3E99 /* Foundation.framework */; };
 		1024B07A1D69AF50008B3E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0791D69AF50008B3E99 /* UIKit.framework */; };
 		1024B07C1D69AF60008B3E99 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B07B1D69AF60008B3E99 /* Security.framework */; };
-		1024B0811D69B139008B3E99 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */; };
 		1078217A1D521FA6009DE1D2 /* bg_back_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821361D521FA6009DE1D2 /* bg_back_car@2x.png */; };
 		1078217B1D521FA6009DE1D2 /* bg_back_car_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */; };
 		1078217C1D521FA6009DE1D2 /* bg_car_status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821381D521FA6009DE1D2 /* bg_car_status@2x.png */; };
@@ -199,6 +198,9 @@
 		18BDD4431D6EDFFB001541E1 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD43B1D6EDFFB001541E1 /* info@2x.png */; };
 		18BDD4441D6EDFFB001541E1 /* info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BDD43C1D6EDFFB001541E1 /* info@3x.png */; };
 		18BDD4451D6EDFFB001541E1 /* MBProgressHUD+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BDD43E1D6EDFFB001541E1 /* MBProgressHUD+Tools.m */; };
+		18C0893A1D8FF13D00CD9F4D /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C089381D8FF13D00CD9F4D /* jpush-ios-2.1.9.a */; };
+		18C0893C1D8FF16A00CD9F4D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0893B1D8FF16A00CD9F4D /* UserNotifications.framework */; };
+		18C0893E1D8FF17300CD9F4D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0893D1D8FF17300CD9F4D /* AdSupport.framework */; };
 		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
 		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18EE9F031D5854F400F217BD /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F021D5854F400F217BD /* APIRequest.m */; };
@@ -296,8 +298,6 @@
 		1024B0771D69AF47008B3E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1024B0791D69AF50008B3E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1024B07B1D69AF60008B3E99 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
-		1024B0801D69B139008B3E99 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		107821361D521FA6009DE1D2 /* bg_back_car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car@2x.png"; sourceTree = "<group>"; };
 		107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car_btn@2x.png"; sourceTree = "<group>"; };
 		107821381D521FA6009DE1D2 /* bg_car_status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_car_status@2x.png"; sourceTree = "<group>"; };
@@ -609,6 +609,10 @@
 		18BDD43C1D6EDFFB001541E1 /* info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
 		18BDD43D1D6EDFFB001541E1 /* MBProgressHUD+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Tools.h"; sourceTree = "<group>"; };
 		18BDD43E1D6EDFFB001541E1 /* MBProgressHUD+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Tools.m"; sourceTree = "<group>"; };
+		18C089381D8FF13D00CD9F4D /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		18C089391D8FF13D00CD9F4D /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		18C0893B1D8FF16A00CD9F4D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		18C0893D1D8FF17300CD9F4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -640,6 +644,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C0893E1D8FF17300CD9F4D /* AdSupport.framework in Frameworks */,
+				18C0893C1D8FF16A00CD9F4D /* UserNotifications.framework in Frameworks */,
 				1013B1B61D72C41E00D50A99 /* libsqlite3.tbd in Frameworks */,
 				10C7D4BF1D71F01F0044528D /* CoreText.framework in Frameworks */,
 				10C7D4BD1D71F0100044528D /* QuartzCore.framework in Frameworks */,
@@ -655,12 +661,12 @@
 				1024B0761D69AF3B008B3E99 /* CoreGraphics.framework in Frameworks */,
 				1024B0741D69AF33008B3E99 /* SystemConfiguration.framework in Frameworks */,
 				10C7D4AA1D71E0FA0044528D /* libcrypto.a in Frameworks */,
+				18C0893A1D8FF13D00CD9F4D /* jpush-ios-2.1.9.a in Frameworks */,
 				1024B0721D69AF2C008B3E99 /* CoreTelephony.framework in Frameworks */,
 				1024B0701D69AF20008B3E99 /* CoreFoundation.framework in Frameworks */,
 				18EE9F0F1D5875CB00F217BD /* libstdc++.tbd in Frameworks */,
 				18EE9F0D1D5875BF00F217BD /* JavaScriptCore.framework in Frameworks */,
 				18EE9F0B1D5875B500F217BD /* MessageUI.framework in Frameworks */,
-				1024B0811D69B139008B3E99 /* jpush-ios-2.1.8.a in Frameworks */,
 				18EE9F091D5875AB00F217BD /* libicucore.tbd in Frameworks */,
 				10C7D4AB1D71E0FA0044528D /* libssl.a in Frameworks */,
 				366F200B9FB5094C6575D7F8 /* libPods.a in Frameworks */,
@@ -788,8 +794,8 @@
 		1024B07E1D69B139008B3E99 /* JPUSHServiceLib */ = {
 			isa = PBXGroup;
 			children = (
-				1024B07F1D69B139008B3E99 /* jpush-ios-2.1.8.a */,
-				1024B0801D69B139008B3E99 /* JPUSHService.h */,
+				18C089381D8FF13D00CD9F4D /* jpush-ios-2.1.9.a */,
+				18C089391D8FF13D00CD9F4D /* JPUSHService.h */,
 			);
 			path = JPUSHServiceLib;
 			sourceTree = "<group>";
@@ -1680,6 +1686,8 @@
 		3DCEB6EA3FD1E163E8A5DAA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C0893D1D8FF17300CD9F4D /* AdSupport.framework */,
+				18C0893B1D8FF16A00CD9F4D /* UserNotifications.framework */,
 				1013B1B51D72C41E00D50A99 /* libsqlite3.tbd */,
 				10C7D4BE1D71F01F0044528D /* CoreText.framework */,
 				10C7D4BC1D71F0100044528D /* QuartzCore.framework */,

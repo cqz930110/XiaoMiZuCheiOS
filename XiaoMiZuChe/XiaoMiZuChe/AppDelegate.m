@@ -15,8 +15,6 @@
 #import "APIKey.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
-//推送
-#import "JPUSHService.h"
 
 /*
  *  短信
@@ -25,8 +23,14 @@
 // 支付
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApiManager.h"
+//推送
+#import "JPUSHService.h"
+#import <AdSupport/AdSupport.h>
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
 
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate>
 
 @end
 
@@ -91,10 +95,16 @@
 #pragma mark -极光推送
 - (void)initJPushMethod:(NSDictionary *)launchOptions
 {
+
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
-    
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+#endif
+    } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                                           UIUserNotificationTypeSound |
@@ -108,13 +118,34 @@
                                               categories:nil];
     }
     
+    
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
     [JPUSHService setupWithOption:launchOptions appKey:appKey
-                          channel:channel apsForProduction:isProduction];
+                          channel:channel
+                 apsForProduction:isProduction
+            advertisingIdentifier:nil];
+    //2.1.9版本新增获取registration id block接口。
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0){
+            DLog(@"registrationID获取成功：%@",registrationID);
+            
+        }
+        else{
+            DLog(@"registrationID获取失败，code：%d",resCode);
+        }
+    }];
+    
 }
 - (void)networkDidReceiveMessage:(NSNotification *)notification
 {
-//    NSDictionary * userInfo = [notification userInfo];
-//    
+    NSDictionary * userInfo = [notification userInfo];
+    
+    [self parsingNoticeWithUserInfo:userInfo];
+
+    DLog(@"消息是－－－－－%@",userInfo);
+}
+- (void)parsingNoticeWithUserInfo:(NSDictionary *)userInfo
+{
 //    NSString *content = [userInfo valueForKey:@"content"];
 //    NSDictionary *extras = [userInfo valueForKey:@"extras"];
 //    NSString *eventType = [NSString stringWithFormat:@"%@",[extras valueForKey:@"eventType"]]; //自定义参数，key是自己定义的
@@ -146,14 +177,39 @@
 //        }
 //        
 //    }
-//    
-//    //    LogRed(@"自定义消息1   %@",content);
-//    //    LogRed(@"自定义消息2   %@",extras);
-//    //    LogRed(@"自定义消息3   %@",customizeField1);
-//    //
-//    //    XYShowAlert(content, @"我知道了");
-//    DLog(@"消息是－－－－－%@",userInfo);
 }
+#pragma mark- JPUSHRegisterDelegate
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler
+{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        DLog(@"iOS10 前台收到远程通知");
+        
+        [self parsingNoticeWithUserInfo:userInfo];
+        
+    }
+    else {
+        DLog(@"iOS10 判断为本地通知");
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+}
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        DLog(@"iOS10 收到远程通知");
+        [self parsingNoticeWithUserInfo:userInfo];
+        
+    }
+    else {
+        DLog(@"iOS10 判断为本地通知");
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
@@ -184,7 +240,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    
+    [application cancelAllLocalNotifications];
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
