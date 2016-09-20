@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *codeImgView;
 @property (weak, nonatomic) IBOutlet UIView *phoneLiveView;
 @property (weak, nonatomic) IBOutlet UIView *codeLineView;
+@property (copy, nonatomic) NSString *codeString;//验证码
+@property (copy, nonatomic) NSString *expireTime;//验证码过期时间
 
 @end
 
@@ -98,7 +100,7 @@
 
 #pragma mark - event response
 
-- (IBAction)sendCodeEvent:(id)sender {
+- (IBAction)sendCodeEvent:(id)sender {WEAKSELF;
     [self dismissKeyBoard];
     
     if (_phoneText.text.length == 11  && [QZManager isPureInt:_phoneText.text] == YES)
@@ -107,16 +109,27 @@
         [APIRequest rcheckUserByPhoneWithPhone:_phoneText.text RequestSuccess:^{
             
             /*********************发送短信***********************************/
-            JKCountDownButton *btn = (JKCountDownButton *)sender;
-            btn.enabled = NO;
-            [sender startCountDownWithSecond:60];
-            [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-                NSString *title = [NSString stringWithFormat:@"%zd秒",second];
-                return title;
-            }];
-            [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-                countDownButton.enabled = YES;
-                return @"重新获取";
+
+            NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDREGISTERCODEURL];
+            [APIRequest sendSMStWithURLString:urlString withPhone:_phoneText.text RequestSuccess:^(NSString *code, NSString *expireTime) {
+                
+                weakSelf.codeString = code;
+                weakSelf.expireTime = expireTime;
+
+                JKCountDownButton *btn = (JKCountDownButton *)sender;
+                btn.enabled = NO;
+                [sender startCountDownWithSecond:60];
+                [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+                    NSString *title = [NSString stringWithFormat:@"%zd秒",second];
+                    return title;
+                }];
+                [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                    countDownButton.enabled = YES;
+                    return @"重新获取";
+                }];
+
+            } fail:^{
+                
             }];
 
         }];
@@ -130,8 +143,16 @@
     if (_phoneText.text.length<=0) {
         [JKPromptView showWithImageName:nil message:@"请您检查手机号码是否填写"];
         return;
-    }else if (_codeText.text.length <=0){
+    }else if (_codeText.text.length ==0){
+        [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
+        return;
+    }else if (![_codeText.text isEqualToString:_codeString]){
+        
         [JKPromptView showWithImageName:nil message:@"验证码错误"];
+        return;
+    }else if ([QZManager compareOneDay:[NSDate date] withAnotherDay:[QZManager timeStampChangeNSDate:[_expireTime doubleValue]]] == 1){
+        
+        [JKPromptView showWithImageName:nil message:@"验证码已失效，请您重新获取"];
         return;
     }
     EditKeyViewController *vc = [EditKeyViewController new];

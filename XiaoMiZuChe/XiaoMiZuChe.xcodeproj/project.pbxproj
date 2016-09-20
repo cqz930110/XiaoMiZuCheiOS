@@ -201,6 +201,7 @@
 		18C0893A1D8FF13D00CD9F4D /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C089381D8FF13D00CD9F4D /* jpush-ios-2.1.9.a */; };
 		18C0893C1D8FF16A00CD9F4D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0893B1D8FF16A00CD9F4D /* UserNotifications.framework */; };
 		18C0893E1D8FF17300CD9F4D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0893D1D8FF17300CD9F4D /* AdSupport.framework */; };
+		18CBF2661D90D03800F3137E /* carRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CBF2651D90D03800F3137E /* carRecord.m */; };
 		18E12EF91D3F274400E02877 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E12EF71D3F274400E02877 /* LoginViewController.m */; };
 		18E12EFA1D3F274400E02877 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E12EF81D3F274400E02877 /* LoginViewController.xib */; };
 		18EE9F031D5854F400F217BD /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE9F021D5854F400F217BD /* APIRequest.m */; };
@@ -613,6 +614,8 @@
 		18C089391D8FF13D00CD9F4D /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		18C0893B1D8FF16A00CD9F4D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		18C0893D1D8FF17300CD9F4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		18CBF2641D90D03800F3137E /* carRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carRecord.h; sourceTree = "<group>"; };
+		18CBF2651D90D03800F3137E /* carRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carRecord.m; sourceTree = "<group>"; };
 		18E12EF61D3F274400E02877 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E12EF71D3F274400E02877 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E12EF81D3F274400E02877 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -1159,6 +1162,8 @@
 				18EE9F211D59A21000F217BD /* SchoolData.m */,
 				1813EF931D5C71B80019CA33 /* BasicData.h */,
 				1813EF941D5C71B80019CA33 /* BasicData.m */,
+				18CBF2641D90D03800F3137E /* carRecord.h */,
+				18CBF2651D90D03800F3137E /* carRecord.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2061,6 +2066,7 @@
 				185931061D3490EB00F948D4 /* SoundManager.m in Sources */,
 				1013B1B11D72C2FC00D50A99 /* WXApiResponseHandler.m in Sources */,
 				107821C01D52272B009DE1D2 /* AboutViewController.m in Sources */,
+				18CBF2661D90D03800F3137E /* carRecord.m in Sources */,
 				1859305B1D348BE600F948D4 /* DTApiBaseBean.m in Sources */,
 				185930E01D3490EB00F948D4 /* UIView+JKPicker.m in Sources */,
 				1024B0681D69A203008B3E99 /* NearCardata.m in Sources */,
@@ -2260,6 +2266,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

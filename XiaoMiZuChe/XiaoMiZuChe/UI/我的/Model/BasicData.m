@@ -13,6 +13,7 @@
 
 #import "BasicData.h"
 #import "DTApiBaseBean.h"
+#import "carRecord.h"
 
 
 @implementation BasicData
@@ -33,6 +34,7 @@
 @synthesize userToken = _userToken;
 @synthesize userType = _userType;
 @synthesize vip = _vip;
+@synthesize carRecord = _carRecord;
 
 
 -(id)initWithDictionary:(NSDictionary*)dict
@@ -55,6 +57,8 @@
 		DTAPI_DICT_ASSIGN_STRING(userToken, @"");
 		DTAPI_DICT_ASSIGN_NUMBER(userType, @"0");
 		DTAPI_DICT_ASSIGN_NUMBER(vip, @"0");
+        self.carRecord = [DTApiBaseBean objectForKey:@"carRecord" inDictionary:dict withClass:[carRecord class]];
+
     }
     
     return self;
@@ -80,6 +84,8 @@
 	DTAPI_DICT_EXPORT_BASICTYPE(userToken);
 	DTAPI_DICT_EXPORT_BASICTYPE(userType);
 	DTAPI_DICT_EXPORT_BASICTYPE(vip);
+    DTAPI_DICT_EXPORT_BEAN(carRecord);
+
     return md;
 }
 @end

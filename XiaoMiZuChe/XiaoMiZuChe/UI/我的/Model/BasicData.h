@@ -13,7 +13,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DTApiBaseBean.h"
-
+@class carRecord;
 
 @interface BasicData : NSObject
 {
@@ -33,6 +33,8 @@
 	NSString *_userToken;
 	NSNumber *_userType;
 	NSNumber *_vip;
+    carRecord *_carRecord;
+
 }
 
 
@@ -52,6 +54,7 @@
 @property (nonatomic, copy) NSString *userToken;
 @property (nonatomic, copy) NSNumber *userType;
 @property (nonatomic, copy) NSNumber *vip;
+@property (nonatomic, retain) carRecord *carRecord;
 
 -(id)initWithDictionary:(NSDictionary*)dict;
 -(NSDictionary*)dictionaryValue;

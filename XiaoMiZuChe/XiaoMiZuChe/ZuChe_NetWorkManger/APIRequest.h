@@ -171,8 +171,22 @@
  *  @param success 成功回调
  *  @param fail    失败回调
  */
-+ (void)getArroundCarWithLon:(NSString *)lon withLat:(NSString *)lat RequestSuccess:(void (^)(NSArray *arrays))success
++ (void)getArroundCarWithLon:(NSString *)lon
+                     withLat:(NSString *)lat
+              RequestSuccess:(void (^)(NSArray *arrays))success
                                   fail:(void (^)())fail;
+
+/**
+ 申请租车
+ *  @param carId   车辆编号
+ *  @param success 成功回调
+ *  @param fail    失败回调
+ */
++ (void)applyForRentingACarWithCarId:(NSString *)carId
+                      RequestSuccess:(void (^)())success
+                                     fail:(void (^)())fail;
+
+//+ (void)backCarAPI
 /**
  *  退出账号接口 get请求
  *
@@ -192,7 +206,7 @@
  */
 + (void)sendSMStWithURLString:(NSString *)urlStr
                     withPhone:(NSString *)phone
-               RequestSuccess:(void (^)(NSString *code))success
+               RequestSuccess:(void (^)(NSString *code,NSString *expireTime))success
                          fail:(void (^)())fail;
 
 /**

@@ -27,4 +27,4 @@ pod 'AMapLocation', '~> 2.1.1'            #定位SDK
 pod 'AMapSearch', '~> 4.2.0'              #搜索服务SDK
 
 #Bugly 错误日志
-pod 'Bugly'
+pod 'Bugly', '~> 2.4.0'

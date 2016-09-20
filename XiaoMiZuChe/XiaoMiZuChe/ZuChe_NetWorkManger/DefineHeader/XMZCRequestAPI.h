@@ -97,4 +97,14 @@
  20  发送还车短信验证码接口
  */
 #define  SENDBACKCARURL              @"app/sms/sendBackCarCode.do"
+/*
+ 21  租车接口
+ */
+#define  HIRECARURLSTRING            @"app/car/hireCar.do"
+
+/*
+ 22  还车接口
+ */
+#define  BACKCARURL                  @"app/car/backCar.do"
+
 

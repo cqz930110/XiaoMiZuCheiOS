@@ -13,6 +13,7 @@
 #import "BasicData.h"
 #import "NearCardata.h"//附近车辆
 #import "FCUUID.h"
+#import "carRecord.h"
 
 @implementation APIRequest
 
@@ -418,6 +419,39 @@
         fail();
     }];
 }
+
+#pragma mark - 租车
+
++ (void)applyForRentingACarWithCarId:(NSString *)carId
+                      RequestSuccess:(void (^)())success
+                                fail:(void (^)())fail
+{
+    [MBProgressHUD showMBLoadingWithText:nil];
+
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",carId,@"carId", nil];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,HIRECARURLSTRING];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        [JKPromptView showWithImageName:nil message:msg];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        
+        NSDictionary *dataDic = jsonDic[@"data"];
+        carRecord *model = [[carRecord alloc] initWithDictionary:dataDic];
+        [PublicFunction shareInstance].m_user.carRecord = model;
+        success();
+    } fail:^{
+        [MBProgressHUD hideHUD];
+        fail();
+    }];
+
+    
+}
 #pragma mark - 退出账号接口 get请求
 + (void)getLogoutWithURLString:(NSString *)urlStr
                 RequestSuccess:(void (^)())success
@@ -444,12 +478,12 @@
 #pragma mark - 发送短信
 + (void)sendSMStWithURLString:(NSString *)urlStr
                     withPhone:(NSString *)phone
-               RequestSuccess:(void (^)(NSString *code))success
+               RequestSuccess:(void (^)(NSString *code,NSString *expireTime))success
                          fail:(void (^)())fail
 {
     [MBProgressHUD showMBLoadingWithText:nil];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone", nil];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlStr  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlStr  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
@@ -461,7 +495,8 @@
         }
         NSDictionary *dataDic = jsonDic[@"data"];
         NSString *codeString = dataDic[@"code"];
-        success(codeString);
+        NSString *timeString = dataDic[@"expireTime"];
+        success(codeString,timeString);
     } fail:^{
         [MBProgressHUD hideHUD];
         fail();

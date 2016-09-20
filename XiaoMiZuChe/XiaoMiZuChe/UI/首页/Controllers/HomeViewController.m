@@ -117,11 +117,11 @@
 #pragma mark - 
 - (void)alertView:(XMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-//    [APIRequest getUserCarRecordRequestSuccess:^{
-//        
-//    } fail:^{
-//        
-//    }];
+    [APIRequest getUserCarRecordRequestSuccess:^{
+        
+    } fail:^{
+        
+    }];
 }
 #pragma mark - getters and setters
 - (CustomMenuBtn *)handleCardBtn

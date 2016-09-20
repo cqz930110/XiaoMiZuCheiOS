@@ -11,6 +11,7 @@
 #import "PerfectInformationVC.h"
 #import "NSString+MHCommon.h"
 #import "GcNoticeUtil.h"
+#import "FCUUID.h"
 
 @interface RegisterController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
@@ -25,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 @property (weak, nonatomic) IBOutlet UIView *codeLineView;
 @property (weak, nonatomic) IBOutlet UIView *keyLineView;
-
+@property (copy, nonatomic) NSString *codeString;//验证码
+@property (copy, nonatomic) NSString *expireTime;//验证码过期时间
 @end
 
 @implementation RegisterController
@@ -56,7 +58,6 @@
     self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
     self.codeText.keyboardType  = UIKeyboardTypeNumberPad;
     self.keyText.secureTextEntry = YES;
-
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldChanged:)
@@ -125,23 +126,33 @@
 #pragma mark -getters and setters
 
 #pragma mark - event response
-- (IBAction)sendCodeBtnEvent:(id)sender {
+- (IBAction)sendCodeBtnEvent:(id)sender {WEAKSELF;
     [self dismissKeyBoard];
     
     if (_phoneText.text.length == 11  && [QZManager isPureInt:_phoneText.text] == YES)
     {
-        JKCountDownButton *btn = (JKCountDownButton *)sender;
-        btn.enabled = NO;
-        [sender startCountDownWithSecond:60];
-        [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-            NSString *title = [NSString stringWithFormat:@"%zd秒",second];
-            return title;
-        }];
-        [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-            countDownButton.enabled = YES;
-            return @"重新获取";
-        }];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDREGISTERCODEURL];
+        [APIRequest sendSMStWithURLString:urlString withPhone:_phoneText.text RequestSuccess:^(NSString *code, NSString *expireTime) {
+            
+            weakSelf.codeString = code;
+            weakSelf.expireTime = expireTime;
+            JKCountDownButton *btn = (JKCountDownButton *)sender;
+            btn.enabled = NO;
+            [sender startCountDownWithSecond:60];
+            [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+                NSString *title = [NSString stringWithFormat:@"%zd秒",second];
+                return title;
+            }];
+            [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                countDownButton.enabled = YES;
+                return @"重新获取";
+            }];
 
+            
+        } fail:^{
+            
+        }];
+        
     }
 //    [SMSSDK getVerificationCodeBySMSWithPhone:@"13162079587" zone:@"86" result:^(NSError *error) {
 //        DLog(@"error---%@",error);
@@ -161,6 +172,14 @@
     }else if(_codeText.text.length <=0){
         [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
         return;
+    }else if (![_codeText.text isEqualToString:_codeString]){
+        
+        [JKPromptView showWithImageName:nil message:@"验证码错误"];
+        return;
+    }else if ([QZManager compareOneDay:[NSDate date] withAnotherDay:[QZManager timeStampChangeNSDate:[_expireTime doubleValue]]] == 1){
+        
+        [JKPromptView showWithImageName:nil message:@"验证码已失效，请您重新获取"];
+        return;
     }else if ([QZManager isValidatePassword:_keyText.text] == NO)
     {
         [JKPromptView showWithImageName:nil message:@"密码为6-16位数字和字母组合，请您仔细检查"];
@@ -169,24 +188,12 @@
         [JKPromptView showWithImageName:nil message:@"密码中包含非法字符，请您检查"];
         return;
     }
-//
-//    [APIRequest VerifyTheMobileWithphone:@"13162079587" withcode:_codeText.text RequestSuccess:^{
-//        
-//        PerfectInformationVC *vc = [PerfectInformationVC new];
-//        [self.navigationController pushViewController:vc animated:YES];
-//        
-//    } fail:^{
-//        [JKPromptView showWithImageName:nil message:@"验证码错误"];
-//    }];
 
     
     UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceUDID = [NSString stringWithFormat:@"%@",device.identifierForVendor];
-    DLog(@"输出设备的id---%@",deviceUDID);
-    NSArray *array = [deviceUDID componentsSeparatedByString:@">"];
-    NSString *udidStr = array[1];
-    DLog(@"设备标识符:%@",udidStr);
-    NSString *tempStr = [udidStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *deviceUDID = [FCUUID uuid];
+    DLog(@"设备标识符:%@",deviceUDID);
+    NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
     
     [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {

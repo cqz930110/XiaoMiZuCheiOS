@@ -137,7 +137,6 @@
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{
 
-        
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             
         }];
