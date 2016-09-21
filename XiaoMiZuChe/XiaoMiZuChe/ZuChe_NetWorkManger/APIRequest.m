@@ -14,6 +14,7 @@
 #import "NearCardata.h"//附近车辆
 #import "FCUUID.h"
 #import "carRecord.h"
+#import "LocInfodata.h"
 
 @implementation APIRequest
 
@@ -502,6 +503,24 @@
         fail();
     }];
 
+}
+
++ (void)getCarLocationInfomationRequestSuccess:(void (^)(id model))success
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?carId=%@",kProjectBaseUrl,CarLocationInfo,[PublicFunction shareInstance].m_user.carRecord.carId];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            return ;
+        }
+        NSDictionary *dataDict = jsonDic[@"data"];
+        LocInfodata *model = [[LocInfodata alloc] initWithDictionary:dataDict];
+        success(model);
+    } fail:^{
+        [MBProgressHUD hideHUD];
+    }];
 }
 #pragma mark -
 #pragma mark - 自动登录

@@ -106,5 +106,17 @@
  22  还车接口
  */
 #define  BACKCARURL                  @"app/car/backCar.do"
+/*
+ 23  获取车辆位置信息
+ */
+#define  CarLocationInfo             @"app/map/getLocInfo.do"
 
+/*
+ 24  锁车接口
+ */
+#define LockCarURL                   @"lock/lockBike.do"
+/*
+ 25  解锁接口
+ */
+#define UnLockCarURL                 @"lock/unLockBike.do"
 

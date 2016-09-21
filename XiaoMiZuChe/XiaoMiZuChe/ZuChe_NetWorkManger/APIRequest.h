@@ -209,6 +209,32 @@
                RequestSuccess:(void (^)(NSString *code,NSString *expireTime))success
                          fail:(void (^)())fail;
 
+
+/**
+ <#Description#>
+
+ @param para    <#para description#>
+ @param success <#success description#>
+ @param fail    <#fail description#>
+ */
++ (void)lockCarWithPara:(NSString *)para RequestSuccess:(void (^)())success
+                   fail:(void (^)())fail;
+
+/**
+ 解锁接口
+
+ @param para    <#para description#>
+ @param success <#success description#>
+ @param fail    <#fail description#>
+ */
++ (void)unlockCarWithPara:(NSString *)para RequestSuccess:(void (^)())success
+                     fail:(void (^)())fail;
+/**
+ 获取车辆位置信息
+
+ *  @param success 成功回调 返回车辆位置信息
+ */
++ (void)getCarLocationInfomationRequestSuccess:(void (^)(id model))success;
 /**
  *  自动登录
  */

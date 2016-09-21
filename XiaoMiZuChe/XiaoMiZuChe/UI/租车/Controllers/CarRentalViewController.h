@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+//导航
+#import <AMap3DMap/MAMapKit/MAMapKit.h>
+#import <AMapNaviKit/AMapNaviKit.h>
+#import "AMapLocationKit.h"
+#import <MapKit/MapKit.h>
+#import "DeriveMapVC.h"
+#import "MapNavViewController.h"
+#import "NavMapWindow.h"
+
+//讯飞
+#import "iflyMSC/IFlySpeechError.h"
+#import "iflyMSC/IFlySpeechSynthesizer.h"
+#import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
 
 @interface CarRentalViewController : BaseViewController
 
