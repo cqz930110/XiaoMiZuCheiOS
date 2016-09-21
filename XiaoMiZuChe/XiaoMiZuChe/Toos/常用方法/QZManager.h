@@ -423,6 +423,9 @@ singleton_for_header(QZManager)
  */
 + (BOOL)isHaveSpaceInString:(NSString *)string;
 
+#pragma mark -时间间隔
++(NSInteger)getDaysFrom:(NSDate *)serverDate To:(NSDate *)endDate;
+
 #pragma mark -  判断字符串中是否含有某个字符串
 /**
  *  判断字符串中是否含有某个字符串

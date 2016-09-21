@@ -41,15 +41,6 @@ static CGFloat kLabelPaddingDist = 8.0f;
     return headerView;
 }
 
-- (void)awakeFromNib
-{
-    if (self.subView)
-        [self initialSetupForCustomSubView:self.subView];
-    else
-        [self initialSetupForDefaultHeader];
-    
-    [self refreshBlurViewForNewImage];
-}
 
 
 - (void)layoutHeaderViewForScrollViewOffset:(CGPoint)offset

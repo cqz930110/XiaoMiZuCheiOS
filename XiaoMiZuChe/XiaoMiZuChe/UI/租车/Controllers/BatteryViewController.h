@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "LocInfoModel.h"
+#import "LocInfodata.h"
 
 @interface BatteryViewController : BaseViewController
 
@@ -16,8 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *batteryImg;
 @property (weak, nonatomic) IBOutlet UILabel *remainVlab;
 
-@property (nonatomic, strong) LocInfoModel *model;
+@property (nonatomic, strong) LocInfodata *model;
 
-- (IBAction)ModifyTheVoltageEvent:(id)sender;
 
 @end

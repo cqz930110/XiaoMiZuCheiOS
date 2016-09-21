@@ -40,7 +40,7 @@
     {
 //        self.layer.masksToBounds = YES;
 //        self.layer.cornerRadius = 5.f;
-        self.backgroundColor = RGBACOLOR(240, 240, 240, 1);
+        self.backgroundColor = LRRGBAColor(240, 240, 240, 1);
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = .5f;
         self.model = model;
@@ -132,7 +132,7 @@
     _directionLab.font = Font_13;
     
     CGFloat heading = [self.model.heading floatValue];
-    _directionLab.text = [ConFunc getHeadingDes:heading];
+    _directionLab.text = [QZManager getHeadingDes:heading];
     [self addSubview:_directionLab];
     
     //8
@@ -145,7 +145,7 @@
     _lastLocLab.font = [UIFont systemFontOfSize:14.f];
     
 
-    NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@",[PublicFunction ShareInstance].m_user.data.province,[PublicFunction ShareInstance].m_user.data.city,[PublicFunction ShareInstance].m_user.data.area,[PublicFunction ShareInstance].m_user.data.address];
+    NSString *addressStr = [NSString stringWithFormat:@"%@%@%@%@",[PublicFunction shareInstance].m_user.province,[PublicFunction shareInstance].m_user.city,[PublicFunction shareInstance].m_user.area,[PublicFunction shareInstance].m_user.address];
     _lastLocLab.text = addressStr;
     _lastLocLab.numberOfLines = 0;
     [self addSubview:_lastLocLab];

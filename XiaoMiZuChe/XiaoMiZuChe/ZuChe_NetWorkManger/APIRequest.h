@@ -211,23 +211,23 @@
 
 
 /**
- <#Description#>
+ 锁车接口
 
- @param para    <#para description#>
- @param success <#success description#>
- @param fail    <#fail description#>
+ *  @param para    直接传0 控制类型
+ *  @param success 成功回调 短信验证码
+ *  @param fail    失败回调
  */
-+ (void)lockCarWithPara:(NSString *)para RequestSuccess:(void (^)())success
++ (void)lockCarRequestSuccess:(void (^)())success
                    fail:(void (^)())fail;
 
 /**
  解锁接口
 
- @param para    <#para description#>
- @param success <#success description#>
- @param fail    <#fail description#>
+ *  @param para    直接传0 控制类型
+ *  @param success 成功回调 短信验证码
+ *  @param fail    失败回调
  */
-+ (void)unlockCarWithPara:(NSString *)para RequestSuccess:(void (^)())success
++ (void)unlockCarRequestSuccess:(void (^)())success
                      fail:(void (^)())fail;
 /**
  获取车辆位置信息

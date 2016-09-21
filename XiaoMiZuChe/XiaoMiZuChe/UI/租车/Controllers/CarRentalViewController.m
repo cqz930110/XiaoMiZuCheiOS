@@ -19,7 +19,10 @@
 #import "trackModel.h"
 #import "CustomMAPointAnnotation.h"
 #import "BatteryViewController.h"
-#import "ControlTypeVC.h"
+#import "DeriveMapVC.h"
+#import "MapNavViewController.h"
+#import "NavMapWindow.h"
+
 @interface CarRentalViewController ()
 
 @property (nonatomic, strong) RentalView *rentalView;
@@ -33,10 +36,10 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (([PublicFunction shareInstance].isLogin == NO)) {
-        
-        [self.view addSubview:self.rentalView];
-    }
+//    if (([PublicFunction shareInstance].isLogin == NO)) {
+//        
+//        [self.view addSubview:self.rentalView];
+//    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,11 +50,16 @@
 - (void)initUI{
     
     [self setupNaviBarWithTitle:@"申请用车"];
-    
+    self.navigationController.navigationBarHidden = YES;
     if ([PublicFunction shareInstance].m_user.carRecord.expectEndTime.length >0) {
         
     }else{
-        
+        for (NSUInteger i =1; i<10; i++) {
+            UIButton *btn = (UIButton *)[self.view viewWithTag:1000+i];
+//            [self.view bringSubviewToFront:btn];
+            btn.hidden = YES;
+        }
+
         [self.view addSubview:self.rentalView];
     }
 }

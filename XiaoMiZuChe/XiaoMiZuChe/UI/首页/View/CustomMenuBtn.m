@@ -9,6 +9,10 @@
 #import "CustomMenuBtn.h"
 #define KeyPath @"transform.scale"
 
+@interface CustomMenuBtn()<CAAnimationDelegate>
+
+@end
+
 @implementation CustomMenuBtn
 -(instancetype) initWithFrame:(CGRect)frame{
     

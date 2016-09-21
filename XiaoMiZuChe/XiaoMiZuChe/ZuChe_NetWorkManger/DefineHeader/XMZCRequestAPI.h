@@ -114,9 +114,13 @@
 /*
  24  锁车接口
  */
-#define LockCarURL                   @"lock/lockBike.do"
+#define LockCarURL                   @"app/lock/lockBike.do"
 /*
  25  解锁接口
  */
-#define UnLockCarURL                 @"lock/unLockBike.do"
+#define UnLockCarURL                 @"app/lock/unLockBike.do"
+/*
+ 25  查询轨迹
+ */
+#define SEARCHTRACK                  @"app/map/searchTrack.do"
 

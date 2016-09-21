@@ -12,9 +12,9 @@
 
 #import "SelectTimeAlert.h"
 #import "SelectTimeCell.h"
-#import "UIView+Tap.h"
 #import "ZHPickView.h"
 #import "trackModel.h"
+#import "carRecord.h"
 
 static  NSString * const CellIdentifier  = @"couponIdentifier";
 @interface SelectTimeAlert()
@@ -51,7 +51,7 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
         _backgroundView.center = CGPointMake(SCREENWIDTH/2.f, SCREENHEIGHT/2.f);
         _backgroundView.bounds = CGRectMake(0, 0, 260, 180);
         [self addSubview:_backgroundView];
-        [_backgroundView whencancelsToucheTapped:^{
+        [_backgroundView whenCancelTapped:^{
             
             
         }];
@@ -72,17 +72,17 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
         [_tableView registerNib:[UINib nibWithNibName:@"SelectTimeCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 139, width, .5)];
-        lineView.backgroundColor = RGBACOLOR(219, 219, 223, 1);
+        lineView.backgroundColor = LRRGBAColor(219, 219, 223, 1);
         [_backgroundView addSubview:lineView];
         
         UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(lineView.frame.size.width/2.f, Orgin_y(lineView), .5, 40)];
-        lineView2.backgroundColor = RGBACOLOR(219, 219, 223, 1);
+        lineView2.backgroundColor = LRRGBAColor(219, 219, 223, 1);
         [_backgroundView addSubview:lineView2];
         
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         cancelBtn.backgroundColor = [UIColor whiteColor];
         cancelBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        [cancelBtn setTitleColor:RGBACOLOR(49, 120, 250, 1) forState:0];
+        [cancelBtn setTitleColor:LRRGBAColor(49, 120, 250, 1) forState:0];
         [cancelBtn setTitle:@"取消" forState:0];
         cancelBtn.tag = 3873;
         [cancelBtn addTarget:self action:@selector(btnClickEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -93,7 +93,7 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
         UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         sureBtn.backgroundColor = [UIColor whiteColor];
         sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        [sureBtn setTitleColor:RGBACOLOR(49, 120, 250, 1) forState:0];
+        [sureBtn setTitleColor:LRRGBAColor(49, 120, 250, 1) forState:0];
         [sureBtn setTitle:@"确认" forState:0];
         sureBtn.tag = 3874;
         [sureBtn addTarget:self action:@selector(btnClickEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -117,7 +117,7 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
     if (index == 3874)
     {
         
-        NSUInteger day = [ConFunc getDaysFrom:_yesterDate To:_nowDate];
+        NSUInteger day = [QZManager getDaysFrom:_yesterDate To:_nowDate];
         DLog(@"时间: %lu",(unsigned long)day);
         
         if (day > 6) {
@@ -125,9 +125,10 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
             return;
         }
         
-        
-        NSString *searchUrl = [NSString stringWithFormat:@"%@%@?carId=%@&startTime=%@&endTime=%@",kProjectBaseUrl,SEARCHTRACK,[[PublicFunction ShareInstance]getAccount].data.carId,_yesterString,_nowString];
-        [GNETS_NetWorkManger GetJSONWithUrl:[searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        NSString *carIdString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.carId];
+        NSString *searchUrl = [NSString stringWithFormat:@"%@%@?carId=%@&startTime=%@&endTime=%@",kProjectBaseUrl,SEARCHTRACK,carIdString,_yesterString,_nowString];
+        [ZhouDao_NetWorkManger GetJSONWithUrl:[searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isNeedHead:YES success:^(NSDictionary *jsonDic) {
+            
             NSUInteger code = [[jsonDic objectForKey:@"code"] integerValue];
             NSString *msg = jsonDic[@"errmsg"];
             if (code != 1) {
@@ -173,7 +174,7 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
 {
     SelectTimeCell *cell = (SelectTimeCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 43.5, kMainScreenWidth , .5)];
-    lineView.backgroundColor = RGBACOLOR(235, 235, 236, 1);
+    lineView.backgroundColor = LRRGBAColor(235, 235, 236, 1);
     [cell.contentView addSubview:lineView];
 
     indexPath.row == 0 ? [cell.ksLab setText:@"开始时间"]:[cell.ksLab setText:@"结束时间"];
@@ -204,8 +205,8 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
 {
     ZHPickView *pickView = [[ZHPickView alloc] init];
     [pickView setDateViewWithTitle:@"选择时间"];
-    [pickView showPickView:self.window];
-    pickView.block = ^(NSString *selectedStr,NSDate *_selectDate)
+    [pickView showWindowPickView:self.window];
+    pickView.alertBlock = ^(NSString *selectedStr,NSDate *_selectDate)
     {
         if (indexPath.row == 0) {
             _yesterString = selectedStr;
@@ -221,7 +222,7 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
 }
 - (void)show
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [QZManager getWindow];
     self.window = window;
     [window addSubview:self];
     [self showAlertAnimation];

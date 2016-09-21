@@ -7,7 +7,6 @@
 //
 
 #import "NavMapWindow.h"
-#import "UIView+Tap.h"
 #define zd_width [UIScreen mainScreen].bounds.size.width
 #define zd_height [UIScreen mainScreen].bounds.size.height
 
@@ -77,10 +76,10 @@ static NSString *const NavCellIdentifier = @"NavCellIdentifier";
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NavCellIdentifier];
     
     
-    [self.zd_superView whencancelsToucheTapped:^{
+    [self.zd_superView whenCancelTapped:^{
         
     }];
-    [self whencancelsToucheTapped:^{
+    [self whenCancelTapped:^{
         
         [self zd_Windowclose];
     }];

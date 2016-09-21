@@ -504,6 +504,59 @@
     }];
 
 }
+#pragma -mark 执行远程锁车命令
++ (void)lockCarRequestSuccess:(void (^)())success
+                         fail:(void (^)())fail
+{
+    //    [SVProgressHUD showInfoWithStatus:@"正在关闭语音寻车，请稍等"];
+    NSString *url =[NSString stringWithFormat:@"%@%@?carId=%@&userId=%@&para=%@",kProjectBaseUrl,LockCarURL,[PublicFunction shareInstance].m_user.carRecord.carId,[PublicFunction shareInstance].m_user.userId,@"0"];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:url isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        [JKPromptView showWithImageName:nil message:jsonDic[@"errmsg"]];
+        if ([jsonDic[@"code"] intValue] == 1) {
+            success();
+            //            [JKPromptView showWithImageName:nil message:@"开启命令发送成功"];
+        }else{
+            fail();
+            //            [JKPromptView showWithImageName:nil message:@"开启命令发送失败"];
+        }
+        
+    } fail:^{
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+#pragma -mark 执行远程解锁命令
++ (void)unlockCarRequestSuccess:(void (^)())success
+                           fail:(void (^)())fail
+{
+
+    NSString *url = [NSString stringWithFormat:@"%@%@?carId=%@&userId=%@&para=%@",kProjectBaseUrl,UnLockCarURL,[PublicFunction shareInstance].m_user.carRecord.carId,[PublicFunction shareInstance].m_user.userId,@"0"];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:url isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        /*
+         {
+         "code": 1,
+         "errmsg": "解锁命令发送成功"
+         }
+         */
+        [MBProgressHUD hideHUD];
+        [JKPromptView showWithImageName:nil message:jsonDic[@"errmsg"]];
+        
+        if ([jsonDic[@"code"] intValue] == 1) {
+            success();
+            //            [JKPromptView showWithImageName:nil message:@"关闭命令发送成功"];
+            
+        }else{
+            fail();
+            //            [JKPromptView showWithImageName:nil message:@"关闭命令发送失败"];
+        }
+        
+    } fail:^{
+        [MBProgressHUD hideHUD];
+    }];
+}
+
 
 + (void)getCarLocationInfomationRequestSuccess:(void (^)(id model))success
 {

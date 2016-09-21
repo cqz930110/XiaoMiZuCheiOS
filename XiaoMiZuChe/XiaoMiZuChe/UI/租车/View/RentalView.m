@@ -30,19 +30,11 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:CGRectMake(0, 64, kMainScreenWidth, kMainScreenHeight - 64.f)];
-    if (self) {
-        
-    }
-    return self;
-}
 + (RentalView *)instanceRentalViewWithViewController:(UIViewController *)superViewController
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"RentalView" owner:self options:nil];
     RentalView *detailView = [nibView objectAtIndex:0];
-    detailView.frame = CGRectMake(0, 64, kMainScreenWidth, kMainScreenHeight - 64.f);
+    detailView.frame = CGRectMake(0, 64, 320, kMainScreenHeight - 64.f);
     [detailView initUIWithViewController:superViewController];
     return detailView;
 }

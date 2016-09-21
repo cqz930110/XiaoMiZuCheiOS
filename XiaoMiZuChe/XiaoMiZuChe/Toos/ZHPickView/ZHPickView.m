@@ -14,6 +14,8 @@
     NSArray *proTitleList;
     NSString *selectedStr;
     BOOL isDate;
+    NSDate *_selectDate;
+
 }
 @synthesize block;
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -207,6 +209,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     selectedStr = [formatter stringFromDate:datePicker.date];
+    _selectDate = datePicker.date;
+
 }
 - (void)cancel:(UIButton *)btn
 {
@@ -231,10 +235,15 @@
     }
     
     if (isDate == NO) {
-        DLog(@"选中----%@",selectedStr);
-        block(selectedStr);
+
+        if (block) {
+            block(selectedStr);
+        }
     }else{
-        self.alertBlock(selectedStr);
+        if (_alertBlock) {
+           
+            _alertBlock(selectedStr,_selectDate);
+        }
     }
     
     [self hide];
