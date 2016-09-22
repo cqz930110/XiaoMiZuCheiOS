@@ -39,6 +39,8 @@
 		1024B0781D69AF47008B3E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0771D69AF47008B3E99 /* Foundation.framework */; };
 		1024B07A1D69AF50008B3E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B0791D69AF50008B3E99 /* UIKit.framework */; };
 		1024B07C1D69AF60008B3E99 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024B07B1D69AF60008B3E99 /* Security.framework */; };
+		102540261D941AD40085A510 /* icon_circle_nosel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102540251D941AD40085A510 /* icon_circle_nosel@2x.png */; };
+		102540281D941AD90085A510 /* icon_circle_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102540271D941AD90085A510 /* icon_circle_sel@2x.png */; };
 		1078217A1D521FA6009DE1D2 /* bg_back_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821361D521FA6009DE1D2 /* bg_back_car@2x.png */; };
 		1078217B1D521FA6009DE1D2 /* bg_back_car_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */; };
 		1078217F1D521FA6009DE1D2 /* bg_unlock_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078213B1D521FA6009DE1D2 /* bg_unlock_btn@2x.png */; };
@@ -344,6 +346,8 @@
 		1024B0771D69AF47008B3E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1024B0791D69AF50008B3E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1024B07B1D69AF60008B3E99 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		102540251D941AD40085A510 /* icon_circle_nosel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_circle_nosel@2x.png"; sourceTree = "<group>"; };
+		102540271D941AD90085A510 /* icon_circle_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_circle_sel@2x.png"; sourceTree = "<group>"; };
 		107821361D521FA6009DE1D2 /* bg_back_car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car@2x.png"; sourceTree = "<group>"; };
 		107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_back_car_btn@2x.png"; sourceTree = "<group>"; };
 		1078213B1D521FA6009DE1D2 /* bg_unlock_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_unlock_btn@2x.png"; sourceTree = "<group>"; };
@@ -936,7 +940,9 @@
 				107821591D521FA6009DE1D2 /* icon_about@2x.png */,
 				1078215A1D521FA6009DE1D2 /* icon_card@2x.png */,
 				1078215B1D521FA6009DE1D2 /* icon_default_head@2x.png */,
+				102540251D941AD40085A510 /* icon_circle_nosel@2x.png */,
 				1078215C1D521FA6009DE1D2 /* icon_logout@2x.png */,
+				102540271D941AD90085A510 /* icon_circle_sel@2x.png */,
 				1078215E1D521FA6009DE1D2 /* icon_service_terms@2x.png */,
 				18EE9F2B1D59D0EB00F217BD /* icon_minePhone@2x.png */,
 				107821BB1D52242A009DE1D2 /* icon_logo_about@2x.png */,
@@ -2117,6 +2123,7 @@
 				107821AB1D521FA6009DE1D2 /* icon_id@2x.png in Resources */,
 				18A103CF1D92683D00F9D87B /* traffic_open@2x.png in Resources */,
 				18A103AA1D92683C00F9D87B /* icon_onekey_open@2x.png in Resources */,
+				102540281D941AD90085A510 /* icon_circle_sel@2x.png in Resources */,
 				18A103B01D92683D00F9D87B /* close_carStatus_tip@2x.png in Resources */,
 				107821AE1D521FA6009DE1D2 /* icon_logo@2x.png in Resources */,
 				18EE9F2C1D59D0EB00F217BD /* icon_minePhone@2x.png in Resources */,
@@ -2159,6 +2166,7 @@
 				107821AA1D521FA6009DE1D2 /* icon_ebike_active@2x.png in Resources */,
 				18EE9F331D59D72B00F217BD /* EditKeyViewController.xib in Resources */,
 				107821AC1D521FA6009DE1D2 /* icon_id_active@2x.png in Resources */,
+				102540261D941AD40085A510 /* icon_circle_nosel@2x.png in Resources */,
 				1000D8711D58AB640040FE32 /* areas.plist in Resources */,
 				107821AD1D521FA6009DE1D2 /* icon_left_arrow@2x.png in Resources */,
 				18A103BA1D92683D00F9D87B /* icon_battery_percent_30@2x.png in Resources */,

@@ -32,6 +32,6 @@ typedef enum {
 @protocol XMAlertViewPro <NSObject>
 
 @optional
-- (void)alertView:(XMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)xMalertView:(XMAlertView *)alertView withClickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

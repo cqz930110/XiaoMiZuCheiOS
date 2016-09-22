@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIButton *codeSureBtn;
 @property (nonatomic, strong) UIButton *codeCancelBtn;
 @property (nonatomic, strong) JKCountDownButton *sendCodeBtn;
+@property (copy, nonatomic) NSString *codeString;//验证码
+@property (copy, nonatomic) NSString *expireTime;//验证码过期时间
 
 @end
 
@@ -65,10 +67,13 @@
 #pragma mark -
 #pragma mark - event response
 - (void)sendCodeToYou:(id)sender
-{
+{WEAKSELF;
     [self dismissKeyBoard];
-    if (_codeText.text.length > 0  && [QZManager isPureInt:_codeText.text] == YES)
-    {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDBACKCARURL];
+    [APIRequest sendSMStWithURLString:urlString withPhone:[PublicFunction shareInstance].m_user.phone RequestSuccess:^(NSString *code, NSString *expireTime) {
+        
+        weakSelf.codeString = code;
+        weakSelf.expireTime = expireTime;
         JKCountDownButton *btn = (JKCountDownButton *)sender;
         btn.enabled = NO;
         [sender startCountDownWithSecond:60];
@@ -80,14 +85,30 @@
             countDownButton.enabled = YES;
             return @"重新获取";
         }];
-    }
+        
+    } fail:nil];
 }
 - (void)cancelORSureEvent:(UIButton *)sender
 {
     if (sender.tag == 3005) {
+        
+        
+        if(_codeText.text.length <=0){
+            [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
+            return;
+        }else if (![_codeText.text isEqualToString:_codeString]){
+            
+            [JKPromptView showWithImageName:nil message:@"验证码错误"];
+            return;
+        }else if ([QZManager compareOneDay:[NSDate date] withAnotherDay:[QZManager timeStampChangeNSDate:[_expireTime doubleValue]]] == 1){
+            
+            [JKPromptView showWithImageName:nil message:@"验证码已失效，请您重新获取"];
+            return;
+        }
+
         DLog(@"确认还车");
-        if ([self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
-            [self.delegate alertView:self clickedButtonAtIndex:0];
+        if ([self.delegate respondsToSelector:@selector(xMalertView:withClickedButtonAtIndex:)]) {
+            [self.delegate xMalertView:self withClickedButtonAtIndex:1];
         }
 
     }

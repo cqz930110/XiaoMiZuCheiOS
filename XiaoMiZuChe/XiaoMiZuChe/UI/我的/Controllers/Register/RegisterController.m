@@ -12,6 +12,7 @@
 #import "NSString+MHCommon.h"
 #import "GcNoticeUtil.h"
 #import "FCUUID.h"
+#import "ServiceViewController.h"
 
 @interface RegisterController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
@@ -22,12 +23,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *phoneImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *keyImgView;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 @property (weak, nonatomic) IBOutlet UIView *codeLineView;
 @property (weak, nonatomic) IBOutlet UIView *keyLineView;
 @property (copy, nonatomic) NSString *codeString;//验证码
 @property (copy, nonatomic) NSString *expireTime;//验证码过期时间
+
+@property (assign, nonatomic) BOOL isAgree;//是否同意
 @end
 
 @implementation RegisterController
@@ -44,6 +48,8 @@
 }
 #pragma mark -private methods
 - (void)initUI{
+    
+    _isAgree = YES;
     [self setupNaviBarWithTitle:@"注册会员"];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -163,6 +169,12 @@
 - (IBAction)nextBtnEvent:(id)sender {
     [self dismissKeyBoard];
     DLog(@"下一步");
+    if (_isAgree == NO) {
+        
+        [JKPromptView showWithImageName:nil message:@"请同意服务条款后继续操作"];
+        return;
+    }
+    
     if (_phoneText.text.length<=0) {
         [JKPromptView showWithImageName:nil message:@"请您检查手机号码是否填写"];
         return;
@@ -207,6 +219,25 @@
     PerfectInformationVC *vc = [PerfectInformationVC new];
     [self.navigationController pushViewController:vc animated:YES];
 
+}
+
+- (IBAction)agreeORNOagreeEvent:(UIButton *)sender {
+    
+    _isAgree  = !_isAgree;
+    
+    if (_isAgree == YES) {
+        
+        [_agreeBtn setImage:kGetImage(@"icon_circle_sel") forState:0];
+    }else {
+        [_agreeBtn setImage:kGetImage(@"icon_circle_nosel") forState:0];
+    }
+    
+}
+
+- (IBAction)lookAtTheTermsOfService:(UIButton *)sender {
+    
+    ServiceViewController *vc = [ServiceViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -手势
 - (void)dismissKeyBoard{

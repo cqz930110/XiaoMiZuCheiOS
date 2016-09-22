@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 @property (nonatomic, strong) UIViewController *superViewController;
 @property (nonatomic, strong) UIView *xfView;//提醒续费
+
+@property (copy, nonatomic) NSString *codeString;//验证码
+@property (copy, nonatomic) NSString *expireTime;//验证码过期时间
+
 @end
 @implementation RentalView
 - (void)dealloc
@@ -47,6 +51,7 @@
         if ([QZManager compareOneDay:[NSDate date] withAnotherDay:fireDate] == 1)
         {
             [self addSubview:self.xfView];
+            _sendCodeBtn.hidden = YES;
         }
     }
     _superViewController = superViewController;
@@ -110,20 +115,30 @@
 
 
 #pragma mark - event response
-- (IBAction)sendCodeButtonEvent:(JKCountDownButton *)sender {
+- (IBAction)sendCodeButtonEvent:(JKCountDownButton *)sender
+{WEAKSELF;
     
     [self dismissKeyBoard];
-    /*********************发送短信***********************************/
-    sender.enabled = NO;
-    [sender startCountDownWithSecond:60];
-    [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-        NSString *title = [NSString stringWithFormat:@"%zd秒",second];
-        return title;
-    }];
-    [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-        countDownButton.enabled = YES;
-        return @"重新获取";
-    }];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDHIRECARURL];
+    [APIRequest sendSMStWithURLString:urlString withPhone:[PublicFunction shareInstance].m_user.phone RequestSuccess:^(NSString *code, NSString *expireTime) {
+        
+        weakSelf.codeString = code;
+        weakSelf.expireTime = expireTime;
+        JKCountDownButton *btn = (JKCountDownButton *)sender;
+        btn.enabled = NO;
+        [sender startCountDownWithSecond:60];
+        [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+            NSString *title = [NSString stringWithFormat:@"%zd秒",second];
+            return title;
+        }];
+        [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+            countDownButton.enabled = YES;
+            return @"重新获取";
+        }];
+        
+    } fail:nil];
+
 }
 
 - (IBAction)applyImmediatelyBtnEvent:(UIButton *)sender {
@@ -133,10 +148,30 @@
         if (_carText.text.length<=0) {
             [JKPromptView showWithImageName:nil message:@"请输入车辆编号"];
             return;
-        }else if (_phoneText.text.length <=0){
-            [JKPromptView showWithImageName:nil message:@"请输入收到的验证码"];
+        }else if(_phoneText.text.length <=0){
+            [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
+            return;
+        }else if (![_phoneText.text isEqualToString:_codeString]){
+            
+            [JKPromptView showWithImageName:nil message:@"验证码错误"];
+            return;
+        }else if ([QZManager compareOneDay:[NSDate date] withAnotherDay:[QZManager timeStampChangeNSDate:[_expireTime doubleValue]]] == 1){
+            
+            [JKPromptView showWithImageName:nil message:@"验证码已失效，请您重新获取"];
             return;
         }
+        
+        
+        DLog(@"立即申请");
+        
+        [APIRequest applyForRentingACarWithCarId:_carText.text RequestSuccess:^{
+            
+            if ([weakSelf.delegate respondsToSelector:@selector(rentalCarSUccess)])
+            {
+                [weakSelf.delegate rentalCarSUccess];
+            }
+            [weakSelf removeFromSuperview];
+        } fail:nil];
         
     }else {
         
@@ -144,16 +179,6 @@
         [alertView show];
     }
     
-    DLog(@"立即申请");
-    
-    [APIRequest applyForRentingACarWithCarId:_carText.text RequestSuccess:^{
-        
-        if ([weakSelf.delegate respondsToSelector:@selector(rentalCarSUccess)])
-        {
-            [weakSelf.delegate rentalCarSUccess];
-        }
-        [weakSelf removeFromSuperview];
-    } fail:nil];
     
 }
 

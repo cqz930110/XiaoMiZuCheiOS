@@ -23,10 +23,11 @@
 #import "MapNavViewController.h"
 #import "NavMapWindow.h"
 #import "MZTimerLabel.h"
+#import "XMAlertView.h"
 
 #define REES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
-@interface CarRentalViewController ()<AMapLocationManagerDelegate,MAMapViewDelegate,IFlySpeechSynthesizerDelegate,RentalViewDelegate,MapTypeViewPro,SelectTimeAlertPro>
+@interface CarRentalViewController ()<AMapLocationManagerDelegate,MAMapViewDelegate,IFlySpeechSynthesizerDelegate,RentalViewDelegate,MapTypeViewPro,SelectTimeAlertPro,XMAlertViewPro>
 {
     UITapGestureRecognizer* _singleTap;//地图点击手势
     
@@ -357,17 +358,11 @@
             break;
         case 1009:
         {
-            [APIRequest backCarEventWithForce:@"1" RequestSuccess:^{
-                
-                [weakSelf noCarRentalInformation];
-
-            } fail:^{
-                
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统检测到电动车未归还到指定车棚！是否执行强制换车？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-                alertView.tag = 10009;
-                [alertView show];
-
-            }];
+            
+            UIWindow *window = [QZManager getWindow];
+            XMAlertView *alertView = [[XMAlertView alloc] initWithVerificationCodeWithStyle:XMAlertViewStyleVerCode];
+            alertView.delegate = self;
+            [window addSubview:alertView];
         }
             break;
             
@@ -375,6 +370,27 @@
             break;
     }
 }
+#pragma mark -  XMAlertViewPro
+- (void)xMalertView:(XMAlertView *)alertView withClickedButtonAtIndex:(NSInteger)buttonIndex
+{WEAKSELF;
+    if (buttonIndex == 1) {
+        
+        [APIRequest backCarEventWithForce:@"1" RequestSuccess:^{
+            
+            [weakSelf noCarRentalInformation];
+            
+        } fail:^{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统检测到电动车未归还到指定车棚！是否执行强制换车？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+            alertView.tag = 10009;
+            [alertView show];
+            
+        }];
+
+    }
+    
+}
+
 #pragma mark -SelectTimeAlertPro 画轨迹
 - (void)ShowTheRoadWithKSDate:(NSMutableArray *)locArrays WithStar:(CLLocationCoordinate2D)qidian withEnd:(CLLocationCoordinate2D)endcll
 {

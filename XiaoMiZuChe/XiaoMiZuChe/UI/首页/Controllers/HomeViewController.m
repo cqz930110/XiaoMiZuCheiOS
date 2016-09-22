@@ -118,15 +118,37 @@
             break;
     }
 }
-#pragma mark - 
-- (void)alertView:(XMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark -  XMAlertViewPro
+- (void)xMalertView:(XMAlertView *)alertView withClickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [APIRequest getUserCarRecordRequestSuccess:^{
+//    [APIRequest getUserCarRecordRequestSuccess:^{
+//        
+//    } fail:^{
+//        
+//    }];
+    
+    if (buttonIndex == 1) {
         
-    } fail:^{
+        [APIRequest backCarEventWithForce:@"1" RequestSuccess:^{
+        } fail:^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统检测到电动车未归还到指定车棚！是否执行强制换车？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+            alertView.tag = 10099;
+            [alertView show];
+        }];
         
-    }];
+    }
 }
+#pragma mark -UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 10009 && buttonIndex == 1){
+        
+        [APIRequest backCarEventWithForce:@"2" RequestSuccess:^{
+            
+        } fail:nil];
+    }
+}
+
 #pragma mark - getters and setters
 - (CustomMenuBtn *)handleCardBtn
 {
