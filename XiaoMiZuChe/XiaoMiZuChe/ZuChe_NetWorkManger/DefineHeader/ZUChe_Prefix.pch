@@ -48,6 +48,7 @@
 #define USERKEY                           @"userLoginKey"
 #define DECIDEISLOGIN                     @"autoLoginSuccess"
 #define LOGINSUCCESS                      @"LoginSuccessevent"
+#define OPENVFNOTI                        @"openvfevent"
 
 /**
  *  Bugly APPID

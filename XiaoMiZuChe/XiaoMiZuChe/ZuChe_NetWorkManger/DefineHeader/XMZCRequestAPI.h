@@ -120,7 +120,27 @@
  */
 #define UnLockCarURL                 @"app/lock/unLockBike.do"
 /*
- 25  查询轨迹
+ 26  查询轨迹
  */
 #define SEARCHTRACK                  @"app/map/searchTrack.do"
+/*
+ 27  打开电子围栏接口
+ */
+#define OPENVFURLSTRING              @"app/vf/openVf.do"
+/*
+ 28  关闭电子围栏接口
+ */
+#define CLOSEVFURLSTRING             @"app/vf/closeVf.do"
+/*
+ 29  租车卡续费支付接口
+ */
+#define RENEWCARDPAYAPI              @"app/pay/renewCardPay.do"
+/*
+ 30  租车卡办理支付接口
+ */
+#define HANDLECARDPAYAPI             @"app/pay/handleCardPay.do"
+/*
+ 31  支付成功后执行接口
+ */
+#define PAYNOTIFYURL                 @"app/pay/appPayNotify.do"
 

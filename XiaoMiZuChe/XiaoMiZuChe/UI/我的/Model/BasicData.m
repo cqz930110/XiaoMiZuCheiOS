@@ -35,6 +35,8 @@
 @synthesize userType = _userType;
 @synthesize vip = _vip;
 @synthesize carRecord = _carRecord;
+@synthesize startTime = _startTime;
+@synthesize expireTime = _expireTime;
 
 
 -(id)initWithDictionary:(NSDictionary*)dict
@@ -49,6 +51,9 @@
 		DTAPI_DICT_ASSIGN_STRING(phone, @"");
 		DTAPI_DICT_ASSIGN_STRING(province, @"");
 		DTAPI_DICT_ASSIGN_STRING(regTime, @"");
+        DTAPI_DICT_ASSIGN_STRING(startTime, @"");
+        DTAPI_DICT_ASSIGN_STRING(expireTime, @"");
+
 		DTAPI_DICT_ASSIGN_NUMBER(schoolId, @"0");
 		DTAPI_DICT_ASSIGN_STRING(schoolName, @"");
 		DTAPI_DICT_ASSIGN_NUMBER(sex, @"0");
@@ -76,6 +81,9 @@
 	DTAPI_DICT_EXPORT_BASICTYPE(phone);
 	DTAPI_DICT_EXPORT_BASICTYPE(province);
 	DTAPI_DICT_EXPORT_BASICTYPE(regTime);
+    DTAPI_DICT_EXPORT_BASICTYPE(startTime);
+    DTAPI_DICT_EXPORT_BASICTYPE(expireTime);
+
 	DTAPI_DICT_EXPORT_BASICTYPE(schoolId);
 	DTAPI_DICT_EXPORT_BASICTYPE(schoolName);
 	DTAPI_DICT_EXPORT_BASICTYPE(sex);

@@ -168,6 +168,33 @@
         fail();
     }];
 }
+#pragma mark - 还车
++ (void)backCarEventWithForce:(NSString *)force
+                       RequestSuccess:(void (^)())success
+                                 fail:(void (^)())fail
+{
+    [MBProgressHUD showMBLoadingWithText:nil];
+    NSString *idString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.id];
+    NSString *userIdString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+
+    NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:userIdString,@"userId",idString,@"id",force,@"force", nil];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,BACKCARURL];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        NSString *msg = jsonDic[@"errmsg"];
+        if (errorcode !=1) {
+            fail();
+            return ;
+        }
+        [JKPromptView showWithImageName:nil message:msg];
+        success();
+    } fail:^{
+        [MBProgressHUD hideHUD];
+    }];
+
+}
 #pragma mark - 重置密码接口
 + (void)resetPasswordWithuserId:(NSString *)userId
                    withpassword:(NSString *)password
@@ -556,12 +583,64 @@
         [MBProgressHUD hideHUD];
     }];
 }
+#pragma mark - 租车卡办理支付接口
++ (void)payTheVIPFeesWithUrlString:(NSString *)urlString withMode:(NSString *)modeString
+                    RequestSuccess:(void (^)(NSString *orderInfo,NSString *orderId))success
+                              fail:(void (^)())fail
+{
+    [MBProgressHUD showMBLoadingWithText:nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",modeString,@"payMode", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        NSDictionary *dataDic = jsonDic[@"data"];
+        NSString *orderInfo = dataDic[@"orderInfo"];
+        NSString *orderId = dataDic[@"orderId"];
 
+        success(orderInfo,orderId);
+    } fail:^{
+        [MBProgressHUD hideHUD];
+        fail();
+    }];
+}
 
+#pragma mark - 支付成功后执行接口
++ (void)paySuccessAPIWithOrderId:(NSString *)orderId
+                  RequestSuccess:(void (^)())success
+                            fail:(void (^)())fail
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,PAYNOTIFYURL];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.userId,@"userId",orderId,@"orderId", nil];
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlString  parameters:dict isNeedHead:YES success:^(NSDictionary *jsonDic) {
+        
+        [MBProgressHUD hideHUD];
+        NSUInteger errorcode = [jsonDic[@"code"] integerValue];
+        if (errorcode !=1) {
+            NSString *msg = jsonDic[@"errmsg"];
+            [JKPromptView showWithImageName:nil message:msg];
+            fail();
+            return ;
+        }
+        NSDictionary *dataDic = jsonDic[@"data"];
+        [PublicFunction shareInstance].m_user = [[BasicData alloc] initWithDictionary:dataDic];
+        success();
+    } fail:^{
+        [MBProgressHUD hideHUD];
+        fail();
+    }];
+
+}
 + (void)getCarLocationInfomationRequestSuccess:(void (^)(id model))success
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?carId=%@",kProjectBaseUrl,CarLocationInfo,[PublicFunction shareInstance].m_user.carRecord.carId];
-    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?carId=%@&userId=%@",kProjectBaseUrl,CarLocationInfo,[PublicFunction shareInstance].m_user.carRecord.carId,[PublicFunction shareInstance].m_user.userId];
+    [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:YES success:^(NSDictionary *jsonDic) {
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
             NSString *msg = jsonDic[@"errmsg"];

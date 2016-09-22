@@ -231,9 +231,9 @@ singleton_for_header(QZManager)
 +(int)compareOneDay:(NSDate *)oneDay
      withAnotherDay:(NSDate *)anotherDay
      withDateFormat:(NSString *)formatString;
-#pragma mark - 输入的日期字符串形如：@"1992-05-21"
+#pragma mark - 输入的日期字符串形如：@"2016-09-20 22:26:53"
 /**
- *  输入的日期字符串形如：@"1992-05-21"
+ *  输入的日期字符串形如：@"2016-09-20 22:26:53"
  */
 + (NSDate *)caseDateFromString:(NSString *)dateString;
 
@@ -241,6 +241,7 @@ singleton_for_header(QZManager)
 /*
  *时间戳转换NSDate
  */
++ (NSDate *)getDateFrom:(NSString *)strDate;
 + (NSString *)changeTime:(NSTimeInterval)time;
 + (NSString *)changeTimeMethods:(NSTimeInterval)time
                        withType:(NSString *)type;

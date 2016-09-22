@@ -10,6 +10,7 @@
 #import "JKCountDownButton.h"
 #import "GPSMapViewController.h"
 #import "LoginViewController.h"
+#import "HandleCarViewController.h"
 
 @interface RentalView()<UITextFieldDelegate,UIAlertViewDelegate>
 
@@ -23,29 +24,36 @@
 @property (weak, nonatomic) IBOutlet UIView *codeLineView;
 @property (weak, nonatomic) IBOutlet UIView *phoneLineView;
 @property (nonatomic, strong) UIViewController *superViewController;
-
+@property (nonatomic, strong) UIView *xfView;//提醒续费
 @end
 @implementation RentalView
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-+ (RentalView *)instanceRentalViewWithViewController:(UIViewController *)superViewController
++ (RentalView *)instanceRentalViewWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"RentalView" owner:self options:nil];
     RentalView *detailView = [nibView objectAtIndex:0];
-    detailView.frame = CGRectMake(0, 64, 320, kMainScreenHeight - 64.f);
-    [detailView initUIWithViewController:superViewController];
+    [detailView initUIWithDelegate:delegate withViewController:superViewController];
     return detailView;
 }
-- (void)initUIWithViewController:(UIViewController *)superViewController{
+- (void)initUIWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController{
     
+    [self addSubview:self.xfView];
+
+    if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
+        NSDate *fireDate = [QZManager caseDateFromString:[PublicFunction shareInstance].m_user.expireTime];
+        if ([QZManager compareOneDay:[NSDate date] withAnotherDay:fireDate] == 1)
+        {
+            [self addSubview:self.xfView];
+        }
+    }
     _superViewController = superViewController;
+    _delegate = delegate;
     LRViewBorderRadius(_immBtn, 5.f, 0, [UIColor whiteColor]);
     LRViewBorderRadius(_nearBtn, 5.f, 0, [UIColor whiteColor]);
     LRViewBorderRadius(_sendCodeBtn, 3.f, 1, hexColor(999999));
-    
-    
     [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateNormal];
     [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateSelected];
     
@@ -64,7 +72,6 @@
                                              selector:@selector(textFieldChanged:)
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.carText];
-
 }
 #pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -120,9 +127,8 @@
 }
 
 - (IBAction)applyImmediatelyBtnEvent:(UIButton *)sender {
+    WEAKSELF;
     [self dismissKeyBoard];
-    
-    
     if ([PublicFunction shareInstance].m_bLogin == YES) {
         if (_carText.text.length<=0) {
             [JKPromptView showWithImageName:nil message:@"请输入车辆编号"];
@@ -139,6 +145,16 @@
     }
     
     DLog(@"立即申请");
+    
+    [APIRequest applyForRentingACarWithCarId:_carText.text RequestSuccess:^{
+        
+        if ([weakSelf.delegate respondsToSelector:@selector(rentalCarSUccess)])
+        {
+            [weakSelf.delegate rentalCarSUccess];
+        }
+        [weakSelf removeFromSuperview];
+    } fail:nil];
+    
 }
 
 - (IBAction)nearTheVehicleBtnEvent:(UIButton *)sender {
@@ -156,6 +172,34 @@
     }
 }
 #pragma mark - getters and setters
+- (UIView *)xfView
+{WEAKSELF;
+    if (!_xfView) {
+        
+        _xfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
+        _xfView.backgroundColor = [UIColor clearColor];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 10, 20, 20)];
+        imgView.image = kGetImage(@"icon_info");
+        imgView.userInteractionEnabled = YES;
+        [_xfView addSubview:imgView];
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(imgView), 10, 200, 20)];
+        label2.textAlignment = NSTextAlignmentLeft;
+        label2.numberOfLines = 0;
+        label2.backgroundColor = [UIColor clearColor];
+        label2.textColor = hexColor(F08200);
+        label2.font = Font_12;
+        label2.text = @"租车卡已到期,点击去续费";
+        [_xfView addSubview:label2];
+        [label2 whenCancelTapped:^{
+            
+            HandleCarViewController *vc = [HandleCarViewController new];
+            vc.isXF = YES;
+            [weakSelf.superViewController.navigationController pushViewController:vc animated:YES];
+        }];
+    }
+    return _xfView;
+}
 #pragma mark -手势
 - (void)dismissKeyBoard{
     [self endEditing:YES];

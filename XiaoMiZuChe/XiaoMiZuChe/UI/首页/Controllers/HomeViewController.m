@@ -12,6 +12,8 @@
 #import "CustomMenuBtn.h"
 #import "HandleCarViewController.h"
 #import "XMAlertView.h"
+#import "UIWebView+Load.h"
+
 #define BUTTONWITH    ([UIScreen mainScreen].bounds.size.width - 1.2f)/3.f
 #define kMenuButtonBaseTag 7700
 
@@ -21,6 +23,7 @@
 @property (nonatomic, strong) CustomMenuBtn *applydBtn;//申请用车
 @property (nonatomic, strong) CustomMenuBtn *repayCarBtn;//还车
 @property (nonatomic, strong) UIView *topLineView;//顶部的线
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -52,6 +55,7 @@
                                 Observer:self];
     
     
+    [self.view addSubview:self.webView];
     [self.view addSubview:self.topLineView];
     [self.view addSubview:self.handleCardBtn];
     [self.view addSubview:self.applydBtn];
@@ -178,6 +182,20 @@
     }
     return _topLineView;
 }
+- (UIWebView *)webView
+{
+    if (!_webView) {
+        _webView.backgroundColor = [UIColor clearColor];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kMainScreenWidth, kMainScreenHeight-213.6)];
+        _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
+        _webView.scalesPageToFit = NO;//禁止用户缩放页面
+        [_webView loadURL:@"http://api.xiaomiddc.com/app/h5/service_descrip.html"];
+        [_webView setOpaque:NO]; //不设置这个值 页面背景始终是白色
+    }
+    return _webView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

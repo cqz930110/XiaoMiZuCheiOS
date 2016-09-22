@@ -8,7 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarRentalViewController">
             <connections>
+                <outlet property="OverlayBtn" destination="5W1-GN-Lgb" id="S65-fM-ntG"/>
+                <outlet property="infoBtn" destination="oJO-ta-CqA" id="RwI-b6-whh"/>
+                <outlet property="mapTypeBtn" destination="OJ5-Zx-pds" id="98N-gU-6yv"/>
+                <outlet property="navBtn" destination="siO-hV-qJv" id="UOL-I5-2ET"/>
+                <outlet property="roadBtn" destination="aeT-0p-jLb" id="aJX-xi-eLF"/>
+                <outlet property="trajectoryBtn" destination="t1y-Wo-K5r" id="r2f-ed-JUY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="voiceBtn" destination="JpR-NK-nJf" id="ya5-Fa-AiR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,6 +29,9 @@
                         <constraint firstAttribute="height" constant="40" id="mkR-oq-b6P"/>
                     </constraints>
                     <state key="normal" backgroundImage="map_switch.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="bhC-dW-feG"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1y-Wo-K5r">
                     <constraints>
@@ -29,6 +39,9 @@
                         <constraint firstAttribute="height" constant="40" id="jIe-ER-yFT"/>
                     </constraints>
                     <state key="normal" backgroundImage="track.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="d6g-0N-YKY"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJO-ta-CqA">
                     <constraints>
@@ -36,6 +49,9 @@
                         <constraint firstAttribute="height" constant="40" id="wXg-yu-jH4"/>
                     </constraints>
                     <state key="normal" backgroundImage="car_status.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="fQz-br-QVY"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1007" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siO-hV-qJv">
                     <constraints>
@@ -43,6 +59,9 @@
                         <constraint firstAttribute="height" constant="40" id="ful-4T-9AX"/>
                     </constraints>
                     <state key="normal" backgroundImage="nav.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="WhC-64-Ews"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeT-0p-jLb">
                     <constraints>
@@ -50,6 +69,9 @@
                         <constraint firstAttribute="height" constant="40" id="wJ9-wA-TC2"/>
                     </constraints>
                     <state key="normal" backgroundImage="traffic_close.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="vBG-Nv-njd"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5W1-GN-Lgb">
                     <constraints>
@@ -57,6 +79,9 @@
                         <constraint firstAttribute="height" constant="40" id="fad-gg-6o5"/>
                     </constraints>
                     <state key="normal" backgroundImage="fence_close.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="Gk7-1L-HPR"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1008" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cel-SQ-ms4">
                     <constraints>
@@ -64,6 +89,9 @@
                         <constraint firstAttribute="height" constant="40" id="Z4U-4m-3De"/>
                     </constraints>
                     <state key="normal" backgroundImage="icon_map_battery"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="Y4g-dY-bt5"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpR-NK-nJf">
                     <constraints>
@@ -71,6 +99,9 @@
                         <constraint firstAttribute="height" constant="37" id="aI5-6H-al1"/>
                     </constraints>
                     <state key="normal" backgroundImage="bg_unlock_btn.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="71F-ic-HkH"/>
+                    </connections>
                 </button>
                 <button opaque="NO" tag="1009" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFI-a0-hlI">
                     <constraints>
@@ -78,6 +109,9 @@
                         <constraint firstAttribute="width" constant="84" id="QXc-in-2Yt"/>
                     </constraints>
                     <state key="normal" backgroundImage="bg_back_car_btn.png"/>
+                    <connections>
+                        <action selector="clickButtonEvent:" destination="-1" eventType="touchUpInside" id="pyy-OB-qir"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

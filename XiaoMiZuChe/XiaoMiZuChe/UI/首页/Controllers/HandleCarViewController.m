@@ -40,12 +40,16 @@
 #pragma mark - private methods
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupNaviBarWithTitle:@"办理租车卡"];
+    if (_isXF == YES) {
+        
+        [self setupNaviBarWithTitle:@"租车卡续费"];
+    }else {
+        [self setupNaviBarWithTitle:@"办理租车卡"];
+    }
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
 
     [self.view addSubview:self.vipCardImgView];
     [self.view addSubview:self.immediatelyBtn];
-    
 }
 #pragma mark - event respose
 - (void)immediatelyToDealWith:(UIButton *)btn
@@ -65,23 +69,38 @@
 }
 #pragma mark - HandleCardViewPro
 - (void)choiceOfPaymentWithIndex:(NSInteger)index
-{
+{WEAKSELF;
     DLog(@"%ld",index);
     switch (index) {
         case 0:
         {//微信
-            [self payMethodsWithWeiXin];
+//            [self payMethodsWithWeiXin];
+            [JKPromptView showWithImageName:nil message:@"支付方式暂不支持"];
         }
             break;
         case 1:
         {//支付宝
+            NSString *urlString = @"";
+            if (_isXF == YES) {
+                
+                urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,RENEWCARDPAYAPI];
+
+            }else {
+              
+                urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,HANDLECARDPAYAPI];
+            }
+            [APIRequest payTheVIPFeesWithUrlString:urlString withMode:@"alipay" RequestSuccess:^(NSString *orderInfo, NSString *orderId) {
+                
+                [weakSelf getOrderInfoAndPay:orderInfo withOrderId:orderId];
+            } fail:nil];
+
             
-            [self getOrderInfoAndPay:@"88888" Withamount:[NSString stringWithFormat:@"%.2f", 0.01]];
         }
             break;
         case 2:
         {//银联
-            
+            [JKPromptView showWithImageName:nil message:@"支付方式暂不支持"];
+
         }
             break;
 
@@ -179,100 +198,107 @@
 }
 
 #pragma mark -支付宝
-- (void)getOrderInfoAndPay:(NSString *)orderNumber Withamount:(NSString *)amountM
-{
-    //重要说明
-    //这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-    //真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-    //防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-    /*============================================================================*/
-    /*=======================需要填写商户app申请的===================================*/
-    /*============================================================================*/
-    NSString *appID = AlipayAPPID;
-    NSString *privateKey = AlipayRSA_PRIVATE;
-    /*============================================================================*/
-    /*============================================================================*/
-    /*============================================================================*/
-
+- (void)getOrderInfoAndPay:(NSString *)orderInfo withOrderId:(NSString *)orderId
+{WEAKSELF;
+//    //重要说明
+//    //这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
+//    //真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
+//    //防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+//    /*============================================================================*/
+//    /*=======================需要填写商户app申请的===================================*/
+//    /*============================================================================*/
+//    NSString *appID = AlipayAPPID;
+//    NSString *privateKey = AlipayRSA_PRIVATE;
+//    /*============================================================================*/
+//    /*============================================================================*/
+//    /*============================================================================*/
+//
+//    
+//    /*
+//     *生成订单信息及签名
+//     */
+//    //将商品信息赋予AlixPayOrder的成员变量
+//    Order *order = [Order new];
+//    // NOTE: app_id设置
+//    order.app_id = appID;
+//    // NOTE: 支付接口名称
+//    order.method = @"alipay.trade.app.pay";
+//    // NOTE: 参数编码格式
+//    order.charset = @"utf-8";
+//    // NOTE: 当前时间点
+//    NSDateFormatter* formatter = [NSDateFormatter new];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    order.timestamp = [formatter stringFromDate:[NSDate date]];
+//    // NOTE: 支付版本
+//    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+//    // app build版本
+//    NSString *app_build = [NSString stringWithFormat:@"%@", [infoDictionary objectForKey:@"CFBundleVersion"]];
+//    order.version = app_build;
+//    // NOTE: sign_type设置
+//    order.sign_type = @"RSA";
+//    order.notify_url = AlipayBackURL;// NOTE: (非必填项)支付宝服务器主动通知商户服务器里指定的页面http路径
+//    // NOTE: 商品数据
+//    order.biz_content = [BizContent new];
+//    order.biz_content.body = @"租车卡年费支付宝支付";//商品描述
+//    order.biz_content.subject = @"租车卡年费"; //商品标题
+//    order.biz_content.out_trade_no = @""; //订单ID（由商家自行制定）
+//    order.biz_content.timeout_express = @"30m"; //超时时间设置
+//    order.biz_content.total_amount = amountM; //商品价格
+//    //将商品信息拼接成字符串
+//    NSString *orderInfo = [order orderInfoEncoded:NO];
+//    NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
+//    DLog(@"orderSpec = %@",orderInfo);
+//    // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
+//    //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+//    NSString *signedString = [signer signString:orderInfo];
+//    // NOTE: 如果加签成功，则继续执行支付
+//    if (signedString != nil) {
+//    
+//        // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
+//        NSString *orderString = [NSString stringWithFormat:@"%@&sign=%@",
+//                                 orderInfoEncoded, signedString];
     
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order *order = [Order new];
-    // NOTE: app_id设置
-    order.app_id = appID;
-    // NOTE: 支付接口名称
-    order.method = @"alipay.trade.app.pay";
-    // NOTE: 参数编码格式
-    order.charset = @"utf-8";
-    // NOTE: 当前时间点
-    NSDateFormatter* formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    order.timestamp = [formatter stringFromDate:[NSDate date]];
-    // NOTE: 支付版本
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    // app build版本
-    NSString *app_build = [NSString stringWithFormat:@"%@", [infoDictionary objectForKey:@"CFBundleVersion"]];
-    order.version = app_build;
-    // NOTE: sign_type设置
-    order.sign_type = @"RSA";
-    order.notify_url = AlipayBackURL;// NOTE: (非必填项)支付宝服务器主动通知商户服务器里指定的页面http路径
-    // NOTE: 商品数据
-    order.biz_content = [BizContent new];
-    order.biz_content.body = @"租车卡年费支付宝支付";//商品描述
-    order.biz_content.subject = @"租车卡年费"; //商品标题
-    order.biz_content.out_trade_no = orderNumber; //订单ID（由商家自行制定）
-    order.biz_content.timeout_express = @"30m"; //超时时间设置
-    order.biz_content.total_amount = amountM; //商品价格
-    //将商品信息拼接成字符串
-    NSString *orderInfo = [order orderInfoEncoded:NO];
-    NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
-    DLog(@"orderSpec = %@",orderInfo);
-    // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
-    //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    NSString *signedString = [signer signString:orderInfo];
-    // NOTE: 如果加签成功，则继续执行支付
-    if (signedString != nil) {
-        //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
-        NSString *appScheme = @"alisdkdemo";
-        
-        // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
-        NSString *orderString = [NSString stringWithFormat:@"%@&sign=%@",
-                                 orderInfoEncoded, signedString];
-        
-        // NOTE: 调用支付结果开始支付
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            
-            DLog(@"reslut = %@",resultDic);
-            NSInteger resultStatus = [[resultDic objectForKey:@"resultStatus"] integerValue];
-            /*9000:订单支付成功。8000:正在处理中。4000:订单支付失败。6001:用户中途取消。6002:网络连接出错*/
-            if (resultStatus == 9000)
-            {
-                DLog(@"订单编号－－－－－－%@",resultDic[@"out_trade_no"]);
-            }
-            else
-            {
-                if (resultStatus == 6001)
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您还未支付" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-                    [alert show];
-                    
-                }
-                if (resultStatus == 6002)
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"网络连接出错" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-                    [alert show];
-                }
-            }
+    //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
+    NSString *appScheme = @"XiaoMiZuChe";
 
-        }];
-    }
+    // NOTE: 调用支付结果开始支付
+    [[AlipaySDK defaultService] payOrder:orderInfo fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        
+        DLog(@"reslut = %@",resultDic);
+        NSInteger resultStatus = [[resultDic objectForKey:@"resultStatus"] integerValue];
+        /*9000:订单支付成功。8000:正在处理中。4000:订单支付失败。6001:用户中途取消。6002:网络连接出错*/
+        if (resultStatus == 9000)
+        {
+            DLog(@"订单编号－－－－－－%@",resultDic[@"out_trade_no"]);
+            
+            weakSelf.isXF = YES;
+            [APIRequest paySuccessAPIWithOrderId:orderId RequestSuccess:^{
+                
+                [weakSelf setupNaviBarWithTitle:@"租车卡续费"];
+
+            } fail:nil];
+        }
+        else
+        {
+            if (resultStatus == 6001)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您还未支付" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+                [alert show];
+                
+            }
+            if (resultStatus == 6002)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"网络连接出错" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+        
+    }];
 
 }
 
-    
+
 #pragma mark - getters and setters
 - (UIImageView *)vipCardImgView
 {

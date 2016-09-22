@@ -459,7 +459,7 @@ singleton_for_class(QZManager)
 + (NSDate *)caseDateFromString:(NSString *)dateString{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"shanghai"];
-    [dateFormatter setDateFormat: @"yyyy-MM-dd"];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
     NSDate *destDate= [dateFormatter dateFromString:dateString];
 
     return destDate;

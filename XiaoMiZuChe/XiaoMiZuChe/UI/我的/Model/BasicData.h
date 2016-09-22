@@ -33,6 +33,8 @@
 	NSString *_userToken;
 	NSNumber *_userType;
 	NSNumber *_vip;
+    NSString *_startTime;
+    NSString *_expireTime;
     carRecord *_carRecord;
 
 }
@@ -54,6 +56,9 @@
 @property (nonatomic, copy) NSString *userToken;
 @property (nonatomic, copy) NSNumber *userType;
 @property (nonatomic, copy) NSNumber *vip;
+@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *expireTime;
+
 @property (nonatomic, retain) carRecord *carRecord;
 
 -(id)initWithDictionary:(NSDictionary*)dict;

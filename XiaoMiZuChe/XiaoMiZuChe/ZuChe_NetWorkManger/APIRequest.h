@@ -82,6 +82,18 @@
                RequestSuccess:(void (^)())success
                          fail:(void (^)())fail;
 
+
+/**
+ 还车接口
+
+ @param force   （1正常2强制还车）
+ @param success 成功回调
+ @param fail    失败回调 错误码2 车不在车棚，提醒是否强制还车
+ */
++ (void)backCarEventWithForce:(NSString *)force
+               RequestSuccess:(void (^)())success
+                         fail:(void (^)())fail;
+
 /**
  *  重置密码接口
  *
@@ -229,6 +241,31 @@
  */
 + (void)unlockCarRequestSuccess:(void (^)())success
                      fail:(void (^)())fail;
+
+
+/**
+ 租车卡办理支付接口
+
+ @param modeString 支付方式：支付宝（alipay）/微信（wxpay）/银联（unionpay）
+ @param success    成功回调 订单info吊起支付
+ @param fail       失败回调
+ */
++ (void)payTheVIPFeesWithUrlString:(NSString *)urlString withMode:(NSString *)modeString
+               RequestSuccess:(void (^)(NSString *orderInfo,NSString *orderId))success
+                         fail:(void (^)())fail;
+
+
+/**
+ 支付成功后执行接口
+
+ @param orderId 订单id
+ @param success 成功回调
+ @param fail    失败回调
+ */
++ (void)paySuccessAPIWithOrderId:(NSString *)orderId
+                  RequestSuccess:(void (^)())success
+                            fail:(void (^)())fail;
+
 /**
  获取车辆位置信息
 

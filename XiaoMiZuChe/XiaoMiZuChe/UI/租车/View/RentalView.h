@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol  RentalViewDelegate;
 
 @interface RentalView : UIView
 
-+ (RentalView *)instanceRentalViewWithViewController:(UIViewController *)superViewController;
 
+@property (weak, nonatomic)   id<RentalViewDelegate>delegate;
+
++ (RentalView *)instanceRentalViewWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController;
+
+@end
+
+@protocol  RentalViewDelegate <NSObject>
+
+- (void)rentalCarSUccess;
 @end

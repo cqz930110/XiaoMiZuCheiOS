@@ -11,4 +11,5 @@
 
 @interface HandleCarViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL isXF;//是否续费
 @end
