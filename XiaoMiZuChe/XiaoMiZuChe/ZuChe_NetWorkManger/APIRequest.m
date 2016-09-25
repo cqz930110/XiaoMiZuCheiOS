@@ -505,13 +505,12 @@
 }
 #pragma mark - 发送短信
 + (void)sendSMStWithURLString:(NSString *)urlStr
-                    withPhone:(NSString *)phone
+               withDictionary:(NSDictionary *)dictionary
                RequestSuccess:(void (^)(NSString *code,NSString *expireTime))success
                          fail:(void (^)())fail
 {
     [MBProgressHUD showMBLoadingWithText:nil];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone", nil];
-    [ZhouDao_NetWorkManger PostJSONWithUrl:urlStr  parameters:dict isNeedHead:NO success:^(NSDictionary *jsonDic) {
+    [ZhouDao_NetWorkManger PostJSONWithUrl:urlStr  parameters:dictionary isNeedHead:NO success:^(NSDictionary *jsonDic) {
         
         [MBProgressHUD hideHUD];
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];

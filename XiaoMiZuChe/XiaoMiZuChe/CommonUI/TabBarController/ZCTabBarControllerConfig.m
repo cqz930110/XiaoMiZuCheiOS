@@ -132,7 +132,7 @@
     // set the text color for selected state
     // 选中状态下的文字属性
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
-    selectedAttrs[NSForegroundColorAttributeName] = [UIColor colorWithHexString:@"#F08200"];
+    selectedAttrs[NSForegroundColorAttributeName] = [UIColor colorWithHexString:@"#F8B62A"];
     
     // set the text Attributes
     // 设置文字属性

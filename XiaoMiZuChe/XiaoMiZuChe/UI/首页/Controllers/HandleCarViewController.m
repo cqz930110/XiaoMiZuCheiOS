@@ -31,6 +31,20 @@
     TTVIEW_RELEASE_SAFELY(_vipCardImgView);
     TTVIEW_RELEASE_SAFELY(_immediatelyBtn);
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_isXF == YES) {
+        [self setupNaviBarWithTitle:@"租车卡续费"];
+    }else {
+        if ([PublicFunction shareInstance].m_bLogin == NO) {
+            [self setupNaviBarWithTitle:@"办理租车卡"];
+        }else {
+            [self setupNaviBarWithTitle:@"我的租车卡"];
+        }
+    }
+
+}
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,11 +54,10 @@
 #pragma mark - private methods
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    if (_isXF == YES) {
+    
+    if ([PublicFunction shareInstance].m_bLogin == NO) {
         
-        [self setupNaviBarWithTitle:@"租车卡续费"];
-    }else {
-        [self setupNaviBarWithTitle:@"办理租车卡"];
+        [JKPromptView showWithImageName:nil message:@"未登录，请您登录。"];
     }
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
 
@@ -55,6 +68,11 @@
 - (void)immediatelyToDealWith:(UIButton *)btn
 {WEAKSELF;
     DLog(@"立即办理获取年费");
+    
+    if ([PublicFunction shareInstance].m_bLogin == NO) {
+        [JKPromptView showWithImageName:nil message:@"未登录，请您登录。"];
+        return;
+    }
     [APIRequest getVipYearPriceRequestSuccess:^(NSString *moneyString) {
         
         weakSelf.payView = [[HandleCardView alloc] initWithFrame:kMainScreenFrameRect
@@ -92,7 +110,8 @@
             [APIRequest payTheVIPFeesWithUrlString:urlString withMode:@"alipay" RequestSuccess:^(NSString *orderInfo, NSString *orderId) {
                 
                 [weakSelf getOrderInfoAndPay:orderInfo withOrderId:orderId];
-            } fail:nil];
+            } fail:^{
+            }];
 
             
         }
@@ -277,7 +296,8 @@
                 
                 [weakSelf setupNaviBarWithTitle:@"租车卡续费"];
 
-            } fail:nil];
+            } fail:^{
+            }];
         }
         else
         {
@@ -313,7 +333,7 @@
     if (!_immediatelyBtn) {
         _immediatelyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _immediatelyBtn.frame = CGRectMake(30 , Orgin_y(_vipCardImgView) + 30, kMainScreenWidth - 60, 41);
-        [_immediatelyBtn setBackgroundColor:hexColor(F08200)];
+        [_immediatelyBtn setBackgroundColor:hexColor(F8B62A)];
         [_immediatelyBtn setTitle:@"立即办理" forState:0];
         [_immediatelyBtn setTitleColor:[UIColor whiteColor] forState:0];
         [_immediatelyBtn addTarget:self action:@selector(immediatelyToDealWith:) forControlEvents:UIControlEventTouchUpInside];

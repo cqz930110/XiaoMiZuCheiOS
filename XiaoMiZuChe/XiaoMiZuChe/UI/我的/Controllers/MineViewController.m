@@ -89,7 +89,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
         AboutViewController *vc = [AboutViewController new];
         [self.navigationController  pushViewController:vc animated:YES];
     }else if (row == 3) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"0531-67805000"]]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"400-602-2625"]]];
         [self.callPhoneWebView loadRequest:request];
     }else if (row == 2){
         ServiceViewController *vc = [ServiceViewController new];

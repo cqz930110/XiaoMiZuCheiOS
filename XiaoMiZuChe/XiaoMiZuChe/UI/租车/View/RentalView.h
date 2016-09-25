@@ -14,8 +14,7 @@
 
 @property (weak, nonatomic)   id<RentalViewDelegate>delegate;
 
-+ (RentalView *)instanceRentalViewWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController;
-
+- (id)initUIWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController;
 @end
 
 @protocol  RentalViewDelegate <NSObject>

@@ -124,6 +124,7 @@
         _mapView.delegate = self;
         _mapView.showsCompass = NO;
         _mapView.showsScale = NO;
+        _mapView.showsUserLocation = YES;
         [_mapView setZoomLevel:16.1 animated:YES];
     }
     

@@ -169,6 +169,8 @@
     TTVIEW_RELEASE_SAFELY(_mapView)
     TT_INVALIDATE_TIMER(_myTimer);
     TTVIEW_RELEASE_SAFELY(_timerLabel);
+    TTVIEW_RELEASE_SAFELY(_label);
+
 }
 #pragma mark - 加载地图必须
 - (void)loadMapNeed
@@ -272,7 +274,7 @@
 
 #pragma mark - event response
 - (IBAction)clickButtonEvent:(id)sender
-{WEAKSELF;
+{
     UIButton *button = (UIButton *)sender;
     [self.mapView  removeGestureRecognizer:_singleTap];
     
@@ -297,10 +299,13 @@
             // 远程锁车
             if ([_locModel.lock isEqualToString:@"0"]) {
                 // 等于0时候调用锁车的接口
-                [APIRequest lockCarRequestSuccess:nil fail:nil];
+                [APIRequest lockCarRequestSuccess:nil fail:^{
+                    
+                }];
             }else {
                 //等于1时候调用的是解锁的接口
-                [APIRequest unlockCarRequestSuccess:nil fail:nil];
+                [APIRequest unlockCarRequestSuccess:nil fail:^{
+                }];
             }
 
         }
@@ -454,7 +459,8 @@
                 [weakSelf.mapView removeOverlays:weakSelf.mapView.overlays];
                 [JKPromptView showWithImageName:nil message:@"电子围栏关闭成功"];
                 [weakSelf.OverlayBtn setBackgroundImage:[UIImage imageNamed:@"fence_open"] forState:0];
-            } fail:nil];
+            } fail:^{
+            }];
         }else{
             //开启电子围栏
             [self openCarVf];
@@ -464,7 +470,8 @@
         [APIRequest backCarEventWithForce:@"2" RequestSuccess:^{
             
             [weakSelf noCarRentalInformation];
-        } fail:nil];
+        } fail:^{
+        }];
 
     }
 }
@@ -489,7 +496,8 @@
     [APIRequest getLogoutWithURLString:openUrlString RequestSuccess:^{
         
         [weakSelf loadMapNeed];
-    } fail:nil];
+    } fail:^{
+    }];
 }
 #pragma mark - 车辆信息
 - (void)getCarInfo:(UIButton *)btn
@@ -511,7 +519,7 @@
         }];
     }];
     
-    _msgView = [[MsgView alloc] initWithFrame:CGRectMake(btn.frame.origin.x+width-230, Orgin_y(btn)-height -200, 230, 200) With:_locModel WithLocalCoordinate:_center];
+    _msgView = [[MsgView alloc] initWithFrame:CGRectMake(btn.frame.origin.x+width-230, Orgin_y(btn)-height -240, 230, 240) With:_locModel WithLocalCoordinate:_center];
     [self.view addSubview:_msgView];
     [_infoBtn setBackgroundImage:[UIImage imageNamed:@"close_map_Type_tip"] forState:0];
 }
@@ -832,9 +840,7 @@
 {
     if (!_rentalView) {
         
-        _rentalView = [RentalView instanceRentalViewWithDelegate:self withViewController:self];
-        _rentalView.frame = CGRectMake(0, 64, 320, kMainScreenHeight - 64.f);
-
+        _rentalView = [[RentalView alloc] initUIWithDelegate:self withViewController:self];
     }
     return _rentalView;
 }
@@ -863,7 +869,7 @@
         _label = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth - 175, 30, 160, 20)];
         _label.textAlignment = NSTextAlignmentRight;
         _label.font = Font_14;
-        _label.textColor = hexColor(F08200);
+        _label.textColor = hexColor(F8B62A);
         [self.view addSubview:_label];
     }
     return _label;

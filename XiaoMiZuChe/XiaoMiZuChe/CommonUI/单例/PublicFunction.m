@@ -23,10 +23,6 @@
     
     return publicModel;
 }
-//是否登录
-- (BOOL)isLogin{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
-}
 #pragma mark - 应用是否为第一次启动
 - (BOOL)isFirstLaunch
 {

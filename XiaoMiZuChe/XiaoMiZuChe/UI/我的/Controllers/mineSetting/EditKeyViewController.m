@@ -75,7 +75,7 @@
         
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
-            self.keyLineView.backgroundColor = hexColor(F08200);
+            self.keyLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.keyImgView.image = kGetImage(@"icon_pass");
             self.keyLineView.backgroundColor = hexColor(999999);
@@ -83,7 +83,7 @@
     }else {
         if (textField.text.length >0) {
             self.sureKeyImgView.image = kGetImage(@"icon_pass_active");
-            self.sureKeyLineView.backgroundColor = hexColor(F08200);
+            self.sureKeyLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.sureKeyImgView.image = kGetImage(@"icon_pass");
             self.sureKeyLineView.backgroundColor = hexColor(999999);

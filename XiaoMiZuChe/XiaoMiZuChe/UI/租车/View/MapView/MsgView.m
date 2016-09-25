@@ -11,6 +11,7 @@
 //#import <MapKit/MKPlacemark.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "carRecord.h"
 
 @interface MsgView()<AMapSearchDelegate>
 {
@@ -52,6 +53,9 @@
 }
 - (void)initView
 {
+    NSString *str01 = @"租车开始:";
+    NSString *str02 = @"租车结束:";
+
     NSString *str1 = @"设备编号:";
     NSString *str2 = @"定位状态:";
     NSString *str3 = @"在线状态:";
@@ -63,12 +67,30 @@
     
     float width = self.frame.size.width;
 
+    UILabel *lab01 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, [self sizeLabFontWith:str1], 15)];
+    lab01.text = str01;
+    lab01.font = Font_14;
+    [self addSubview:lab01];
+    UILabel *txtLab  = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(lab01)+3, 5, width-[self sizeLabFontWith:str1]-13, 15)];
+    txtLab.font = Font_13;
+    txtLab.text = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.startTime];
+    [self addSubview:txtLab];
 
-    UILabel *lab1 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, [self sizeLabFontWith:str1], 15)];
+    UILabel *lab02 = [[UILabel alloc] initWithFrame:CGRectMake(5, Orgin_y(lab01)+5, [self sizeLabFontWith:str1], 15)];
+    lab02.text = str02;
+    lab02.font = Font_14;
+    [self addSubview:lab02];
+    UILabel *txtLab02  = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(lab02)+3, Orgin_y(lab01)+5, width-[self sizeLabFontWith:str1]-13, 15)];
+    txtLab02.font = Font_13;
+    txtLab02.text = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.expectEndTime];
+    [self addSubview:txtLab02];
+
+
+    UILabel *lab1 = [[UILabel alloc] initWithFrame:CGRectMake(5, Orgin_y(lab02)+5, [self sizeLabFontWith:str1], 15)];
     lab1.text = str1;
     lab1.font = Font_14;
     [self addSubview:lab1];
-    _deviceLab = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(lab1)+3, 5, width-[self sizeLabFontWith:str1]-13, 15)];
+    _deviceLab = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(lab1)+3, Orgin_y(lab02)+5, width-[self sizeLabFontWith:str1]-13, 15)];
     _deviceLab.font = Font_13;
     _deviceLab.text = [NSString stringWithFormat:@"%@",_model.carId];
     [self addSubview:_deviceLab];
@@ -195,10 +217,16 @@
         
         NSDictionary *attribute = @{NSFontAttributeName:Font_14};
         CGSize size = [result boundingRectWithSize:CGSizeMake(157,MAXFLOAT)options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
-        CGRect dateFrame = CGRectMake(68, 144, size.width, size.height);
+        CGRect dateFrame = CGRectMake(68, 184, size.width, size.height);
         _lastLocLab.text = result;
         _lastLocLab.frame = dateFrame;
-        NSLog(@"ReGeo: %@", result);
+        CGRect frame = self.frame;
+        frame.size.height = size.height +184;
+        
+        frame.origin.y = self.frame.origin.y - (size.height + 184.f - 240);
+
+        self.frame = frame;
+        DLog(@"ReGeo: %@", result);
     }
 }
 - (CGFloat)sizeLabFontWith:(NSString *)aStr

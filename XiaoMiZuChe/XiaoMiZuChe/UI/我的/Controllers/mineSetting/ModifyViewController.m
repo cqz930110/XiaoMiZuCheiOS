@@ -82,7 +82,7 @@
         }
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_phone_active");
-            self.phoneLiveView.backgroundColor = hexColor(F08200);
+            self.phoneLiveView.backgroundColor = hexColor(F8B62A);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_phone_no");
             self.phoneLiveView.backgroundColor = hexColor(999999);
@@ -90,7 +90,7 @@
     }else {
         if (textField.text.length >0) {
             self.codeImgView.image = kGetImage(@"icon_code_active");
-            self.codeLineView.backgroundColor = hexColor(F08200);
+            self.codeLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.codeImgView.image = kGetImage(@"icon_code");
             self.codeLineView.backgroundColor = hexColor(999999);
@@ -111,11 +111,12 @@
             /*********************发送短信***********************************/
 
             NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDREGISTERCODEURL];
-            [APIRequest sendSMStWithURLString:urlString withPhone:_phoneText.text RequestSuccess:^(NSString *code, NSString *expireTime) {
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_phoneText.text,@"phone", nil];
+            [APIRequest sendSMStWithURLString:urlString withDictionary:dict RequestSuccess:^(NSString *code, NSString *expireTime) {
                 
                 weakSelf.codeString = code;
                 weakSelf.expireTime = expireTime;
-
+                
                 JKCountDownButton *btn = (JKCountDownButton *)sender;
                 btn.enabled = NO;
                 [sender startCountDownWithSecond:60];
@@ -129,7 +130,6 @@
                 }];
 
             } fail:^{
-                
             }];
 
         }];

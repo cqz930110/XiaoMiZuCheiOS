@@ -163,7 +163,6 @@
 		189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EC4931D5044C700D536B9 /* MineTableViewCell.xib */; };
 		189EC4BF1D50702B00D536B9 /* SettingTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EC4BE1D50702B00D536B9 /* SettingTabCell.m */; };
 		18A103671D9255AE00F9D87B /* RentalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A103661D9255AE00F9D87B /* RentalView.m */; };
-		18A103691D9255F100F9D87B /* RentalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A103681D9255F100F9D87B /* RentalView.xib */; };
 		18A1036C1D9263AF00F9D87B /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A1036A1D9263AF00F9D87B /* iflyMSC.framework */; };
 		18A1036D1D9263AF00F9D87B /* msg_prompt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18A1036B1D9263AF00F9D87B /* msg_prompt.mp3 */; };
 		18A103A21D92683C00F9D87B /* icon_lock_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A103711D92683C00F9D87B /* icon_lock_close@2x.png */; };
@@ -286,6 +285,19 @@
 			remoteInfo = XiaoMiZuChe;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		10CBD1521D97F44A002FF0F5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1000D8441D58AAE30040FE32 /* MyPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPickView.h; sourceTree = "<group>"; };
@@ -498,6 +510,10 @@
 		10C7D4BA1D71EFF70044528D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		10C7D4BC1D71F0100044528D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		10C7D4BE1D71F01F0044528D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		10CBD1021D97F367002FF0F5 /* XiaoMiZuChe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XiaoMiZuChe.entitlements; sourceTree = "<group>"; };
+		10CBD1481D97F44A002FF0F5 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		10CBD1491D97F44A002FF0F5 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		10CBD14B1D97F44A002FF0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17367642F2ACDA21697919A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1813EF8D1D5C6A0F0019CA33 /* FDAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAlertView.h; sourceTree = "<group>"; };
 		1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAlertView.m; sourceTree = "<group>"; };
@@ -623,7 +639,6 @@
 		189EC4BE1D50702B00D536B9 /* SettingTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTabCell.m; sourceTree = "<group>"; };
 		18A103651D9255AE00F9D87B /* RentalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentalView.h; sourceTree = "<group>"; };
 		18A103661D9255AE00F9D87B /* RentalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentalView.m; sourceTree = "<group>"; };
-		18A103681D9255F100F9D87B /* RentalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentalView.xib; sourceTree = "<group>"; };
 		18A1036A1D9263AF00F9D87B /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		18A1036B1D9263AF00F9D87B /* msg_prompt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = msg_prompt.mp3; sourceTree = "<group>"; };
 		18A103711D92683C00F9D87B /* icon_lock_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_lock_close@2x.png"; sourceTree = "<group>"; };
@@ -1136,6 +1151,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		10CBD1471D97F44A002FF0F5 /* GXDDC */ = {
+			isa = PBXGroup;
+			children = (
+				10CBD1481D97F44A002FF0F5 /* NotificationService.h */,
+				10CBD1491D97F44A002FF0F5 /* NotificationService.m */,
+				10CBD14B1D97F44A002FF0F5 /* Info.plist */,
+			);
+			path = GXDDC;
+			sourceTree = "<group>";
+		};
 		1826DCCB1D5DACCB007A0C45 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -1162,6 +1187,7 @@
 				184C29781D2BB22E00771220 /* XiaoMiZuChe */,
 				184C29921D2BB22E00771220 /* XiaoMiZuCheTests */,
 				184C299D1D2BB22E00771220 /* XiaoMiZuCheUITests */,
+				10CBD1471D97F44A002FF0F5 /* GXDDC */,
 				184C29771D2BB22E00771220 /* Products */,
 				7905AEB45AF1A20844B3314B /* Pods */,
 				3DCEB6EA3FD1E163E8A5DAA0 /* Frameworks */,
@@ -1181,6 +1207,7 @@
 		184C29781D2BB22E00771220 /* XiaoMiZuChe */ = {
 			isa = PBXGroup;
 			children = (
+				10CBD1021D97F367002FF0F5 /* XiaoMiZuChe.entitlements */,
 				184C297C1D2BB22E00771220 /* AppDelegate.h */,
 				184C297D1D2BB22E00771220 /* AppDelegate.m */,
 				187349F21D2F951F001A3E91 /* UI */,
@@ -1349,7 +1376,6 @@
 				18A103E91D926D9B00F9D87B /* MapView */,
 				18A103651D9255AE00F9D87B /* RentalView.h */,
 				18A103661D9255AE00F9D87B /* RentalView.m */,
-				18A103681D9255F100F9D87B /* RentalView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1984,6 +2010,7 @@
 				184C29741D2BB22E00771220 /* Resources */,
 				FD2ACD5CF8E077AA6D1D8A21 /* Embed Pods Frameworks */,
 				F76E32EA424C5DDFCADCA269 /* Copy Pods Resources */,
+				10CBD1521D97F44A002FF0F5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -2042,6 +2069,11 @@
 					184C29751D2BB22E00771220 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 3XV668LX24;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					184C298E1D2BB22E00771220 = {
 						CreatedOnToolsVersion = 7.3;
@@ -2107,7 +2139,6 @@
 				18A103CD1D92683D00F9D87B /* track@2x.png in Resources */,
 				18A103FF1D926D9B00F9D87B /* SelectTimeCell.xib in Resources */,
 				18A103B91D92683D00F9D87B /* icon_battery_percent_20@2x.png in Resources */,
-				18A103691D9255F100F9D87B /* RentalView.xib in Resources */,
 				18BF21141D93F30B00521A76 /* icon_info@2x.png in Resources */,
 				107821A31D521FA6009DE1D2 /* bg_hire_car@2x.png in Resources */,
 				18A103CC1D92683D00F9D87B /* satellite_hover@2x.png in Resources */,
@@ -2502,6 +2533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = XiaoMiZuChe/XiaoMiZuChe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				ENABLE_BITCODE = NO;
@@ -2542,7 +2574,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5bea8180-0a4a-4683-9497-d9c0c3dae6e0";
+				PROVISIONING_PROFILE = "f747306f-b6ae-4bd2-b75c-c2d0e560f2d2";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
@@ -2554,6 +2586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = XiaoMiZuChe/XiaoMiZuChe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2595,7 +2628,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5bea8180-0a4a-4683-9497-d9c0c3dae6e0";
+				PROVISIONING_PROFILE = "f747306f-b6ae-4bd2-b75c-c2d0e560f2d2";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};

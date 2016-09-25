@@ -217,7 +217,7 @@
  *  @param fail    失败回调
  */
 + (void)sendSMStWithURLString:(NSString *)urlStr
-                    withPhone:(NSString *)phone
+               withDictionary:(NSDictionary *)dictionary
                RequestSuccess:(void (^)(NSString *code,NSString *expireTime))success
                          fail:(void (^)())fail;
 

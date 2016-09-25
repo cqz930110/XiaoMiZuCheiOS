@@ -114,7 +114,7 @@
     [pickView showPickView:self];
     pickView.block = ^(NSString *schoolString)
     {
-        weakSelf.bottomLine.backgroundColor = hexColor(F08200);
+        weakSelf.bottomLine.backgroundColor = hexColor(F8B62A);
         weakSelf.schoolLab.textColor = THIRDCOLOR;
         weakSelf.schoolLab.text = schoolString;
     };
@@ -133,7 +133,7 @@
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.schoolLab.textColor = NINEColor;
             weakSelf.detailAddressText.text = @"";
-            weakSelf.userTypeLineView.backgroundColor = hexColor(F08200);
+            weakSelf.userTypeLineView.backgroundColor = hexColor(F8B62A);
 
             [weakSelf loadSchoolData];
         }else if (buttonIndex == 1){
@@ -143,7 +143,7 @@
             weakSelf.bottomLine.hidden = NO;
             weakSelf.schoolLab.text = @"请选择学校";
             weakSelf.detailAddressText.text = @"";
-            weakSelf.userTypeLineView.backgroundColor = hexColor(F08200);
+            weakSelf.userTypeLineView.backgroundColor = hexColor(F8B62A);
 
         }
     }];
@@ -171,7 +171,7 @@
     MyPickView *pickView = [[MyPickView  alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
     pickView.pickBlock = ^(NSString *provice,NSString *city,NSString *area){
         
-        weakSelf.areaLineView.backgroundColor = hexColor(F08200);
+        weakSelf.areaLineView.backgroundColor = hexColor(F8B62A);
         weakSelf.areaLab.textColor = THIRDCOLOR;
         DLog(@"地区是－－－%@:%@,%@",provice,city,area);
         _province = provice;_city = city;
@@ -201,21 +201,21 @@
     }
     if (textField.tag == 3006) {
         if (_nameText.text.length >0) {
-            self.nameLineView.backgroundColor = hexColor(F08200);
+            self.nameLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.nameLineView.backgroundColor = hexColor(999999);
         }
     }
     if (textField.tag == 3007) {
         if (_cardNumText.text.length >0) {
-            self.cardNumLineView.backgroundColor = hexColor(F08200);
+            self.cardNumLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.cardNumLineView.backgroundColor = hexColor(999999);
         }
     }
     if (textField.tag == 3008) {
         if (_detailAddressText.text.length >0) {
-            self.bottomLine.backgroundColor = hexColor(F08200);
+            self.bottomLine.backgroundColor = hexColor(F8B62A);
         }else {
             self.bottomLine.backgroundColor = hexColor(999999);
         }
@@ -255,7 +255,6 @@
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } fail:^{
-        
     }];
 }
 

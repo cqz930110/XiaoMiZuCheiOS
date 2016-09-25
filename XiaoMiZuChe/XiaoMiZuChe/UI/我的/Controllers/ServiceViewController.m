@@ -37,7 +37,7 @@
 }
 - (void)loadServiceURLString{
     
-    [_webView loadURL:@"http://api.xiaomiddc.com/app/h5/service_descrip.html"];
+    [_webView loadURL:@"http://api.xiaomiddc.com/app/h5/service_terms.html"];
     if (_singleTap) {
         [_webView removeGestureRecognizer:_singleTap];
     }

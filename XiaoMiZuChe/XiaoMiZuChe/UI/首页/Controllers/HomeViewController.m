@@ -67,7 +67,7 @@
 {
     if ([PublicFunction shareInstance].m_bLogin == NO) {
         [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
-        [self.rightBtn setTitleColor:hexColor(F08200) forState:0];
+        [self.rightBtn setTitleColor:hexColor(F8B62A) forState:0];
         self.rightBtn.titleLabel.font = Font_15;
     }else {
         [self.rightBtn setTitle:@"" forState:0];
@@ -145,7 +145,8 @@
         
         [APIRequest backCarEventWithForce:@"2" RequestSuccess:^{
             
-        } fail:nil];
+        } fail:^{
+        }];
     }
 }
 
@@ -156,7 +157,7 @@
        _handleCardBtn = [CustomMenuBtn buttonWithType:UIButtonTypeCustom];
         _handleCardBtn.frame = CGRectMake(0, kMainScreenHeight - 149.f, BUTTONWITH, 100);
         [_handleCardBtn setImage:kGetImage(@"bg_manage_card") forState:0];
-        [_handleCardBtn setTitle:@"办租车卡" forState:0];
+        [_handleCardBtn setTitle:@"办理租车卡" forState:0];
         [_handleCardBtn setTag:1 + kMenuButtonBaseTag];
         [_handleCardBtn setTitleColor:hexColor(333333) forState:0];
         [_handleCardBtn addTarget:self action:@selector(selectdBtnEvent:) forControlEvents:UIControlEventTouchUpInside];

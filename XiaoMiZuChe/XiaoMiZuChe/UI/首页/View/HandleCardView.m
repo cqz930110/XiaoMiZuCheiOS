@@ -92,7 +92,7 @@
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, zd_width - 30, 20)];
         _titleLab.textAlignment = NSTextAlignmentCenter;
         _titleLab.font = Font_15;
-        _titleLab.textColor = hexColor(F08200);
+        _titleLab.textColor = hexColor(F8B62A);
         _titleLab.text = [NSString stringWithFormat:@"支付年费：¥%@",_moneyString];
     }
     return _titleLab;

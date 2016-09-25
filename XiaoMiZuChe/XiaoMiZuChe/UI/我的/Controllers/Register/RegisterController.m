@@ -100,7 +100,7 @@
         }
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_phone_active");
-            self.phoneLineView.backgroundColor = hexColor(F08200);
+            self.phoneLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_phone_no");
             self.phoneLineView.backgroundColor = hexColor(999999);
@@ -109,7 +109,7 @@
     }else if (textField.tag == 2016){
         if (textField.text.length >0) {
             self.codeImgView.image = kGetImage(@"icon_code_active");
-            self.codeLineView.backgroundColor = hexColor(F08200);
+            self.codeLineView.backgroundColor = hexColor(F8B62A);
 
         }else {
             self.codeImgView.image = kGetImage(@"icon_code");
@@ -119,7 +119,7 @@
     }else if (textField.tag == 2017){
         if (textField.text.length >0) {
             self.keyImgView.image = kGetImage(@"icon_pass_active");
-            self.keyLineView.backgroundColor = hexColor(F08200);
+            self.keyLineView.backgroundColor = hexColor(F8B62A);
 
         }else {
             self.keyImgView.image = kGetImage(@"icon_pass");
@@ -138,7 +138,9 @@
     if (_phoneText.text.length == 11  && [QZManager isPureInt:_phoneText.text] == YES)
     {
         NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDREGISTERCODEURL];
-        [APIRequest sendSMStWithURLString:urlString withPhone:_phoneText.text RequestSuccess:^(NSString *code, NSString *expireTime) {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_phoneText.text,@"phone", nil];
+
+        [APIRequest sendSMStWithURLString:urlString withDictionary:dict RequestSuccess:^(NSString *code, NSString *expireTime){
             
             weakSelf.codeString = code;
             weakSelf.expireTime = expireTime;

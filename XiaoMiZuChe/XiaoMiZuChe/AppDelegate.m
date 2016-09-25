@@ -35,7 +35,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -127,11 +127,10 @@
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+      
         JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
         entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
         [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-#endif
     } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
@@ -174,37 +173,37 @@
 }
 - (void)parsingNoticeWithUserInfo:(NSDictionary *)userInfo
 {
-//    NSString *content = [userInfo valueForKey:@"content"];
-//    NSDictionary *extras = [userInfo valueForKey:@"extras"];
-//    NSString *eventType = [NSString stringWithFormat:@"%@",[extras valueForKey:@"eventType"]]; //自定义参数，key是自己定义的
-//    //8关闭超时 7关闭成功 6开启超时 5开启成功
-//    
-//    NSString *userName = [USER_D objectForKey:@"user_phone"];
-//    
-//    if (userName.length >0)
-//    {
-//        if ([eventType isEqualToString:@"10"])
-//        {
-//            [USER_D removeObjectForKey:@"user_phone"];
-//            [USER_D removeObjectForKey:@"user_password"];
-//            [USER_D synchronize];
-//            
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下线通知" message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
-//            //alertView.alertViewStyle = UIAlertViewStyleDefault;
-//            [alertView show];
-//        }else{
-//            [JKPromptView showWithImageName:nil message:content];
-//        }
-//        
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *eventType = [NSString stringWithFormat:@"%@",[extras valueForKey:@"eventType"]]; //自定义参数，key是自己定义的
+    //8关闭超时 7关闭成功 6开启超时 5开启成功
+    
+    NSString *userName = [USER_D objectForKey:@"user_phone"];
+    
+    if (userName.length >0)
+    {
+        if ([eventType isEqualToString:@"10"])
+        {
+            [USER_D removeObjectForKey:@"user_phone"];
+            [USER_D removeObjectForKey:@"user_password"];
+            [USER_D synchronize];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下线通知" message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
+            //alertView.alertViewStyle = UIAlertViewStyleDefault;
+            [alertView show];
+        }else{
+            [JKPromptView showWithImageName:nil message:content];
+        }
+        
 //        if ([eventType isEqualToString:@"9"])
 //        {
 //            [[SoundManager sharedSoundManager] musicPlayByName:@"msg_prompt"];
 //        }
-//        if (eventType.intValue == 8 || eventType.intValue == 7 || eventType.intValue == 6 || eventType.intValue == 5) {
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"OpenVf" object:nil userInfo:@{@"eventType":eventType}];
-//        }
-//        
-//    }
+        if (eventType.intValue == 8 || eventType.intValue == 7 || eventType.intValue == 6 || eventType.intValue == 5) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"OpenVf" object:nil userInfo:@{@"eventType":eventType}];
+        }
+        
+    }
 }
 #pragma mark- JPUSHRegisterDelegate
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler

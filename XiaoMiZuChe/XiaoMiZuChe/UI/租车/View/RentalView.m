@@ -14,15 +14,16 @@
 
 @interface RentalView()<UITextFieldDelegate,UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *carImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *phoneImgView;
-@property (weak, nonatomic) IBOutlet UITextField *carText;
-@property (weak, nonatomic) IBOutlet UITextField *phoneText;
-@property (weak, nonatomic) IBOutlet UIButton *immBtn;
-@property (weak, nonatomic) IBOutlet JKCountDownButton *sendCodeBtn;
-@property (weak, nonatomic) IBOutlet UIButton *nearBtn;
-@property (weak, nonatomic) IBOutlet UIView *codeLineView;
-@property (weak, nonatomic) IBOutlet UIView *phoneLineView;
+@property (strong, nonatomic)  UIImageView *carImgView;
+@property (strong, nonatomic)  UIImageView *phoneImgView;
+@property (strong, nonatomic)  UITextField *carText;
+@property (strong, nonatomic)  UITextField *phoneText;
+@property (strong, nonatomic)  JKCountDownButton *countDownCode;
+
+@property (strong, nonatomic)  UIButton *immBtn;
+@property (strong, nonatomic)  UIButton *nearBtn;
+@property (strong, nonatomic)  UIView *codeLineView;
+@property (strong, nonatomic)  UIView *phoneLineView;
 @property (nonatomic, strong) UIViewController *superViewController;
 @property (nonatomic, strong) UIView *xfView;//提醒续费
 
@@ -35,48 +36,35 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-+ (RentalView *)instanceRentalViewWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController
-{
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"RentalView" owner:self options:nil];
-    RentalView *detailView = [nibView objectAtIndex:0];
-    [detailView initUIWithDelegate:delegate withViewController:superViewController];
-    return detailView;
-}
-- (void)initUIWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController{
-    
-    [self addSubview:self.xfView];
+- (id)initUIWithDelegate:(id<RentalViewDelegate>)delegate withViewController:(UIViewController *)superViewController{
+    self = [super initWithFrame:CGRectMake(0, 64, 320, kMainScreenHeight - 64.f)];
+    if (self) {
+        [self addSubview:self.carText];
+        [self addSubview:self.phoneText];
+        [self addSubview:self.countDownCode];
 
-    if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
-        NSDate *fireDate = [QZManager caseDateFromString:[PublicFunction shareInstance].m_user.expireTime];
-        if ([QZManager compareOneDay:[NSDate date] withAnotherDay:fireDate] == 1)
-        {
-            [self addSubview:self.xfView];
-            _sendCodeBtn.hidden = YES;
+        [self addSubview:self.carImgView];
+        [self addSubview:self.phoneImgView];
+
+        [self addSubview:self.immBtn];
+        [self addSubview:self.nearBtn];
+        [self addSubview:self.codeLineView];
+        [self addSubview:self.phoneLineView];
+        
+
+        if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
+            NSDate *fireDate = [QZManager caseDateFromString:[PublicFunction shareInstance].m_user.expireTime];
+            if ([QZManager compareOneDay:[NSDate date] withAnotherDay:fireDate] == 1)
+            {
+                [self addSubview:self.xfView];
+                _countDownCode.hidden = YES;
+            }
         }
+        _superViewController = superViewController;
+        _delegate = delegate;
+        
     }
-    _superViewController = superViewController;
-    _delegate = delegate;
-    LRViewBorderRadius(_immBtn, 5.f, 0, [UIColor whiteColor]);
-    LRViewBorderRadius(_nearBtn, 5.f, 0, [UIColor whiteColor]);
-    LRViewBorderRadius(_sendCodeBtn, 3.f, 1, hexColor(999999));
-    [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateNormal];
-    [self.nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateSelected];
-    
-    self.phoneText.keyboardType = UIKeyboardTypeNumberPad;
-    self.carText.keyboardType  = UIKeyboardTypeNumbersAndPunctuation;
-    self.phoneText.delegate = self;
-    self.carText.delegate = self;
-    self.phoneText.tag = 3888;
-    self.carText.tag = 3887;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textFieldChanged:)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:self.phoneText];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textFieldChanged:)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:self.carText];
+    return self;
 }
 #pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -97,7 +85,7 @@
     if (textField.tag == 3888) {
         if (textField.text.length >0) {
             self.phoneImgView.image = kGetImage(@"icon_code_active");
-            self.phoneLineView.backgroundColor = hexColor(F08200);
+            self.phoneLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.phoneImgView.image = kGetImage(@"icon_code");
             self.phoneLineView.backgroundColor = hexColor(999999);
@@ -105,7 +93,7 @@
     }else {
         if (textField.text.length >0) {
             self.carImgView.image = kGetImage(@"icon_ebike_active");
-            self.codeLineView.backgroundColor = hexColor(F08200);
+            self.codeLineView.backgroundColor = hexColor(F8B62A);
         }else {
             self.carImgView.image = kGetImage(@"icon_ebike");
             self.codeLineView.backgroundColor = hexColor(999999);
@@ -115,13 +103,23 @@
 
 
 #pragma mark - event response
-- (IBAction)sendCodeButtonEvent:(JKCountDownButton *)sender
+- (void)sendCodeButtonEvent:(JKCountDownButton *)sender
 {WEAKSELF;
     
     [self dismissKeyBoard];
-    
+    if ([PublicFunction shareInstance].m_bLogin == NO) {
+        
+        [JKPromptView showWithImageName:nil message:@"请您登陆以后再操作"];
+        return;
+    }
+    if (_carText.text.length == 0) {
+        [JKPromptView showWithImageName:nil message:@"请您填写车辆编号"];
+        return;
+    }
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDHIRECARURL];
-    [APIRequest sendSMStWithURLString:urlString withPhone:[PublicFunction shareInstance].m_user.phone RequestSuccess:^(NSString *code, NSString *expireTime) {
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.phone,@"phone",_carText.text,@"carId", nil];
+
+    [APIRequest sendSMStWithURLString:urlString withDictionary:dict RequestSuccess:^(NSString *code, NSString *expireTime) {
         
         weakSelf.codeString = code;
         weakSelf.expireTime = expireTime;
@@ -137,11 +135,13 @@
             return @"重新获取";
         }];
         
-    } fail:nil];
+    } fail:^{
+        
+    }];
 
 }
 
-- (IBAction)applyImmediatelyBtnEvent:(UIButton *)sender {
+- (void)applyImmediatelyBtnEvent:(UIButton *)sender {
     WEAKSELF;
     [self dismissKeyBoard];
     if ([PublicFunction shareInstance].m_bLogin == YES) {
@@ -182,7 +182,7 @@
     
 }
 
-- (IBAction)nearTheVehicleBtnEvent:(UIButton *)sender {
+- (void)nearTheVehicleBtnEvent:(UIButton *)sender {
     DLog(@"附近车辆");
     [self dismissKeyBoard];
     GPSMapViewController *gpsVC = [GPSMapViewController new];
@@ -204,15 +204,15 @@
         _xfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 40)];
         _xfView.backgroundColor = [UIColor clearColor];
         
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 10, 20, 20)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((kMainScreenWidth - 163)/2.f, 10, 20, 20)];
         imgView.image = kGetImage(@"icon_info");
         imgView.userInteractionEnabled = YES;
         [_xfView addSubview:imgView];
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(imgView), 10, 200, 20)];
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(Orgin_x(imgView) +3, 10, 140, 20)];
         label2.textAlignment = NSTextAlignmentLeft;
         label2.numberOfLines = 0;
         label2.backgroundColor = [UIColor clearColor];
-        label2.textColor = hexColor(F08200);
+        label2.textColor = hexColor(F44336);
         label2.font = Font_12;
         label2.text = @"租车卡已到期,点击去续费";
         [_xfView addSubview:label2];
@@ -225,6 +225,116 @@
     }
     return _xfView;
 }
+- (UIImageView *)carImgView
+{
+    if (!_carImgView) {
+        _carImgView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 20, 25)];
+        _carImgView.userInteractionEnabled = YES;
+        _carImgView.image = kGetImage(@"icon_ebike");
+    }
+    return _carImgView;
+}
+- (UIImageView *)phoneImgView
+{
+    if (!_phoneImgView) {
+        _phoneImgView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 83, 20, 25)];
+        _phoneImgView.userInteractionEnabled = YES;
+        _phoneImgView.image = kGetImage(@"icon_code");
+    }
+    return _phoneImgView;
+}
+- (UITextField *)carText
+{
+    if (!_carText) {
+        _carText = [[UITextField alloc] initWithFrame:CGRectMake(70, 40, kMainScreenWidth-110, 30)];
+        _carText.backgroundColor = [UIColor clearColor];
+        _carText.keyboardType  = UIKeyboardTypeNumbersAndPunctuation;
+        _carText.tag = 3887;
+        _carText.delegate = self;
+        _carText.borderStyle = UITextBorderStyleNone;
+        _carText.textAlignment = NSTextAlignmentLeft;
+        _carText.placeholder = @"输入车辆编号";
+        _carText.font = Font_14;
+    }
+    return _carText;
+}
+- (UITextField *)phoneText
+{
+    if (!_phoneText) {
+        _phoneText = [[UITextField alloc] initWithFrame:CGRectMake(70, 83, kMainScreenWidth-182, 30)];
+        _phoneText.backgroundColor = [UIColor clearColor];
+        _phoneText.borderStyle = UITextBorderStyleNone;
+        _phoneText.textAlignment = NSTextAlignmentLeft;
+        _phoneText.placeholder = @"请输入收到的验证码号";
+        _phoneText.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneText.delegate = self;
+        _phoneText.tag = 3888;
+        _phoneText.font = Font_14;
+    }
+    return _phoneText;
+}
+- (JKCountDownButton *)countDownCode
+{
+    if (!_countDownCode) {
+        _countDownCode = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
+        _countDownCode.frame = CGRectMake(kMainScreenWidth - 112, 85, 72, 26);
+        [_countDownCode setTitle:@"获取验证码" forState:0];
+        [_countDownCode setTitleColor:hexColor(999999) forState:0];
+        _countDownCode.titleLabel.font = Font_12;
+        [_countDownCode addTarget:self action:@selector(sendCodeButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+        LRViewBorderRadius(_countDownCode, 2.f, .6f, hexColor(999999));
+    }
+    return _countDownCode;
+}
+- (UIButton *)nearBtn
+{
+    if (!_nearBtn) {
+        _nearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _nearBtn.frame = CGRectMake(40, 212, kMainScreenWidth - 80, 40);
+        LRViewBorderRadius(_nearBtn, 5.f, 0, [UIColor whiteColor]);
+        _nearBtn.backgroundColor  = hexColor(09BB07);
+        [_nearBtn setTitleColor:[UIColor whiteColor] forState:0];
+        _nearBtn.titleLabel.font = Font_18;
+        _nearBtn.tag = 3023;
+        [_nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateNormal];
+        [_nearBtn setBackgroundImage:kGetImage(@"btn_around_car") forState:UIControlStateSelected];
+        [_nearBtn addTarget:self action:@selector(nearTheVehicleBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nearBtn;
+}
+- (UIButton *)immBtn
+{
+    if (!_immBtn) {
+        _immBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _immBtn.frame = CGRectMake(40, 152, kMainScreenWidth - 80, 40);
+        _immBtn.backgroundColor  = hexColor(F8B62A);
+        [_immBtn setTitleColor:[UIColor whiteColor] forState:0];
+        [_immBtn setTitle:@"立即申请" forState:0];
+        _immBtn.titleLabel.font = Font_18;
+        _immBtn.tag = 3023;
+        [_immBtn addTarget:self action:@selector(applyImmediatelyBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+        LRViewBorderRadius(_immBtn, 5.f, 0, [UIColor whiteColor]);
+
+    }
+    return _immBtn;
+}
+- (UIView *)codeLineView
+{
+    if (!_codeLineView) {
+        _codeLineView = [[UIView alloc] initWithFrame:CGRectMake(40, 76, kMainScreenWidth - 80, 1)];
+        _codeLineView.backgroundColor = hexColor(999999);
+    }
+    return _codeLineView;
+}
+- (UIView *)phoneLineView
+{
+    if (!_phoneLineView) {
+        _phoneLineView = [[UIView alloc] initWithFrame:CGRectMake(40, 121, kMainScreenWidth - 80, 1)];
+        _phoneLineView.backgroundColor = hexColor(999999);
+    }
+    return _phoneLineView;
+}
+
 #pragma mark -手势
 - (void)dismissKeyBoard{
     [self endEditing:YES];

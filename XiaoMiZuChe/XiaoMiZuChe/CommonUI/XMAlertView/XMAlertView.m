@@ -8,7 +8,7 @@
 
 #import "XMAlertView.h"
 #import "JKCountDownButton.h"
-
+#import "carRecord.h"
 #define kContentLabelWidth     13.f/16.f*([UIScreen mainScreen].bounds.size.width)
 #define zd_width [UIScreen mainScreen].bounds.size.width
 #define zd_height [UIScreen mainScreen].bounds.size.height
@@ -69,8 +69,17 @@
 - (void)sendCodeToYou:(id)sender
 {WEAKSELF;
     [self dismissKeyBoard];
+    
+    NSString *idString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.id];
+
+    if (idString.length == 0) {
+        [JKPromptView showWithImageName:nil message:@"暂无租车记录"];
+        return;
+    }
     NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDBACKCARURL];
-    [APIRequest sendSMStWithURLString:urlString withPhone:[PublicFunction shareInstance].m_user.phone RequestSuccess:^(NSString *code, NSString *expireTime) {
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[PublicFunction shareInstance].m_user.phone,@"phone",idString,@"id", nil];
+
+    [APIRequest sendSMStWithURLString:urlString withDictionary:dict RequestSuccess:^(NSString *code, NSString *expireTime){
         
         weakSelf.codeString = code;
         weakSelf.expireTime = expireTime;
@@ -86,14 +95,15 @@
             return @"重新获取";
         }];
         
-    } fail:nil];
+    } fail:^{
+    }];
 }
 - (void)cancelORSureEvent:(UIButton *)sender
 {
     if (sender.tag == 3005) {
         
         
-        if(_codeText.text.length <=0){
+        if(_codeText.text.length ==0){
             [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
             return;
         }else if (![_codeText.text isEqualToString:_codeString]){
@@ -161,7 +171,7 @@
         _codeText.delegate = self;
         _codeText.borderStyle = UITextBorderStyleNone;
         _codeText.layer.borderWidth = 1.f;
-        _codeText.layer.borderColor = hexColor(F08200).CGColor;
+        _codeText.layer.borderColor = hexColor(F8B62A).CGColor;
         _codeText.returnKeyType = UIReturnKeyDone; //设置按键类型
         _codeText.keyboardType = UIKeyboardTypeNumberPad;
         _codeText.tag = 3006;
@@ -176,7 +186,7 @@
 {
     if (!_sendCodeBtn) {
         _sendCodeBtn = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
-        _sendCodeBtn.backgroundColor = hexColor(F08200);
+        _sendCodeBtn.backgroundColor = hexColor(F8B62A);
         [_sendCodeBtn setTitleColor:[UIColor whiteColor] forState:0];
         [_sendCodeBtn setTitle:@"获取验证码" forState:0];
         _sendCodeBtn.layer.masksToBounds = YES;
@@ -203,7 +213,7 @@
 {
     if (!_codeSureBtn) {
         _codeSureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeSureBtn.backgroundColor = hexColor(F08200);
+        _codeSureBtn.backgroundColor = hexColor(F8B62A);
         _codeSureBtn.tag = 3005;
         [_codeSureBtn setTitleColor:[UIColor whiteColor] forState:0];
         [_codeSureBtn setTitle:@"确认还车" forState:0];
