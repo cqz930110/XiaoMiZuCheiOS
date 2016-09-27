@@ -510,7 +510,6 @@
 		10C7D4BA1D71EFF70044528D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		10C7D4BC1D71F0100044528D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		10C7D4BE1D71F01F0044528D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		10CBD1021D97F367002FF0F5 /* XiaoMiZuChe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XiaoMiZuChe.entitlements; sourceTree = "<group>"; };
 		10CBD1481D97F44A002FF0F5 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		10CBD1491D97F44A002FF0F5 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		10CBD14B1D97F44A002FF0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -519,6 +518,7 @@
 		1813EF8E1D5C6A0F0019CA33 /* FDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAlertView.m; sourceTree = "<group>"; };
 		1813EF931D5C71B80019CA33 /* BasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicData.h; sourceTree = "<group>"; };
 		1813EF941D5C71B80019CA33 /* BasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicData.m; sourceTree = "<group>"; };
+		181950B81D9A98C100E0492C /* XiaoMiZuChe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XiaoMiZuChe.entitlements; sourceTree = "<group>"; };
 		1826DCC81D5DABEB007A0C45 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
 		1826DCC91D5DABEB007A0C45 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
 		1826DCCC1D5DACCB007A0C45 /* error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = error.html; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 		184C29781D2BB22E00771220 /* XiaoMiZuChe */ = {
 			isa = PBXGroup;
 			children = (
-				10CBD1021D97F367002FF0F5 /* XiaoMiZuChe.entitlements */,
+				181950B81D9A98C100E0492C /* XiaoMiZuChe.entitlements */,
 				184C297C1D2BB22E00771220 /* AppDelegate.h */,
 				184C297D1D2BB22E00771220 /* AppDelegate.m */,
 				187349F21D2F951F001A3E91 /* UI */,
@@ -2536,6 +2536,7 @@
 				CODE_SIGN_ENTITLEMENTS = XiaoMiZuChe/XiaoMiZuChe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				DEVELOPMENT_TEAM = 3XV668LX24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2574,7 +2575,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f747306f-b6ae-4bd2-b75c-c2d0e560f2d2";
+				PROVISIONING_PROFILE = "33c98e3c-aaa2-4ef6-a163-12b74473a1c0";
+				PROVISIONING_PROFILE_SPECIFIER = 201609288;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
@@ -2590,6 +2592,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3XV668LX24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2628,7 +2631,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f747306f-b6ae-4bd2-b75c-c2d0e560f2d2";
+				PROVISIONING_PROFILE = "33c98e3c-aaa2-4ef6-a163-12b74473a1c0";
+				PROVISIONING_PROFILE_SPECIFIER = 201609288;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
