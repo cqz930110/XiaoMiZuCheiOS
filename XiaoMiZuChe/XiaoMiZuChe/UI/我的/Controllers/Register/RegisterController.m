@@ -11,7 +11,6 @@
 #import "PerfectInformationVC.h"
 #import "NSString+MHCommon.h"
 #import "GcNoticeUtil.h"
-#import "FCUUID.h"
 #import "ServiceViewController.h"
 
 @interface RegisterController ()<UITextFieldDelegate>
@@ -155,7 +154,6 @@
                 countDownButton.enabled = YES;
                 return @"重新获取";
             }];
-
             
         } fail:^{
             
@@ -205,10 +203,10 @@
 
     
     UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceUDID = [FCUUID uuid];
+    NSString *deviceUDID = [[device identifierForVendor] UUIDString];
     DLog(@"设备标识符:%@",deviceUDID);
-    NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
+    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {
         

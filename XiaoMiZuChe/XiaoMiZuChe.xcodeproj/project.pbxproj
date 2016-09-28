@@ -58,7 +58,6 @@
 		107821A51D521FA6009DE1D2 /* bg_unionpay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821631D521FA6009DE1D2 /* bg_unionpay@2x.png */; };
 		107821A61D521FA6009DE1D2 /* bg_wxpay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821641D521FA6009DE1D2 /* bg_wxpay@2x.png */; };
 		107821A71D521FA6009DE1D2 /* pic_developing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821651D521FA6009DE1D2 /* pic_developing@2x.png */; };
-		107821A81D521FA6009DE1D2 /* pic_vip_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821661D521FA6009DE1D2 /* pic_vip_card@2x.png */; };
 		107821A91D521FA6009DE1D2 /* icon_ebike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821681D521FA6009DE1D2 /* icon_ebike@2x.png */; };
 		107821AA1D521FA6009DE1D2 /* icon_ebike_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107821691D521FA6009DE1D2 /* icon_ebike_active@2x.png */; };
 		107821AB1D521FA6009DE1D2 /* icon_id@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078216A1D521FA6009DE1D2 /* icon_id@2x.png */; };
@@ -155,6 +154,8 @@
 		185931041D3490EB00F948D4 /* NSString+SPStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930CF1D3490EB00F948D4 /* NSString+SPStr.m */; };
 		185931061D3490EB00F948D4 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930D51D3490EB00F948D4 /* SoundManager.m */; };
 		1859311F1D34996400F948D4 /* ZCTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859311E1D34996400F948D4 /* ZCTabBarControllerConfig.m */; };
+		1860AB5F1D9BE63B008A2A1E /* pic_vip_card_num@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1860AB5D1D9BE63B008A2A1E /* pic_vip_card_num@2x.png */; };
+		1860AB601D9BE63B008A2A1E /* pic_vip_card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1860AB5E1D9BE63B008A2A1E /* pic_vip_card@2x.png */; };
 		187349E51D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */; };
 		1894C2A71D5486B90097F638 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894C2A61D5486B90097F638 /* MineSettingVC.m */; };
 		1894C2B41D548BF80097F638 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894C2B21D548BF80097F638 /* ModifyViewController.m */; };
@@ -377,7 +378,6 @@
 		107821631D521FA6009DE1D2 /* bg_unionpay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_unionpay@2x.png"; sourceTree = "<group>"; };
 		107821641D521FA6009DE1D2 /* bg_wxpay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_wxpay@2x.png"; sourceTree = "<group>"; };
 		107821651D521FA6009DE1D2 /* pic_developing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_developing@2x.png"; sourceTree = "<group>"; };
-		107821661D521FA6009DE1D2 /* pic_vip_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_vip_card@2x.png"; sourceTree = "<group>"; };
 		107821681D521FA6009DE1D2 /* icon_ebike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ebike@2x.png"; sourceTree = "<group>"; };
 		107821691D521FA6009DE1D2 /* icon_ebike_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ebike_active@2x.png"; sourceTree = "<group>"; };
 		1078216A1D521FA6009DE1D2 /* icon_id@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_id@2x.png"; sourceTree = "<group>"; };
@@ -619,6 +619,8 @@
 		185930D51D3490EB00F948D4 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		1859311D1D34996400F948D4 /* ZCTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTabBarControllerConfig.h; sourceTree = "<group>"; };
 		1859311E1D34996400F948D4 /* ZCTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTabBarControllerConfig.m; sourceTree = "<group>"; };
+		1860AB5D1D9BE63B008A2A1E /* pic_vip_card_num@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_vip_card_num@2x.png"; sourceTree = "<group>"; };
+		1860AB5E1D9BE63B008A2A1E /* pic_vip_card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_vip_card@2x.png"; sourceTree = "<group>"; };
 		187349E21D2F82CB001A3E91 /* ZUChe_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUChe_Prefix.pch; sourceTree = "<group>"; };
 		187349E31D2F89BC001A3E91 /* ZhouDao_NetWorkManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhouDao_NetWorkManger.h; sourceTree = "<group>"; };
 		187349E41D2F89BC001A3E91 /* ZhouDao_NetWorkManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhouDao_NetWorkManger.m; sourceTree = "<group>"; };
@@ -976,7 +978,8 @@
 				107821641D521FA6009DE1D2 /* bg_wxpay@2x.png */,
 				107821651D521FA6009DE1D2 /* pic_developing@2x.png */,
 				18BF21131D93F30B00521A76 /* icon_info@2x.png */,
-				107821661D521FA6009DE1D2 /* pic_vip_card@2x.png */,
+				1860AB5D1D9BE63B008A2A1E /* pic_vip_card_num@2x.png */,
+				1860AB5E1D9BE63B008A2A1E /* pic_vip_card@2x.png */,
 			);
 			path = PayImg;
 			sourceTree = "<group>";
@@ -2156,10 +2159,11 @@
 				18A103AA1D92683C00F9D87B /* icon_onekey_open@2x.png in Resources */,
 				102540281D941AD90085A510 /* icon_circle_sel@2x.png in Resources */,
 				18A103B01D92683D00F9D87B /* close_carStatus_tip@2x.png in Resources */,
+				1860AB5F1D9BE63B008A2A1E /* pic_vip_card_num@2x.png in Resources */,
 				107821AE1D521FA6009DE1D2 /* icon_logo@2x.png in Resources */,
 				18EE9F2C1D59D0EB00F217BD /* icon_minePhone@2x.png in Resources */,
-				107821A81D521FA6009DE1D2 /* pic_vip_card@2x.png in Resources */,
 				189EC4951D5044C700D536B9 /* MineTableViewCell.xib in Resources */,
+				1860AB601D9BE63B008A2A1E /* pic_vip_card@2x.png in Resources */,
 				18A103CB1D92683D00F9D87B /* satellite@2x.png in Resources */,
 				107821BA1D521FA6009DE1D2 /* icon_phone_active@2x.png in Resources */,
 				18A103BC1D92683D00F9D87B /* icon_battery_percent_50@2x.png in Resources */,

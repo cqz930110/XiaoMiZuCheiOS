@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FCUUID.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,11 +49,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UICKeyChainStore.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>XMLDictionary.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,11 +67,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0A7055D7C2824A82FE9D3B435407D327</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2602F3D0DAC534568B6AD7EEA0DD1959</key>
 		<dict>
 			<key>primary</key>
@@ -92,12 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2DA4A32B02006BCED837F1E7220A175B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F31EF5AAEB4D55008EE982F36FF3E82</key>
+		<key>4AD35DF1524FF5F6BAD125390E63B862</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,22 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84ED6BD95B4DA8EA5FEA7940181C5F8D</key>
+		<key>9807E856F23A94AABD63A8A8FF6B275E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B412E0D1AA7CFCC3B6CBEC582819D45</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2B0F87BC788FA547E5356A9006F455A</key>
+		<key>ACE3DD3A51C8BC6DB0D7EA15569F54F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>BBD31B258AB88D877D5D602AE3F16E6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C02881BA66FF02F35F822E82F638191C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

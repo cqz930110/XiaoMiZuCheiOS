@@ -12,7 +12,6 @@
 #import "GcNoticeUtil.h"
 #import "BasicData.h"
 #import "NearCardata.h"//附近车辆
-#import "FCUUID.h"
 #import "carRecord.h"
 #import "LocInfodata.h"
 
@@ -226,13 +225,16 @@
 #pragma mark - 验证用户是否存在
 + (void)rcheckUserByPhoneWithPhone:(NSString *)phone
                     RequestSuccess:(void (^)())success
+                              fail:(void (^)())fail
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@?phone=%@",kProjectBaseUrl,CHECKUSERBYPHONE,phone];
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
-            NSString *msg = jsonDic[@"errmsg"];
-            [JKPromptView showWithImageName:nil message:msg];
+            //用户已经存在 ／／{"code":0,"errmsg":"手机号码已存在"}
+//            NSString *msg = jsonDic[@"errmsg"];
+//            [JKPromptView showWithImageName:nil message:msg];
+            fail();
             return ;
         }
         NSString *userId = jsonDic[@"data"];
@@ -662,10 +664,10 @@
     if (loginName.length>0)
     {
         UIDevice *device = [UIDevice currentDevice];
-        NSString *deviceUDID = [FCUUID uuid];
+        NSString *deviceUDID = [[device identifierForVendor] UUIDString];
         DLog(@"设备标识符:%@",deviceUDID);
-        NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
+        NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",aliasString,@"clientId",[NSString stringWithFormat:@"iOS%@",device.systemVersion],@"platform", nil];
         NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,LOGINURLSTRING];

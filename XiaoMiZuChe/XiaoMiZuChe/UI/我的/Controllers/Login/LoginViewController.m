@@ -11,7 +11,6 @@
 #import "NSString+MHCommon.h"
 #import "ModifyViewController.h"
 #import "GcNoticeUtil.h"
-#import "FCUUID.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -130,10 +129,10 @@
     
     WEAKSELF;
     UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceUDID = [FCUUID uuid];
+    NSString *deviceUDID = [[device identifierForVendor] UUIDString];
     DLog(@"设备标识符:%@",deviceUDID);
-    NSString *tempStr = [deviceUDID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *aliasString = [APIRequest trimStringUUID:(NSMutableString *)tempStr];
+    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{
 

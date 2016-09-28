@@ -112,7 +112,6 @@
                 [weakSelf getOrderInfoAndPay:orderInfo withOrderId:orderId];
             } fail:^{
             }];
-
             
         }
             break;

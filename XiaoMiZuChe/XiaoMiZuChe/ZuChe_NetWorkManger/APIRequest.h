@@ -113,7 +113,9 @@
  *  @param success 成功回调
  */
 + (void)rcheckUserByPhoneWithPhone:(NSString *)phone
-                    RequestSuccess:(void (^)())success;
+                    RequestSuccess:(void (^)())success
+                              fail:(void (^)())fail;
+
 
 /**
  *  获取用户资料接口

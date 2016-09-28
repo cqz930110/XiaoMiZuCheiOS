@@ -69,8 +69,12 @@
         [self setupNaviBarWithBtn:NaviRightBtn title:@"登录" img:nil];
         [self.rightBtn setTitleColor:hexColor(F8B62A) forState:0];
         self.rightBtn.titleLabel.font = Font_15;
+        [_handleCardBtn setTitle:@"办理租车卡" forState:0];
+
     }else {
         [self.rightBtn setTitle:@"" forState:0];
+        [_handleCardBtn setTitle:@"我的租车卡" forState:0];
+
     }
 }
 #pragma mark - event respose
