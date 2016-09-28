@@ -231,7 +231,8 @@
     [ZhouDao_NetWorkManger GetJSONWithUrl:urlString isNeedHead:NO success:^(NSDictionary *jsonDic) {
         NSUInteger errorcode = [jsonDic[@"code"] integerValue];
         if (errorcode !=1) {
-            //用户已经存在 ／／{"code":0,"errmsg":"手机号码已存在"}
+            // {"code":1,"errmsg":"请求成功","data":888903}
+
 //            NSString *msg = jsonDic[@"errmsg"];
 //            [JKPromptView showWithImageName:nil message:msg];
             fail();
@@ -666,7 +667,7 @@
         UIDevice *device = [UIDevice currentDevice];
         NSString *deviceUDID = [[device identifierForVendor] UUIDString];
         DLog(@"设备标识符:%@",deviceUDID);
-        NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@"-" withString:@""];
         NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSDictionary *dict = [NSDictionary  dictionaryWithObjectsAndKeys:loginName,@"loginName",password,@"password",aliasString,@"clientId",[NSString stringWithFormat:@"iOS%@",device.systemVersion],@"platform", nil];

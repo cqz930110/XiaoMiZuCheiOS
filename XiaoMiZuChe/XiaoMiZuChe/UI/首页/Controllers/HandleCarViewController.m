@@ -21,7 +21,8 @@
 @property (nonatomic, strong) UIImageView *vipCardImgView;
 @property (nonatomic, strong) UIButton *immediatelyBtn;
 @property (nonatomic, strong) HandleCardView *payView;
-
+@property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *userIdLabel;
 @end
 
 @implementation HandleCarViewController
@@ -55,13 +56,23 @@
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if ([PublicFunction shareInstance].m_bLogin == NO) {
-        
-        [JKPromptView showWithImageName:nil message:@"未登录，请您登录。"];
-    }
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
 
+    
     [self.view addSubview:self.vipCardImgView];
+    
+    if ([PublicFunction shareInstance].m_bLogin == YES) {
+        
+        [self.view addSubview:self.userIdLabel];
+        _vipCardImgView.image = kGetImage(@"pic_vip_card_num");
+        _userIdLabel.text = [NSString stringWithFormat:@"NO.%@",[PublicFunction shareInstance].m_user.userId];
+    }
+    
+    if ([[PublicFunction shareInstance].m_user.vip integerValue] == 2) {
+        
+        [self.view addSubview:self.timeLabel];
+        self.timeLabel.text = [PublicFunction shareInstance].m_user.expireTime;
+    }
     [self.view addSubview:self.immediatelyBtn];
 }
 #pragma mark - event respose
@@ -70,7 +81,7 @@
     DLog(@"立即办理获取年费");
     
     if ([PublicFunction shareInstance].m_bLogin == NO) {
-        [JKPromptView showWithImageName:nil message:@"未登录，请您登录。"];
+        [JKPromptView showWithImageName:nil message:@"请先登录，再办理租车卡"];
         return;
     }
     [APIRequest getVipYearPriceRequestSuccess:^(NSString *moneyString) {
@@ -319,6 +330,25 @@
 
 
 #pragma mark - getters and setters
+- (UILabel *)userIdLabel
+{
+    if (!_userIdLabel) {
+        _userIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMainScreenWidth - 110, Orgin_y(_vipCardImgView)-20, 70, 20)];
+        _userIdLabel.textAlignment = NSTextAlignmentRight;
+        _userIdLabel.textColor = LRRGBAColor(244, 240, 186, 1);
+        _userIdLabel.font = [UIFont systemFontOfSize:11];
+    }
+    return _userIdLabel;
+}
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, Orgin_y(_vipCardImgView) +15, kMainScreenWidth, 20)];
+        _timeLabel.textColor = LRRGBAColor(244, 240, 186, 1);
+        _timeLabel.font = Font_15;
+    }
+    return _timeLabel;
+}
 - (UIImageView *)vipCardImgView
 {
     if (!_vipCardImgView) {
@@ -331,7 +361,7 @@
 {
     if (!_immediatelyBtn) {
         _immediatelyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _immediatelyBtn.frame = CGRectMake(30 , Orgin_y(_vipCardImgView) + 30, kMainScreenWidth - 60, 41);
+        _immediatelyBtn.frame = CGRectMake(30 , Orgin_y(_vipCardImgView) + 50, kMainScreenWidth - 60, 41);
         [_immediatelyBtn setBackgroundColor:hexColor(F8B62A)];
         [_immediatelyBtn setTitle:@"立即办理" forState:0];
         [_immediatelyBtn setTitleColor:[UIColor whiteColor] forState:0];

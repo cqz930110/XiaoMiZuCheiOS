@@ -49,8 +49,11 @@
             _registerTimeLab.hidden = NO;
             _phoneLab.text = [NSString stringWithFormat:@"%@ %@",[PublicFunction shareInstance].m_user.userName,[QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone]];
             _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
+            _headImgView.image = kGetImage(@"icon_default_head");
             [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
         }else {
+            
+            _headImgView.image = kGetImage(@"icon_default_head");
             _noLoginLabel.hidden = NO;
             _phoneLab.hidden = YES;
             _registerTimeLab.hidden = YES;
@@ -70,6 +73,7 @@
             {
                 _iconImgView.image = kGetImage(@"icon_card");
                 _titleLab.text = @"租车卡";
+                _lineView.frame = CGRectMake(15, 43.4, kMainScreenWidth - 15, .6f);
 //                _lineView.hidden = NO;
             }
                 break;
@@ -77,6 +81,8 @@
             {
                 _iconImgView.image = kGetImage(@"icon_service_terms");
                 _titleLab.text = @"服务条款";
+                _lineView.frame = CGRectMake(15, 43.4, kMainScreenWidth - 15, .6f);
+
 //                _lineView.hidden = NO;
 
             }
@@ -85,6 +91,8 @@
             {
                 _iconImgView.image = kGetImage(@"icon_minePhone");
                 _titleLab.text = @"联系客服";
+                _lineView.frame = CGRectMake(15, 43.4, kMainScreenWidth - 15, .6f);
+
 //                _lineView.hidden = NO;
 
             }

@@ -10,6 +10,7 @@
 #import "FDAlertView.h"
 #import "GcNoticeUtil.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @implementation ZhouDao_NetWorkManger
 
@@ -333,28 +334,30 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 + (void)goToLoginAction:(NSDictionary *)jsonDic
 {
-    if ([jsonDic[@"code"] intValue] ==0 && [jsonDic[@"errmsg"] isEqualToString:@"认证失败"])
+    if ([jsonDic[@"code"] intValue] ==-1)
     {
-        UIWindow* window = [QZManager getWindow];
-        
-        FDAlertView *alertView = (FDAlertView *)[window viewWithTag:1234];
-        if (!alertView) {
-            FDAlertView *alert = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"温馨提示" withMsg:@"您的登录信息过期，请重新登录"];
-            alert.tag = 1234;
-            alert.navBlock = ^(){
-                [PublicFunction shareInstance].m_bLogin = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:jsonDic[@"errmsg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
 
-                [USER_D removeObjectForKey:USERNAME];
-                [USER_D removeObjectForKey:USERKEY];
-                [USER_D synchronize];
-                [GcNoticeUtil sendNotification:DECIDEISLOGIN];
-                AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-                [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];
-                delegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
-
-            };
-        }
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [PublicFunction shareInstance].m_bLogin = NO;
+
+    [USER_D removeObjectForKey:USERNAME];
+    [USER_D removeObjectForKey:USERKEY];
+    [USER_D synchronize];
+    [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];
+    delegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
+
+    LoginViewController *loginVC = [LoginViewController new];
+    [delegate.tabBarControllerConfig.tabBarController.selectedViewController presentViewController:loginVC animated:YES completion:^{
+        
+    }];
+    
+}
 @end

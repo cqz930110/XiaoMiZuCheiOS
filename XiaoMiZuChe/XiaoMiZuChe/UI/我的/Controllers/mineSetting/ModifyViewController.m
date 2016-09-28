@@ -108,12 +108,9 @@
         
         [APIRequest rcheckUserByPhoneWithPhone:_phoneText.text RequestSuccess:^{
             
-            [JKPromptView showWithImageName:nil message:@"该账号不存在"];
-        } fail:^{
-            
             /*********************发送短信***********************************/
             
-            NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDREGISTERCODEURL];
+            NSString *urlString = [NSString stringWithFormat:@"%@%@",kProjectBaseUrl,SENDUPDATEPASSWORD];
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_phoneText.text,@"phone", nil];
             [APIRequest sendSMStWithURLString:urlString withDictionary:dict RequestSuccess:^(NSString *code, NSString *expireTime) {
                 
@@ -134,6 +131,9 @@
                 
             } fail:^{
             }];
+
+        } fail:^{
+            
         }];
     }
 }

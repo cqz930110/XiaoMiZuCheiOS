@@ -16,9 +16,10 @@
 @interface XMAlertView()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *zc_superView;
+@property (nonatomic, strong) UIView *codeView;
 @property (nonatomic, strong) UITextField *codeText;
 @property (nonatomic, strong) UIButton *codeSureBtn;
-@property (nonatomic, strong) UIButton *codeCancelBtn;
+//@property (nonatomic, strong) UIButton *codeCancelBtn;
 @property (nonatomic, strong) JKCountDownButton *sendCodeBtn;
 @property (copy, nonatomic) NSString *codeString;//验证码
 @property (copy, nonatomic) NSString *expireTime;//验证码过期时间
@@ -44,25 +45,36 @@
 }
 #pragma mark - private methods
 - (void)initData
-{
+{WEAKSELF;
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3f];
     [self addSubview:self.zc_superView];
-    self.zc_superView.frame = CGRectMake(0, 0, kContentLabelWidth, 171);
+    self.zc_superView.frame = CGRectMake(0, 0, kContentLabelWidth, 141);
     self.zc_superView.center = CGPointMake(zd_width/2.0,0);
     [UIView animateWithDuration:1 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         
-        self.zc_superView.center = CGPointMake(zd_width/2.0,zd_height/2.0);
+        weakSelf.zc_superView.center = CGPointMake(zd_width/2.0,zd_height/2.0);
     } completion:^(BOOL finished) {
     }];
-    [self.zc_superView addSubview:self.codeCancelBtn];
+//    [self.zc_superView addSubview:self.codeCancelBtn];
+    [self.zc_superView addSubview:self.codeView];
     [self.zc_superView addSubview:self.codeText];
     [self.zc_superView addSubview:self.sendCodeBtn];
     [self.zc_superView addSubview:self.codeSureBtn];
     
-    _codeCancelBtn.frame = CGRectMake(kContentLabelWidth - 50.f,10.f ,30.f, 30.f);
-    _codeText.frame = CGRectMake(20.f,Orgin_y(_codeCancelBtn) +10.f ,kContentLabelWidth -140.f, 38.f);
-    _sendCodeBtn.frame = CGRectMake(kContentLabelWidth - 105.f, Orgin_y(_codeCancelBtn) +10.f, 85.f, 38.f);
+//    _codeCancelBtn.frame = CGRectMake(kContentLabelWidth - 50.f,10.f ,30.f, 30.f);
+    
+    _codeView.frame = CGRectMake(20.f,20.f ,kContentLabelWidth -140.f, 38.f);
+    _codeText.frame = CGRectMake(30.f,20.f ,kContentLabelWidth -160.f, 38.f);
+    _sendCodeBtn.frame = CGRectMake(kContentLabelWidth - 105.f, 20.f, 85.f, 38.f);
     _codeSureBtn.frame = CGRectMake(20.f, Orgin_y(_sendCodeBtn) + 20.f,kContentLabelWidth - 40.f, 38.f);
+    
+    [self.zc_superView whenCancelTapped:^{
+        
+    }];
+    [self whenCancelTapped:^{
+    
+        [weakSelf zd_Windowclose];
+    }];
 }
 #pragma mark -
 #pragma mark - event response
@@ -121,8 +133,9 @@
             [self.delegate xMalertView:self withClickedButtonAtIndex:1];
         }
 
+        [self zd_Windowclose];
+
     }
-    [self zd_Windowclose];
 }
 #pragma mark -关闭
 - (void)zd_Windowclose {
@@ -164,14 +177,24 @@
     return _zc_superView;
 }
 
+- (UIView *)codeView
+{
+    if (!_codeView)
+    {
+        _codeView = [[UIView alloc] init];
+        _codeView.backgroundColor = [UIColor clearColor];
+        _codeView.layer.borderWidth = 1.f;
+        _codeView.layer.borderColor = hexColor(F8B62A).CGColor;
+    }
+    return _codeView;
+}
 - (UITextField *)codeText
 {
     if (!_codeText) {
+        
         _codeText =[[UITextField alloc] init];
         _codeText.delegate = self;
         _codeText.borderStyle = UITextBorderStyleNone;
-        _codeText.layer.borderWidth = 1.f;
-        _codeText.layer.borderColor = hexColor(F8B62A).CGColor;
         _codeText.returnKeyType = UIReturnKeyDone; //设置按键类型
         _codeText.keyboardType = UIKeyboardTypeNumberPad;
         _codeText.tag = 3006;
@@ -196,19 +219,19 @@
     }
     return _sendCodeBtn;
 }
-- (UIButton *)codeCancelBtn
-{
-    if (!_codeCancelBtn) {
-        _codeCancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeCancelBtn.backgroundColor = [UIColor whiteColor];
-        _codeCancelBtn.titleLabel.font = Font_15;
-        _codeCancelBtn.tag = 3004;
-        [_codeCancelBtn setTitleColor:KNavigationBarColor forState:0];
-        [_codeCancelBtn setBackgroundImage:kGetImage(@"police_btn_close") forState:0];
-        [_codeCancelBtn addTarget:self action:@selector(cancelORSureEvent:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _codeCancelBtn;
-}
+//- (UIButton *)codeCancelBtn
+//{
+//    if (!_codeCancelBtn) {
+//        _codeCancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _codeCancelBtn.backgroundColor = [UIColor whiteColor];
+//        _codeCancelBtn.titleLabel.font = Font_15;
+//        _codeCancelBtn.tag = 3004;
+//        [_codeCancelBtn setTitleColor:KNavigationBarColor forState:0];
+//        [_codeCancelBtn setBackgroundImage:kGetImage(@"police_btn_close") forState:0];
+//        [_codeCancelBtn addTarget:self action:@selector(cancelORSureEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _codeCancelBtn;
+//}
 - (UIButton *)codeSureBtn
 {
     if (!_codeSureBtn) {

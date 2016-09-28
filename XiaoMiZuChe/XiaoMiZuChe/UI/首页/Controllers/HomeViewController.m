@@ -13,6 +13,7 @@
 #import "HandleCarViewController.h"
 #import "XMAlertView.h"
 #import "UIWebView+Load.h"
+#import "carRecord.h"
 
 #define BUTTONWITH    ([UIScreen mainScreen].bounds.size.width - 1.2f)/3.f
 #define kMenuButtonBaseTag 7700
@@ -111,11 +112,17 @@
                 return;
             }
             
-            UIWindow *window = [QZManager getWindow];
-            XMAlertView *alertView = [[XMAlertView alloc] initWithVerificationCodeWithStyle:XMAlertViewStyleVerCode];
-            alertView.delegate = self;
-            [window addSubview:alertView];
+            if ([PublicFunction shareInstance].m_user.carRecord.expectEndTime.length >0) {
+                
+                UIWindow *window = [QZManager getWindow];
+                XMAlertView *alertView = [[XMAlertView alloc] initWithVerificationCodeWithStyle:XMAlertViewStyleVerCode];
+                alertView.delegate = self;
+                [window addSubview:alertView];
 
+            }else {
+                
+                [JKPromptView showWithImageName:nil message:@"您没有未还车辆"];
+            }
         }
             break;
         default:
@@ -134,21 +141,22 @@
     if (buttonIndex == 1) {
         
         [APIRequest backCarEventWithForce:@"1" RequestSuccess:^{
+            
         } fail:^{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统检测到电动车未归还到指定车棚！是否执行强制换车？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
             alertView.tag = 10099;
             [alertView show];
         }];
-        
     }
 }
 #pragma mark -UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 10009 && buttonIndex == 1){
+    if (alertView.tag == 10099 && buttonIndex == 1){
         
         [APIRequest backCarEventWithForce:@"2" RequestSuccess:^{
             
+            [PublicFunction shareInstance].m_user.carRecord = nil;
         } fail:^{
         }];
     }
@@ -175,7 +183,7 @@
 {
     if (!_applydBtn) {
         _applydBtn = [CustomMenuBtn buttonWithType:UIButtonTypeCustom];
-        _applydBtn.frame = CGRectMake(.6f+BUTTONWITH , kMainScreenHeight - 149.f, BUTTONWITH, 100);
+        _applydBtn.frame = CGRectMake(BUTTONWITH , kMainScreenHeight - 149.f, BUTTONWITH, 100);
         [_applydBtn setImage:kGetImage(@"bg_hire_car") forState:0];
         [_applydBtn setTitle:@"申请用车" forState:0];
         [_applydBtn setTag:2 + kMenuButtonBaseTag];

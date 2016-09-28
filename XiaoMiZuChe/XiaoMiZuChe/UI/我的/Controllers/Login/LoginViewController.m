@@ -131,7 +131,7 @@
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceUDID = [[device identifierForVendor] UUIDString];
     DLog(@"设备标识符:%@",deviceUDID);
-    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@"-" withString:@""];
     NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{

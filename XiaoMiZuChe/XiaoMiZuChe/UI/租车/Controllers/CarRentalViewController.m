@@ -299,12 +299,13 @@
             // 远程锁车
             if ([_locModel.lock isEqualToString:@"0"]) {
                 // 等于0时候调用锁车的接口
-                [APIRequest lockCarRequestSuccess:nil fail:^{
-                    
+                [APIRequest lockCarRequestSuccess:^{
+                } fail:^{
                 }];
             }else {
                 //等于1时候调用的是解锁的接口
-                [APIRequest unlockCarRequestSuccess:nil fail:^{
+                [APIRequest unlockCarRequestSuccess:^{
+                } fail:^{
                 }];
             }
 

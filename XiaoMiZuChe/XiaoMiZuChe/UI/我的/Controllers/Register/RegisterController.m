@@ -205,7 +205,7 @@
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceUDID = [[device identifierForVendor] UUIDString];
     DLog(@"设备标识符:%@",deviceUDID);
-    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *tempStr = [deviceUDID stringByReplacingOccurrencesOfString:@"-" withString:@""];
     NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {
