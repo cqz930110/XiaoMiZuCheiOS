@@ -357,7 +357,6 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
             }];
         });
     }
-
 }
 
 #pragma mark - setters and getters

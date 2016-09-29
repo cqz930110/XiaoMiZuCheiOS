@@ -67,9 +67,11 @@
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             
             //判断登录过期
-            [[self class] goToLoginAction:dict];
+            [[self class] goToLoginAction:dict withSuccess:^{
+                
+                success(dict);
+            }];
             
-            success(dict);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -119,9 +121,11 @@
              NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
              
              //判断登录过期
-             [[self class] goToLoginAction:dict];
+             [[self class] goToLoginAction:dict withSuccess:^{
+                 
+                 success(dict);
+             }];
              
-             success(dict);
          }
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -187,9 +191,11 @@
          DLog(@"success[Get]请求返回数据\n %@",result);
 
          //判断登录过期
-         [[self class] goToLoginAction:dict];
+         [[self class] goToLoginAction:dict withSuccess:^{
+            
+             success(dict);
+         }];
          
-         success(dict);
          
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -248,9 +254,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
     //判断登录过期
-    [[self class] goToLoginAction:dict];
+    [[self class] goToLoginAction:dict withSuccess:^{
+        
+        success(dict);
+
+    }];
     
-    success(dict);
 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     fail(error);
 }];
@@ -330,7 +339,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }];
 }
 
-+ (void)goToLoginAction:(NSDictionary *)jsonDic
++ (void)goToLoginAction:(NSDictionary *)jsonDic withSuccess:(void (^)())success
 {
     if ([jsonDic[@"code"] intValue] ==-1)
     {
@@ -355,6 +364,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             
         };
 
+    }else {
+        
+        success();
     }
 }
 

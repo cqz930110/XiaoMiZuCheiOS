@@ -11,6 +11,7 @@
 #import "NSString+MHCommon.h"
 #import "ModifyViewController.h"
 #import "GcNoticeUtil.h"
+#import "JPUSHService.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -135,6 +136,11 @@
     NSString *aliasString = [tempStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [APIRequest checkLoginUserWithLoginName:_phoneText.text withpassword:[_codeText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^{
+
+        
+        [JPUSHService setTags:nil alias:aliasString fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
+            DLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
+        }];
 
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             

@@ -52,6 +52,15 @@
         [self addSubview:self.phoneLineView];
         
 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textFieldChanged:)
+                                                     name:UITextFieldTextDidChangeNotification
+                                                   object:self.phoneText];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textFieldChanged:)
+                                                     name:UITextFieldTextDidChangeNotification
+                                                   object:self.carText];
+
         if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
             NSDate *fireDate = [QZManager caseDateFromString:[PublicFunction shareInstance].m_user.expireTime];
             if ([QZManager compareOneDay:[NSDate date] withAnotherDay:fireDate] == 1)
@@ -109,7 +118,10 @@
     [self dismissKeyBoard];
     if ([PublicFunction shareInstance].m_bLogin == NO) {
         
-        [JKPromptView showWithImageName:nil message:@"请您登陆以后再操作"];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"请先登录，再进行租车" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去登录", nil];
+        [alertView show];
+
+        
         return;
     }
     if (_carText.text.length == 0) {
@@ -171,7 +183,8 @@
                 [weakSelf.delegate rentalCarSUccess];
             }
             [weakSelf removeFromSuperview];
-        } fail:nil];
+        } fail:^{
+        }];
         
     }else {
         
@@ -255,6 +268,7 @@
         _carText.textAlignment = NSTextAlignmentLeft;
         _carText.keyboardType = UIKeyboardTypeNumberPad;
         _carText.placeholder = @"输入车辆编号";
+        _carText.textColor = hexColor(F8B62A);
         _carText.font = Font_14;
     }
     return _carText;
@@ -270,6 +284,7 @@
         _phoneText.keyboardType = UIKeyboardTypeNumberPad;
         _phoneText.delegate = self;
         _phoneText.tag = 3888;
+        _phoneText.textColor = hexColor(F8B62A);
         _phoneText.font = Font_14;
     }
     return _phoneText;

@@ -178,14 +178,14 @@
     NSString *eventType = [NSString stringWithFormat:@"%@",[extras valueForKey:@"eventType"]]; //自定义参数，key是自己定义的
     //8关闭超时 7关闭成功 6开启超时 5开启成功
     
-    NSString *userName = [USER_D objectForKey:@"user_phone"];
+    NSString *userName = [USER_D objectForKey:USERNAME];
     
     if (userName.length >0)
     {
         if ([eventType isEqualToString:@"10"])
         {
-            [USER_D removeObjectForKey:@"user_phone"];
-            [USER_D removeObjectForKey:@"user_password"];
+            [USER_D removeObjectForKey:USERNAME];
+            [USER_D removeObjectForKey:USERKEY];
             [USER_D synchronize];
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下线通知" message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
@@ -204,6 +204,14 @@
         }
         
     }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    [PublicFunction shareInstance].m_bLogin = NO;
+    [PublicFunction shareInstance].m_user = nil;
+    [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+
 }
 #pragma mark- JPUSHRegisterDelegate
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler

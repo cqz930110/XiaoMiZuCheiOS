@@ -758,12 +758,7 @@
 #pragma mark - RentalViewDelegate
 - (void)rentalCarSUccess
 {
-    [self.view addSubview:self.mapView];
-    for (NSUInteger i =1; i<10; i++) {
-        UIButton *btn = (UIButton *)[self.view viewWithTag:1000+i];
-        [self.view bringSubviewToFront:btn];
-        btn.hidden = NO;
-    }
+    [self autoLoginSuccessMethods];
 }
 #pragma mark -在同一视野内MKCoordinateRegionMake
 - (void)zoomToMapPoints:(MAMapView*)mapView annotations:(NSArray*)annotations

@@ -141,19 +141,19 @@ tmp;\
  * NSLog宏，限定仅在Debug时才打印,release不打印，防止拖慢程序运行
  */
 
-#ifdef DEBUG
-#define LRString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
-#define DLog(...) printf("%s 第%d行: %s\n\n", [LRString UTF8String] ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
-
-#else
-#define DLog(...)
-#endif
-
 //#ifdef DEBUG
-//#define DLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+//#define LRString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
+//#define DLog(...) printf("%s 第%d行: %s\n\n", [LRString UTF8String] ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
+//
 //#else
 //#define DLog(...)
 //#endif
+
+#ifdef DEBUG
+#define DLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define DLog(...)
+#endif
 
 //当前设备是否为 iPhone5
 #define IS_IPHONE5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)

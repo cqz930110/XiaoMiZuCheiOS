@@ -14,6 +14,7 @@
 #import "NearCardata.h"//附近车辆
 #import "carRecord.h"
 #import "LocInfodata.h"
+#import "JPUSHService.h"
 
 @implementation APIRequest
 
@@ -682,6 +683,10 @@
                 [GcNoticeUtil sendNotification:DECIDEISLOGIN];
                 return ;
             }
+            
+            [JPUSHService setTags:nil alias:aliasString fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
+                DLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
+            }];
             NSDictionary *dataDic = jsonDic[@"data"];
             BasicData *m_user = [[BasicData alloc] initWithDictionary:dataDic];
             [PublicFunction shareInstance].m_bLogin = YES;

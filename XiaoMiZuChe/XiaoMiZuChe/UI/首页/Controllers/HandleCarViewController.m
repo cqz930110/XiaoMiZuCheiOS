@@ -60,7 +60,8 @@
 
     
     [self.view addSubview:self.vipCardImgView];
-    
+    [self.view addSubview:self.immediatelyBtn];
+
     if ([PublicFunction shareInstance].m_bLogin == YES) {
         
         [self.view addSubview:self.userIdLabel];
@@ -71,10 +72,10 @@
     if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
         
         [self.view addSubview:self.timeLabel];
-        self.timeLabel.text = [PublicFunction shareInstance].m_user.expireTime;
+        _isXF = YES;
+        self.timeLabel.text = [NSString stringWithFormat:@"到期时间：%@",[PublicFunction shareInstance].m_user.expireTime];
         [_immediatelyBtn setTitle:@"立即续费" forState:0];
     }
-    [self.view addSubview:self.immediatelyBtn];
 }
 #pragma mark - event respose
 - (void)immediatelyToDealWith:(UIButton *)btn
@@ -345,7 +346,8 @@
 {
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, Orgin_y(_vipCardImgView) +15, kMainScreenWidth, 20)];
-        _timeLabel.textColor = LRRGBAColor(244, 240, 186, 1);
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.textColor = hexColor(333333);
         _timeLabel.font = Font_15;
     }
     return _timeLabel;

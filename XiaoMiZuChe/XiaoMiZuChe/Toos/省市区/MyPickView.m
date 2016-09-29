@@ -123,7 +123,11 @@
                     {
                         self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:j]];
 
-                        [self.myPicker selectRow:i inComponent:j animated:NO];
+                        [self.myPicker reloadAllComponents];
+//                        [self.myPicker selectRow:i inComponent:j animated:YES];
+
+//                        [self.myPicker selectRow:i inComponent:j animated:NO];
+//
                         [self.myPicker reloadComponent:1];
                         break;
                     }

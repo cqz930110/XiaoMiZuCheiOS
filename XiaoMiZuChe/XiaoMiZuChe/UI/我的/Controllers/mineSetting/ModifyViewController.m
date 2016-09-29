@@ -135,6 +135,9 @@
         } fail:^{
             
         }];
+    }else{
+        
+        [JKPromptView showWithImageName:nil message:@"手机号码格式不正确"];
     }
 }
 

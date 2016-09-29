@@ -12,6 +12,7 @@
 #import "NSString+MHCommon.h"
 #import "GcNoticeUtil.h"
 #import "ServiceViewController.h"
+#import "JPUSHService.h"
 
 @interface RegisterController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *sendCodeBtn;
@@ -159,6 +160,10 @@
             
         }];
         
+    }else{
+        
+        [JKPromptView showWithImageName:nil message:@"手机号码格式不正确"];
+
     }
 //    [SMSSDK getVerificationCodeBySMSWithPhone:@"13162079587" zone:@"86" result:^(NSError *error) {
 //        DLog(@"error---%@",error);
@@ -210,6 +215,10 @@
     
     [APIRequest registerUserWithPhone:_phoneText.text withpassword:[_keyText.text md5] withclientId:aliasString withplatform:[NSString stringWithFormat:@"iOS%@",device.systemVersion] RequestSuccess:^(NSMutableDictionary *dict) {
         
+        
+        [JPUSHService setTags:nil alias:aliasString fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
+            DLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
+        }];
         PerfectInformationVC *vc = [PerfectInformationVC new];
         [self.navigationController pushViewController:vc animated:YES];
 
