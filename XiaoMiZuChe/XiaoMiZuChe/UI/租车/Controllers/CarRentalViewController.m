@@ -170,6 +170,9 @@
     TT_INVALIDATE_TIMER(_myTimer);
     TTVIEW_RELEASE_SAFELY(_timerLabel);
     TTVIEW_RELEASE_SAFELY(_label);
+    TTVIEW_RELEASE_SAFELY(_mapTypeView);
+    TTVIEW_RELEASE_SAFELY(_msgView);
+    TTVIEW_RELEASE_SAFELY(_alertViewTime);
 
 }
 #pragma mark - 加载地图必须
@@ -470,6 +473,7 @@
         
         [APIRequest backCarEventWithForce:@"2" RequestSuccess:^{
             
+            [PublicFunction shareInstance].m_user.carRecord = nil;
             [weakSelf noCarRentalInformation];
         } fail:^{
         }];
@@ -829,10 +833,11 @@
     // 远程锁车
     if ([lockString isEqualToString:@"0"]) {
         // 等于0时候调用锁车的接口
-        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"bg_lock_btn"] forState:0];
+        [self.voiceBtn setImage:kGetImage(@"bg_lock_btn") forState:0];
+
     }else {
         //等于1时候调用的是解锁的接口
-        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"bg_unlock_btn"] forState:0];
+        [self.voiceBtn setImage:kGetImage(@"bg_unlock_btn") forState:0];
     }
 }
 #pragma mark - getters and setters

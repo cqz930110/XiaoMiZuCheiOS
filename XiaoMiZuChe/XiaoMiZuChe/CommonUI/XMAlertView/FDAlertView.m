@@ -86,6 +86,12 @@
     if (_navBlock) {
         _navBlock();
     }
+    
+//    if ([self.delegate respondsToSelector:@selector(alertViewClickedButtonEvent)]) {
+//        
+//        [self.delegate alertViewClickedButtonEvent];
+//    }
+    
     [self zd_Windowclose];
 }
 #pragma mark -关闭

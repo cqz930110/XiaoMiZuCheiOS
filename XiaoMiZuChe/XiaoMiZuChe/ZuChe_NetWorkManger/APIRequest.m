@@ -523,6 +523,8 @@
             fail();
             return ;
         }
+        
+        [JKPromptView showWithImageName:nil message:@"验证码已发送至手机"];
         NSDictionary *dataDic = jsonDic[@"data"];
         NSString *codeString = dataDic[@"code"];
         NSString *timeString = dataDic[@"expireTime"];

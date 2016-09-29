@@ -98,7 +98,7 @@
             }else if([sexString isEqualToString:@"1"]) {
                 _addresslab.text = @"女";
             }else {
-                _addresslab.text = @"其他";
+                _addresslab.text = @"保密";
             }
 
         }else if (row == 3){

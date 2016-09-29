@@ -9,7 +9,6 @@
 #import "MyPickView.h"
 //#import "UIImageView+LBBlurredImage.h"
 //#import "QHCommonUtil.h"
-//#import "Provice.h"
 #import "NSString+SPStr.h"
 
 #define VIEWWITH   [UIScreen mainScreen].bounds.size.width/3.f
@@ -100,6 +99,40 @@
     ensureBtn.backgroundColor = [UIColor clearColor];
     ensureBtn.frame = CGRectMake(width-50, 0, 50, 39);
     [self.pickerBgView addSubview:ensureBtn];
+    
+    
+    
+    //获取默认地区 选择到响应的pickview
+    for (NSUInteger i=0; i<self.provinceArray.count; i++)
+    {
+        NSString *province = self.provinceArray[i];
+        if ([province isEqualToString:[PublicFunction shareInstance].m_user.province])
+        {
+
+            self.selectedArray = [self.pickerDic objectForKey:self.provinceArray[i]];
+            if (self.selectedArray.count > 0)
+            {
+                self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+                
+                for (NSUInteger j = 0; j<_cityArray.count; j++)
+                {
+                    
+                    NSString  *cityObj = _cityArray[j];
+                    
+                    if ([cityObj isEqualToString:[PublicFunction shareInstance].m_user.city])
+                    {
+                        self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:j]];
+
+                        [self.myPicker selectRow:i inComponent:j animated:NO];
+                        [self.myPicker reloadComponent:1];
+                        break;
+                    }
+                }
+            }
+            
+        }
+    }
+
     
     [UIView animateWithDuration:0.35f animations:^{
         self.pickerBgView.frame = CGRectMake(0, height - 255, width, 255);

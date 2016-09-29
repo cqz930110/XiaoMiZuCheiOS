@@ -54,7 +54,7 @@
 - (void)initView
 {
     NSString *str01 = @"租车开始:";
-    NSString *str02 = @"租车结束:";
+    NSString *str02 = @"租车到期:";
 
     NSString *str1 = @"设备编号:";
     NSString *str2 = @"定位状态:";

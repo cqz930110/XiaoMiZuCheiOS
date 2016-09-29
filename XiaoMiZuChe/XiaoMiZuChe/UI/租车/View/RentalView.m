@@ -146,7 +146,7 @@
     [self dismissKeyBoard];
     if ([PublicFunction shareInstance].m_bLogin == YES) {
         if (_carText.text.length<=0) {
-            [JKPromptView showWithImageName:nil message:@"请输入车辆编号"];
+            [JKPromptView showWithImageName:nil message:@"请您填写车辆编号"];
             return;
         }else if(_phoneText.text.length <=0){
             [JKPromptView showWithImageName:nil message:@"请您检查验证码是否填写"];
@@ -253,6 +253,7 @@
         _carText.delegate = self;
         _carText.borderStyle = UITextBorderStyleNone;
         _carText.textAlignment = NSTextAlignmentLeft;
+        _carText.keyboardType = UIKeyboardTypeNumberPad;
         _carText.placeholder = @"输入车辆编号";
         _carText.font = Font_14;
     }

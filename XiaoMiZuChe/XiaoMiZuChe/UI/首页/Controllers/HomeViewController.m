@@ -220,7 +220,7 @@
 - (UIWebView *)webView
 {
     if (!_webView) {
-        _webView.backgroundColor = [UIColor clearColor];
+        _webView.backgroundColor = [UIColor whiteColor];
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kMainScreenWidth, kMainScreenHeight-213.6)];
         _webView.dataDetectorTypes = UIDataDetectorTypeNone;
         _webView.scrollView.showsVerticalScrollIndicator = NO;

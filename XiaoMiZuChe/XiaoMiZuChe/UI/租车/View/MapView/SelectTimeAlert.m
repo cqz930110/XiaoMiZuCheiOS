@@ -126,7 +126,8 @@ static  NSString * const CellIdentifier  = @"couponIdentifier";
         }
         
         NSString *carIdString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.carRecord.carId];
-        NSString *searchUrl = [NSString stringWithFormat:@"%@%@?carId=%@&startTime=%@&endTime=%@",kProjectBaseUrl,SEARCHTRACK,carIdString,_yesterString,_nowString];
+        NSString *userIdString = [NSString stringWithFormat:@"%@",[PublicFunction shareInstance].m_user.userId];
+        NSString *searchUrl = [NSString stringWithFormat:@"%@%@?carId=%@&userId=%@&startTime=%@&endTime=%@",kProjectBaseUrl,SEARCHTRACK,carIdString,userIdString,_yesterString,_nowString];
         [ZhouDao_NetWorkManger GetJSONWithUrl:[searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isNeedHead:YES success:^(NSDictionary *jsonDic) {
             
             NSUInteger code = [[jsonDic objectForKey:@"code"] integerValue];

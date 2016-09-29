@@ -49,7 +49,6 @@
             _registerTimeLab.hidden = NO;
             _phoneLab.text = [NSString stringWithFormat:@"%@ %@",[PublicFunction shareInstance].m_user.userName,[QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone]];
             _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
-            _headImgView.image = kGetImage(@"icon_default_head");
             [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
         }else {
             

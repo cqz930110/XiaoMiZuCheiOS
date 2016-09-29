@@ -11,6 +11,7 @@
 #import "GcNoticeUtil.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "FDAlertView.h"
 
 @implementation ZhouDao_NetWorkManger
 
@@ -133,7 +134,6 @@
              fail(error);
          }
      }];
-    
 }
 
 #pragma mark 上传多张图片数组
@@ -320,15 +320,13 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (data) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Result--%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            DLog(@"Result--%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             if (!connectionError) {
                 success(dic);
             }
         }else{
             success(nil);
         }
-        
-        
     }];
 }
 
@@ -336,28 +334,28 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     if ([jsonDic[@"code"] intValue] ==-1)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:jsonDic[@"errmsg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alertView show];
+        FDAlertView *view = [[FDAlertView alloc] initWithFrame:kMainScreenFrameRect withTit:@"提示" withMsg:jsonDic[@"errmsg"]];
+        
+        view.navBlock = ^(){
+            
+            [PublicFunction shareInstance].m_bLogin = NO;
+            [PublicFunction shareInstance].m_user = nil;
+            [USER_D removeObjectForKey:USERNAME];
+            [USER_D removeObjectForKey:USERKEY];
+            [USER_D synchronize];
+            [GcNoticeUtil sendNotification:DECIDEISLOGIN];
+            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];
+            delegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
+            
+            LoginViewController *loginVC = [LoginViewController new];
+            [delegate.tabBarControllerConfig.tabBarController.selectedViewController presentViewController:loginVC animated:YES completion:^{
+                
+            }];
+            
+        };
 
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [PublicFunction shareInstance].m_bLogin = NO;
-
-    [USER_D removeObjectForKey:USERNAME];
-    [USER_D removeObjectForKey:USERKEY];
-    [USER_D synchronize];
-    [GcNoticeUtil sendNotification:DECIDEISLOGIN];
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate.tabBarControllerConfig.tabBarController.navigationController popToRootViewControllerAnimated:NO];
-    delegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
-
-    LoginViewController *loginVC = [LoginViewController new];
-    [delegate.tabBarControllerConfig.tabBarController.selectedViewController presentViewController:loginVC animated:YES completion:^{
-        
-    }];
-    
-}
 @end

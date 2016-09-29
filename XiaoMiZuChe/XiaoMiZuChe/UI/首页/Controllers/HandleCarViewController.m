@@ -68,10 +68,11 @@
         _userIdLabel.text = [NSString stringWithFormat:@"NO.%@",[PublicFunction shareInstance].m_user.userId];
     }
     
-    if ([[PublicFunction shareInstance].m_user.vip integerValue] == 2) {
+    if ([PublicFunction shareInstance].m_user.expireTime.length >0) {
         
         [self.view addSubview:self.timeLabel];
         self.timeLabel.text = [PublicFunction shareInstance].m_user.expireTime;
+        [_immediatelyBtn setTitle:@"立即续费" forState:0];
     }
     [self.view addSubview:self.immediatelyBtn];
 }
