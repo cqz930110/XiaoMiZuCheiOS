@@ -19,9 +19,9 @@
     [super awakeFromNib];
     // Initialization code
     
-
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     [self.contentView addSubview:self.iconImgView];
     [self.contentView addSubview:self.titleLab];
     [self.contentView addSubview:self.lineView];
@@ -49,6 +49,7 @@
             _registerTimeLab.hidden = NO;
             _phoneLab.text = [NSString stringWithFormat:@"%@ %@",[PublicFunction shareInstance].m_user.userName,[QZManager getTheHiddenMobile:[PublicFunction shareInstance].m_user.phone]];
             _registerTimeLab.text = [NSString stringWithFormat:@"注册日期:%@",[PublicFunction shareInstance].m_user.regTime];
+            
             [_headImgView sd_setImageWithURL:[NSURL URLWithString:[PublicFunction shareInstance].m_user.headPic] placeholderImage:kGetImage(@"icon_default_head")];
         }else {
             

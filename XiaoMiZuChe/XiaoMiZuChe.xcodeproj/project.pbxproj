@@ -114,6 +114,7 @@
 		184C29861D2BB22E00771220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184C29851D2BB22E00771220 /* Assets.xcassets */; };
 		184C29941D2BB22E00771220 /* XiaoMiZuCheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C29931D2BB22E00771220 /* XiaoMiZuCheTests.m */; };
 		184C299F1D2BB22E00771220 /* XiaoMiZuCheUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C299E1D2BB22E00771220 /* XiaoMiZuCheUITests.m */; };
+		18563A1E1D9E4B8900D11F53 /* bg_location_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18563A1D1D9E4B8900D11F53 /* bg_location_btn@2x.png */; };
 		1859304B1D34890B00F948D4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859304A1D34890B00F948D4 /* HomeViewController.m */; };
 		185930511D34896000F948D4 /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930501D34896000F948D4 /* MallViewController.m */; };
 		185930541D34897100F948D4 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185930531D34897100F948D4 /* MineViewController.m */; };
@@ -540,6 +541,7 @@
 		184C299A1D2BB22E00771220 /* XiaoMiZuCheUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XiaoMiZuCheUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C299E1D2BB22E00771220 /* XiaoMiZuCheUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiaoMiZuCheUITests.m; sourceTree = "<group>"; };
 		184C29A01D2BB22E00771220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18563A1D1D9E4B8900D11F53 /* bg_location_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_location_btn@2x.png"; sourceTree = "<group>"; };
 		185930491D34890B00F948D4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		1859304A1D34890B00F948D4 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		1859304F1D34896000F948D4 /* MallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallViewController.h; sourceTree = "<group>"; };
@@ -939,6 +941,7 @@
 			children = (
 				107821361D521FA6009DE1D2 /* bg_back_car@2x.png */,
 				107821371D521FA6009DE1D2 /* bg_back_car_btn@2x.png */,
+				18563A1D1D9E4B8900D11F53 /* bg_location_btn@2x.png */,
 				1078213B1D521FA6009DE1D2 /* bg_unlock_btn@2x.png */,
 				1078213C1D521FA6009DE1D2 /* btn_around_car@2x.png */,
 				107821481D521FA6009DE1D2 /* icon_code@2x.png */,
@@ -2126,6 +2129,7 @@
 				107821801D521FA6009DE1D2 /* btn_around_car@2x.png in Resources */,
 				107821A71D521FA6009DE1D2 /* pic_developing@2x.png in Resources */,
 				107821B81D521FA6009DE1D2 /* icon_pass_active@2x.png in Resources */,
+				18563A1E1D9E4B8900D11F53 /* bg_location_btn@2x.png in Resources */,
 				18A103B11D92683D00F9D87B /* close_map_Type_tip@2x.png in Resources */,
 				18A103A91D92683C00F9D87B /* icon_onekey_close@2x.png in Resources */,
 				18A103C71D92683D00F9D87B /* nav@2x.png in Resources */,
@@ -2538,8 +2542,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = XiaoMiZuChe/XiaoMiZuChe.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Qiang Feng (3XV668LX24)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Qiang Feng (3XV668LX24)";
 				DEVELOPMENT_TEAM = 3XV668LX24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2579,8 +2583,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33c98e3c-aaa2-4ef6-a163-12b74473a1c0";
-				PROVISIONING_PROFILE_SPECIFIER = 201609288;
+				PROVISIONING_PROFILE = "28f93392-cfb5-4318-ba3f-42ccce492246";
+				PROVISIONING_PROFILE_SPECIFIER = 09xm930;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
@@ -2593,8 +2597,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = XiaoMiZuChe/XiaoMiZuChe.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Feng (6QJUV78QMD)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Qiang Feng (3XV668LX24)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Qiang Feng (3XV668LX24)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 3XV668LX24;
 				ENABLE_BITCODE = NO;
@@ -2635,8 +2639,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leses.XiaoMiZuChe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "33c98e3c-aaa2-4ef6-a163-12b74473a1c0";
-				PROVISIONING_PROFILE_SPECIFIER = 201609288;
+				PROVISIONING_PROFILE = "28f93392-cfb5-4318-ba3f-42ccce492246";
+				PROVISIONING_PROFILE_SPECIFIER = 09xm930;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};

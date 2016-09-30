@@ -51,7 +51,25 @@
 }
 
 #pragma mark - init view
-- (void)initView {
+- (void)initView {WEAKSELF;
+    
+    
+    NSString *pathSource = [[NSBundle mainBundle] pathForResource:@"areas" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:pathSource];
+    self.pickerDic = [[NSMutableDictionary alloc] init];
+    self.pickerDic = dict;
+    self.provinceArray = [NSMutableArray array];
+    [_provinceArray addObjectsFromArray:[dict allKeys]];
+    self.selectedArray = [self.pickerDic objectForKey:self.provinceArray[0]];
+    if (self.selectedArray.count > 0) {
+        self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+    }
+    
+    if (self.cityArray.count > 0) {
+        self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
+    }
+    
+
     
     float width = self.frame.size.width;
     float height = self.frame.size.height;
@@ -101,45 +119,61 @@
     [self.pickerBgView addSubview:ensureBtn];
     
     
-    
-    //获取默认地区 选择到响应的pickview
-    for (NSUInteger i=0; i<self.provinceArray.count; i++)
-    {
-        NSString *province = self.provinceArray[i];
-        if ([province isEqualToString:[PublicFunction shareInstance].m_user.province])
+    if ([PublicFunction shareInstance].m_bLogin == YES) {
+        
+        //获取默认地区 选择到响应的pickview
+        for (NSUInteger i = 0; i<_provinceArray.count; i++)
         {
-
-            self.selectedArray = [self.pickerDic objectForKey:self.provinceArray[i]];
-            if (self.selectedArray.count > 0)
+            NSString *provinceString = _provinceArray[i];
+            if ([provinceString isEqualToString:[PublicFunction shareInstance].m_user.province])
             {
-                self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
                 
-                for (NSUInteger j = 0; j<_cityArray.count; j++)
+                [self.myPicker selectRow:i inComponent:0 animated:NO];
+
+                self.selectedArray = [self.pickerDic objectForKey:_provinceArray[i]];
+                if (_selectedArray.count > 0)
                 {
                     
-                    NSString  *cityObj = _cityArray[j];
+                    if (self.selectedArray.count > 0) {
+                        self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+                    }
                     
-                    if ([cityObj isEqualToString:[PublicFunction shareInstance].m_user.city])
+                    for (NSUInteger ii = 0; ii<_cityArray.count; ii++)
                     {
-                        self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:j]];
+                        
+                        NSString  *cityObj = _cityArray[ii];
+                        if (self.cityArray.count > 0) {
+                            self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:ii]];
+                        }
 
-                        [self.myPicker reloadAllComponents];
-//                        [self.myPicker selectRow:i inComponent:j animated:YES];
+                        if ([cityObj isEqualToString:[PublicFunction shareInstance].m_user.city])
+                        {
+                            
+                            [self.myPicker selectRow:ii inComponent:1 animated:NO];
+                            for (NSUInteger iii = 0; iii <_townArray.count; iii++) {
+                                
+                                NSString *disString = _townArray[iii];
+                                
+                                if ([disString isEqualToString:[PublicFunction shareInstance].m_user.area])
+                                {
+                                    [self.myPicker selectRow:iii inComponent:2 animated:NO];
+                                    break;
+                                }
+                            }
 
-//                        [self.myPicker selectRow:i inComponent:j animated:NO];
-//
-                        [self.myPicker reloadComponent:1];
-                        break;
+                            break;
+                        }
                     }
                 }
             }
-            
         }
+        
     }
 
     
     [UIView animateWithDuration:0.35f animations:^{
-        self.pickerBgView.frame = CGRectMake(0, height - 255, width, 255);
+        
+        weakSelf.pickerBgView.frame = CGRectMake(0, height - 255, width, 255);
     }];
 
 }
@@ -152,8 +186,6 @@
 //    //DLog(@"输出文件数据－－－－－%@",dataS);
 //    NSData *data = [dataS dataUsingEncoding:NSUTF8StringEncoding];
 //    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSString *pathSource = [[NSBundle mainBundle] pathForResource:@"areas" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:pathSource];
 
     //DLog(@"解析是否成功－－－－－%@",dict);
     
@@ -163,27 +195,19 @@
 //
 //    DLog(@"列表－－－－－－%@",weChatPayMsg);
     
-    self.pickerDic = [[NSMutableDictionary alloc] init];
-    self.pickerDic = dict;
-    self.provinceArray  = ProvinceArrays;
+   
 //    self.provinceArray = (NSMutableArray *)[self.pickerDic allKeys];
 //
 //    [self.provinceArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //        DLog(@"输出－－－－－%@",(NSString *)obj);
 //    }];
-    self.selectedArray = [self.pickerDic objectForKey:self.provinceArray[0]];
+   
     
 //        NSData *weChatdatamsg = [self toJSONData:self.selectedArray];
 //        NSString *weChatPayMsg =[[NSString alloc] initWithData:weChatdatamsg
 //                                                      encoding:NSUTF8StringEncoding];
 //    DLog(@"河北省－－－－%@",weChatPayMsg);
-    if (self.selectedArray.count > 0) {
-        self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
-    }
-    
-    if (self.cityArray.count > 0) {
-        self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
-    }
+   
     
 }
 - (NSData *)toJSONData:(id)theData{

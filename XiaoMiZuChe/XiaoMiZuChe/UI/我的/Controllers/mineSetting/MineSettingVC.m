@@ -349,6 +349,10 @@ static NSString *const SettingIdentifer    =  @"SettingIdentifer";
                 
                 kDISPATCH_MAIN_THREAD((^{
                     
+//                    if (weakSelf.settingBlock) {
+//                        
+//                        weakSelf.settingBlock();
+//                    }
                     weakSelf.dataModel.headPic = headUrlString;
                     [weakSelf.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
                 }));

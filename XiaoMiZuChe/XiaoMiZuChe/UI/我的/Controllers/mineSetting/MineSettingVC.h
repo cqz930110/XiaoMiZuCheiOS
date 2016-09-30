@@ -11,4 +11,6 @@
 
 @interface MineSettingVC : BaseViewController
 
+
+//@property (nonatomic, copy) ZCBlock settingBlock;
 @end

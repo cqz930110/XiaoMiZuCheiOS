@@ -19,7 +19,7 @@
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapLocationManager *locationService;//定位服务
 @property (nonatomic, strong) CLLocation *userLocation;  //我的位置
-
+@property (nonatomic, strong) UIButton *refreshButton;//刷新地理位置
 @end
 
 @implementation GPSMapViewController
@@ -38,15 +38,21 @@
     [self setupNaviBarWithTitle:@"附近车辆"];
 
     [self.view addSubview:self.mapView];
+    [self.view addSubview:self.refreshButton];
+    [self.view bringSubviewToFront:_refreshButton];
     [self setupNaviBarWithBtn:NaviLeftBtn title:nil img:@"icon_left_arrow"];
-    [self userLocationService];
+    [self refreshMapLocaltion];
 
 }
 #pragma mark -获取地理位置信息
-- (void)userLocationService
+- (void)refreshMapLocaltion
 {
-    _locationService = [[AMapLocationManager alloc] init];
-    _locationService.delegate = self;
+    if (_locationService == nil) {
+        
+        _locationService = [[AMapLocationManager alloc] init];
+        _locationService.delegate = self;
+        _locationService.allowsBackgroundLocationUpdates = YES;
+    }
     [_locationService startUpdatingLocation];//开启定位
 }
 #pragma mark - MapView Delegate 更新地理位置
@@ -55,7 +61,7 @@
     if (location)
     {
         _userLocation = location;
-        [_locationService stopUpdatingLocation];//停止定位
+//        [_locationService stopUpdatingLocation];//停止定位
         CLLocationCoordinate2D coor2D = {_userLocation.coordinate.latitude ,_userLocation.coordinate.longitude};
         [self.mapView setCenterCoordinate:coor2D];
         [self.mapView setZoomLevel:16.1 animated:YES];
@@ -73,6 +79,7 @@
     NSString *lon = [NSString stringWithFormat:@"%.0f",lonint];
     NSString *lat = [NSString stringWithFormat:@"%.0f",latint];
 
+//    [_mapView removeAnnotations:_mapView.annotations];//移除所有标注
     [APIRequest getArroundCarWithLon:lon withLat:lat RequestSuccess:^(NSArray *arrays) {
         
         if (arrays.count > 0) {
@@ -91,7 +98,6 @@
             }];
         }
     } fail:^{
-        
     }];
 }
 #pragma mark - MAMapViewDelegate
@@ -129,6 +135,19 @@
     }
     
     return _mapView;
+}
+- (UIButton *)refreshButton
+{
+    if (!_refreshButton) {
+        
+        _refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _refreshButton.backgroundColor = [UIColor clearColor];
+//        [_refreshButton setImage:kGetImage(@"bg_location_btn") forState:0];
+        [_refreshButton setBackgroundImage:kGetImage(@"bg_location_btn") forState:0];
+        _refreshButton.frame = CGRectMake(kMainScreenWidth - 50, 74, 40, 40);
+        [_refreshButton addTarget:self action:@selector(refreshMapLocaltion) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _refreshButton;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

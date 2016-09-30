@@ -10,7 +10,7 @@
 
 @interface MineTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
+@property (strong, nonatomic) IBOutlet UIImageView *headImgView;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
 @property (weak, nonatomic) IBOutlet UILabel *registerTimeLab;
 

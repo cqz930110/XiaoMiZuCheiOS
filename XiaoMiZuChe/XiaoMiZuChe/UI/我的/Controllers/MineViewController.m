@@ -43,7 +43,6 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     [super viewWillAppear:animated];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     ([PublicFunction shareInstance].m_bLogin == NO)?[self.footView setHidden:YES]:[self.footView setHidden:NO];
-
 }
 #pragma mark - private methods
 - (void)initUI
@@ -74,7 +73,7 @@ static NSString *const MINECELLIDENTIFER = @"mineCellIdentifer";
     return (indexPath.row == 0)?95.f:44.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{WEAKSELF;
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     if (row == 0) {
